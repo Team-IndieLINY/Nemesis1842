@@ -1,0 +1,98 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 8
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d244a2aa4b6b8084db5cd04c5078daf2, type: 3}
+  m_Name: BarGuestDB
+  m_EditorClassIdentifier: 
+  Guests:
+  - guest_code: 0001
+    day: 1
+    order: 1
+    character_code: 01
+  - guest_code: 0002
+    day: 1
+    order: 2
+    character_code: 02
+  - guest_code: 0003
+    day: 1
+    order: 3
+    character_code: 03
+  Scripts:
+  - guest_code: 0001
+    script_type: 0
+    character_name: "\uBCA0\uC77C \uC874"
+    script: "\uC544\uB2C8\uC57C"
+  - guest_code: 0001
+    script_type: 0
+    character_name: "\uBCA0\uC77C \uC874"
+    script: "\uC218\uAC15\uC2E0\uCCAD \uC81C\uBC1C"
+  - guest_code: 0001
+    script_type: 0
+    character_name: "\uBCA0\uC77C \uC874"
+    script: "\uC8FC\uC6D0\uC544 \uC220 \uC880 \uADF8\uB9CC \uB9C8\uC154\uB77C"
+  - guest_code: 0001
+    script_type: 0
+    character_name: "\uBCA0\uC77C \uC874"
+    script: "\uC9C0\uD601\uC544 \uC791\uC5C5 \uC880 \uBE68\uB9AC \uBE68\uB9AC \uD558\uC790"
+  - guest_code: 0001
+    script_type: 0
+    character_name: "\uBCA0\uC77C \uC874"
+    script: "\uC54C\uC558\uC9C0 ^^"
+  - guest_code: 0001
+    script_type: 1
+    character_name: "\uBCA0\uC77C \uC874"
+    script: "\uAEBC\uC838"
+  - guest_code: 0002
+    script_type: 0
+    character_name: "\uC784\uC8FC\uC6D0"
+    script: "\uC220\uC774 \uCD5C\uACE0\uC57C"
+  - guest_code: 0002
+    script_type: 0
+    character_name: "\uC784\uC8FC\uC6D0"
+    script: "\uC220 \uB108\uAC00 \uC720\uC77C\uD55C \uCE5C\uAD6C\uC57C"
+  - guest_code: 0002
+    script_type: 0
+    character_name: "\uC784\uC8FC\uC6D0"
+    script: "\uC18C\uC8FC vs \uC591\uC8FC?"
+  - guest_code: 0002
+    script_type: 1
+    character_name: "\uC784\uC8FC\uC6D0"
+    script: "\uB2E4\uC74C\uC5D0\uB294 \uB2E4\uC774\uD0A4\uB9AC \uBA39\uC5B4\uC57C\uC9C0
+      \uD5C8\uD5C8"
+  - guest_code: 0002
+    script_type: 1
+    character_name: "\uC784\uC8FC\uC6D0"
+    script: "\uC544 2\uCC28\uB294 \uC5B4\uB514\uB85C \uAC08\uAE4C"
+  - guest_code: 0002
+    script_type: 1
+    character_name: "\uC784\uC8FC\uC6D0"
+    script: "\uBC34\uB4DC\uBD80\uC5D0\uC11C \uB9C8\uC154\uC57C\uC9D5"
+  CocktailProblems:
+  - guest_code: 0001
+    scan_type: 0
+    scan_script: "\uC2E0 \uCE75\uD14C\uC77C"
+    answer_type: 0
+    answer: 2
+  - guest_code: 0001
+    scan_type: 1
+    scan_script: "\uC544\uB2C8\uC694"
+    answer_type: 1
+    answer: 2
+  - guest_code: 0002
+    scan_type: 0
+    scan_script: "\uC6B0\uC6B8\uC99D"
+    answer_type: 0
+    answer: 0
+  - guest_code: 0003
+    scan_type: 0
+    scan_script: "\uBAB0\uB77C"
+    answer_type: 0
+    answer: 1
