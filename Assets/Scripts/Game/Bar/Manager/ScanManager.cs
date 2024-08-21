@@ -149,7 +149,7 @@ public class ScanManager : MonoBehaviour
         StartCoroutine(AnimatePrintScanResultPaper(ScanType.WearingScan));
     }
 
-    public IEnumerator AnimatePrintScanResultPaper(ScanType scanType)
+    private IEnumerator AnimatePrintScanResultPaper(ScanType scanType)
     {
         _playableDirector.playableAsset = _scanResultPrintTimelines[(int)scanType];
         _playableDirector.Play();

@@ -80,12 +80,12 @@ MonoBehaviour:
     scan_type: 0
     scan_script: "\uC2E0 \uCE75\uD14C\uC77C"
     answer_type: 0
-    answer: 2
+    answer: 1
   - guest_code: 0001
     scan_type: 1
     scan_script: "\uC544\uB2C8\uC694"
     answer_type: 1
-    answer: 2
+    answer: 1
   - guest_code: 0002
     scan_type: 0
     scan_script: "\uC6B0\uC6B8\uC99D"
