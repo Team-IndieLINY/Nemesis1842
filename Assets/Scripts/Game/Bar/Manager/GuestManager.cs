@@ -33,6 +33,12 @@ public class GuestManager : MonoBehaviour
 
     [SerializeField]
     private ScanManager _scanManager;
+
+    [SerializeField]
+    private CocktailMachineManager _cocktailMachineManager;
+
+    [SerializeField]
+    private CocktailEvaluationManager _cocktailEvaluationManager;
     
     
     [Header("Timeline")]
@@ -74,6 +80,8 @@ public class GuestManager : MonoBehaviour
     {
         foreach (var guestData in _guestDatas)
         {
+            _cocktailMachineManager.ResetCocktailMachine();
+            
             List<CharacterData> characterData = _characterDatas
                 .Where(x => x.CharacterCode == guestData.character_code)
                 .ToList();
@@ -88,8 +96,9 @@ public class GuestManager : MonoBehaviour
 
             _scanManager.SetScanData(
                 _barGuestDB.CocktailProblems.Where(x => x.guest_code == guestData.guest_code).ToList());
-            
-            
+
+            _cocktailEvaluationManager.SetRequiringCocktailData(
+                _barGuestDB.CocktailProblems.Where(x => x.guest_code == guestData.guest_code).ToList());
             
             AppearGuest();
 
@@ -115,7 +124,7 @@ public class GuestManager : MonoBehaviour
                 && _playableDirector.state == PlayState.Paused);
             
             EvaluateCocktail();
-            
+
             _scanManager.ResetScanner();
         }
     }
