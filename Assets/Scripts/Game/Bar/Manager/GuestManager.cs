@@ -123,7 +123,7 @@ public class GuestManager : MonoBehaviour
                 _playableDirector.playableAsset == _disappearGuestTimeline
                 && _playableDirector.state == PlayState.Paused);
             
-            EvaluateCocktail();
+            PayCocktailCost();
 
             _scanManager.ResetScanner();
         }
@@ -168,8 +168,8 @@ public class GuestManager : MonoBehaviour
         _playableDirector.Play();
     }
 
-    private void EvaluateCocktail()
+    private void PayCocktailCost()
     {
-        
+        _cocktailEvaluationManager.CalculateCocktailCost();
     }
 }
