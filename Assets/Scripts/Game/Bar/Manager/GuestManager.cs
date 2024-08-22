@@ -26,6 +26,12 @@ public class GuestManager : MonoBehaviour
 
     [SerializeField]
     private Button _doneButton;
+
+    [SerializeField]
+    private Receipt _receipt;
+
+    [SerializeField]
+    private Player _player;
     
     [Header("Manager")]
     [SerializeField]
@@ -39,6 +45,12 @@ public class GuestManager : MonoBehaviour
 
     [SerializeField]
     private CocktailEvaluationManager _cocktailEvaluationManager;
+
+    [SerializeField]
+    private CocktailMakingManager _cocktailMakingManager;
+
+    [SerializeField]
+    private DatabaseManager _databaseManager;
     
     
     [Header("Timeline")]
@@ -53,6 +65,9 @@ public class GuestManager : MonoBehaviour
 
     [SerializeField]
     private TimelineAsset _disappearGuestTimeline;
+
+    [SerializeField]
+    private TimelineAsset _printReceiptTimeline;
 
     private void Awake()
     {
@@ -125,7 +140,13 @@ public class GuestManager : MonoBehaviour
             
             PayCocktailCost();
 
+            yield return new WaitUntil(() =>
+                _playableDirector.playableAsset == _printReceiptTimeline
+                && _playableDirector.state == PlayState.Paused);
+
+            _cocktailMakingManager.ResetCocktail();
             _scanManager.ResetScanner();
+            _databaseManager.HomeButton();
         }
     }
     
@@ -143,7 +164,7 @@ public class GuestManager : MonoBehaviour
 
     public void EnterCocktailMakingScreen()
     {
-        _doneButton.interactable = true;
+        _cocktailMakingManager.ActivateDoneAndResetButton();
         
         _playableDirector.playableAsset = _enterCocktailMakingScreenTimeline;
         _playableDirector.Play();
@@ -151,7 +172,7 @@ public class GuestManager : MonoBehaviour
 
     public void ExitCocktailMakingScreen()
     {
-        _doneButton.interactable = false;
+        _cocktailMakingManager.InActivateDoneAndResetButton();
         
         _playableDirector.playableAsset = _exitCocktailMakingScreenTimeline;
         _playableDirector.Play();
@@ -171,5 +192,10 @@ public class GuestManager : MonoBehaviour
     private void PayCocktailCost()
     {
         _cocktailEvaluationManager.CalculateCocktailCost();
+        _receipt.SetReceiptText();
+
+        _playableDirector.playableAsset = _printReceiptTimeline;
+        _playableDirector.Play();
+        _player.EarnMoney(_cocktailEvaluationManager.SumOfCocktailCost);
     }
 }

@@ -20,9 +20,38 @@ public class CocktailMachineManager : MonoBehaviour
     [SerializeField]
     private CocktailMachine _tasteMachine;
 
+    [SerializeField]
+    private Button[] _cocktailMachineSelectingButtons;
+
     private void Awake()
     {
         _currentCocktailMachine = _tasteMachine;
+    }
+
+    public void InActivateCurrentCocktailMachine()
+    {
+        _currentCocktailMachine.InActivateCocktailMachine();
+    }
+    
+    public void ActivateCurrentCocktailMachine()
+    {
+        _currentCocktailMachine.ActivateCocktailMachine();
+    }
+
+    public void InActivateCocktailSelectingButtons()
+    {
+        foreach (var cocktailMachineSelectingButton in _cocktailMachineSelectingButtons)
+        {
+            cocktailMachineSelectingButton.interactable = false;
+        }
+    }
+    
+    public void ActivateCocktailSelectingButtons()
+    {
+        foreach (var cocktailMachineSelectingButton in _cocktailMachineSelectingButtons)
+        {
+            cocktailMachineSelectingButton.interactable = true;
+        }
     }
 
     public void ResetCocktailMachine()

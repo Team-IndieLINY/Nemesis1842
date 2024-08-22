@@ -6,8 +6,13 @@ using UnityEngine;
 public class Cocktail
 {
     private TasteMachine.TasteType? _tasteType = null;
+    public TasteMachine.TasteType? TasteType => _tasteType;
+    
     private ScentMachine.ScentType? _scentType = null;
+    public ScentMachine.ScentType? ScentType => _scentType;
+    
     private int _alcohol = -1;
+    public int Alcohol => _alcohol;
 
     public void SetTaste(TasteMachine.TasteType? tasteType)
     {

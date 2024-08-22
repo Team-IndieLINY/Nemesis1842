@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
 
-[CanEditMultipleObjects]
+
 public abstract class Database : MonoBehaviour
 {
     [SerializeField]

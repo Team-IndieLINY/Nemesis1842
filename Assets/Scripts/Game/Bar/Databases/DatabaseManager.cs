@@ -30,10 +30,6 @@ public class DatabaseManager : MonoBehaviour
         {
             OpenDatabase(nextDatabase);
         }
-        else
-        {
-            Debug.Log("최상위 페이지에 도달하였다");
-        }
     }
     
     public void HomeButton()

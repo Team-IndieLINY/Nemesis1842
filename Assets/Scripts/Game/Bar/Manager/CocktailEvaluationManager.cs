@@ -10,9 +10,16 @@ public class CocktailEvaluationManager : MonoBehaviour
     public int SumOfCocktailCost => _sumOfCocktailCost;
     
     private float _tipProbability = 40f;
+    
     private int _baseCocktailCost = 50;
+    public int BaseCocktailCost => _baseCocktailCost;
+
+    private int _tipCost;
+    public int TipCost => _tipCost;
+    
     private int _customerPatientTime = 30;
     private int _currentCustomerPatientTime;
+    
     private Coroutine _workCustomerPatientTimer;
     
     private const float BASE_TIP_PERCENTAGE_OF_COCKTAIL_COST = 0.5f;
@@ -64,12 +71,16 @@ public class CocktailEvaluationManager : MonoBehaviour
     public void CalculateCocktailCost()
     {
         _sumOfCocktailCost = _baseCocktailCost;
+        _tipCost = 0;
 
         int randomNumber = Random.Range(0, 100);
         
+        Debug.Log(_tipProbability);
+        
         if (randomNumber < (int)_tipProbability)
         {
-            _sumOfCocktailCost += (int)(_baseCocktailCost * BASE_TIP_PERCENTAGE_OF_COCKTAIL_COST);
+            _tipCost = (int)(_baseCocktailCost * BASE_TIP_PERCENTAGE_OF_COCKTAIL_COST);
+            _sumOfCocktailCost += _tipCost;
         }
     }
 }

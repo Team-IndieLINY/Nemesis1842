@@ -6,6 +6,10 @@ public class AlcoholMachine : CocktailMachine
 {
     public override void OnClickDecisionButton()
     {
-        
+        if (_isUsed is true)
+        {
+            return;
+        }
+        _isUsed = true;
     }
 }
