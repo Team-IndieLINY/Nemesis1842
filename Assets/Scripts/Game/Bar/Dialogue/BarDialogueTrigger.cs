@@ -18,8 +18,14 @@ public class BarDialogueTrigger : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            //chat balloon이 띄어져 있을 때만 작동하게 하기
-            _barDialogueManager.DisplayNextScript();
+            if (_barDialogueManager.IsTyped is true)
+            {
+                _barDialogueManager.SkipTypeScripts();
+            }
+            else
+            {
+                _barDialogueManager.DisplayNextScript();
+            }
         }
     }
 }

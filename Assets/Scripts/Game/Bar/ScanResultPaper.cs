@@ -59,12 +59,12 @@ public class ScanResultPaper : MonoBehaviour, IPointerDownHandler,IPointerMoveHa
         _rectTransform.anchoredPosition = new Vector2(
             Mathf.Clamp(
                 Input.mousePosition.x - _distanceOfMousePointerToPaper.x,
-                -(parent.GetComponent<RectTransform>().sizeDelta.x / 2),
+                -(parent.GetComponent<RectTransform>().sizeDelta.x / 4),
                 parent.GetComponent<RectTransform>().sizeDelta.x / 2),
             Mathf.Clamp(
                 Input.mousePosition.y - _distanceOfMousePointerToPaper.y,
                 -(parent.GetComponent<RectTransform>().sizeDelta.y / 2),
-                parent.GetComponent<RectTransform>().sizeDelta.y / 4)
+                parent.GetComponent<RectTransform>().sizeDelta.y / 2)
         );
     }
 

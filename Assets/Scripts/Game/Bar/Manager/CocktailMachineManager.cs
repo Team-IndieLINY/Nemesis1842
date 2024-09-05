@@ -75,6 +75,8 @@ public class CocktailMachineManager : MonoBehaviour
             return;
         }
         
+        cocktailMachine.InActivateCocktailMachine();
+        
         Sequence sequence = DOTween.Sequence();
 
         sequence

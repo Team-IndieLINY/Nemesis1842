@@ -37,7 +37,6 @@ public abstract class CocktailMachine : MonoBehaviour
 
     public void OnClickCocktailMachineSelectingButton()
     {
-        InActivateCocktailMachine();
         _cocktailMachineManager.AnimateChangingCocktailMachine(this);
     }
 

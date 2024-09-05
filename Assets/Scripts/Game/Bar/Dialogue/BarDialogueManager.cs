@@ -27,6 +27,11 @@ public class BarDialogueManager : MonoBehaviour
     public bool IsProgressed => _isProgressed;
     
     private bool _isTyped = false;
+    public bool IsTyped => _isTyped;
+
+    private string _currentScript;
+
+    private Coroutine _typeScriptsCoroutine;
 
     public void StartDialogue(List<BarDialogueEntity> barDialogueEntities)
     {
@@ -61,13 +66,11 @@ public class BarDialogueManager : MonoBehaviour
         }
 
         BarDialogueEntity barDialogueEntity = _scriptsQueue.Dequeue();
-        string script = barDialogueEntity.script;
+        _currentScript = barDialogueEntity.script;
         
         _characterNameText.text = barDialogueEntity.character_name;
         
-        
-        StopAllCoroutines();
-        StartCoroutine(TypeScripts(script));
+        _typeScriptsCoroutine = StartCoroutine(TypeScripts(_currentScript));
     }
     
     private IEnumerator TypeScripts(string script)
@@ -80,6 +83,15 @@ public class BarDialogueManager : MonoBehaviour
             _scriptText.text += letter;
             yield return new WaitForSeconds(_typeSpeedForSecond);
         }
+
+        _isTyped = false;
+    }
+
+    public void SkipTypeScripts()
+    {
+        StopCoroutine(_typeScriptsCoroutine);
+
+        _scriptText.text = _currentScript;
 
         _isTyped = false;
     }

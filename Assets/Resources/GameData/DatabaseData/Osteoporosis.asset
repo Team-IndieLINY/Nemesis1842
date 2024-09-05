@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2f0924557fe874e4ebde4ee9847d2fc3, type: 3}
+  m_Name: Osteoporosis
+  m_EditorClassIdentifier: 
+  _nameLabel: "\uACE8\uB2E4\uACF5\uC99D"
+  _baseInfoLabel: "\uBF08\uC758 \uC8FC\uC131\uBD84\uC778 \uCE7C\uC298\uC774 \uAE09\uACA9\uD788
+    \uBE60\uC838\uB098\uC640 \uC815\uC0C1\uC801\uC778 \uBF08\uC5D0 \uBE44\uD558\uC5EC
+    \uACE8\uBC00\uB3C4\uAC00 \uB0AE\uC544\uC838 \u201C\uAD6C\uBA4D\uC774 \uB9CE\uC774
+    \uB09C \uBF08\u201D\uB97C \uB9D0\uD558\uBA70, \uD3D0\uACBD, \uB178\uD654, \uBF08\uC5D0
+    \uD574\uB85C\uC6B4 \uC57D\uBB3C\uC758 \uC0AC\uC6A9 \uB4F1\uC758 \uC5EC\uB7EC
+    \uAC00\uC9C0 \uC6D0\uC778\uC5D0 \uC758\uD558\uC5EC \uBF08\uAC00 \uB9CE\uC774
+    \uC190\uC2E4\uB418\uACE0 \uC57D\uD574\uC838 \uACBD\uBBF8\uD55C \uCDA9\uACA9\uC5D0\uB3C4
+    \uC27D\uAC8C \uACE8\uC808\uC774 \uC77C\uC5B4\uB098\uB294 \uC9C8\uD658\uC774\uB2E4."
+  _coreInfoLabel: 
