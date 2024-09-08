@@ -20,6 +20,12 @@ public class BarDialogueManager : MonoBehaviour
 
     [SerializeField, Range(0.01f, 0.3f)]
     private float _typeSpeedForSecond;
+
+    [SerializeField]
+    private AudioClip _typingAudioClip;
+
+    [SerializeField]
+    private AudioSource _audioSource;
     
     private Queue<BarDialogueEntity> _scriptsQueue = new Queue<BarDialogueEntity>();
 
@@ -35,6 +41,8 @@ public class BarDialogueManager : MonoBehaviour
 
     public void StartDialogue(List<BarDialogueEntity> barDialogueEntities)
     {
+        _audioSource.clip = _typingAudioClip;
+        
         _isProgressed = true;
         
         _chatBalloonGO.SetActive(true);
@@ -80,6 +88,7 @@ public class BarDialogueManager : MonoBehaviour
 
         foreach (var letter in script.ToCharArray())
         {
+            _audioSource.Play();
             _scriptText.text += letter;
             yield return new WaitForSeconds(_typeSpeedForSecond);
         }
