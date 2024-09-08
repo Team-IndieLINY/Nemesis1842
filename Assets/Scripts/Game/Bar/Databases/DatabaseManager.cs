@@ -23,8 +23,14 @@ public class DatabaseManager : MonoBehaviour
         _currentDatabase = nextDatabase;
     }
 
-    public void BackButton()
+    public virtual void BackButton()
     {
+        if(_currentDatabase is CharacterDatabase)
+        {
+            HomeButton();
+            return;
+        }
+
         Database nextDatabase = _currentDatabase.GetPreDatabase();
         if (nextDatabase != null)
         {
@@ -32,8 +38,13 @@ public class DatabaseManager : MonoBehaviour
         }
     }
     
-    public void HomeButton()
+    public virtual void HomeButton()
     {
+        if (_currentDatabase is MainDatabase)
+        {
+            return;
+        }
+
         OpenDatabase(_mainDatabase);
     }
 

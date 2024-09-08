@@ -1,0 +1,41 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e42b36030f6456d46b050ab46bcc70e4, type: 3}
+  m_Name: "\uC140\uB808\uB098 \uB9C8\uAC00\uB9AC\uD0C0"
+  m_EditorClassIdentifier: 
+  _nameLabel: "\uC140\uB808\uB098 \uB9C8\uAC00\uB9AC\uD0C0"
+  _relationshipLabel: "_\uD654\uC131\uAE30\uC5C5 \uD68C\uC7A5\uC758 \uB538"
+  _birthDayLabel: "1996.03.07(\uB9CC28\uC138)"
+  _addressLabel: "\uC62C\uB9AC\uBA3C\uC2A4 A-13\uAD6C\uC5ED"
+  _jobLabel: "\uC778\uD50C\uB8E8\uC5B8\uC11C"
+  _phoneNumberLabel: 081-773
+  _SNSIDLabel: Im_YeppunE
+  _picture: {fileID: 21300000, guid: 778e126d52c4dc649898ecc01dc1ee3e, type: 3}
+  _volatileData:
+  - "\uC774\uD2C0 \uC804\uC5D0 \uC62C\uB9AC\uC5B8\uC2A4 A-12 \uD3ED\uD589 \uC0AC\uAC74\uC5D0
+    \uD718\uB9D0\uB9BC"
+  - "\uB0A8\uC790\uCE5C\uAD6C\uC640 \uCD5C\uADFC\uC5D0 \uD5E4\uC5B4\uC9D0"
+  - "\uCE5C\uAD6C \uC5D8\uB9AC\uC2A4 \uBAB0\uC2A8\uACFC \uB2E4\uD23C"
+  _significant:
+  - "\uB2F9\uB1E8\uBCD1\uC774 \uC788\uC74C"
+  - "\uACE0\uC18C\uACF5\uD3EC\uC99D\uC774 \uC788\uC74C"
+  _behavioralResponse:
+  - "\uBD88\uC548\uD558\uBA74 \uC190\uC744 \uAE4C\uB2E5\uAC70\uB9BC"
+  - "\uC2A4\uD2B8\uB808\uC2A4\uB97C \uBC1B\uC73C\uBA74 \uC624\uB978\uCABD \uC5B4\uAE68\uB97C
+    \uC62C\uB9BC"
+  _humanRelationships:
+  - Relationship: "\uB0A8\uC790\uCE5C\uAD6C1"
+    CharacterDatabaseData: {fileID: 11400000, guid: 2941f5baf09a4f54a9721d54a0424f4b,
+      type: 2}
+  - Relationship: "\uB0A8\uC790\uCE5C\uAD6C2"
+    CharacterDatabaseData: {fileID: 11400000, guid: 2b83a5c0f34eeb34f88a8bc0b4e1aec4,
+      type: 2}
