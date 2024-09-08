@@ -1,0 +1,38 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e42b36030f6456d46b050ab46bcc70e4, type: 3}
+  m_Name: "\uB784\uB85C"
+  m_EditorClassIdentifier: 
+  _nameLabel: "\uB784\uB85C"
+  _relationshipLabel: "_\uAE40\uD574\uCCAD\uB144"
+  _birthDayLabel: "1994.06.08(\uB9CC 30\uC138)"
+  _addressLabel: "\uC778\uCC9C\uAD11\uC5ED\uC2DC \uC5F0\uC218\uAD6C"
+  _jobLabel: "\uC720\uD29C\uBC84"
+  _phoneNumberLabel: 117
+  _SNSIDLabel: Canho
+  _picture: {fileID: 21300000, guid: 5eb77bc1c4706c949aa2db55e086c815, type: 3}
+  _volatileData:
+  - "\uB0A8\uD0D3\uD574\uB3C4 \uB41C\uB2E4. \uC6B0\uB9B0 \uB0A8\uC774\uB2C8\uAE50"
+  - "\uC5F4\uC2EC\uD788 \uD574\uB77C"
+  _significant:
+  - "80\uC5B5 \uC783\uC74C"
+  _behavioralResponse:
+  - "\uBC29\uC1A1 \uB54C \uC120\uAE00\uB77C\uC2A4\uB97C \uB08C"
+  - "\uB9AC \uC2E0\uC744 \uD558\uBA74 \uAC8C\uC784\uC744 \uB358\uC838\uBC84\uB9BC"
+  - "\uC790 \uB4DC\uAC00\uC790"
+  _humanRelationships:
+  - Relationship: "\uC5EC\uC790\uCE5C\uAD6C"
+    CharacterDatabaseData: {fileID: 11400000, guid: cd755ab7522198f41b6dd315f79b7230,
+      type: 2}
+  - Relationship: "\uB4C0\uC624"
+    CharacterDatabaseData: {fileID: 11400000, guid: 2b83a5c0f34eeb34f88a8bc0b4e1aec4,
+      type: 2}
