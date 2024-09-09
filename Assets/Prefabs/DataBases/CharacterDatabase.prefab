@@ -4791,13 +4791,14 @@ MonoBehaviour:
   _phoneNumberLabel: {fileID: 5999166150151079668}
   _SNSIDLabel: {fileID: 8159819764620180196}
   _pictureImage: {fileID: 5820594116377485511}
+  _currentDataType: 0
+  _titleLabel: {fileID: 4128473518601831574}
   _dataLabels:
   - {fileID: 6756575006063810522}
   - {fileID: 1483471078321625383}
   - {fileID: 148576713788977849}
   - {fileID: 3587423807968142724}
   - {fileID: 479138932726257673}
-  _currentDataType: 0
   relationshipButtonDatas:
   - {fileID: 8695050910247640117}
   - {fileID: 3970596081876571171}

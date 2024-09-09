@@ -43,13 +43,24 @@ public class CharacterDatabase : Database
     }
 
     [SerializeField]
+    private DataType _currentDataType;
+    public DataType CurrentDataType { get { return _currentDataType; } set { _currentDataType = value; } }
+
+    private static readonly string[] _dataTypeStr = 
+    { 
+        "휘발성 데이터", 
+        "특이 사항", 
+        "행동 대응", 
+        "인간 관계" 
+    };
+
+    [SerializeField]
+    private TextMeshProUGUI _titleLabel;
+
+    [SerializeField]
     private GameObject[] _dataLabels;
 
     private TextMeshProUGUI[] _dataLabelsTexts;
-
-    [SerializeField]
-    private DataType _currentDataType;
-    public DataType CurrentDataType { get { return _currentDataType; } set { _currentDataType = value; } }
 
     // 인간 관계
     [SerializeField]
@@ -114,6 +125,8 @@ public class CharacterDatabase : Database
         _currentDataType = dataType;
 
         SetActiveButtonGroup();
+
+        _titleLabel.text = _dataTypeStr[(int)_currentDataType];
 
         switch (_currentDataType)
         {
