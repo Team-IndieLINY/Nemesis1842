@@ -14,13 +14,13 @@ public class CharacterDatabaseManager : DatabaseManager
 
     public override void BackButton()
     {
-        _characterDatabase.CurrentDataType = CharacterDatabase.DataType.VolatileData;
+        _characterDatabase.ResetCurrentDataType();
         base.BackButton();
     }
 
     public override void HomeButton()
     {
-        _characterDatabase.CurrentDataType = CharacterDatabase.DataType.VolatileData;
+        _characterDatabase.ResetCurrentDataType();
         base.HomeButton();
     }
 }

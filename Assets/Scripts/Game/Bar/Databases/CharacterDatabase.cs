@@ -44,7 +44,6 @@ public class CharacterDatabase : Database
 
     [SerializeField]
     private DataType _currentDataType;
-    public DataType CurrentDataType { get { return _currentDataType; } set { _currentDataType = value; } }
 
     private static readonly string[] _dataTypeStr = 
     { 
@@ -112,6 +111,9 @@ public class CharacterDatabase : Database
         _pictureImage.sprite = characterDatabaseData.Picture;
 
         _currentDataType = DataType.VolatileData;
+        _titleLabel.text = _dataTypeStr[(int)DataType.VolatileData];
+
+        ResetCurrentDataType();
         SetStringDatas(characterDatabaseData.VolatileData);
         SetActiveButtonGroup();
     }
@@ -123,10 +125,9 @@ public class CharacterDatabase : Database
             return;
 
         _currentDataType = dataType;
+        _titleLabel.text = _dataTypeStr[(int)_currentDataType];
 
         SetActiveButtonGroup();
-
-        _titleLabel.text = _dataTypeStr[(int)_currentDataType];
 
         switch (_currentDataType)
         {
@@ -198,5 +199,11 @@ public class CharacterDatabase : Database
     public void SetRelationshipDatabase(int page)
     {
         SetDatabase(_currentChracterDatabaseData.HumanRelationships[page].CharacterDatabaseData);
+    }
+
+    public void ResetCurrentDataType()
+    {
+        _currentDataType = DataType.VolatileData;
+        _titleLabel.text = _dataTypeStr[(int)DataType.VolatileData];
     }
 }
