@@ -17,6 +17,9 @@ public class CocktailMakingManager : MonoBehaviour
     private CocktailEvaluationManager _cocktailEvaluationManager;
 
     [SerializeField]
+    private CocktailManager _cocktailManager;
+
+    [SerializeField]
     private Button _doneButton;
 
     [SerializeField]
@@ -61,6 +64,7 @@ public class CocktailMakingManager : MonoBehaviour
     {
         InActivateDoneAndResetButton();
         _cocktailEvaluationManager.EvaluateCocktail(_cocktail);
+        _cocktailManager.SetCocktailSprite(_cocktail.TasteType);
         _cocktailEvaluationManager.EvaluateCustomerPatient();
     }
     

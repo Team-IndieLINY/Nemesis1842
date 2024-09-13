@@ -51,6 +51,9 @@ public class GuestManager : MonoBehaviour
 
     [SerializeField]
     private DatabaseManager _databaseManager;
+
+    [SerializeField]
+    private CocktailManager _cocktailManager;
     
     
     [Header("Timeline")]
@@ -127,12 +130,17 @@ public class GuestManager : MonoBehaviour
                 _playableDirector.playableAsset == _exitCocktailMakingScreenTimeline
                 && _playableDirector.state == PlayState.Paused);
             
+            _cocktailManager.AppearCocktail();
+
+            yield return new WaitUntil(() => _cocktailManager.IsAppear);
+            
             ShowEndScripts();
 
             yield return new WaitUntil(() =>
                 _barDialogueManager.IsProgressed is false);
             
             DisappearGuest();
+            _cocktailManager.DisappearCocktail();
 
             yield return new WaitUntil(() =>
                 _playableDirector.playableAsset == _disappearGuestTimeline

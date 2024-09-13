@@ -66,6 +66,11 @@ public class CocktailMachineManager : MonoBehaviour
         _currentCocktailMachine.InActivateCocktailMachine();
         _tasteMachine.ActivateCocktailMachine();
         _currentCocktailMachine = _tasteMachine;
+
+        if (_tasteMachine is TasteMachine tasteMachine)
+        {
+            tasteMachine.ResetTasteMachine();
+        }
     }
 
     public void AnimateChangingCocktailMachine(CocktailMachine cocktailMachine)
@@ -74,6 +79,9 @@ public class CocktailMachineManager : MonoBehaviour
         {
             return;
         }
+        
+        _currentCocktailMachine.AnimateTurningOffSelectionLight();
+        cocktailMachine.AnimateTurningOnSelectionLight();
         
         cocktailMachine.InActivateCocktailMachine();
         

@@ -11,6 +11,9 @@ public class BarDialogueManager : MonoBehaviour
 
     [SerializeField]
     private GameObject _makeCocktailButtonGO;
+
+    [SerializeField]
+    private GameObject _arrowGO;
     
     [SerializeField]
     private TextMeshProUGUI _characterNameText;
@@ -46,6 +49,7 @@ public class BarDialogueManager : MonoBehaviour
         _isProgressed = true;
         
         _chatBalloonGO.SetActive(true);
+        _arrowGO.SetActive(true);
         
         _scriptsQueue.Clear();
 
@@ -70,6 +74,7 @@ public class BarDialogueManager : MonoBehaviour
         
         if (_scriptsQueue.Count == 1 && _scriptsQueue.Peek().script_type == 0) //마지막 대사이고 시작 스크립트이면 칵테일 제조 버튼 활성화
         {
+            _arrowGO.SetActive(false);
             _makeCocktailButtonGO.SetActive(true);
         }
 
