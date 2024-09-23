@@ -40,21 +40,15 @@ jobs:
           name: Windows Build
           path: build
   notify:
+    name: discord notification
     runs-on: ubuntu-latest
+    needs: buildWindows
+
     steps:
-      - env:
-          DATA: >
-            {
-              "embeds": [
-                {
-                  "title": "빌드 출시",
-                  "description": "새로운 빌드가 출시되었습니다!\n\n https://github.com/${{env.GITHUB_REPOSITORY}}/actions/runs/${{env.GITHUB_RUN_ID}}",
-                  "url": "https://github.com/${{env.GITHUB_REPOSITORY}}/actions/runs/${{env.GITHUB_RUN_ID}}"
-                }
-              ]
-            }
-        run: >
-          curl -X
-          POST -H 'Content-type:application/json'
-          -d "$DATA"
-          ${{secrets.DISCORD_WEBHOOK}}
+      - name: Discord notification
+        env:
+          DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}
+          
+        uses: Ilshidur/action-discord@master
+        with:
+          args: "빌드 출시 \n빌드 링크: https://github.com/{{GITHUB_REPOSITORY}}/actions/runs/{{GITHUB_RUN_ID}}"
