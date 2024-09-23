@@ -40,15 +40,10 @@ jobs:
           name: Windows Build
           path: build
   notify:
-      name: discord notification
       runs-on: windows-latest
-      needs: buildWindows
-
       steps:
-        - name: Discord notification
-          env:
-            DISCORD_WEBHOOK: ${{secrets.DISCORD_WEBHOOK}}
-          
-          uses: Ilshidur/action-discord@master
-          with:
-            args: "빌드 생성. \n빌드 링크: https://github.com/{{GITHUB_REPOSITORY}}/actions/runs/{{GITHUB_RUN_ID}}"
+        - run: >
+           curl -X
+           POST -H 'Content-type:application/json'
+           -d '{"content":"빌드 생성. \n빌드 링크: https://github.com/{{GITHUB_REPOSITORY}}/actions/runs/{{GITHUB_RUN_ID}}"}'
+           ${{secrets.DISCORD_WEBHOOK}}
