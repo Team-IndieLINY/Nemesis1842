@@ -45,5 +45,5 @@ jobs:
         - run: >
            curl -X
            POST -H 'Content-type:application/json'
-           -d '{"content":"빌드 생성. \n빌드 링크: https://github.com/${{GITHUB_REPOSITORY}}/actions/runs/${{GITHUB_RUN_ID}}"}'
+           -d '{"content":"빌드 생성. \n빌드 링크: https://github.com/${{env.GITHUB_REPOSITORY}}/actions/runs/${{env.GITHUB_RUN_ID}}"}'
            ${{secrets.DISCORD_WEBHOOK}}
