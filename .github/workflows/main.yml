@@ -40,7 +40,7 @@ jobs:
           name: Windows Build
           path: build
   notify:
-    runs-on: windows-latest
+    runs-on: ubuntu-latest
     steps:
       - env:
           DATA: >
