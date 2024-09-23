@@ -42,7 +42,7 @@ jobs:
   notify:
       name: discord notification
       runs-on: windows-latest
-      needs: build
+      needs: buildWindows
 
       steps:
         - name: Discord notification
