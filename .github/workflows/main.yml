@@ -39,7 +39,7 @@ jobs:
         with:
           name: Windows Build
           path: build
-    notify:
+  notify:
       name: discord notification
       runs-on: windows-latest
       needs: build
