@@ -48,7 +48,7 @@ jobs:
                 "embeds": [
                   {
                     "title": "빌드 출시",
-                    "description": "새로운 빌드가 출시되었습니다!\n\n https://github.com/${{env.GITHUB_REPOSITORY}}/actions/runs/${{env.GITHUB_RUN_ID}}"
+                    "description": "새로운 빌드가 출시되었습니다!\n\n https://github.com/${{env.GITHUB_REPOSITORY}}/actions/runs/${{env.GITHUB_RUN_ID}}",
                     "url": "https://github.com/${{env.GITHUB_REPOSITORY}}/actions/runs/${{env.GITHUB_RUN_ID}}"
                   }
                 ]
