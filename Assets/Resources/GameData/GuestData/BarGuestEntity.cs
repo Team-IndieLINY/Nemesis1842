@@ -10,4 +10,6 @@ public class BarGuestEntity
     public int day;
     public int order;
     public string character_code;
+    public float alcohol_per_drunk_amount;
+    public int start_drunk_amount;
 }

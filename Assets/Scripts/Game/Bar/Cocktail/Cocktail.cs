@@ -24,6 +24,11 @@ public class Cocktail
         _scentType = scentType;
     }
 
+    public void SetAlcohol(int alcoholAmount)
+    {
+        _alcohol = alcoholAmount;
+    }
+
     public void ResetCocktail()
     {
         _tasteType = null;

@@ -13,8 +13,8 @@ public class CocktailMakingManager : MonoBehaviour
     private PlayableDirector _playableDirector;
     
 
-    [SerializeField]
-    private CocktailEvaluationManager _cocktailEvaluationManager;
+    // [SerializeField]
+    // private CocktailEvaluationManager _cocktailEvaluationManager;
 
     [SerializeField]
     private CocktailManager _cocktailManager;
@@ -46,9 +46,10 @@ public class CocktailMakingManager : MonoBehaviour
         _cocktail.SetScent(scentType);
     }
 
-    public void SetAlcohol(int alcohol)
+    public void SetAlcohol(int alcoholAmount)
     {
-        
+        Debug.Log(alcoholAmount);
+        _cocktail.SetAlcohol(alcoholAmount);
     }
     public void SetEmotion()
     {
@@ -63,9 +64,7 @@ public class CocktailMakingManager : MonoBehaviour
     public void OnClickDoneButton()
     {
         InActivateDoneAndResetButton();
-        _cocktailEvaluationManager.EvaluateCocktail(_cocktail);
         _cocktailManager.SetCocktailSprite(_cocktail.TasteType);
-        _cocktailEvaluationManager.EvaluateCustomerPatient();
     }
     
     public void OnClickResetButton()

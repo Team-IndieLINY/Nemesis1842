@@ -10,9 +10,6 @@ public class BarDialogueManager : MonoBehaviour
     private GameObject _chatBalloonGO;
 
     [SerializeField]
-    private GameObject _makeCocktailButtonGO;
-
-    [SerializeField]
     private GameObject _arrowGO;
     
     [SerializeField]
@@ -26,9 +23,6 @@ public class BarDialogueManager : MonoBehaviour
 
     [SerializeField]
     private AudioClip _typingAudioClip;
-
-    [SerializeField]
-    private AudioSource _audioSource;
     
     private Queue<BarDialogueEntity> _scriptsQueue = new Queue<BarDialogueEntity>();
 
@@ -44,8 +38,6 @@ public class BarDialogueManager : MonoBehaviour
 
     public void StartDialogue(List<BarDialogueEntity> barDialogueEntities)
     {
-        _audioSource.clip = _typingAudioClip;
-        
         _isProgressed = true;
         
         _chatBalloonGO.SetActive(true);
@@ -65,17 +57,8 @@ public class BarDialogueManager : MonoBehaviour
     {
         if (_scriptsQueue.Count == 0)
         {
-            if (_makeCocktailButtonGO.activeSelf is false) //해당 버튼이 켜져있으면, 칵테일 제조 후 대사라고 판단
-            {
-                EndDialogue();
-            }
+            EndDialogue();
             return;
-        }
-        
-        if (_scriptsQueue.Count == 1 && _scriptsQueue.Peek().script_type == 0) //마지막 대사이고 시작 스크립트이면 칵테일 제조 버튼 활성화
-        {
-            _arrowGO.SetActive(false);
-            _makeCocktailButtonGO.SetActive(true);
         }
 
         BarDialogueEntity barDialogueEntity = _scriptsQueue.Dequeue();
@@ -93,7 +76,7 @@ public class BarDialogueManager : MonoBehaviour
 
         foreach (var letter in script.ToCharArray())
         {
-            _audioSource.Play();
+            AudioManager.Instance.PlaySFX(_typingAudioClip);
             _scriptText.text += letter;
             yield return new WaitForSeconds(_typeSpeedForSecond);
         }
@@ -113,8 +96,6 @@ public class BarDialogueManager : MonoBehaviour
     public void EndDialogue()
     {
         _isProgressed = false;
-        //아래 두 줄 순서 바뀌면 안됨 (두 줄 순서가 바뀌면 나중에 대사 시작 시 버튼이 안뜸)
-        _makeCocktailButtonGO.SetActive(false);
         _chatBalloonGO.SetActive(false);
     }
 }

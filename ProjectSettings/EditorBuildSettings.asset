@@ -5,7 +5,10 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
+  - enabled: 0
+    path: Assets/Scenes/Game/Trashcan/Bar2D.unity
+    guid: ddb27db09c588d443980ef7c0680a44d
   - enabled: 1
     path: Assets/Scenes/Game/Bar.unity
-    guid: d6775848a958dc24186b635de76f5503
+    guid: b088175090d7191439261eb636d174ce
   m_configObjects: {}
