@@ -10,21 +10,13 @@ using UnityEngine.UI;
 [RequireComponent(typeof(SpriteRenderer),typeof(PlayableDirector))]
 public class Guest : MonoBehaviour
 {
-    public enum EDrunkType
+    public enum EAlcoholReactionType
     {
-        Normal, //멀쩡한
-        Tipsy, //알딸딸한
-        Drunk, //취한
-        Nausea, //토할 것 같은
-        Wasted //꽐라
+        LOW = 0,
+        FIT,
+        HIGH
     }
-
-    [SerializeField]
-    private DrunkUI _guestScreenDrunkUI;
     
-    [SerializeField]
-    private DrunkUI _cocktailMakingScreenDrunkUI;
-
     [SerializeField]
     private ConditionScanTool _conditionScanTool;
 
@@ -32,59 +24,65 @@ public class Guest : MonoBehaviour
     private RectTransform _guideLineRectTransform;
     [SerializeField]
     private RectTransform _guideLineEnterPointRectTransform;
-    
-    private int _drunkAmount;
-    public int DrunkAmount => _drunkAmount;
+
+    [SerializeField]
+    private GameObject[] _hpGOs;
     
     public StepEntity StepData { get; set; }
-    
+
+    public EAlcoholReactionType AlcoholReactionType { get; set; }
+
     private SpriteRenderer _spriteRenderer;
     private PlayableDirector _playableDirector;
+    private List<CharacterData> _characterDatas;
     
-
-    private BarGuestEntity _guestData;
-
-    
-    public EDrunkType DrunkType { get; private set; }
+    private int _hpCount;
     
     private void Awake()
     {
         _spriteRenderer = GetComponent<SpriteRenderer>();
         _playableDirector = GetComponent<PlayableDirector>();
+        _characterDatas = Resources.LoadAll<CharacterData>("GameData/CharacterData").ToList();
     }
 
-    public void SetGuest(CharacterData characterData)
+    public void SetGuest(BarGuestEntity guestData)
     {
-        _spriteRenderer.sprite = characterData.CharacterSprite;
-    }
+        List<CharacterData> characterData = _characterDatas
+            .Where(x => x.CharacterCode == guestData.character_code)
+            .ToList();
 
-    public void UpdateDrunkGauge(int drunkAmount)
-    {
-        _drunkAmount = drunkAmount;
+        _hpCount = guestData.hp_count;
 
-        if (_drunkAmount >= 0 && _drunkAmount <= 19)
+        for (int i = 0; i < _hpGOs.Length; i++)
         {
-            DrunkType = EDrunkType.Normal;
-        }
-        else if (_drunkAmount > 19 && _drunkAmount <= 39)
-        {
-            DrunkType = EDrunkType.Tipsy;
-        }
-        else if (_drunkAmount > 39 && drunkAmount <= 59)
-        {
-            DrunkType = EDrunkType.Drunk;
-        }
-        else if (_drunkAmount > 59 && _drunkAmount <= 79)
-        {
-            DrunkType = EDrunkType.Nausea;
-        }
-        else if (_drunkAmount > 79 && _drunkAmount <= 100)
-        {
-            DrunkType = EDrunkType.Wasted;
+            if (i < _hpCount)
+            {
+                _hpGOs[i].SetActive(true);
+            }
+            else
+            {
+                _hpGOs[i].SetActive(false);
+            }
         }
         
-        _guestScreenDrunkUI.UpdateDrunkUI();
-        _cocktailMakingScreenDrunkUI.UpdateDrunkUI();
+        _spriteRenderer.sprite = characterData[0].CharacterSprite;
+    }
+
+    public void DecreaseHPCount()
+    {
+        _hpCount--;
+
+        for (int i = 0; i < _hpGOs.Length; i++)
+        {
+            if (i < _hpCount)
+            {
+                _hpGOs[i].SetActive(true);
+            }
+            else
+            {
+                _hpGOs[i].SetActive(false);
+            }
+        }
     }
 
     private void OnMouseEnter()

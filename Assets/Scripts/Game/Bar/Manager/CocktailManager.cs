@@ -24,7 +24,7 @@ public class CocktailManager : MonoBehaviour
             "_BaseColor", new Color(1f, 1f, 1f, 0f));
     }
 
-    public void SetCocktailSprite(TasteMachine.TasteType? tasteType)
+    public void SetCocktailSprite(Cocktail.ETasteType? tasteType)
     {
         if (tasteType == null)
         {

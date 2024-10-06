@@ -7,9 +7,9 @@ using UnityEngine;
 public class StepEntity
 {
     public string guest_code;
+    public int hp_order;
     public int step_order;
     public string cocktail_code;
-    public int max_alcohol;
-    public int min_alcohol;
     public int condition_value;
+    public string cocktail_summary_text;
 }

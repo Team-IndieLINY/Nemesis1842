@@ -15,12 +15,33 @@ public class BarGameManager : MonoBehaviour
     
     [SerializeField]
     private Guest _guest;
+
+    [SerializeField]
+    private ScanEvaluator _scanEvaluator;
+
+    [SerializeField]
+    private ScanCardStorage _scanCardStorage;
+
+    [SerializeField]
+    private AlcoholCalculator _alcoholCalculator;
+
+    [SerializeField]
+    private CocktailRecipeUI _cocktailRecipeUI;
     
     [SerializeField]
     private RectTransform _guideLineRectTransform;
     
     [SerializeField]
     private RectTransform _guideLineEnterPointRectTransform;
+
+    [SerializeField]
+    private GameObject _openCocktailRecipeButtonGO;
+
+    [SerializeField]
+    private GameObject _enterAlcoholPhaseButtonGO;
+
+    [SerializeField]
+    private GameObject _exitCocktailMakingScreenButtonGO;
 
     [Header("타임라인")]
     [SerializeField]
@@ -33,13 +54,10 @@ public class BarGameManager : MonoBehaviour
     private TimelineAsset _enterCocktailMakingScreenTimeline;
 
     [SerializeField]
+    private TimelineAsset _enterAlcoholPhaseTimeline;
+
+    [SerializeField]
     private TimelineAsset _exitCocktailMakingScreenTimeline;
-
-    [SerializeField]
-    private TimelineAsset _showDrunkGaugeTimeline;
-
-    [SerializeField]
-    private TimelineAsset _hideDrunkGaugeTimeline;
     
     [Header("Manager")]
     [SerializeField]
@@ -49,7 +67,7 @@ public class BarGameManager : MonoBehaviour
     private CocktailMakingManager _cocktailMakingManager;
     
     private List<BarGuestEntity> _guestDatas;
-    private List<CharacterData> _characterDatas;
+
     private List<StepEntity> _stepDatas;
 
     private PlayableDirector _playableDirector;
@@ -59,7 +77,7 @@ public class BarGameManager : MonoBehaviour
     private void Awake()
     {
         _playableDirector = GetComponent<PlayableDirector>();
-        _characterDatas = Resources.LoadAll<CharacterData>("GameData/CharacterData").ToList();
+
     }
 
     private void Start()
@@ -85,89 +103,95 @@ public class BarGameManager : MonoBehaviour
     {
         foreach (var guestData in _guestDatas)
         {
-            _stepDatas = _barGuestDB.Steps
-                .Where(x => x.guest_code == guestData.guest_code)
-                .ToList();
-
             AppearGuest(guestData);
             
             yield return new WaitUntil(() =>
                 _playableDirector.playableAsset == _appearGuestTimeline
                 && _playableDirector.state == PlayState.Paused);
 
-            ShowScripts(0, guestData, _guest.DrunkType);
+            ShowScripts(1, 0, guestData, Guest.EAlcoholReactionType.LOW);
 
             yield return new WaitUntil(() => _barDialogueManager.IsProgressed == false);
-            
-            for (int i = 1; i <= _stepDatas.Count; i++)
+
+
+            for (int i = 1; i <= guestData.hp_count; i++)
             {
-                _guest.StepData = _stepDatas[i - 1];
+                _alcoholCalculator.ResetAlcoholCalculator();
                 
-                StartScan();
+                _stepDatas = _barGuestDB.Steps
+                    .Where(x => x.guest_code == guestData.guest_code && i == x.hp_order)
+                    .ToList();
 
-                yield return new WaitUntil(() =>
-                    _playableDirector.playableAsset == _startScanTimeline
-                    && _playableDirector.state == PlayState.Paused);
+                CocktailAlcoholAnswerEntity cocktailAlcoholAnswerData
+                    = _barGuestDB.AlcoholAnswers
+                        .Where(x => x.guest_code == guestData.guest_code && i == x.hp_order)
+                        .ToList().First();
 
-                yield return new WaitUntil(() =>
-                    _isScanningDone == true);
-
-                EnterCocktailMakingScreen();
+                _alcoholCalculator.SetAnswerAlcohol(cocktailAlcoholAnswerData.max_answer_alcohol,
+                    cocktailAlcoholAnswerData.min_answer_alcohol);
                 
-                yield return new WaitUntil(() =>
-                    _playableDirector.playableAsset == _enterCocktailMakingScreenTimeline
-                    && _playableDirector.state == PlayState.Paused);
+                for (int j = 1; j <= _stepDatas.Count; j++)
+                {
+                    _guest.StepData = _stepDatas[j - 1];
+                    _scanEvaluator.SetScanAnswer(_stepDatas[j - 1].condition_value);
+                    _cocktailRecipeUI.SetCocktailSummaryText(_stepDatas[j - 1].cocktail_summary_text);
                 
-                yield return new WaitUntil(() =>
-                    _playableDirector.playableAsset == _exitCocktailMakingScreenTimeline
-                    && _playableDirector.state == PlayState.Paused);
+                    StartScan();
 
-                ShowDrunkGauge();
+                    yield return new WaitUntil(() =>
+                        _playableDirector.playableAsset == _startScanTimeline
+                        && _playableDirector.state == PlayState.Paused);
+
+                    yield return new WaitUntil(() =>
+                        _isScanningDone == true);
+
+                    yield return new WaitForSeconds(1f);
+
+                    EnterCocktailMakingScreen();
                 
-                yield return new WaitUntil(() =>
-                    _playableDirector.playableAsset == _showDrunkGaugeTimeline
-                    && _playableDirector.state == PlayState.Paused);
-
-                float drunkAmount = CalculateDrunkAmount(guestData, i);
-                _guest.UpdateDrunkGauge((int)drunkAmount);
-
-                yield return new WaitForSeconds(1f);
-
-                HideDrunkGauge();
+                    yield return new WaitUntil(() =>
+                        _playableDirector.playableAsset == _enterCocktailMakingScreenTimeline
+                        && _playableDirector.state == PlayState.Paused);
                 
-                yield return new WaitUntil(() =>
-                    _playableDirector.playableAsset == _hideDrunkGaugeTimeline
-                    && _playableDirector.state == PlayState.Paused);
+                    yield return new WaitUntil(() =>
+                        _playableDirector.playableAsset == _exitCocktailMakingScreenTimeline
+                        && _playableDirector.state == PlayState.Paused);
+                    
+                    if (_guest.AlcoholReactionType == Guest.EAlcoholReactionType.FIT)
+                    {
+                        _guest.DecreaseHPCount();
+                    }
                 
-                ShowScripts(i, guestData, _guest.DrunkType);
+                    ShowScripts(i, j, guestData, _guest.AlcoholReactionType);
                 
-                yield return new WaitUntil(() => _barDialogueManager.IsProgressed == false);
+                    yield return new WaitUntil(() => _barDialogueManager.IsProgressed == false);
 
-                ResetStep();
+                    ResetStep();
+                    
+                    if (_guest.AlcoholReactionType == Guest.EAlcoholReactionType.FIT)
+                    {
+                        break;
+                    }
+                }
             }
+
         }
     }
     
     private void AppearGuest(BarGuestEntity guestData)
     {
-        List<CharacterData> characterData = _characterDatas
-            .Where(x => x.CharacterCode == guestData.character_code)
-            .ToList();
-        
-        _guest.SetGuest(characterData[0]);
-        
-        _guest.UpdateDrunkGauge(guestData.start_drunk_amount);
+        _guest.SetGuest(guestData);
         
         _playableDirector.playableAsset = _appearGuestTimeline;
         _playableDirector.Play();
     }
     
-    private void ShowScripts(int stepOrder, BarGuestEntity guestData, Guest.EDrunkType drunkType)
+    private void ShowScripts(int hpOrder, int stepOrder, BarGuestEntity guestData, Guest.EAlcoholReactionType alcoholReactionType)
     {
         List<BarDialogueEntity> barDialogueEntity
             = _barGuestDB.Scripts
-                .Where(x => x.guest_code == guestData.guest_code && x.step_order == stepOrder &&
-                            x.drunk_type == (int)drunkType)
+                .Where(x => x.guest_code == guestData.guest_code && x.hp_order == hpOrder && x.step_order == stepOrder &&
+                            x.reaction_type == (int)alcoholReactionType)
                 .ToList();
         
         _barDialogueManager.StartDialogue(barDialogueEntity);
@@ -187,56 +211,27 @@ public class BarGameManager : MonoBehaviour
         _guideLineRectTransform.DOAnchorPos(_guideLineEnterPointRectTransform.anchoredPosition, 0.5f);
     }
 
-    public void ExitCocktailMakingScreen()
+    public void OnClickEnterAlcoholPhaseButton()
+    {
+        _playableDirector.playableAsset = _enterAlcoholPhaseTimeline;
+        _playableDirector.Play();
+    }
+
+    public void OnClickExitCocktailMakingScreenButton()
     {
         _playableDirector.playableAsset = _exitCocktailMakingScreenTimeline;
         _playableDirector.Play();
     }
 
-    private void ShowDrunkGauge()
-    {
-        _playableDirector.playableAsset = _showDrunkGaugeTimeline;
-        _playableDirector.Play();
-    }
-
-    private void HideDrunkGauge()
-    {
-        _playableDirector.playableAsset = _hideDrunkGaugeTimeline;
-        _playableDirector.Play();
-    }
-
-    private float CalculateDrunkAmount(BarGuestEntity guestData, int stepOrder)
-    {
-        float drunkAmount = 0f;
-        
-        List<StepEntity> stepDatas = 
-            _barGuestDB.Steps
-            .Where(x => x.guest_code == guestData.guest_code && x.step_order == stepOrder)
-            .ToList();
-
-        if (_cocktailMakingManager.Cocktail.Alcohol < stepDatas[0].min_alcohol)
-        {
-            drunkAmount =
-                Mathf.Clamp(_guest.DrunkAmount -
-                            guestData.alcohol_per_drunk_amount * (stepDatas[0].min_alcohol - _cocktailMakingManager.Cocktail.Alcohol)
-                    , 0, 100);
-        }
-        else if (_cocktailMakingManager.Cocktail.Alcohol >= stepDatas[0].min_alcohol && _cocktailMakingManager.Cocktail.Alcohol < stepDatas[0].max_alcohol)
-        {
-            drunkAmount = Mathf.Clamp(_guest.DrunkAmount + guestData.alcohol_per_drunk_amount * _cocktailMakingManager.Cocktail.Alcohol
-                , 0, 100);
-        }
-        else if (_cocktailMakingManager.Cocktail.Alcohol >= stepDatas[0].max_alcohol)
-        {
-            drunkAmount = 100;
-        }
-
-        return drunkAmount;
-    }
-
     private void ResetStep()
     {
-        _cocktailMakingManager.ActivateDoneAndResetButton();
+        _openCocktailRecipeButtonGO.SetActive(true);
+        _enterAlcoholPhaseButtonGO.SetActive(true);
+        _exitCocktailMakingScreenButtonGO.SetActive(true);
+        _scanEvaluator.ResetScanEvaluator();
+        _scanCardStorage.ResetScanCardStorage();
+        _cocktailMakingManager.ResetCocktail();
+        
         _isScanningDone = false;
     }
 }

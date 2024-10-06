@@ -18,16 +18,6 @@ public class ScanData : ScriptableObject
     public string AttributeName => _attributeName;
 
     [SerializeField]
-    private int _maxAlcohol;
-
-    public int MaxAlcohol => _maxAlcohol;
-    
-    [SerializeField]
-    private int _minAlcohol;
-
-    public int MinAlcohol => _minAlcohol;
-
-    [SerializeField]
     private EScanType _scanType;
 
     public EScanType ScanType => _scanType;

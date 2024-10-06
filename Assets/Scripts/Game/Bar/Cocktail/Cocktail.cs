@@ -5,21 +5,39 @@ using UnityEngine;
 
 public class Cocktail
 {
-    private TasteMachine.TasteType? _tasteType = null;
-    public TasteMachine.TasteType? TasteType => _tasteType;
+    public enum ETasteType
+    {
+        SWEET,
+        SOUR,
+        BITTER,
+        SALTY
+    }
+
+    public enum EScentType
+    {
+        FRUITY,
+        FLORAL,
+        SMOKY,
+        MALTY,
+        MEDICINAL,
+        NUTTY
+    }
     
-    private ScentMachine.ScentType? _scentType = null;
-    public ScentMachine.ScentType? ScentType => _scentType;
+    private ETasteType? _tasteType = null;
+    public ETasteType? TasteType => _tasteType;
+    
+    private EScentType? _scentType = null;
+    public EScentType? ScentType => _scentType;
     
     private int _alcohol = -1;
     public int Alcohol => _alcohol;
 
-    public void SetTaste(TasteMachine.TasteType? tasteType)
+    public void SetTaste(ETasteType? tasteType)
     {
         _tasteType = tasteType;
     }
 
-    public void SetScent(ScentMachine.ScentType? scentType)
+    public void SetScent(EScentType? scentType)
     {
         _scentType = scentType;
     }
