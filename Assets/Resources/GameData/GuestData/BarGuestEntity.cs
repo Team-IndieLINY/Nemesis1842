@@ -10,5 +10,4 @@ public class BarGuestEntity
     public int day;
     public int order;
     public string character_code;
-    public int hp_count;
 }

@@ -43,7 +43,6 @@ public abstract class CocktailMaterial : MonoBehaviour, IBeginDragHandler, IDrag
     {
         if (ShakerHandler.IsHovered)
         {
-            Debug.Log("ss");
             SetCocktail();
         }
         

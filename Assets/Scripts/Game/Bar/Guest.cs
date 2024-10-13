@@ -10,33 +10,20 @@ using UnityEngine.UI;
 [RequireComponent(typeof(SpriteRenderer),typeof(PlayableDirector))]
 public class Guest : MonoBehaviour
 {
-    public enum EAlcoholReactionType
-    {
-        LOW = 0,
-        FIT,
-        HIGH
-    }
     
     [SerializeField]
     private ConditionScanTool _conditionScanTool;
-
-    [SerializeField]
-    private RectTransform _guideLineRectTransform;
-    [SerializeField]
-    private RectTransform _guideLineEnterPointRectTransform;
-
-    [SerializeField]
-    private GameObject[] _hpGOs;
     
     public StepEntity StepData { get; set; }
-
-    public EAlcoholReactionType AlcoholReactionType { get; set; }
 
     private SpriteRenderer _spriteRenderer;
     private PlayableDirector _playableDirector;
     private List<CharacterData> _characterDatas;
     
     private int _hpCount;
+
+    private bool isHovered;
+    public bool IsHovered => isHovered;
     
     private void Awake()
     {
@@ -50,20 +37,6 @@ public class Guest : MonoBehaviour
         List<CharacterData> characterData = _characterDatas
             .Where(x => x.CharacterCode == guestData.character_code)
             .ToList();
-
-        _hpCount = guestData.hp_count;
-
-        for (int i = 0; i < _hpGOs.Length; i++)
-        {
-            if (i < _hpCount)
-            {
-                _hpGOs[i].SetActive(true);
-            }
-            else
-            {
-                _hpGOs[i].SetActive(false);
-            }
-        }
         
         _spriteRenderer.sprite = characterData[0].CharacterSprite;
     }
@@ -71,37 +44,19 @@ public class Guest : MonoBehaviour
     public void DecreaseHPCount()
     {
         _hpCount--;
-
-        for (int i = 0; i < _hpGOs.Length; i++)
-        {
-            if (i < _hpCount)
-            {
-                _hpGOs[i].SetActive(true);
-            }
-            else
-            {
-                _hpGOs[i].SetActive(false);
-            }
-        }
     }
-
+    
     private void OnMouseEnter()
     {
-        if (_conditionScanTool.gameObject.activeSelf)
+        if (_conditionScanTool.IsClicked)
         {
             _conditionScanTool.UpdateConditionScanUI();
-
-            if (_guideLineEnterPointRectTransform.anchoredPosition ==
-                _guideLineRectTransform.anchoredPosition)
-            {
-                _playableDirector.Play();
-            }
         }
     }
 
     private void OnMouseExit()
     {
-        if (_conditionScanTool.gameObject.activeSelf)
+        if (_conditionScanTool.IsClicked)
         {
             _conditionScanTool.ResetConditionScanUI();
         }

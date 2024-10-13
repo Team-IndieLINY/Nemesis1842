@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2bbac56b0a9bef340bc3013d7b728f1f, type: 3}
+  m_Name: CircleLeavenData
+  m_EditorClassIdentifier: 
+  _leavenType: 1
+  _leavenName: "\uC54C\uCF54\uC62C"
+  _leavenSprite: {fileID: 21300000, guid: 124477471226da04fa55fc92aa9ec009, type: 3}
+  _leavenDescription: "\uC6B0\uB9AC \uBAB8\uC5D0\uAC8C \uD574\uB85C\uC6B4 \uB3C5
+    \uC131\uBD84\uC774\uB2E4."

@@ -1,30 +1,26 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-public class GuideLineInfo : MonoBehaviour,IPointerDownHandler
+public abstract class GuideLineInfo : MonoBehaviour,IPointerClickHandler
 {
     [SerializeField]
-    private ScanData _scanData;
+    protected ScanData _scanData;
     
-    public void OnPointerDown(PointerEventData eventData)
+    public void OnPointerClick(PointerEventData eventData)
     {
-        if (eventData.button != PointerEventData.InputButton.Left)
-        {
-            return;
-        }
+        StartCoroutine(WaitEvaluationScanCoroutine());
+    }
+
+    private IEnumerator WaitEvaluationScanCoroutine()
+    {
+        ScanManager.Inst.EvaluateScan(_scanData);
+
+        yield return new WaitForSeconds(1f);
         
-        GameObject scanCardObject = ScanCardPool.Inst.GetScanCardInPool();
-        
-        if (scanCardObject.TryGetComponent(out ScanCard scanCard))
-        {
-            scanCard.SetScanCard(_scanData);
-            scanCardObject.GetComponent<RectTransform>().anchoredPosition = Input.mousePosition;
-        }
-        else
-        {
-            ScanCardPool.Inst.ReturnScanCardToPool(scanCardObject);
-        }
+        ScanManager.Inst.ExitScanPhase();
     }
 }

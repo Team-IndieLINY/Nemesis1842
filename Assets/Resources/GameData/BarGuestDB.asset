@@ -17,389 +17,195 @@ MonoBehaviour:
     day: 1
     order: 1
     character_code: 01
-    hp_count: 1
   - guest_code: 0002
     day: 1
     order: 2
     character_code: 02
-    hp_count: 2
   - guest_code: 0003
     day: 1
     order: 3
     character_code: 03
-    hp_count: 3
   Scripts:
   - guest_code: 0001
-    hp_order: 1
     step_order: 0
-    reaction_type: 0
     character_name: "\uBCA0\uC77C \uC874"
-    script: "\uBC14\uAC00 \uB108\uBB34 \uD5C8\uB984\uD558\uAD70"
+    script: "\uBC14\uAC00 \uB108\uBB34 \uD5C8\uB984\uD558\uAD70 "
   - guest_code: 0001
-    hp_order: 1
     step_order: 0
-    reaction_type: 0
     character_name: "\uBCA0\uC77C \uC874"
-    script: "\uB0B4 \uC5BC\uAD74\uBCF4\uBA74 \uBB58 \uC918\uC57C\uD560 \uC9C0 \uC54C\uACA0\uC9C0?"
+    script: "\uD574\uBCC0\uC774 \uB5A0\uC624\uB974\uB294 \uCE75\uD14C\uC77C\uB85C"
   - guest_code: 0001
-    hp_order: 1
-    step_order: 0
-    reaction_type: 0
-    character_name: "\uBCA0\uC77C \uC874"
-    script: "\uB531 \uBD10\uB3C4 \uAC00\uC871 \uD30C\uD0C4 \uB09C \uC0AC\uB78C\uCC98\uB7FC
-      \uC0DD\uACBC\uC796\uC544"
-  - guest_code: 0001
-    hp_order: 1
-    step_order: 0
-    reaction_type: 0
-    character_name: "\uBCA0\uC77C \uC874"
-    script: "\uBD88\uD6A8\uC790 \uAC19\uC740 \uC220 \uD55C \uC794 \uB0B4\uC640\uBD10"
-  - guest_code: 0001
-    hp_order: 1
     step_order: 1
-    reaction_type: 0
     character_name: "\uBCA0\uC77C \uC874"
-    script: "\uB3C4\uC218\uAC00 \uB108\uBB34 \uB0AE\uC796\uC544 \uC774 \uC815\uB3C4\uB85C\uB294
-      \uD0DD\uB3C4 \uC5C6\uB2E4\uACE0"
+    script: "\uB044\uC544 \uCDE8\uD55C\uB2E4~"
   - guest_code: 0001
-    hp_order: 1
     step_order: 1
-    reaction_type: 0
-    character_name: "\uBCA0\uC77C \uC874"
-    script: "\uC544\uAE4C\uB791 \uAC19\uC740 \uAC78\uB85C \uD55C \uC794 \uB354"
-  - guest_code: 0001
-    hp_order: 1
-    step_order: 1
-    reaction_type: 1
-    character_name: "\uBCA0\uC77C \uC874"
-    script: "\uC73C\uC624\uC62D\uC62D!!! \uC774\u3131 \u3153\u3147 \u3151\u2026"
-  - guest_code: 0001
-    hp_order: 1
-    step_order: 1
-    reaction_type: 1
-    character_name: "\uBCA0\uC77C \uC874"
-    script: "\u3134 \u3150 \uAC00.. \u3147 \u3163\uB7F0\uB370 \uC5D0\u3145 \u3153\u2026
-      \u3146 \u3161\uB7EC\uC9C0 \u3139 \uC218 \uB290 \u3134.."
-  - guest_code: 0001
-    hp_order: 1
-    step_order: 1
-    reaction_type: 1
     character_name: "\uBCA0\uC77C \uC874"
     script: "(\uAE30\uC808)"
-  - guest_code: 0001
-    hp_order: 1
-    step_order: 1
-    reaction_type: 2
-    character_name: "\uBCA0\uC77C \uC874"
-    script: "\uC73C\uC545! \uC774\uAC74 \uC220\uC774 \uC544\uB2C8\uB77C \uC18C\uB3C5\uC81C\uC796\uC544!!"
-  - guest_code: 0001
-    hp_order: 1
-    step_order: 1
-    reaction_type: 2
-    character_name: "\uBCA0\uC77C \uC874"
-    script: "\uCD5C\uC18C\uD55C \uBA39\uC744 \uC218 \uC788\uB294 \uAC78 \uC918\uC57C\uC9C0
-      \uAC1C\uC790\uC2DD\uC544!@!!"
-  - guest_code: 0001
-    hp_order: 1
-    step_order: 1
-    reaction_type: 2
-    character_name: "\uBCA0\uC77C \uC874"
-    script: "\uC774\uB7F0 \uC220\uC740 \uBABB \uBA39\uACA0\uC73C\uB2C8\uAE4C \uB2E4\uC2DC
-      \uB0B4\uC640"
-  - guest_code: 0001
-    hp_order: 1
-    step_order: 1
-    reaction_type: 2
-    character_name: "\uBCA0\uC77C \uC874"
-    script: "\uC544\uAE4C\uB791 \uAC19\uC740 \uAC78\uB85C \uB9D0\uC774\uC57C. \uB0B4
-      \uB9D0 \uC774\uD574\uD588\uC9C0?"
-  - guest_code: 0001
-    hp_order: 1
-    step_order: 2
-    reaction_type: 0
-    character_name: "\uBCA0\uC77C \uC874"
-    script: "\uB0B4 \uB9D0\uC744 \uC798 \uC774\uD574 \uBABB\uD558\uB098 \uBCF8\uB370
-      \uC774\uB7F0 \uAC78 \uC220\uC774\uB77C \uD560 \uC218\uB294 \uC5C6\uB2E4\uB294
-      \uAC70\uC57C"
-  - guest_code: 0001
-    hp_order: 1
-    step_order: 2
-    reaction_type: 0
-    character_name: "\uBCA0\uC77C \uC874"
-    script: "\uC7A5\uC0AC \uB9DD\uD558\uB294 \uAF34 \uBCF4\uAE30 \uC2EB\uC73C\uBA74
-      \uB611\uAC19\uC740 \uAC78\uB85C \uB2E4\uC2DC \uD55C \uBC88 \uB9D0\uC544. \uC774\uAC8C
-      \uB9C8\uC9C0\uB9C9 \uAE30\uD68C\uC57C"
-  - guest_code: 0001
-    hp_order: 1
-    step_order: 2
-    reaction_type: 1
-    character_name: "\uBCA0\uC77C \uC874"
-    script: "\uC73C\uC624\uC62D\uC62D!!! \uC774\u3131 \u3153\u3147 \u3151\u2026"
-  - guest_code: 0001
-    hp_order: 1
-    step_order: 2
-    reaction_type: 1
-    character_name: "\uBCA0\uC77C \uC874"
-    script: "\u3134 \u3150 \uAC00.. \u3147 \u3163\uB7F0\uB370 \uC5D0\u3145 \u3153\u2026
-      \u3146 \u3161\uB7EC\uC9C0 \u3139 \uC218 \uB290 \u3134.."
-  - guest_code: 0001
-    hp_order: 1
-    step_order: 2
-    reaction_type: 1
-    character_name: "\uBCA0\uC77C \uC874"
-    script: "(\uAE30\uC808)"
-  - guest_code: 0001
-    hp_order: 1
-    step_order: 2
-    reaction_type: 2
-    character_name: "\uBCA0\uC77C \uC874"
-    script: "\uBBF8\uCE5C\uAC70\uC57C? \uC544\uC608 \uC190 \uC18C\uB3C5\uC81C \uD68C\uC0AC\uB97C
-      \uCC28\uB9AC\uC9C0 \uADF8\uB798?"
-  - guest_code: 0001
-    hp_order: 1
-    step_order: 2
-    reaction_type: 2
-    character_name: "\uBCA0\uC77C \uC874"
-    script: "\uB108\uAC00 \uC900 \uBA39\uC744 \uC218\uB3C4 \uC5C6\uC744 \uB3C5\uD55C
-      \uC220\uB85C \uB108\uD76C \uC9D1\uC5D0 \uBD88\uC744 \uC9C0\uB974\uACE0 \uC2F6\uC740
-      \uC2EC\uC815\uC774\uC57C."
-  - guest_code: 0001
-    hp_order: 1
-    step_order: 2
-    reaction_type: 2
-    character_name: "\uBCA0\uC77C \uC874"
-    script: "\uB9C8\uC9C0\uB9C9 \uAE30\uD68C\uB2C8\uAE4C \uC870\uAE08 \uB354 \uC57D\uD558\uAC8C
-      \uD0C0\uBCF4\uB77C\uACE0"
-  - guest_code: 0001
-    hp_order: 1
-    step_order: 2
-    reaction_type: 2
-    character_name: "\uBCA0\uC77C \uC874"
-    script: "\uC544\uAE4C \uC804\uC5D0 \uB9D0\uC558\uB358 \uAC78\uB85C \uB2E4\uC2DC"
-  - guest_code: 0001
-    hp_order: 1
-    step_order: 3
-    reaction_type: 0
-    character_name: "\uBCA0\uC77C \uC874"
-    script: "\uB354 \uC774\uC0C1 \uC9C4\uC804\uC774 \uC5C6\uC744 \uAC83 \uAC19\uB124"
-  - guest_code: 0001
-    hp_order: 1
-    step_order: 3
-    reaction_type: 0
-    character_name: "\uBCA0\uC77C \uC874"
-    script: "\uC9C4\uC2EC\uC73C\uB85C \uC870\uC5B8\uD558\uB294 \uAC70\uC9C0\uB9CC
-      \uC7A5\uC0AC\uB97C \uC811\uB294\uAC8C \uC88B\uC744 \uAC83 \uAC19\uC740\uB370?"
-  - guest_code: 0001
-    hp_order: 1
-    step_order: 3
-    reaction_type: 0
-    character_name: "\uBCA0\uC77C \uC874"
-    script: "\uB108\uAC19\uC740 \uB188\uC774\uB791 \uB9C8\uC8FC \uC549\uACE0 \uC788\uB294\uAC8C
-      \uC2DC\uAC04 \uB0AD\uBE44\uC778 \uAC83 \uAC19\uC73C\uB2C8 \uB098\uB294 \uC774\uB9CC
-      \uB5A0\uBD10\uC57C\uACA0\uB124"
-  - guest_code: 0001
-    hp_order: 1
-    step_order: 3
-    reaction_type: 0
-    character_name: "\uBCA0\uC77C \uC874"
-    script: "\uB098 \uBA38\uC800\uB9AC \uAC19\uC740 \uC2E4\uB825\uC73C\uB85C \uC798\uB09C
-      \uBC14 \uC6B4\uC601\uC774\uB098 \uC798 \uD574\uBCF4\uB77C\uACE0~"
-  - guest_code: 0001
-    hp_order: 1
-    step_order: 3
-    reaction_type: 0
-    character_name: "\uB098"
-    script: "(\uC544 \uC9C4\uC9DC \uC5FF\uAC19\uC740 \uC190\uB2D8\uC774\uB124;;;)"
-  - guest_code: 0001
-    hp_order: 1
-    step_order: 3
-    reaction_type: 0
-    character_name: "\uB098"
-    script: "(\uB09C \uC624\uB298 \uCC98\uC74C\uC774\uB77C\uACE0)"
-  - guest_code: 0001
-    hp_order: 1
-    step_order: 3
-    reaction_type: 0
-    character_name: "\uB098"
-    script: "(\uC5FF\uC774\uB098 \uBA39\uC5B4\uB77C)"
-  - guest_code: 0001
-    hp_order: 1
-    step_order: 3
-    reaction_type: 1
-    character_name: "\uBCA0\uC77C \uC874"
-    script: "\uC73C\uC624\uC62D\uC62D!!! \uC774\u3131 \u3153\u3147 \u3151\u2026"
-  - guest_code: 0001
-    hp_order: 1
-    step_order: 3
-    reaction_type: 1
-    character_name: "\uBCA0\uC77C \uC874"
-    script: "\u3134 \u3150 \uAC00.. \u3147 \u3163\uB7F0\uB370 \uC5D0\u3145 \u3153\u2026
-      \u3146 \u3161\uB7EC\uC9C0 \u3139 \uC218 \uB290 \u3134.."
-  - guest_code: 0001
-    hp_order: 1
-    step_order: 3
-    reaction_type: 1
-    character_name: "\uBCA0\uC77C \uC874"
-    script: "(\uAE30\uC808)"
-  - guest_code: 0001
-    hp_order: 1
-    step_order: 3
-    reaction_type: 2
-    character_name: "\uBCA0\uC77C \uC874"
-    script: "\uB354 \uC774\uC0C1 \uC9C4\uC804\uC774 \uC5C6\uC744 \uAC83 \uAC19\uB124"
-  - guest_code: 0001
-    hp_order: 1
-    step_order: 3
-    reaction_type: 2
-    character_name: "\uBCA0\uC77C \uC874"
-    script: "\uC9C4\uC2EC\uC73C\uB85C \uC870\uC5B8\uD558\uB294 \uAC70\uC9C0\uB9CC
-      \uC7A5\uC0AC\uB97C \uC811\uB294\uAC8C \uC88B\uC744 \uAC83 \uAC19\uC740\uB370?"
-  - guest_code: 0001
-    hp_order: 1
-    step_order: 3
-    reaction_type: 2
-    character_name: "\uBCA0\uC77C \uC874"
-    script: "\uB108\uAC19\uC740 \uB188\uC774\uB791 \uB9C8\uC8FC \uC549\uACE0 \uC788\uB294\uAC8C
-      \uC2DC\uAC04 \uB0AD\uBE44\uC778 \uAC83 \uAC19\uC73C\uB2C8 \uB098\uB294 \uC774\uB9CC
-      \uB5A0\uBD10\uC57C\uACA0\uB124"
-  - guest_code: 0001
-    hp_order: 1
-    step_order: 3
-    reaction_type: 2
-    character_name: "\uBCA0\uC77C \uC874"
-    script: "\uB098 \uBA38\uC800\uB9AC \uAC19\uC740 \uC2E4\uB825\uC73C\uB85C \uC798\uB09C
-      \uBC14 \uC6B4\uC601\uC774\uB098 \uC798 \uD574\uBCF4\uB77C\uACE0~"
-  - guest_code: 0001
-    hp_order: 1
-    step_order: 3
-    reaction_type: 2
-    character_name: "\uB098"
-    script: "(\uC544 \uC9C4\uC9DC \uC5FF\uAC19\uC740 \uC190\uB2D8\uC774\uB124;;;)"
-  - guest_code: 0001
-    hp_order: 1
-    step_order: 3
-    reaction_type: 2
-    character_name: "\uB098"
-    script: "(\uB09C \uC624\uB298 \uCC98\uC74C\uC774\uB77C\uACE0)"
-  - guest_code: 0001
-    hp_order: 1
-    step_order: 3
-    reaction_type: 2
-    character_name: "\uB098"
-    script: "(\uC5FF\uC774\uB098 \uBA39\uC5B4\uB77C)"
   - guest_code: 0002
-    hp_order: 1
     step_order: 0
-    reaction_type: 0
     character_name: "\uC784\uC8FC\uC6D0"
-    script: "\uC220 \uB0B4\uB194 \uC220"
+    script: "\uC624\uB79C\uB9CC\uC774\uB124~"
   - guest_code: 0002
-    hp_order: 1
     step_order: 0
-    reaction_type: 0
     character_name: "\uC784\uC8FC\uC6D0"
-    script: "\uC220 \uB0B4\uB194 \uC220"
-  AlcoholAnswers:
-  - guest_code: 0001
-    hp_order: 1
-    min_answer_alcohol: 50
-    max_answer_alcohol: 52
+    script: "\uADF8\uAC70 \uC54C\uC544? 4\uC77C \uC804\uC5D0 \uAE40\uC8FC\uD638\uAC00
+      \uC0DD\uC77C\uC774\uC600\uB370"
   - guest_code: 0002
-    hp_order: 1
-    min_answer_alcohol: 60
-    max_answer_alcohol: 61
+    step_order: 0
+    character_name: "\uC784\uC8FC\uC6D0"
+    script: "\uAE40\uC8FC\uD638 \uC0DD\uC77C\uC740 10\uC6D4 9\uC77C\uC774\uB2C8\uAE4C
+      \uC798 \uAE30\uC5B5\uD574\uB46C~"
   - guest_code: 0002
-    hp_order: 2
-    min_answer_alcohol: 30
-    max_answer_alcohol: 30
+    step_order: 0
+    character_name: "\uC784\uC8FC\uC6D0"
+    script: "\uAC80\uC815 \uAC80\uC815\uD55C \uCE75\uD14C\uC77C\uB85C~"
+  - guest_code: 0002
+    step_order: 1
+    character_name: "\uC784\uC8FC\uC6D0"
+    script: "\uCEAC~ \u3163\u3147 \uAC70\uC57C~"
+  - guest_code: 0002
+    step_order: 1
+    character_name: "\uC784\uC8FC\uC6D0"
+    script: "\uB354 \uB9C8\uC2E4 \uC218 \uC788\uACA0\uB294 \uAC78?"
+  - guest_code: 0002
+    step_order: 1
+    character_name: "\uC784\uC8FC\uC6D0"
+    script: "\uADFC\uB370 \uADF8\uAC70 \uC54C\uC544?"
+  - guest_code: 0002
+    step_order: 1
+    character_name: "\uC784\uC8FC\uC6D0"
+    script: "\uC880 \uC788\uC73C\uBA74 \uAE40\uC9C0\uD601\uB3C4 \uC0DD\uC77C\uC774\uB798~"
+  - guest_code: 0002
+    step_order: 1
+    character_name: "\uC784\uC8FC\uC6D0"
+    script: "\uC798 \uAE30\uC5B5\uD558\uB77C\uACE0~?"
+  - guest_code: 0002
+    step_order: 1
+    character_name: "\uC784\uC8FC\uC6D0"
+    script: "\uB0B4\uC2EC \uAE30\uB300\uD558\uACE0 \uC788\uC744\uAC70\uB2C8\uAE4C
+      \uC548\uD574\uC8FC\uBA74 \uC090\uC9C8\uAC70\uC57C \uC544\uB9C8.."
+  - guest_code: 0002
+    step_order: 1
+    character_name: "\uC784\uC8FC\uC6D0"
+    script: "\uC5C4\uB9C8\uAC00 \uBCF4\uACE0 \uC2F6\uC740 \uCE75\uD14C\uC77C\uB85C
+      \uD55C\uC794~"
+  - guest_code: 0002
+    step_order: 2
+    character_name: "\uC784\uC8FC\uC6D0"
+    script: "\u3163 \u3131 \u3153\u3134\uC57C\u3151\u3151\u314F~"
+  - guest_code: 0002
+    step_order: 2
+    character_name: "\uC784\uC8FC\uC6D0"
+    script: WASTED
   - guest_code: 0003
-    hp_order: 1
-    min_answer_alcohol: 69
-    max_answer_alcohol: 70
+    step_order: 0
+    character_name: "\uAE40\uC11C\uC5F0"
+    script: "\uBC18\uAC11\uD551"
   - guest_code: 0003
-    hp_order: 2
-    min_answer_alcohol: 50
-    max_answer_alcohol: 50
+    step_order: 0
+    character_name: "\uAE40\uC11C\uC5F0"
+    script: "\uAE4C\uB9CC \uCE75\uD14C\uC77C\uD551"
   - guest_code: 0003
-    hp_order: 3
-    min_answer_alcohol: 48
-    max_answer_alcohol: 48
+    step_order: 1
+    character_name: "\uAE40\uC11C\uC5F0"
+    script: "\uC54C\uB538\uB538\uD551"
+  - guest_code: 0003
+    step_order: 1
+    character_name: "\uAE40\uC11C\uC5F0"
+    script: "\uB178\uB780 \uCE75\uD14C\uC77C\uD551"
+  - guest_code: 0003
+    step_order: 2
+    character_name: "\uAE40\uC11C\uC5F0"
+    script: "\u314A \u315F \uAE30 \uD53C \u3147"
+  - guest_code: 0003
+    step_order: 2
+    character_name: "\uAE40\uC11C\uC5F0"
+    script: "\u314D \u314F \uB780 \uCE74 \u3131\uD14C\uC774 \u3139\uD53C \u3147"
+  - guest_code: 0003
+    step_order: 3
+    character_name: "\uAE40\uC11C\uC5F0"
+    script: "\uD551\uD551\uD551\uD551\uD551\uD551\uD551\uD551\uD551\uD551\uD551\uD551\uD551\uD551\uD551\uD551\uD551\uD551\uD551\uD551\uD551\uD551\uD551\uD551"
+  - guest_code: 0003
+    step_order: 3
+    character_name: "\uAE40\uC11C\uC5F0"
+    script: "\uC8FD\uC74C"
   Steps:
   - guest_code: 0001
-    hp_order: 1
     step_order: 1
     cocktail_code: 002
     condition_value: 80
-    cocktail_summary_text: "\uD328\uB4DC\uB9BD \uAC19\uC740 \uCE75\uD14C\uC77C\uC744
+    cocktail_summary_text: "\uD574\uBCC0\uC774 \uB5A0\uC624\uB974\uB294 \uCE75\uD14C\uC77C\uC744
       \uB2EC\uB77C\uACE0 \uD55C\uB2E4."
-  - guest_code: 0001
-    hp_order: 1
-    step_order: 2
-    cocktail_code: 002
-    condition_value: 50
-    cocktail_summary_text: "\uC544\uAE4C \uC804\uACFC \uAC19\uC740 \uCE75\uD14C\uC77C\uB85C
-      \uB2EC\uB77C\uACE0 \uD55C\uB2E4."
-  - guest_code: 0001
-    hp_order: 1
-    step_order: 3
-    cocktail_code: 002
-    condition_value: 20
-    cocktail_summary_text: "\uC544\uAE4C \uC804\uACFC \uAC19\uC740 \uCE75\uD14C\uC77C\uB85C
-      \uB2EC\uB77C\uACE0 \uD55C\uB2E4."
+    min_answer_alcohol: 30
+    max_answer_alcohol: 32
+    condition_answer: 2
+    square_leaven_count: 5
+    circle_leaven_count: 6
+    star_leaven_count: 4
+    leaven_answer: 1
   - guest_code: 0002
-    hp_order: 1
     step_order: 1
     cocktail_code: 001
     condition_value: 10
     cocktail_summary_text: "\uAC80\uC815 \uAC80\uC815\uD55C \uCE75\uD14C\uC77C\uC744
       \uC6D0\uD55C\uB2E4\uACE0 \uD55C\uB2E4."
+    min_answer_alcohol: 10
+    max_answer_alcohol: 11
+    condition_answer: 0
+    square_leaven_count: 2
+    circle_leaven_count: 6
+    star_leaven_count: 4
+    leaven_answer: 1
   - guest_code: 0002
-    hp_order: 1
-    step_order: 2
-    cocktail_code: 001
-    condition_value: 70
-    cocktail_summary_text: "\uC544\uAE4C \uC804\uACFC \uAC19\uC740 \uCE75\uD14C\uC77C\uB85C
-      \uB2EC\uB77C\uACE0 \uD55C\uB2E4."
-  - guest_code: 0002
-    hp_order: 1
     step_order: 3
     cocktail_code: 003
     condition_value: 80
-    cocktail_summary_text: "\uD574\uBCC0\uC5D0\uC11C \uBA39\uC73C\uBA74 \uC88B\uC744
-      \uAC83 \uAC19\uC740 \uCE75\uD14C\uC77C\uC744 \uB2EC\uB77C\uACE0 \uD55C\uB2E4."
-  - guest_code: 0002
-    hp_order: 2
+    cocktail_summary_text: "\uC5C4\uB9C8\uAC00 \uBCF4\uACE0\uC2F6\uC740 \uCE75\uD14C\uC77C\uC744
+      \uB2EC\uB77C\uACE0 \uD55C\uB2E4."
+    min_answer_alcohol: 48
+    max_answer_alcohol: 48
+    condition_answer: 2
+    square_leaven_count: 7
+    circle_leaven_count: 4
+    star_leaven_count: 5
+    leaven_answer: 0
+  - guest_code: 0003
     step_order: 1
-    cocktail_code: 002
-    condition_value: 40
-    cocktail_summary_text: 
-  - guest_code: 0002
-    hp_order: 2
-    step_order: 2
     cocktail_code: 001
-    condition_value: 10
-    cocktail_summary_text: 
-  - guest_code: 0002
-    hp_order: 2
-    step_order: 3
-    cocktail_code: 003
-    condition_value: 20
-    cocktail_summary_text: 
-  - guest_code: 0002
-    hp_order: 3
-    step_order: 1
-    cocktail_code: 003
     condition_value: 40
-    cocktail_summary_text: 
-  - guest_code: 0002
-    hp_order: 3
+    cocktail_summary_text: "MZ\uD55C \uB9D0\uD22C\uB85C \uAE4C\uB9CC \uCE75\uD14C\uC77C\uC744
+      \uB2EC\uB77C\uACE0 \uD55C\uB2E4."
+    min_answer_alcohol: 30
+    max_answer_alcohol: 32
+    condition_answer: 1
+    square_leaven_count: 1
+    circle_leaven_count: 2
+    star_leaven_count: 3
+    leaven_answer: 2
+  - guest_code: 0003
     step_order: 2
-    cocktail_code: 003
+    cocktail_code: 002
     condition_value: 10
-    cocktail_summary_text: 
-  - guest_code: 0002
-    hp_order: 3
+    cocktail_summary_text: "\uB178\uB780 \uCE75\uD14C\uC77C\uC744 \uB2EC\uB77C\uACE0
+      \uD55C\uB2E4."
+    min_answer_alcohol: 97
+    max_answer_alcohol: 98
+    condition_answer: 0
+    square_leaven_count: 4
+    circle_leaven_count: 5
+    star_leaven_count: 1
+    leaven_answer: 1
+  - guest_code: 0003
     step_order: 3
     cocktail_code: 003
     condition_value: 20
-    cocktail_summary_text: 
+    cocktail_summary_text: "\uD30C\uB780 \uCE75\uD14C\uC77C\uC744 \uB2EC\uB77C\uACE0
+      \uD55C\uB2E4."
+    min_answer_alcohol: 88
+    max_answer_alcohol: 88
+    condition_answer: 0
+    square_leaven_count: 7
+    circle_leaven_count: 6
+    star_leaven_count: 5
+    leaven_answer: 0

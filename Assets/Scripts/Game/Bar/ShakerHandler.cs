@@ -9,7 +9,6 @@ public class ShakerHandler : MonoBehaviour,IPointerEnterHandler,IPointerExitHand
     
     public void OnPointerEnter(PointerEventData eventData)
     {
-        Debug.Log("ss");
         IsHovered = true;
     }
 
