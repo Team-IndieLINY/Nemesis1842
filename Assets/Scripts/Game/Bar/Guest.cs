@@ -19,8 +19,9 @@ public class Guest : MonoBehaviour
     private SpriteRenderer _spriteRenderer;
     private PlayableDirector _playableDirector;
     private List<CharacterData> _characterDatas;
+    private CharacterData _currentCharacterData;
     
-    private int _hpCount;
+    private int _drunkCount = 0;
 
     private bool isHovered;
     public bool IsHovered => isHovered;
@@ -37,13 +38,24 @@ public class Guest : MonoBehaviour
         List<CharacterData> characterData = _characterDatas
             .Where(x => x.CharacterCode == guestData.character_code)
             .ToList();
+
+        _currentCharacterData = characterData[0];
+        _spriteRenderer.sprite = _currentCharacterData.CharacterSprite[_drunkCount];
         
-        _spriteRenderer.sprite = characterData[0].CharacterSprite;
+        Destroy(GetComponent<PolygonCollider2D>());
+        gameObject.AddComponent<PolygonCollider2D>();
+        GetComponent<PolygonCollider2D>().isTrigger = true;
     }
 
-    public void DecreaseHPCount()
+    public void DrunkGuest()
     {
-        _hpCount--;
+        _drunkCount++;
+        _spriteRenderer.sprite = _currentCharacterData.CharacterSprite[_drunkCount];
+    }
+
+    public void ResetTurnGuest()
+    {
+        _drunkCount = 0;
     }
     
     private void OnMouseEnter()

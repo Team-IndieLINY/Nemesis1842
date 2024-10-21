@@ -7,10 +7,10 @@ public class Cocktail
 {
     public enum ETasteType
     {
-        SWEET,
-        SOUR,
-        BITTER,
-        SALTY
+        JEGERMEISTER,
+        KAHLUA,
+        MALIBU,
+        PEACHTREE
     }
 
     public enum EScentType

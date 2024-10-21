@@ -5,6 +5,7 @@ using DG.Tweening;
 using TMPro;
 using UnityEngine;
 using UnityEngine.Serialization;
+using UnityEngine.UI;
 
 public class ScanManager : MonoBehaviour
 {
@@ -13,7 +14,8 @@ public class ScanManager : MonoBehaviour
     {
         CONDITION,
         LIVER,
-        HEARTBEAT
+        HEARTBEAT,
+        FAIL
     }
 
     [SerializeField]
@@ -39,6 +41,12 @@ public class ScanManager : MonoBehaviour
     
     [SerializeField]
     protected TextMeshProUGUI[] _scanEvaluationTexts;
+
+    [SerializeField]
+    private Image _scanSelectorBackgroundImage;
+
+    [SerializeField]
+    private AlcoholController _alcoholController;
 
     public EScanType CurrentScanType { get; set; }
 
@@ -94,32 +102,41 @@ public class ScanManager : MonoBehaviour
         {
             if (AnswerConditionType == conditionScanData.ConditionType)
             {
-                _scanEvaluationTexts[(int)CurrentScanType].text = "SUCCESS";
+                _scanEvaluationTexts[(int)CurrentScanType].color = new Color32(31, 75, 9, 255);
+                _scanEvaluationTexts[(int)CurrentScanType].text = "성공";
+                
+                _alcoholController.ApplyScanResult(CurrentScanType);
             }
             else
             {
-                _scanEvaluationTexts[(int)CurrentScanType].text = "FAIL";
+                _scanEvaluationTexts[(int)CurrentScanType].color = new Color32(128, 23, 11, 255);
+                _scanEvaluationTexts[(int)CurrentScanType].text = "실패";
+                _alcoholController.ApplyScanResult(EScanType.FAIL);
             }
         }
         else if (scanData is LiverScanData liverScanData)
         {
             if (AnswerLeavenType == liverScanData.LeavenType)
             {
-                _scanEvaluationTexts[(int)CurrentScanType].text = "SUCCESS";
+                _scanEvaluationTexts[(int)CurrentScanType].color = new Color32(31, 75, 9, 255);
+                _scanEvaluationTexts[(int)CurrentScanType].text = "성공";
+                _alcoholController.ApplyScanResult(CurrentScanType);
             }
             else
             {
-                _scanEvaluationTexts[(int)CurrentScanType].text = "FAIL";
+                _scanEvaluationTexts[(int)CurrentScanType].color = new Color32(128, 23, 11, 255);
+                _scanEvaluationTexts[(int)CurrentScanType].text = "실패";
+                _alcoholController.ApplyScanResult(EScanType.FAIL);
             }
         }
     }
 
-    public void SetLiver(int squareLeavenCount, int circleLeavenCount, int starLeavenCount)
+    public void SetLiver(int squareLeavenCount, int circleLeavenCount, int starLeavenCount, int triangleLeaven)
     {
-        _liver.SetLiver(squareLeavenCount, circleLeavenCount, starLeavenCount);
+        _liver.SetLiver(squareLeavenCount, circleLeavenCount, starLeavenCount, triangleLeaven);
     }
 
-    public void ResetScanManager()
+    public void ResetStepScanManager()
     {
         foreach (var scanEvaluationText in _scanEvaluationTexts)
         {
@@ -127,5 +144,15 @@ public class ScanManager : MonoBehaviour
         }
         IsScanningDone = false;
         _liver.ResetLiver();
+    }
+
+    public void FadeInScanSelectorBackground()
+    {
+        _scanSelectorBackgroundImage.DOColor(new Color32(255, 255, 255, 0), 0.3f);
+    }
+
+    public void FadeOutScanSelectorBackground()
+    {
+        _scanSelectorBackgroundImage.DOColor(new Color32(255, 255, 255, 255), 0.3f);
     }
 }

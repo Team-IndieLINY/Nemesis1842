@@ -8,6 +8,7 @@ public class LiverScanData : ScanData
 {
     public enum ELeavenType
     {
+        TRIANGLE,
         SQUARE,
         CIRCLE,
         STAR

@@ -4,18 +4,25 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.UI;
 
 public abstract class GuideLineInfo : MonoBehaviour,IPointerClickHandler
 {
     [SerializeField]
     protected ScanData _scanData;
-    
-    public void OnPointerClick(PointerEventData eventData)
+
+    protected Image _image;
+
+    private void Awake()
     {
-        StartCoroutine(WaitEvaluationScanCoroutine());
+        _image = GetComponent<Image>();
+        _image.raycastTarget = true;
     }
 
-    private IEnumerator WaitEvaluationScanCoroutine()
+    public abstract void OnPointerClick(PointerEventData eventData);
+    public abstract void ResetGuideLineInfo();
+
+    protected IEnumerator WaitEvaluationScanCoroutine()
     {
         ScanManager.Inst.EvaluateScan(_scanData);
 

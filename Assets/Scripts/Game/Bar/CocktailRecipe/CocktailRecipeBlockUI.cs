@@ -21,10 +21,10 @@ public class CocktailRecipeBlockUI : MonoBehaviour
     private Dictionary<Cocktail.ETasteType, string> _tasteTypeByTasteTypeName
         = new()
         {
-            { Cocktail.ETasteType.SWEET, "단 맛" },
-            { Cocktail.ETasteType.SOUR, "신 맛" },
-            { Cocktail.ETasteType.BITTER, "쓴 맛" },
-            { Cocktail.ETasteType.SALTY, "짠 맛" }
+            { Cocktail.ETasteType.JEGERMEISTER, "지거 마이스티" },
+            { Cocktail.ETasteType.KAHLUA, "꿀루아" },
+            { Cocktail.ETasteType.MALIBU, "물리부" },
+            { Cocktail.ETasteType.PEACHTREE, "레몬 트리" }
         };
 
     private Dictionary<Cocktail.EScentType, string> _scentTypeByScentTypeName

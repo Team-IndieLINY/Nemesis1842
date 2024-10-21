@@ -15,6 +15,9 @@ public class Liver : MonoBehaviour
     [SerializeField]
     private GameObject _starLeavePrefab;
 
+    [SerializeField]
+    private GameObject _triangleLeavenPrefab;
+
     private PolygonCollider2D _polygonCollider2D;
     private List<GameObject> _leavenGOs = new();
 
@@ -35,11 +38,12 @@ public class Liver : MonoBehaviour
         _leavenGOs.Clear();
     }
     
-    public void SetLiver(int squareLeavenCount, int circleLeavenCount, int starLeavenCount)
+    public void SetLiver(int squareLeavenCount, int circleLeavenCount, int starLeavenCount, int triangleLeavenCount)
     {
         SpawnLeavens(squareLeavenCount, _squareLeavenPrefab);
         SpawnLeavens(circleLeavenCount, _circleLeavePrefab);
         SpawnLeavens(starLeavenCount, _starLeavePrefab);
+        SpawnLeavens(triangleLeavenCount, _triangleLeavenPrefab);
         
         gameObject.SetActive(false);
     }
@@ -50,11 +54,9 @@ public class Liver : MonoBehaviour
         {
             Vector3 rndPoint3D = RandomPointInBounds(_polygonCollider2D.bounds, 1f);
             Vector2 rndPoint2D = new Vector2(rndPoint3D.x, rndPoint3D.y);
-            Vector2 rndPointInside = _polygonCollider2D.ClosestPoint(new Vector2(rndPoint2D.x, rndPoint2D.y));
-            if (rndPointInside.x == rndPoint2D.x && rndPointInside.y == rndPoint2D.y)
-            {
-                _leavenGOs.Add(Instantiate(leavenPrefab, rndPoint3D, Quaternion.identity, transform));
-            }
+            Vector3 rndPointInside = _polygonCollider2D.ClosestPoint(new Vector2(rndPoint2D.x, rndPoint2D.y));
+            
+            _leavenGOs.Add(Instantiate(leavenPrefab, rndPointInside, Quaternion.identity, transform));
         }
     }
     

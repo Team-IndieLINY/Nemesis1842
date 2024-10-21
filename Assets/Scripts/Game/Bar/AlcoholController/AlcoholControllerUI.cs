@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.Serialization;
+using UnityEngine.UI;
 
 public class AlcoholControllerUI : MonoBehaviour
 {
@@ -27,6 +28,9 @@ public class AlcoholControllerUI : MonoBehaviour
 
     [SerializeField]
     private TextMeshProUGUI _attemptCountText;
+
+    [SerializeField]
+    private Image _itemSlotImage;
     
     private float _oneAlcoholPerGaugeLength;
 
@@ -34,7 +38,7 @@ public class AlcoholControllerUI : MonoBehaviour
     {
         _oneAlcoholPerGaugeLength = _alcoholGaugeBarBackgroundRectTransform.sizeDelta.x * 0.01f;
     }
-
+    
     public void UpdateAlcoholControllerUI()
     {
         UpdateGuessAlcoholUI();
@@ -46,11 +50,44 @@ public class AlcoholControllerUI : MonoBehaviour
         _maxAlcoholText.text = _alcoholController.MaxAlcohol.ToString();
         _minAlcoholText.text = _alcoholController.MinAlcohol.ToString();
     }
+
+    public void UpdateItemSlotUI()
+    {
+        _itemSlotImage.sprite = _alcoholController.CurrentItem == null
+            ? null
+            : _alcoholController.CurrentItem.ItemData.ItemSprite;
+
+        if (_itemSlotImage.sprite == null)
+        {
+            _itemSlotImage.color = new Color32(255, 255, 255, 0);
+        }
+        else
+        {
+            _itemSlotImage.color = new Color32(255, 255, 255, 255);
+        }
+    }
+    
     public void UpdateAlcoholControllerUICoroutine()
     {
         UpdateGuessAlcoholUI();
         UpdateAlcoholRangeUI();
         UpdateAttemptCountUI();
+    }
+
+    public void UpdateScanBuffUI()
+    {
+        switch (_alcoholController.CurrentScanType)
+        {
+            case ScanManager.EScanType.CONDITION:
+                
+                break;
+            case ScanManager.EScanType.LIVER:
+                
+                break;
+            case ScanManager.EScanType.FAIL:
+                
+                break;
+        }
     }
 
     private void UpdateGuessAlcoholUI()
@@ -135,6 +172,6 @@ public class AlcoholControllerUI : MonoBehaviour
     
     private void UpdateAttemptCountUI()
     {
-        _attemptCountText.text = _alcoholController.CurrentAttemptCount + " Turn";
+        _attemptCountText.text = _alcoholController.CurrentAttempt + " Turn";
     }
 }

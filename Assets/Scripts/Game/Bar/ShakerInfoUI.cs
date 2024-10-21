@@ -17,10 +17,10 @@ public class ShakerInfoUI : MonoBehaviour
     private Dictionary<Cocktail.ETasteType, string> _tasteTypeByTasteTypeName
         = new()
         {
-            { Cocktail.ETasteType.SWEET, "단 맛" },
-            { Cocktail.ETasteType.SOUR, "신 맛" },
-            { Cocktail.ETasteType.BITTER, "쓴 맛" },
-            { Cocktail.ETasteType.SALTY, "짠 맛" }
+            { Cocktail.ETasteType.JEGERMEISTER, "지거 마이스티" },
+            { Cocktail.ETasteType.KAHLUA, "꿀루아" },
+            { Cocktail.ETasteType.MALIBU, "물리부" },
+            { Cocktail.ETasteType.PEACHTREE, "레몬 트리" }
         };
 
     private Dictionary<Cocktail.EScentType, string> _scentTypeByScentTypeName
@@ -37,30 +37,30 @@ public class ShakerInfoUI : MonoBehaviour
 
     public void UpdateShakerInfoUI()
     {
-        if (_cocktailMakingManager.Cocktail.TasteType != null)
+        if (_cocktailMakingManager.TasteType != null)
         {
-            _currentTasteTypeText.text = "맛: " +
-                _tasteTypeByTasteTypeName[(Cocktail.ETasteType)_cocktailMakingManager.Cocktail.TasteType];
+            _currentTasteTypeText.text =
+                _tasteTypeByTasteTypeName[(Cocktail.ETasteType)_cocktailMakingManager.TasteType];
         }
         else
         {
-            _currentTasteTypeText.text = "맛: ";
+            _currentTasteTypeText.text = "";
         }
 
-        if (_cocktailMakingManager.Cocktail.ScentType != null)
+        if (_cocktailMakingManager.ScentType != null)
         {
-            _currentScentTypeText.text = "향: " +
-                _scentTypeByScentTypeName[(Cocktail.EScentType)_cocktailMakingManager.Cocktail.ScentType];
+            _currentScentTypeText.text =
+                _scentTypeByScentTypeName[(Cocktail.EScentType)_cocktailMakingManager.ScentType];
         }
         else
         {
-            _currentScentTypeText.text = "향: ";
+            _currentScentTypeText.text = "";
         }
     }
 
     public void ResetShakerInfoUI()
     {
-        _currentTasteTypeText.text = "맛: ";
-        _currentScentTypeText.text = "향: ";
+        _currentTasteTypeText.text = "";
+        _currentScentTypeText.text = "";
     }
 }

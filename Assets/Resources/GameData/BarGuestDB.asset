@@ -143,7 +143,9 @@ MonoBehaviour:
     square_leaven_count: 5
     circle_leaven_count: 6
     star_leaven_count: 4
+    triangle_leaven_count: 2
     leaven_answer: 1
+    alcohol_control_attempt: 3
   - guest_code: 0002
     step_order: 1
     cocktail_code: 001
@@ -156,7 +158,9 @@ MonoBehaviour:
     square_leaven_count: 2
     circle_leaven_count: 6
     star_leaven_count: 4
+    triangle_leaven_count: 1
     leaven_answer: 1
+    alcohol_control_attempt: 4
   - guest_code: 0002
     step_order: 3
     cocktail_code: 003
@@ -169,7 +173,9 @@ MonoBehaviour:
     square_leaven_count: 7
     circle_leaven_count: 4
     star_leaven_count: 5
+    triangle_leaven_count: 3
     leaven_answer: 0
+    alcohol_control_attempt: 3
   - guest_code: 0003
     step_order: 1
     cocktail_code: 001
@@ -182,7 +188,9 @@ MonoBehaviour:
     square_leaven_count: 1
     circle_leaven_count: 2
     star_leaven_count: 3
+    triangle_leaven_count: 2
     leaven_answer: 2
+    alcohol_control_attempt: 3
   - guest_code: 0003
     step_order: 2
     cocktail_code: 002
@@ -195,7 +203,9 @@ MonoBehaviour:
     square_leaven_count: 4
     circle_leaven_count: 5
     star_leaven_count: 1
+    triangle_leaven_count: 1
     leaven_answer: 1
+    alcohol_control_attempt: 3
   - guest_code: 0003
     step_order: 3
     cocktail_code: 003
@@ -208,4 +218,6 @@ MonoBehaviour:
     square_leaven_count: 7
     circle_leaven_count: 6
     star_leaven_count: 5
+    triangle_leaven_count: 3
     leaven_answer: 0
+    alcohol_control_attempt: 3
