@@ -151,8 +151,6 @@ public class BarGameManager : MonoBehaviour
                 
                 ResetStep();
             }
-            
-            _guest.DrunkGuest();
 
             yield return new WaitForSeconds(1f);
 
@@ -288,7 +286,6 @@ public class BarGameManager : MonoBehaviour
     {
         _stolenManager.ResetTurnStolenManager();
         _alcoholController.ResetTurnAlcoholController();
-        _guest.ResetTurnGuest();
     }
 
     private void EnterStolenPhase()
