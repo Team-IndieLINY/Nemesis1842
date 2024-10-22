@@ -101,9 +101,14 @@ public class AlcoholController : MonoBehaviour
 
     public void OnClickEnterButton()
     {
+        StartCoroutine(UpdateAlcoholController());
+    }
+
+    private IEnumerator UpdateAlcoholController()
+    {
         if (_currentInputAlcohol == -1)
         {
-            return;
+            yield break;
         }
         
         _currentAttempt--;
@@ -135,7 +140,7 @@ public class AlcoholController : MonoBehaviour
         
         if (_currentInputAlcohol <= _maxAnswerAlcohol + _increasedMaxAmount && _currentInputAlcohol >= _minAnswerAlcohol - _increasedMinAmount)
         {
-            _alcoholControllerUI.UpdateAlcoholControllerUICoroutine();
+            StartCoroutine(_alcoholControllerUI.UpdateAlcoholControllerUICoroutine());
             _barGameManager.OnClickEnterCutSceneButton();
         }
         else
@@ -148,11 +153,21 @@ public class AlcoholController : MonoBehaviour
             {
                 _maxAlcohol = _currentInputAlcohol;
             }
-
+            
             _currentInputAlcohol = -1;
             
-            _alcoholControllerUI.UpdateAlcoholControllerUICoroutine();
+
             _alcoholControllerUI.UpdateItemSlotUI();
+            yield return StartCoroutine(_alcoholControllerUI.UpdateAlcoholControllerUICoroutine());
+            yield return new WaitForSeconds(0.4f);
+            
+            if (_currentScanType == ScanManager.EScanType.CONDITION)
+            {
+                _minAlcohol = _minAlcohol + 3 > _minAnswerAlcohol ? _minAnswerAlcohol : _minAlcohol + 3;
+                _maxAlcohol = _maxAlcohol - 3 < _maxAnswerAlcohol ? _maxAnswerAlcohol : _maxAlcohol - 3;
+                
+                yield return StartCoroutine(_alcoholControllerUI.UpdateAlcoholControllerUICoroutine());
+            }
         }
     }
 

@@ -31,8 +31,17 @@ public class AlcoholControllerUI : MonoBehaviour
 
     [SerializeField]
     private Image _itemSlotImage;
+
+    [SerializeField]
+    private List<Sprite> _scanIconSprites;
+
+    [SerializeField]
+    private Image _scanIconImage;
     
     private float _oneAlcoholPerGaugeLength;
+    private bool _isChangedAlcoholRange;
+    private bool _isChangedMaxGaugeBar;
+    private bool _isChangedMinGaugeBar;
 
     private void Awake()
     {
@@ -66,28 +75,16 @@ public class AlcoholControllerUI : MonoBehaviour
             _itemSlotImage.color = new Color32(255, 255, 255, 255);
         }
     }
-    
-    public void UpdateAlcoholControllerUICoroutine()
-    {
-        UpdateGuessAlcoholUI();
-        UpdateAlcoholRangeUI();
-        UpdateAttemptCountUI();
-    }
 
     public void UpdateScanBuffUI()
     {
-        switch (_alcoholController.CurrentScanType)
-        {
-            case ScanManager.EScanType.CONDITION:
-                
-                break;
-            case ScanManager.EScanType.LIVER:
-                
-                break;
-            case ScanManager.EScanType.FAIL:
-                
-                break;
-        }
+        _scanIconImage.sprite = _scanIconSprites[(int)_alcoholController.CurrentScanType];
+        _scanIconImage.SetNativeSize();
+        Vector2 size = _scanIconImage.rectTransform.sizeDelta;
+        size.x *= 2;
+        size.y *= 2;
+
+        _scanIconImage.rectTransform.sizeDelta = size;
     }
 
     private void UpdateGuessAlcoholUI()
@@ -101,15 +98,29 @@ public class AlcoholControllerUI : MonoBehaviour
             _guessAlcoholText.text = _alcoholController.CurrentInputAlcohol.ToString();
         }
     }
-
-    private void UpdateAlcoholRangeUI()
+    
+    public IEnumerator UpdateAlcoholControllerUICoroutine()
+    {
+        UpdateGuessAlcoholUI();
+        UpdateAttemptCountUI();
+        
+        yield return StartCoroutine(UpdateAlcoholRangeUICoroutine());
+    }
+    
+    private IEnumerator UpdateAlcoholRangeUICoroutine()
     {
         //Update Range Text
+        _isChangedAlcoholRange = true;
         StartCoroutine(ChangeAlcoholRangeTextCoroutine());
         
         //Update Gauge Bar
+        _isChangedMaxGaugeBar = true;
         StartCoroutine(ChangeAlcoholMaxGaugeBarCoroutine());
+        _isChangedMinGaugeBar = true;
         StartCoroutine(ChangeAlcoholMinGaugeBarCoroutine());
+
+        yield return new WaitUntil(() =>
+            _isChangedAlcoholRange == false && _isChangedMaxGaugeBar == false && _isChangedMinGaugeBar == false);
     }
 
     private IEnumerator ChangeAlcoholRangeTextCoroutine()
@@ -119,7 +130,6 @@ public class AlcoholControllerUI : MonoBehaviour
 
         while (maxAlcohol > _alcoholController.MaxAlcohol || minAlcohol < _alcoholController.MinAlcohol)
         {
-
             if (maxAlcohol != _alcoholController.MaxAlcohol)
             {
                 maxAlcohol--;
@@ -134,6 +144,8 @@ public class AlcoholControllerUI : MonoBehaviour
 
             yield return new WaitForSeconds(0.02f);
         }
+
+        _isChangedAlcoholRange = false;
     }
     
     private IEnumerator ChangeAlcoholMaxGaugeBarCoroutine()
@@ -151,6 +163,8 @@ public class AlcoholControllerUI : MonoBehaviour
 
             yield return new WaitForSeconds(0.02f);
         }
+
+        _isChangedMaxGaugeBar = false;
     }
 
     private IEnumerator ChangeAlcoholMinGaugeBarCoroutine()
@@ -168,6 +182,8 @@ public class AlcoholControllerUI : MonoBehaviour
 
             yield return new WaitForSeconds(0.02f);
         }
+
+        _isChangedMinGaugeBar = false;
     }
     
     private void UpdateAttemptCountUI()
