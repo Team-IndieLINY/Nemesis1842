@@ -9,4 +9,13 @@ public class MainScreen : MonoBehaviour
     {
         SceneManager.LoadScene("Orleans");
     }
+
+    public void QuitGame()
+    {
+#if UNITY_EDITOR
+        UnityEditor.EditorApplication.isPlaying = false;
+#else
+            Application.Quit();
+#endif
+    }
 }
