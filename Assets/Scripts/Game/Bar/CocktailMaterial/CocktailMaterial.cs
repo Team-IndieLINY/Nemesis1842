@@ -12,6 +12,9 @@ public abstract class CocktailMaterial : MonoBehaviour, IBeginDragHandler, IDrag
     protected CocktailMakingManager _cocktailMakingManager;
     [SerializeField]
     private Transform _movingCocktailMaterialGroupTransform;
+
+    [SerializeField]
+    protected NameTagUI _nameTagUI;
     
     private RectTransform _rectTransform;
     private Image _image;
@@ -54,4 +57,6 @@ public abstract class CocktailMaterial : MonoBehaviour, IBeginDragHandler, IDrag
     }
 
     public abstract void SetCocktail();
+    
+
 }

@@ -10,13 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ebecf1ca8e280b940ade708860c91be4, type: 3}
-  m_Name: MotherFucker
+  m_Name: Pinkloud
   m_EditorClassIdentifier: 
   _cocktailCode: 002
-  _cocktailName: "\uB9C8\uB354\uD37C\uCEE4"
-  _cocktailDescription: "\uD328\uB4DC\uB9BD\uC744 \uD558\uB294 \uCE75\uD14C\uC77C\uCC98\uB7FC
-    \uBCF4\uC774\uC9C0\uB9CC \uC774\uB984\uC774 \uC9C0\uC5B4\uC9C0\uAC8C \uB41C \uAC74
-    \uB2E4 \uADF8\uB9CC\uD55C \uC0AC\uC5F0\uC774 \uC788\uB2E4. "
+  _cocktailName: "\uD551\uD074\uB77C\uC6B0\uB4DC"
+  _cocktailDescription: "\uD551\uD06C\uC640 \uAD6C\uB984 \uD569\uCCD0\uC838 \uC6B0\uC544\uD558\uACE0
+    \uCC9C\uC0C1\uC758  \uB290\uB08C\uC744 \uC900\uB2E4."
   _cocktailSprite: {fileID: 21300000, guid: cc63a1d66f51b9c47a994224bd766ece, type: 3}
-  _tasteType: 2
-  _scentType: 2
+  _tasteType: 3
+  _scentType: 5

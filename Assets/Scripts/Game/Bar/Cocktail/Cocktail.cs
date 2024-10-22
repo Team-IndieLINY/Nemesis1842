@@ -15,12 +15,12 @@ public class Cocktail
 
     public enum EScentType
     {
-        FRUITY,
-        FLORAL,
-        SMOKY,
-        MALTY,
-        MEDICINAL,
-        NUTTY
+        SCIENTICCINNAMON,
+        BASILBLEND,
+        STARDUSTSUGAR,
+        METEORALMOND,
+        COLDMOON,
+        PINKBLUEMING
     }
     
     private ETasteType? _tasteType = null;
