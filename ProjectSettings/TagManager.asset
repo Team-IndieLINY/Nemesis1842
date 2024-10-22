@@ -12,10 +12,10 @@ TagManager:
   - Water
   - UI
   - CocktailMakingScreen
-  - 
-  - 
-  - 
-  - 
+  - Outdoor
+  - Background
+  - Middleground
+  - Foreground
   - 
   - 
   - 
@@ -40,4 +40,16 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Outdoor
+    uniqueID: 527176655
+    locked: 0
+  - name: Indoor
+    uniqueID: 1373045813
+    locked: 0
+  - name: UI
+    uniqueID: 313930929
+    locked: 0
+  - name: Controllable
+    uniqueID: 2631198353
     locked: 0

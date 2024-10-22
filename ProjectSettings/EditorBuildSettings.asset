@@ -6,6 +6,12 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
+    path: Assets/Scenes/Game/MainScreen.unity
+    guid: db1a578b93bf89b4b8680c8ded32959a
+  - enabled: 1
+    path: Assets/Scenes/Game/Orleans.unity
+    guid: 77b8afdd8e4c1044c8f0ec388658e434
+  - enabled: 1
     path: Assets/Scenes/Game/Bar.unity
-    guid: d6775848a958dc24186b635de76f5503
+    guid: b088175090d7191439261eb636d174ce
   m_configObjects: {}

@@ -1,94 +1,94 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.Playables;
 using UnityEngine.UI;
 
-[RequireComponent(typeof(PlayableDirector))]
 public class CocktailMakingManager : MonoBehaviour
 {
-    private Cocktail _cocktail = new();
-    public Cocktail Cocktail => _cocktail;
-    private PlayableDirector _playableDirector;
+    // [SerializeField]
+    // private CocktailEvaluationManager _cocktailEvaluationManager;
+
+    [SerializeField]
+    private ShakerInfoUI _shakerInfoUI;
+
+    [SerializeField]
+    private Button _enterAlcoholPhaseButton;
+
+    [SerializeField]
+    private SpriteRenderer _cocktailSpriteRenderer;
+
+    private List<CocktailData> _cocktailDatas = new();
+
+    private Cocktail.ETasteType? _tasteType;
+    public Cocktail.ETasteType? TasteType => _tasteType;
     
+    private Cocktail.EScentType? _scentType;
+    public Cocktail.EScentType? ScentType => _scentType;
 
-    [SerializeField]
-    private CocktailEvaluationManager _cocktailEvaluationManager;
-
-    [SerializeField]
-    private CocktailManager _cocktailManager;
-
-    [SerializeField]
-    private Button _doneButton;
-
-    [SerializeField]
-    private Button _resetButton;
-
-    [SerializeField]
-    private RectTransform _shakerRectTransform;
-
-    [SerializeField]
-    private RectTransform _shakerResetRectTransform;
+    private CocktailData _resultCocktailData;
+    public CocktailData ResultCocktailData => _resultCocktailData;
 
     private void Awake()
     {
-        _playableDirector = GetComponent<PlayableDirector>();
+        _cocktailDatas = Resources.LoadAll<CocktailData>("GameData/CocktailData").ToList();
+        ResetStepCocktail();
     }
 
-    public void SetTaste(TasteMachine.TasteType? tasteType)
+    public void SetTaste(Cocktail.ETasteType? tasteType)
     {
-        _cocktail.SetTaste(tasteType);
-    }
-
-    public void SetScent(ScentMachine.ScentType? scentType)
-    {
-        _cocktail.SetScent(scentType);
-    }
-
-    public void SetAlcohol(int alcohol)
-    {
+        _tasteType = tasteType;
+        _shakerInfoUI.UpdateShakerInfoUI();
         
-    }
-    public void SetEmotion()
-    {
-        
-    }
-
-    public void ResetCocktail()
-    {
-        _cocktail.ResetCocktail();
+        if (IsMaterialEmpty() is false)
+        {
+            _enterAlcoholPhaseButton.interactable = true;
+        }
     }
 
-    public void OnClickDoneButton()
+    public void SetScent(Cocktail.EScentType? scentType)
     {
-        InActivateDoneAndResetButton();
-        _cocktailEvaluationManager.EvaluateCocktail(_cocktail);
-        _cocktailManager.SetCocktailSprite(_cocktail.TasteType);
-        _cocktailEvaluationManager.EvaluateCustomerPatient();
-    }
-    
-    public void OnClickResetButton()
-    {
-        InActivateDoneAndResetButton();
-        _playableDirector.Play();
-        _cocktail.ResetCocktail();
+        _scentType = scentType;
+        _shakerInfoUI.UpdateShakerInfoUI();
+
+        if (IsMaterialEmpty() is false)
+        {
+            _enterAlcoholPhaseButton.interactable = true;
+        }
     }
 
-    public void InActivateDoneAndResetButton()
+    public void ResetStepCocktail()
     {
-        _doneButton.interactable = false;
-        _resetButton.interactable = false;
-    }
-    
-    public void ActivateDoneAndResetButton()
-    {
-        _doneButton.interactable = true;
-        _resetButton.interactable = true;
+        _enterAlcoholPhaseButton.interactable = false;
+        _tasteType = null;
+        _scentType = null;
+        _resultCocktailData = null;
+        _shakerInfoUI.ResetShakerInfoUI();
+        _cocktailSpriteRenderer.color = new Color(1, 1, 1, 0);
     }
 
-    public void ResetShakerPosition()
+    public void FinishMakingCocktail()
     {
-        _shakerRectTransform.anchoredPosition = _shakerResetRectTransform.anchoredPosition;
+        foreach (var cocktailData in _cocktailDatas)
+        {
+            if (cocktailData.TasteType == _tasteType
+                && cocktailData.ScentType == _scentType)
+            {
+                _resultCocktailData = cocktailData;
+                _cocktailSpriteRenderer.sprite = _resultCocktailData.CocktailSprite;
+
+                return;
+            }
+        }
+
+        //후차 이름모를 칵테일로 대체
+        _cocktailSpriteRenderer.sprite = null;
+    }
+
+    private bool IsMaterialEmpty()
+    {
+        return TasteType == null || ScentType == null;
     }
 }

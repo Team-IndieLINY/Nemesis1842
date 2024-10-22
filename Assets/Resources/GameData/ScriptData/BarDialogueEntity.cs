@@ -7,7 +7,7 @@ using UnityEngine;
 public class BarDialogueEntity
 {
     public string guest_code;
-    public int script_type;
+    public int step_order;
     public string character_name;
     public string script;
 }
