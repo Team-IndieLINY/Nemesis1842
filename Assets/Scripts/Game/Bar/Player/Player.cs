@@ -13,36 +13,73 @@ public class Player : MonoBehaviour
     [SerializeField]
     private TextMeshProUGUI _moneyText;
 
+    [SerializeField]
+    private TextMeshProUGUI _plusMoneyText;
+
+    [SerializeField]
+    private TextMeshProUGUI _minusMoneyText;
+
+    private Vector2 _plusMoneyOriginPosition;
+    private Vector2 _minusMoneyOriginPosition;
+
     private void Awake()
     {
         _moneyText.text = _money + "$";
+        _plusMoneyOriginPosition = _plusMoneyText.rectTransform.anchoredPosition;
+        _minusMoneyOriginPosition = _minusMoneyText.rectTransform.anchoredPosition;
     }
 
     public void EarnMoney(int money)
     {
         int tempMoney = _money;
         _money = Mathf.Clamp(_money + money, 0, Int32.MaxValue);
-
-        _moneyText.DOColor(new Color32(49, 255, 52, 255), 0.2f);
-        _moneyText.transform.DOScale(new Vector3(1.8f, 1.8f, 1f), 0.2f);
         
         StartCoroutine(AnimateEarningMoneyText(tempMoney, _money));
     }
 
     private IEnumerator AnimateEarningMoneyText(int startMoney, int endMoney)
     {
+        TextMeshProUGUI text;
+        Vector2 originPosition;
+        string moneyString;
+        if (endMoney - startMoney >= 0)
+        {
+            text = _plusMoneyText;
+            originPosition = _plusMoneyOriginPosition;
+            moneyString = "+" + (endMoney - startMoney);
+        }
+        else
+        {
+            text = _minusMoneyText;
+            originPosition = _minusMoneyOriginPosition;
+            moneyString = (endMoney - startMoney).ToString();
+        }
+
+        text.text = moneyString;
+        text.DOFade(1f, 0.3f);
+
+        Vector2 upPosition = new Vector2(originPosition.x, originPosition.y + 20f);
+        text.rectTransform.DOAnchorPos(upPosition, 1f);
+        
         while (startMoney != endMoney)
         {
-            startMoney++;
+            if (endMoney - startMoney >= 0)
+                startMoney++;
+            else
+                startMoney--;
+
             _moneyText.text = startMoney + "$";
 
             yield return new WaitForSeconds(0.03f);
         }
 
-        _moneyText.DOKill();
-        _moneyText.transform.DOKill();
+        text.DOKill();
 
-        _moneyText.DOColor(new Color32(255, 255, 255, 255), 0.2f);
-        _moneyText.transform.DOScale(new Vector3(1f, 1f, 1f), 0.2f);
+        text.DOFade(0f, 0.3f)
+            .OnKill(() =>
+            {
+                text.rectTransform.DOKill();
+                text.rectTransform.anchoredPosition = originPosition;
+            });
     }
 }

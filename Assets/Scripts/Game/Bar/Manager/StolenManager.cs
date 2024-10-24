@@ -3,14 +3,17 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using DG.Tweening;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class StolenManager : MonoBehaviour
 {
+    public static StolenManager Inst { get; private set; }
+    
     [SerializeField]
     private CanvasGroup _stolenSelectorCanvasGroup;
-
+    
     [SerializeField]
     private Image _stealPanelBackground;
 
@@ -33,7 +36,16 @@ public class StolenManager : MonoBehaviour
     private RectTransform _belongingShownPointRectTransform;
 
     [SerializeField]
-    private Image _inventoryImage;
+    private TextMeshProUGUI _itemNameTagText;
+
+    [SerializeField]
+    private GameObject _itemNameTagGO;
+
+    [SerializeField]
+    private Player _player;
+
+    [SerializeField]
+    private Inventory _inventory;
     
     private bool _isStolenDone;
     public bool IsStolenDone => _isStolenDone;
@@ -43,19 +55,16 @@ public class StolenManager : MonoBehaviour
     private GameObject _currentBelonging;
 
     private CanvasGroup _stopStealingButtonCanvasGroup;
-    private CanvasGroup _inventoryImageCanvasGroup;
     
     private void Awake()
     {
+        Inst = this;
         _stopStealingButtonCanvasGroup = _stopStealingButton.GetComponent<CanvasGroup>();
-        _inventoryImageCanvasGroup = _inventoryImage.GetComponent<CanvasGroup>();
         _belongingDatas = Resources.LoadAll<BelongingData>("GameData/BelongingData").ToList();
         ResetTurnStolenManager();
 
         _stopStealingButton.interactable = false;
         _stopStealingButtonCanvasGroup.alpha = 0;
-
-        _inventoryImage.raycastTarget = false;
     }
 
     public void SetStolenManager(string guestCode)
@@ -99,17 +108,16 @@ public class StolenManager : MonoBehaviour
     public void OnClickStealButton()
     {
         _wakeUpButton.interactable = false;
-        RectTransform currentBelongingRectTransform = _currentBelonging.transform as RectTransform;
 
-        _inventoryImageCanvasGroup.DOFade(1f, 0.3f)
-            .OnKill(() =>
-            {
-                _inventoryImage.raycastTarget = true;
-            });
+        _stolenSelectorCanvasGroup.DOKill();
+        _stolenSelectorCanvasGroup.DOFade(0f, 0.2f);
+        
+        RectTransform currentBelongingRectTransform = _currentBelonging.transform as RectTransform;
         
         currentBelongingRectTransform.DOAnchorPos(_belongingShownPointRectTransform.anchoredPosition, 0.5f)
             .OnKill(() =>
             {
+                _inventory.OpenStealInventory();
                 _stopStealingButtonCanvasGroup.DOFade(1f, 0.2f)
                     .OnKill(() =>
                     {
@@ -123,16 +131,15 @@ public class StolenManager : MonoBehaviour
         _stopStealingButton.interactable = false;
         
         RectTransform currentBelongingRectTransform = _currentBelonging.transform as RectTransform;
-
-        _inventoryImage.raycastTarget = false;
-        _inventoryImageCanvasGroup.DOFade(0f, 0.3f);
         
+        _inventory.CloseStealInventory();
         _stopStealingButtonCanvasGroup.DOFade(0f, 0.2f)
             .OnKill(() =>
             {
                 currentBelongingRectTransform.DOAnchorPos(_belongingSpawnPointRectTransform.anchoredPosition, 0.5f)
                     .OnKill(() =>
                     {
+                        _stolenSelectorCanvasGroup.DOFade(1f, 0.2f);
                         _wakeUpButton.interactable = true;
                         _stealButton.interactable = true;
                     });
@@ -151,5 +158,42 @@ public class StolenManager : MonoBehaviour
             Destroy(_currentBelonging);
             _currentBelonging = null;
         }
+    }
+
+    public void InActivateStealableItems()
+    {
+        _currentBelonging.GetComponent<Belonging>().InActivateStealableItems();
+    }
+    
+    public void ActivateStealableItems()
+    {
+        _currentBelonging.GetComponent<Belonging>().ActivateStealableItems();
+    }
+
+    public void ShowStealableItemNameTag(string itemName)
+    {
+        _itemNameTagText.text = itemName;
+        _itemNameTagGO.SetActive(true);
+    }
+
+    public void UpdateStealableItemNameTagPosition(Vector2 mouseWorldPosition)
+    {
+        Vector2 mouseRightUpPosition = new Vector2(mouseWorldPosition.x + 0.8f, mouseWorldPosition.y + 0.4f);
+        _itemNameTagGO.transform.position = mouseRightUpPosition;
+    }
+
+    public void HideStealableItemNameTag()
+    {
+        _itemNameTagGO.SetActive(false);
+    }
+
+    public void StealMoney(int money)
+    {
+        _player.EarnMoney(money);
+    }
+
+    public void StealInformationItem(InformationItemData informationItemData)
+    {
+        _inventory.AddItem(informationItemData);
     }
 }

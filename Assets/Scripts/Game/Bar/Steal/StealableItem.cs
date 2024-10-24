@@ -7,28 +7,15 @@ using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 [RequireComponent(typeof(Image))]
-public class StealableItem : MonoBehaviour,IPointerEnterHandler,IPointerExitHandler,IBeginDragHandler,IDragHandler,IEndDragHandler
+public class StealableItem : MonoBehaviour,IPointerEnterHandler,IPointerExitHandler,IPointerClickHandler,IPointerMoveHandler
 {
-    public enum EStealableItemType
-    {
-        Money,
-        Information
-    }
-    
     [SerializeField]
-    private EStealableItemType _stealableItemType;
-    
-    [SerializeField]
-    private int _moneyAmount;
+    private StealableItemData _stealableItemData;
     
     private RectTransform _rectTransform;
     private Vector2 _originalPosition;
     private Vector2 _upPosition;
-
-    private RectTransform _belongingRectTransform;
-    private float _mousePositionXDiff;
-    private float _mousePositionYDiff;
-    private int _originalChildIndex;
+    
     private Image _image;
     
     private void Awake()
@@ -38,66 +25,74 @@ public class StealableItem : MonoBehaviour,IPointerEnterHandler,IPointerExitHand
         _originalPosition = _rectTransform.anchoredPosition;
         _upPosition = _originalPosition;
         _upPosition.y += 50f;
-        
-        _belongingRectTransform = _rectTransform.parent.GetComponent<RectTransform>();
-        
-        _mousePositionXDiff = _belongingRectTransform.sizeDelta.x / 2;
-        _mousePositionYDiff = _belongingRectTransform.sizeDelta.y / 2;
-
-        _originalChildIndex = transform.GetSiblingIndex();
+        _image.sprite = _stealableItemData.ItemSprite;
+        _image.SetNativeSize();
     }
 
     public void OnPointerEnter(PointerEventData eventData)
     {
+        if (_stealableItemData is InformationItemData informationItemData)
+        {
+            StolenManager.Inst.ShowStealableItemNameTag(informationItemData.ItemName);
+        }
+        else if(_stealableItemData is MoneyItemData moneyItemData)
+        {
+            StolenManager.Inst.ShowStealableItemNameTag(moneyItemData.Money + "$");
+        }
+        
         _rectTransform.DOAnchorPos(_upPosition, 0.2f);
     }
 
     public void OnPointerExit(PointerEventData eventData)
     {
+        StolenManager.Inst.HideStealableItemNameTag();
+        
         if (_image.raycastTarget == false)
         {
             return;
         }
+        
         _rectTransform.DOAnchorPos(_originalPosition, 0.2f);
     }
-
-    public void OnBeginDrag(PointerEventData eventData)
+    
+    public void OnPointerMove(PointerEventData eventData)
     {
+        StolenManager.Inst.UpdateStealableItemNameTagPosition(Camera.main.ScreenToWorldPoint(Input.mousePosition));
+    }
+
+    public void OnPointerClick(PointerEventData eventData)
+    {
+        StolenManager.Inst.InActivateStealableItems();
+
         _rectTransform.DOKill();
-        transform.SetAsLastSibling();
+        _rectTransform.anchoredPosition = _upPosition;
+        
+        Vector2 moreUpPosition = new Vector2(_upPosition.x, _upPosition.y + 60f);
 
-        _image.raycastTarget = false;
-
-        _rectTransform.anchoredPosition = new Vector2(
-            Input.mousePosition.x - 960 + _mousePositionXDiff,
-            Input.mousePosition.y - 540 + _mousePositionYDiff);
+        _rectTransform.DOAnchorPos(moreUpPosition, 0.5f);
+        _image.DOFade(0f, 0.5f)
+            .OnKill(() =>
+            {
+                if (_stealableItemData is MoneyItemData moneyItemData)
+                {
+                    StolenManager.Inst.StealMoney(moneyItemData.Money);
+                }
+                else if (_stealableItemData is InformationItemData informationItemData)
+                {
+                    StolenManager.Inst.StealInformationItem(informationItemData);
+                }
+                StolenManager.Inst.ActivateStealableItems();
+                Destroy(gameObject);
+            });
     }
 
-    public void OnDrag(PointerEventData eventData)
+    public void InActivateStealableItem()
     {
-        _rectTransform.anchoredPosition = new Vector2(
-            Input.mousePosition.x - 960 + _mousePositionXDiff,
-            Input.mousePosition.y - 540 + _mousePositionYDiff);
+        _image.raycastTarget = false;
     }
-
-    public void OnEndDrag(PointerEventData eventData)
+    
+    public void ActivateStealableItem()
     {
         _image.raycastTarget = true;
-        transform.SetSiblingIndex(_originalChildIndex);
-        _rectTransform.DOAnchorPos(_originalPosition, 0.2f);
-
-        if (StealInventoryHandler.Inst.IsHovered)
-        {
-            _rectTransform.DOKill();
-            if (_stealableItemType == EStealableItemType.Information)
-            {
-                
-            }
-            else if(_stealableItemType == EStealableItemType.Money)
-            {
-                
-            }
-            Destroy(gameObject);
-        }
     }
 }

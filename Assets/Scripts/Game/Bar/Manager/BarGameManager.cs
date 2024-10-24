@@ -5,6 +5,7 @@ using System.Linq;
 using DG.Tweening;
 using UnityEngine;
 using UnityEngine.Playables;
+using UnityEngine.SceneManagement;
 using UnityEngine.Timeline;
 using UnityEngine.UI;
 
@@ -50,6 +51,10 @@ public class BarGameManager : MonoBehaviour
 
     [SerializeField]
     private ReceiptUI _receiptUI;
+
+    [SerializeField]
+    private Inventory _inventory;
+    
     
     [Header("타임라인")]
     [SerializeField]
@@ -123,6 +128,8 @@ public class BarGameManager : MonoBehaviour
             
             ShowScripts(0, guestData);
             
+            _stolenManager.SetStolenManager(guestData.guest_code);
+            
             yield return new WaitUntil(() => _barDialogueManager.IsProgressed == false);
             
             for (int i = 1; i <= _stepDatas.Count; i++)
@@ -173,6 +180,9 @@ public class BarGameManager : MonoBehaviour
 
             ResetTurn();
         }
+        
+        _inventory.SaveInventoryData();
+        SceneManager.LoadScene("Scenes/Game/Orleans");
     }
 
     private void AppearGuest(BarGuestEntity guestData)
@@ -268,8 +278,6 @@ public class BarGameManager : MonoBehaviour
         ScanManager.Inst.AnswerLeavenType = (LiverScanData.ELeavenType)stepEntity.leaven_answer;
         ScanManager.Inst.SetLiver(stepEntity.square_leaven_count, stepEntity.circle_leaven_count,
             stepEntity.star_leaven_count, stepEntity.triangle_leaven_count);
-
-        _stolenManager.SetStolenManager(stepEntity.guest_code);
     }
 
     private void ResetStep()
@@ -290,7 +298,6 @@ public class BarGameManager : MonoBehaviour
 
     private void EnterStolenPhase()
     {
-        
         _stolenManager.ShowStolenSelector();
     }
 }

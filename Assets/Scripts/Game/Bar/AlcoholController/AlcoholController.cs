@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using DG.Tweening;
 using TMPro;
 using UnityEngine;
 using UnityEngine.Serialization;
@@ -13,6 +14,12 @@ public class AlcoholController : MonoBehaviour
     
     [SerializeField]
     private AlcoholControllerUI _alcoholControllerUI;
+
+    [SerializeField]
+    private Transform _alcoholControllerPanelTransform;
+
+    [SerializeField]
+    private Image _overloadImage;
     
     private int _maxAlcohol = 100;
     public int MaxAlcohol => _maxAlcohol;
@@ -194,12 +201,11 @@ public class AlcoholController : MonoBehaviour
 
     private void Normalize()
     {
-        //정상화 연출
-        Debug.Log("정상화");
+        
     }
     private void OverDrive()
     {
-        //과부하 연출
-        Debug.Log("과부하");
+        _overloadImage.DOFade(0.3f, 0.5f).SetLoops(-1, LoopType.Yoyo);
+        _alcoholControllerPanelTransform.DOShakePosition(2f, _currentAttempt * -2f, _currentAttempt * -5, 40f, false, false).SetLoops(-1, LoopType.Incremental);
     }
 }
