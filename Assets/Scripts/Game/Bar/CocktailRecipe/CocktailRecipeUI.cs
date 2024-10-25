@@ -19,9 +19,6 @@ public class CocktailRecipeUI : MonoBehaviour
     [SerializeField]
     private Transform _cocktailDataScrollViewContentTransform;
 
-    [SerializeField]
-    private TextMeshProUGUI _cocktailSummaryText;
-
     private RectTransform _rectTransform;
 
     private void Awake()
@@ -41,11 +38,6 @@ public class CocktailRecipeUI : MonoBehaviour
                 cocktailRecipeBlockUI.InitializeCocktailRecipeBlockUI(cocktailData);
             }
         }
-    }
-
-    public void SetCocktailSummaryText(string summaryText)
-    {
-        _cocktailSummaryText.text = summaryText;
     }
 
     public void OnClickOpenRecipeButton(GameObject recipeOpenbuttonGO)

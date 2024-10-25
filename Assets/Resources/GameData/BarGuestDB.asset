@@ -21,6 +21,41 @@ MonoBehaviour:
     day: 1
     order: 2
     character_code: 02
+  CocktailRejectScripts:
+  - guest_code: 0001
+    step_order: 1
+    cockail_reject_script: "\uB2EC\uC774\uB77C\uACE0 \uB2EC! Moon \uBAB0\uB77C?"
+  - guest_code: 0001
+    step_order: 1
+    cockail_reject_script: "Moon\uC774\uB77C\uACE0 \uB108 \uC601\uC5B4 \uBA87\uB4F1\uAE09\uC774\uC57C?"
+  - guest_code: 0001
+    step_order: 1
+    cockail_reject_script: "\uBD84\uBA85 \uB0B4\uAC00 \uB2EC \uAC19\uC740 \uAC78
+      \uB2EC\uB77C\uACE0 \uD588\uC744\uD150\uB370."
+  - guest_code: 0002
+    step_order: 1
+    cockail_reject_script: "\uADF8\uB7F0 \uAC70 \uB9D0\uACE0 \uC124\uD0D5\uC774 \uB4E4\uC5B4\uAC04
+      \uB290\uB08C\uC774\uC57C."
+  - guest_code: 0002
+    step_order: 1
+    cockail_reject_script: "\uC774\uAC70 \uB9D0\uACE0 \uC124\uD0D5 \uAC19\uC740 \uC7AC\uB8CC\uB97C
+      \uB123\uC5B4."
+  - guest_code: 0002
+    step_order: 1
+    cockail_reject_script: "\uC124\uD0D5 Sugar!! \uB9D0\uADC0\uB97C \uC65C \uBABB
+      \uC54C\uC544 \uBA39\uB294\uAC70\uC57C!"
+  - guest_code: 0002
+    step_order: 2
+    cockail_reject_script: "\uC5C4\uB9C8\uAC00 \uBCF4\uACE0\uC2F6\uC740 \uCE75\uD14C\uC77C\uC744
+      \uB2EC\uB77C\uACE0 \uD55C\uB2E4."
+  - guest_code: 0002
+    step_order: 2
+    cockail_reject_script: "\uC5C4\uB9C8\uAC00 \uBCF4\uACE0\uC2F6\uC740 \uCE75\uD14C\uC77C\uC744
+      \uB2EC\uB77C\uACE0 \uD55C\uB2E4."
+  - guest_code: 0002
+    step_order: 2
+    cockail_reject_script: "\uC5C4\uB9C8\uAC00 \uBCF4\uACE0\uC2F6\uC740 \uCE75\uD14C\uC77C\uC744
+      \uB2EC\uB77C\uACE0 \uD55C\uB2E4."
   Scripts:
   - guest_code: 0001
     step_order: 0
@@ -117,9 +152,8 @@ MonoBehaviour:
     cocktail_code: 003
     condition_value: 80
     cocktail_summary_text: "\uC62C\uB9AC\uC5B8\uC2A4 \uB9C8\uC744\uC758 \uB2EC \uAC19\uC740
-      \uCE75\uD14C\uC77C\uC744 \uC6D0\uD55C\uB2E4."
-    min_answer_alcohol: 30
-    max_answer_alcohol: 32
+      \uCE75\uD14C\uC77C \uD558\uB098."
+    answer_alcohol: 30
     condition_answer: 2
     square_leaven_count: 5
     circle_leaven_count: 6
@@ -132,9 +166,8 @@ MonoBehaviour:
     cocktail_code: 001
     condition_value: 10
     cocktail_summary_text: "\uB2EC\uB2EC\uD55C \uC124\uD0D5 \uB9DB\uC774 \uB098\uB294
-      \uCE75\uD14C\uC77C\uC744 \uC6D0\uD55C\uB2E4."
-    min_answer_alcohol: 10
-    max_answer_alcohol: 11
+      \uCE75\uD14C\uC77C\uB85C."
+    answer_alcohol: 11
     condition_answer: 0
     square_leaven_count: 2
     circle_leaven_count: 6
@@ -143,13 +176,12 @@ MonoBehaviour:
     leaven_answer: 1
     alcohol_control_attempt: 4
   - guest_code: 0002
-    step_order: 3
+    step_order: 2
     cocktail_code: 002
     condition_value: 80
     cocktail_summary_text: "\uC5C4\uB9C8\uAC00 \uBCF4\uACE0\uC2F6\uC740 \uCE75\uD14C\uC77C\uC744
       \uB2EC\uB77C\uACE0 \uD55C\uB2E4."
-    min_answer_alcohol: 48
-    max_answer_alcohol: 48
+    answer_alcohol: 48
     condition_answer: 2
     square_leaven_count: 7
     circle_leaven_count: 4

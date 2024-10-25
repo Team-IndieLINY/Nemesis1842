@@ -10,6 +10,8 @@ public class Player : MonoBehaviour
     [SerializeField]
     private int _money;
 
+    public int Money => _money;
+
     [SerializeField]
     private TextMeshProUGUI _moneyText;
 
