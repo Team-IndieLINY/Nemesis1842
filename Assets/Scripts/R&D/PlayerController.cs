@@ -8,8 +8,6 @@ using UnityEngine.UI;
 [RequireComponent(typeof(Rigidbody2D))]
 public class PlayerController : MonoBehaviour
 {
-    public static PlayerController Inst { get; private set; }
-    
     [SerializeField]
     private float _movingSpeed;
 
@@ -17,46 +15,68 @@ public class PlayerController : MonoBehaviour
     private GameObject _dayTextGO;
 
     private Rigidbody2D _rigidbody;
-    
-    public bool CanEntry { get; private set; }
+
+    private IInteractable _currentInteractable;
 
     private void Awake()
     {
-        Inst = this;
         _rigidbody = GetComponent<Rigidbody2D>();
         AnimateDayText();
+    }
+
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            if (BarOutsideDialougeManager.Inst.IsTyped is true)
+            {
+                BarOutsideDialougeManager.Inst.SkipTypeScripts();
+            }
+            else
+            {
+                BarOutsideDialougeManager.Inst.DisplayNextScript();
+            }
+        }
+        else if (Input.GetKeyDown(KeyCode.E) && _currentInteractable != null && BarOutsideDialougeManager.Inst.IsProgressed is false)
+        {
+            _rigidbody.velocity = new Vector2(0,0);
+            _currentInteractable.HideInteractableUI();
+            _currentInteractable.Interact();
+        }
     }
 
     // Update is called once per frame
     void FixedUpdate()
     {
-        float inputX = Input.GetAxisRaw("Horizontal");
+        if (BarOutsideDialougeManager.Inst.IsProgressed is false)
+        {
+            float inputX = Input.GetAxisRaw("Horizontal");
 
-        _rigidbody.velocity = new Vector3(inputX * _movingSpeed, 0, 0);
+            _rigidbody.velocity = new Vector3(inputX * _movingSpeed, 0, 0);
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.TryGetComponent(out Portal portal))
+        if (other.TryGetComponent(out IInteractable interactable))
         {
-            portal.ActivateKeyToolTip();
-            CanEntry = true;
+            _currentInteractable = interactable;
+            interactable.ShowInteractableUI();
         }
     }
 
     private void OnTriggerExit2D(Collider2D other)
     {
-        if (other.TryGetComponent(out Portal portal))
+        if (other.TryGetComponent(out IInteractable interactable))
         {
-            portal.InActivateKeyToolTip();
-            CanEntry = false;
+            _currentInteractable = null;
+            interactable.HideInteractableUI();
         }
     }
 
     private void AnimateDayText()
     {
         StartCoroutine(AnimateDayTextCoroutine());
-
     }
 
     private IEnumerator AnimateDayTextCoroutine()

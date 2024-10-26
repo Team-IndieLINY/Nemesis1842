@@ -7,7 +7,7 @@ public class MainScreen : MonoBehaviour
 {
     public void PlayGame()
     {
-        SceneManager.LoadScene("Orleans");
+        SceneManager.LoadScene("Intro");
     }
 
     public void QuitGame()

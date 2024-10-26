@@ -203,6 +203,8 @@ public class BarGameManager : MonoBehaviour
         }
         
         _inventory.SaveInventoryData();
+        _player.SaveMoney();
+        
         SceneManager.LoadScene("Scenes/Game/Orleans");
     }
 
@@ -217,7 +219,7 @@ public class BarGameManager : MonoBehaviour
     private void ShowScripts(int stepOrder, BarGuestEntity guestData)
     {
         List<BarDialogueEntity> barDialogueEntity
-            = _barGuestDB.Scripts
+            = _barGuestDB.BarScripts
                 .Where(x => x.guest_code == guestData.guest_code &&
                             x.step_order == stepOrder)
                 .ToList();

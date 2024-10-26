@@ -26,6 +26,7 @@ public class Player : MonoBehaviour
 
     private void Awake()
     {
+        LoadMoney();
         _moneyText.text = _money + "$";
         _plusMoneyOriginPosition = _plusMoneyText.rectTransform.anchoredPosition;
         _minusMoneyOriginPosition = _minusMoneyText.rectTransform.anchoredPosition;
@@ -37,6 +38,16 @@ public class Player : MonoBehaviour
         _money = Mathf.Clamp(_money + money, 0, Int32.MaxValue);
         
         StartCoroutine(AnimateEarningMoneyText(tempMoney, _money));
+    }
+
+    private void LoadMoney()
+    {
+        _money = PlayerManager.Instance().Money;
+    }
+
+    public void SaveMoney()
+    {
+        PlayerManager.Instance().SaveMoneyData(_money);
     }
 
     private IEnumerator AnimateEarningMoneyText(int startMoney, int endMoney)
