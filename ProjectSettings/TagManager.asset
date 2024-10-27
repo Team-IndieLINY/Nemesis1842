@@ -53,3 +53,18 @@ TagManager:
   - name: Controllable
     uniqueID: 2631198353
     locked: 0
+  - name: Background
+    uniqueID: 743989351
+    locked: 0
+  - name: Middleground
+    uniqueID: 253630467
+    locked: 0
+  - name: NPC
+    uniqueID: 909455203
+    locked: 0
+  - name: Player
+    uniqueID: 3015891225
+    locked: 0
+  - name: Foreground
+    uniqueID: 597449491
+    locked: 0

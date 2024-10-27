@@ -23,4 +23,9 @@ public class InventoryManager
     {
         _informationItemDatas = informationItemDatas;
     }
+
+    public void ResetInventoryData()
+    {
+        _informationItemDatas = new InformationItemData[5];
+    }
 }

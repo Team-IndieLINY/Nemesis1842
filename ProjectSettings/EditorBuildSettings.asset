@@ -20,4 +20,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Game/LoadingScreen.unity
     guid: cbf8747aa6889c649b1db366d40f730f
+  - enabled: 1
+    path: Assets/Scenes/Game/DayEndingScene.unity
+    guid: 43cbce6d0caed3347999be51426aecda
   m_configObjects: {}

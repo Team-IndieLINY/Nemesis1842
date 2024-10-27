@@ -304,3 +304,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _bgmAudioSource: {fileID: 2347733625220441384}
   _sfxAudioSoruce: {fileID: 3057471691295174623}
+  _audioMixer: {fileID: 24100000, guid: ec5e0eafdd1dcf54caa2fd3ec43d5072, type: 2}

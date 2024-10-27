@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class BarOutsideGameManager : MonoBehaviour
@@ -15,20 +16,45 @@ public class BarOutsideGameManager : MonoBehaviour
     [SerializeField]
     private Transform _npcGroup;
 
-    private int day = 1;
-    private NPCData.ETimeType _timeType = NPCData.ETimeType.Evening;
+    [SerializeField]
+    private Sprite[] _skySprites;
 
+    [SerializeField]
+    private SpriteRenderer _skySpriteRenderer;
+
+    [SerializeField]
+    private GameObject[] _lightGroupGOs;
+
+    [SerializeField]
+    private Transform[] _playerSpawnPoints;
+
+    [SerializeField]
+    private PlayerController _player;
+    
     private List<NPCData> _npcDatas;
 
     private void Awake()
     {
+        foreach (var lightGroupGO in _lightGroupGOs)
+        {
+            lightGroupGO.SetActive(false);
+        }
         _npcDatas = Resources.LoadAll<NPCData>("GameData/NPCData").ToList();
+    }
+
+    private void Start()
+    {
         SetDay();
     }
 
     public void SetDay()
     {
-        List<NPCData> currentNPCDatas = _npcDatas.Where(x => x.Day == day && x.TimeType == _timeType).ToList();
+        _skySpriteRenderer.sprite = _skySprites[(int)DayManager.Instance.TimeType];
+        _lightGroupGOs[(int)DayManager.Instance.TimeType].SetActive(true);
+        _player.transform.position = _playerSpawnPoints[(int)DayManager.Instance.TimeType].position;
+        
+        List<NPCData> currentNPCDatas =
+            _npcDatas.Where(x => x.Day == DayManager.Instance.Day && x.TimeType == DayManager.Instance.TimeType).ToList();
 
         foreach (var currentNpcData in currentNPCDatas)
         {

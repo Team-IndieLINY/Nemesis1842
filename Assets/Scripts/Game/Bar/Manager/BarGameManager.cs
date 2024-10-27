@@ -65,6 +65,9 @@ public class BarGameManager : MonoBehaviour
     [SerializeField]
     private SpriteRenderer _cocktailSpriteRenderer;
 
+    [SerializeField]
+    private Image _fadeImage;
+
 
     [Header("타임라인")]
     [SerializeField]
@@ -108,6 +111,7 @@ public class BarGameManager : MonoBehaviour
     {
         Inst = this;
         _playableDirector = GetComponent<PlayableDirector>();
+        _fadeImage.color = new Color32(0, 0, 0, 255);
     }
 
     private void Start()
@@ -126,7 +130,8 @@ public class BarGameManager : MonoBehaviour
 
     private IEnumerator RoutineBar()
     {
-        yield return new WaitForSeconds(2f);
+        _fadeImage.DOFade(0f, 3f);
+        yield return new WaitForSeconds(3f);
         foreach (var guestData in _guestDatas)
         {
             _stepDatas = _barGuestDB.Steps
@@ -205,8 +210,14 @@ public class BarGameManager : MonoBehaviour
 
         _inventory.SaveInventoryData();
         _player.SaveMoney();
-        
-        SceneManager.LoadScene("Scenes/Game/Orleans");
+
+        DayManager.Instance.ChangeTimeType();
+
+        _fadeImage.DOFade(1f, 2f)
+            .OnKill(() =>
+            {
+                SceneManager.LoadScene("Scenes/Game/Orleans");
+            });
     }
 
     private void AppearGuest(BarGuestEntity guestData)

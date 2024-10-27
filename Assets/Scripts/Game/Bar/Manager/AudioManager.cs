@@ -1,7 +1,10 @@
 using System.Collections;
 using System.Collections.Generic;
 using DG.Tweening;
+using TMPro;
 using UnityEngine;
+using UnityEngine.Audio;
+using UnityEngine.UI;
 
 public class AudioManager : MonoBehaviour
 {
@@ -10,6 +13,8 @@ public class AudioManager : MonoBehaviour
 
     [SerializeField]
     private AudioSource _sfxAudioSoruce;
+    
+    [SerializeField] private AudioMixer _audioMixer;
     
     private static AudioManager instance = null;
     
@@ -54,5 +59,20 @@ public class AudioManager : MonoBehaviour
     public void PlaySFX(AudioClip audioClip)
     {
         _sfxAudioSoruce.PlayOneShot(audioClip);
+    }
+    
+    public void SetMasterVolume(float volume)
+    {
+        _audioMixer.SetFloat("Master", volume);
+    }
+ 
+    public void SetBGMVolume(float volume)
+    {
+        _audioMixer.SetFloat("BGM", volume);
+    }
+ 
+    public void SetSFXVolume(float volume)
+    {
+        _audioMixer.SetFloat("SFX", volume);
     }
 }

@@ -2,14 +2,18 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class DayManager : MonoBehaviour
 {
     private static DayManager _instance = null;
     
-    [SerializeField,Range(1,20)]
+    [SerializeField,Range(0,20)]
     private int day = 1;
     public int Day => day;
+    
+    private NPCData.ETimeType _timeType = NPCData.ETimeType.Evening;
+    public NPCData.ETimeType TimeType =>_timeType;
 
     [SerializeField]
     private int _monthlyRent;
@@ -40,5 +44,30 @@ public class DayManager : MonoBehaviour
             }
             return _instance;
         }
+    }
+
+    public void IncreaseDay()
+    {
+        day++;
+        ChangeTimeType();
+    }
+
+    public void ChangeTimeType()
+    {
+        if (_timeType == NPCData.ETimeType.Evening)
+        {
+            _timeType = NPCData.ETimeType.Dawn;
+        }
+        else if (_timeType == NPCData.ETimeType.Dawn)
+        {
+            _timeType = NPCData.ETimeType.Evening;
+        }
+    }
+
+    public void ResetDayManager()
+    {
+        day = 1;
+        _timeType = NPCData.ETimeType.Evening;
+        _monthlyRent = 300;
     }
 }

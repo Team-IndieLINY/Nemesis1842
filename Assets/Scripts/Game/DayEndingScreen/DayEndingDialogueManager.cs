@@ -1,13 +1,11 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
-using DG.Tweening;
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using UnityEngine.UI;
+using UnityEngine.Serialization;
 
-public class IntroDialougeManager : MonoBehaviour
+public class DayEndingDialogueManager : MonoBehaviour
 {
     [SerializeField]
     private GameObject _chatBalloonGO;
@@ -23,21 +21,11 @@ public class IntroDialougeManager : MonoBehaviour
 
     [SerializeField]
     private AudioClip _typingAudioClip;
-
+    
     [SerializeField]
-    private Sprite[] _cutSceneSprites;
-
-    [SerializeField]
-    private string[] _cutSceneScripts;
-
-    [SerializeField]
-    private Image _cutSceneImage;
-
-    [SerializeField]
-    private Image _fadeImage;
+    private string[] _dayEndingScripts;
     
     private Queue<string> _scriptsQueue = new Queue<string>();
-    private Queue<Sprite> _cutSceneQueue = new Queue<Sprite>();
 
     private bool _isProgressed = false;
     public bool IsProgressed => _isProgressed;
@@ -51,11 +39,7 @@ public class IntroDialougeManager : MonoBehaviour
 
     private void Awake()
     {
-        _fadeImage.color = new Color32(0, 0, 0, 255);
-        _fadeImage.DOFade(0f, 2f)
-            .OnKill(StartDialogue);
-
-        _cutSceneImage.color = new Color32(255, 255, 255, 0);
+        StartDialogue();
     }
 
     public void StartDialogue()
@@ -67,14 +51,9 @@ public class IntroDialougeManager : MonoBehaviour
         
         _scriptsQueue.Clear();
 
-        foreach (var script in _cutSceneScripts)
+        foreach (var script in _dayEndingScripts)
         {
             _scriptsQueue.Enqueue(script);
-        }
-
-        foreach (var cutSceneSprite in _cutSceneSprites)
-        {
-            _cutSceneQueue.Enqueue(cutSceneSprite);
         }
 
         DisplayNextScript();
@@ -86,23 +65,6 @@ public class IntroDialougeManager : MonoBehaviour
         {
             EndDialogue();
             return;
-        }
-
-        _cutSceneImage.DOKill();
-
-        if (_cutSceneImage.color.a == 0f)
-        {
-            _cutSceneImage.sprite = _cutSceneQueue.Dequeue();
-            _cutSceneImage.DOFade(1f, 1f);
-        }
-        else
-        {
-            _cutSceneImage.DOFade(0f, 1f)
-                .OnKill(() =>
-                {
-                    _cutSceneImage.sprite = _cutSceneQueue.Dequeue();
-                    _cutSceneImage.DOFade(1f, 1f);
-                });
         }
 
         string script = _scriptsQueue.Dequeue();
@@ -139,17 +101,10 @@ public class IntroDialougeManager : MonoBehaviour
     {
         _isProgressed = false;
         _chatBalloonGO.SetActive(false);
-
-        _fadeImage.DOFade(1f, 2f)
-            .OnKill(() =>
-            {
-                SceneManager.LoadScene("Scenes/Game/Orleans");
-            });
-    }
-
-    public void SkipIntro()
-    {
-        SkipTypeScripts();
-        EndDialogue();
+        
+        DayManager.Instance.ResetDayManager();
+        InventoryManager.Instance().ResetInventoryData();
+        PlayerManager.Instance().ResetPlayerData();
+        SceneManager.LoadScene("MainScreen");
     }
 }

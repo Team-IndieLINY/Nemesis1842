@@ -23,4 +23,9 @@ public class PlayerManager
     {
         _money = money;
     }
+
+    public void ResetPlayerData()
+    {
+        _money = 0;
+    }
 }
