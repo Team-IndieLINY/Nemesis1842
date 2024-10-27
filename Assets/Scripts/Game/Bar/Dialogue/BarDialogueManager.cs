@@ -23,6 +23,9 @@ public class BarDialogueManager : MonoBehaviour
 
     [SerializeField]
     private AudioClip _typingAudioClip;
+
+    [SerializeField]
+    private Guest _guest;
     
     private Queue<BarDialogueEntity> _scriptsQueue = new Queue<BarDialogueEntity>();
 
@@ -63,6 +66,7 @@ public class BarDialogueManager : MonoBehaviour
 
         BarDialogueEntity barDialogueEntity = _scriptsQueue.Dequeue();
         _currentScript = barDialogueEntity.script;
+        _guest.SetCharacterSprite(barDialogueEntity.character_sprite_code);
         
         _characterNameText.text = barDialogueEntity.character_name;
         

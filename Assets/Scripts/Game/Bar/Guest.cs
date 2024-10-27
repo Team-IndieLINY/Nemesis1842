@@ -20,8 +20,6 @@ public class Guest : MonoBehaviour
     private PlayableDirector _playableDirector;
     private List<CharacterData> _characterDatas;
     private CharacterData _currentCharacterData;
-    
-    private int _drunkCount = 0;
 
     private bool isHovered;
     public bool IsHovered => isHovered;
@@ -40,22 +38,16 @@ public class Guest : MonoBehaviour
             .ToList();
 
         _currentCharacterData = characterData[0];
-        _spriteRenderer.sprite = _currentCharacterData.CharacterSprite[_drunkCount];
+        _spriteRenderer.sprite = _currentCharacterData.StringByCharacterSprite.GetDict()["Normal"];
         
         Destroy(GetComponent<PolygonCollider2D>());
         gameObject.AddComponent<PolygonCollider2D>();
         GetComponent<PolygonCollider2D>().isTrigger = true;
     }
 
-    public void DrunkGuest()
+    public void SetCharacterSprite(string characterSpriteCode)
     {
-        _drunkCount++;
-        _spriteRenderer.sprite = _currentCharacterData.CharacterSprite[_drunkCount];
-    }
-
-    public void ResetTurnGuest()
-    {
-        _drunkCount = 0;
+        _spriteRenderer.sprite = _currentCharacterData.StringByCharacterSprite.GetDict()[characterSpriteCode];
     }
     
     private void OnMouseEnter()

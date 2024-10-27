@@ -7,6 +7,15 @@ public class MainScreen : MonoBehaviour
 {
     public void PlayGame()
     {
-        SceneManager.LoadScene("Orleans");
+        SceneManager.LoadScene("Intro");
+    }
+
+    public void QuitGame()
+    {
+#if UNITY_EDITOR
+        UnityEditor.EditorApplication.isPlaying = false;
+#else
+            Application.Quit();
+#endif
     }
 }

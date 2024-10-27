@@ -11,8 +11,7 @@ public class StepEntity
     public string cocktail_code;
     public int condition_value;
     public string cocktail_summary_text;
-    public int min_answer_alcohol;
-    public int max_answer_alcohol;
+    public int answer_alcohol;
     public int condition_answer;
     public int square_leaven_count;
     public int circle_leaven_count;

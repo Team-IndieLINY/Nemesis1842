@@ -10,4 +10,5 @@ public class BarDialogueEntity
     public int step_order;
     public string character_name;
     public string script;
+    public string character_sprite_code;
 }
