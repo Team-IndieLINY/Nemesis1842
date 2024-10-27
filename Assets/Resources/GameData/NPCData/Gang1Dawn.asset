@@ -14,5 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   npcCode: 0004
   _day: 1
+  _npcSprite: {fileID: 0}
   _timeType: 1
-  _spawnPosition: {x: 0, y: 0}
+  _spawnPosition: {x: -7.1, y: 1000}

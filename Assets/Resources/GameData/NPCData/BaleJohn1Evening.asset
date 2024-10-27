@@ -16,4 +16,4 @@ MonoBehaviour:
   _day: 1
   _npcSprite: {fileID: 21300000, guid: 216a80538d2e7804cadeccd67f4b2662, type: 3}
   _timeType: 0
-  _spawnPosition: {x: -21.35, y: 2.04}
+  _spawnPosition: {x: -7.1, y: 1000}
