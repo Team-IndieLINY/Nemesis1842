@@ -14,13 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _characterCode: 01
   _characterName: "\uBCA0\uC77C \uC874"
-  _stringByCharacterSprite:
-    data:
-    - key: Normal
-      value: {fileID: 21300000, guid: f8ca637cb2da6574a99682463864eaea, type: 3}
-    - key: Drunken
-      value: {fileID: 21300000, guid: 216a80538d2e7804cadeccd67f4b2662, type: 3}
-    - key: Wasted
-      value: {fileID: 21300000, guid: ce3753d292576f14aa278755a07dce61, type: 3}
-    - key: RasieArm
-      value: {fileID: 21300000, guid: 796c6e75b20ea6b4a8842d29e7b2c044, type: 3}
+  _characterSprite:
+  - {fileID: 21300000, guid: f8ca637cb2da6574a99682463864eaea, type: 3}
+  - {fileID: 21300000, guid: 216a80538d2e7804cadeccd67f4b2662, type: 3}
+  - {fileID: 21300000, guid: ce3753d292576f14aa278755a07dce61, type: 3}

@@ -1,7 +1,6 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using DG.Tweening;
 using TMPro;
 using UnityEngine;
 using UnityEngine.Serialization;
@@ -14,12 +13,6 @@ public class AlcoholController : MonoBehaviour
     
     [SerializeField]
     private AlcoholControllerUI _alcoholControllerUI;
-
-    [SerializeField]
-    private Transform _alcoholControllerPanelTransform;
-
-    [SerializeField]
-    private Image _overloadImage;
     
     private int _maxAlcohol = 100;
     public int MaxAlcohol => _maxAlcohol;
@@ -40,9 +33,8 @@ public class AlcoholController : MonoBehaviour
     public int SumOfOverloadCount => _sumOfOverloadCount;
     
     private int _attempt;
-    private int _answerAlcohol;
-    private bool _isUsedLiverScan;
-    private Vector2 _originPosition;
+    private int _maxAnswerAlcohol;
+    private int _minAnswerAlcohol;
 
     private Item _currentItem;
     public Item CurrentItem => _currentItem;
@@ -52,9 +44,10 @@ public class AlcoholController : MonoBehaviour
         _currentItem = null;
     }
 
-    public void SetAlcoholController(int answerAlcohol, int attempt)
+    public void SetAlcoholController(int maxAnswerAlcohol, int minAnswerAlcohol, int attempt)
     {
-        _answerAlcohol = answerAlcohol;
+        _maxAnswerAlcohol = maxAnswerAlcohol;
+        _minAnswerAlcohol = minAnswerAlcohol;
         _attempt = attempt;
         _currentAttempt = _attempt;
         
@@ -73,7 +66,6 @@ public class AlcoholController : MonoBehaviour
         _minAlcohol = 0;
         _currentInputAlcohol = -1;
         _currentItem = null;
-        _isUsedLiverScan = false;
         
         _alcoholControllerUI.UpdateAlcoholControllerUI();
         _alcoholControllerUI.UpdateItemSlotUI();
@@ -129,7 +121,6 @@ public class AlcoholController : MonoBehaviour
 
         if (_currentAttempt >= 0)
         {
-            _originPosition = _alcoholControllerPanelTransform.position;
             Normalize();
         }
         else
@@ -147,32 +138,20 @@ public class AlcoholController : MonoBehaviour
             _currentItem = null;
         }
         
-        if (_currentInputAlcohol <= _answerAlcohol + _increasedMaxAmount && _currentInputAlcohol >= _answerAlcohol - _increasedMinAmount)
+        if (_currentInputAlcohol <= _maxAnswerAlcohol + _increasedMaxAmount && _currentInputAlcohol >= _minAnswerAlcohol - _increasedMinAmount)
         {
-            Normalize();
             StartCoroutine(_alcoholControllerUI.UpdateAlcoholControllerUICoroutine());
             _barGameManager.OnClickEnterCutSceneButton();
         }
         else
         {
-            if (_currentInputAlcohol > _minAlcohol && _currentInputAlcohol < _answerAlcohol)
+            if (_currentInputAlcohol > _minAlcohol && _currentInputAlcohol < _minAnswerAlcohol)
             {
                 _minAlcohol = _currentInputAlcohol;
             }
-            else if (_currentInputAlcohol < _maxAlcohol && _currentInputAlcohol > _answerAlcohol)
+            else if(_currentInputAlcohol < _maxAlcohol && _currentInputAlcohol > _maxAnswerAlcohol)
             {
                 _maxAlcohol = _currentInputAlcohol;
-            }
-
-            bool isHitLiverScan = false;
-            
-            if (_currentScanType == ScanManager.EScanType.LIVER)
-            {
-                if (_answerAlcohol % 10 == _currentInputAlcohol % 10 ||
-                    _answerAlcohol / 10 == _currentInputAlcohol / 10)
-                {
-                    isHitLiverScan = true;
-                }
             }
             
             _currentInputAlcohol = -1;
@@ -184,17 +163,8 @@ public class AlcoholController : MonoBehaviour
             
             if (_currentScanType == ScanManager.EScanType.CONDITION)
             {
-                _minAlcohol = _minAlcohol + 3 > _answerAlcohol ? _answerAlcohol : _minAlcohol + 3;
-                _maxAlcohol = _maxAlcohol - 3 < _answerAlcohol ? _answerAlcohol : _maxAlcohol - 3;
-                
-                yield return StartCoroutine(_alcoholControllerUI.UpdateAlcoholControllerUICoroutine());
-            }
-
-            if (_currentScanType == ScanManager.EScanType.LIVER && isHitLiverScan is true && _isUsedLiverScan is false)
-            {
-                _isUsedLiverScan = true;
-                _minAlcohol = _minAlcohol + 10 > _answerAlcohol ? _answerAlcohol : _minAlcohol + 10;
-                _maxAlcohol = _maxAlcohol - 10 < _answerAlcohol ? _answerAlcohol : _maxAlcohol - 10;
+                _minAlcohol = _minAlcohol + 3 > _minAnswerAlcohol ? _minAnswerAlcohol : _minAlcohol + 3;
+                _maxAlcohol = _maxAlcohol - 3 < _maxAnswerAlcohol ? _maxAnswerAlcohol : _maxAlcohol - 3;
                 
                 yield return StartCoroutine(_alcoholControllerUI.UpdateAlcoholControllerUICoroutine());
             }
@@ -224,14 +194,12 @@ public class AlcoholController : MonoBehaviour
 
     private void Normalize()
     {
-        _overloadImage.DOKill();
-        _overloadImage.DOFade(0f, 0.2f);
-        _alcoholControllerPanelTransform.DOKill();
-        _alcoholControllerPanelTransform.DOMove(_originPosition, 0.2f);
+        //정상화 연출
+        Debug.Log("정상화");
     }
     private void OverDrive()
     {
-        _overloadImage.DOFade(0.3f, 0.5f).SetLoops(-1, LoopType.Yoyo);
-        _alcoholControllerPanelTransform.DOShakePosition(2f, _currentAttempt * -2f, _currentAttempt * -5, 40f, false, false).SetLoops(-1, LoopType.Incremental);
+        //과부하 연출
+        Debug.Log("과부하");
     }
 }

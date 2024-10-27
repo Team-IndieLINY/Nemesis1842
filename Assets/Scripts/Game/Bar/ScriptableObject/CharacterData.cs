@@ -15,9 +15,9 @@ public class CharacterData : ScriptableObject
     private string _characterName;
 
     public string CharacterName => _characterName;
-
+    
     [SerializeField]
-    private SerializableDict<Sprite> _stringByCharacterSprite;
-
-    public SerializableDict<Sprite> StringByCharacterSprite => _stringByCharacterSprite;
+    private Sprite[] _characterSprite;
+    
+    public Sprite[] CharacterSprite => _characterSprite;
 }

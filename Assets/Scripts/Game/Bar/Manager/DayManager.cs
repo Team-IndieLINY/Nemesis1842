@@ -1,4 +1,3 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -10,11 +9,6 @@ public class DayManager : MonoBehaviour
     [SerializeField,Range(1,20)]
     private int day = 1;
     public int Day => day;
-
-    [SerializeField]
-    private int _monthlyRent;
-
-    public int MonthlyRent => _monthlyRent;
 
     void Awake()
     {

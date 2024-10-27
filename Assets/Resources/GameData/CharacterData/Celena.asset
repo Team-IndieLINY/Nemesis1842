@@ -14,9 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _characterCode: 02
   _characterName: "\uC140\uB808\uB098"
-  _stringByCharacterSprite:
-    data:
-    - key: Normal
-      value: {fileID: 21300000, guid: 6d6f9ef891f52a3479e9280882ecf889, type: 3}
-    - key: Wasted
-      value: {fileID: 21300000, guid: ea35680dddaaafd4fb85a291817ff24d, type: 3}
+  _characterSprite:
+  - {fileID: 21300000, guid: 6d6f9ef891f52a3479e9280882ecf889, type: 3}
+  - {fileID: 21300000, guid: ac05474ca2482e242a46083c7b19cad5, type: 3}
+  - {fileID: 21300000, guid: ac05474ca2482e242a46083c7b19cad5, type: 3}
+  - {fileID: 21300000, guid: ea35680dddaaafd4fb85a291817ff24d, type: 3}

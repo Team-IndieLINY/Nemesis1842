@@ -9,15 +9,9 @@ EditorBuildSettings:
     path: Assets/Scenes/Game/MainScreen.unity
     guid: db1a578b93bf89b4b8680c8ded32959a
   - enabled: 1
-    path: Assets/Scenes/Game/Intro.unity
-    guid: a8a8a6e8048fdfa4f81863783f9c5aa2
-  - enabled: 1
     path: Assets/Scenes/Game/Orleans.unity
     guid: 77b8afdd8e4c1044c8f0ec388658e434
   - enabled: 1
     path: Assets/Scenes/Game/Bar.unity
     guid: b088175090d7191439261eb636d174ce
-  - enabled: 1
-    path: Assets/Scenes/Game/LoadingScreen.unity
-    guid: cbf8747aa6889c649b1db366d40f730f
   m_configObjects: {}
