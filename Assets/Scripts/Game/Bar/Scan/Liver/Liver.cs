@@ -24,8 +24,6 @@ public class Liver : MonoBehaviour
     private void Awake()
     {
         _polygonCollider2D = GetComponent<PolygonCollider2D>();
-
-
     }
 
     public void ResetLiver()
@@ -36,6 +34,7 @@ public class Liver : MonoBehaviour
         }
         
         _leavenGOs.Clear();
+        gameObject.SetActive(true);
     }
     
     public void SetLiver(int squareLeavenCount, int circleLeavenCount, int starLeavenCount, int triangleLeavenCount)

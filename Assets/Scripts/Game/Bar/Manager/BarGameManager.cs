@@ -13,13 +13,13 @@ using UnityEngine.UI;
 public class BarGameManager : MonoBehaviour
 {
     public static BarGameManager Inst { get; private set; }
-    
+
     [SerializeField]
     private BarGuestDB _barGuestDB;
 
     [SerializeField]
     private Guest _guest;
-    
+
     [SerializeField]
     private GameObject _scanSelectorGO;
 
@@ -28,7 +28,7 @@ public class BarGameManager : MonoBehaviour
 
     [SerializeField]
     private AlcoholController _alcoholController;
-    
+
     [SerializeField]
     private GameObject _openCocktailRecipeButtonGO;
 
@@ -64,8 +64,8 @@ public class BarGameManager : MonoBehaviour
 
     [SerializeField]
     private SpriteRenderer _cocktailSpriteRenderer;
-    
-    
+
+
     [Header("타임라인")]
     [SerializeField]
     private TimelineAsset _appearGuestTimeline;
@@ -115,6 +115,7 @@ public class BarGameManager : MonoBehaviour
         LoadGuestData();
         StartCoroutine(RoutineBar());
     }
+
     private void LoadGuestData()
     {
         _guestDatas = _barGuestDB.Guests
@@ -133,19 +134,19 @@ public class BarGameManager : MonoBehaviour
                 .ToList();
 
             _stepCount = _stepDatas.Count;
-            
+
             AppearGuest(guestData);
 
             yield return new WaitUntil(() =>
                 _playableDirector.playableAsset == _appearGuestTimeline
                 && _playableDirector.state == PlayState.Paused);
-            
+
             ShowScripts(0, guestData);
-            
+
             _stolenManager.SetStolenManager(guestData.guest_code);
-            
+
             yield return new WaitUntil(() => _barDialogueManager.IsProgressed == false);
-            
+
             for (int i = 1; i <= _stepDatas.Count; i++)
             {
                 SetStep(_stepDatas[i - 1]);
@@ -172,12 +173,12 @@ public class BarGameManager : MonoBehaviour
                     _playableDirector.playableAsset == _appearCocktailTimeline);
 
                 ShowScripts(i, guestData);
-                
+
                 yield return new WaitUntil(() => _barDialogueManager.IsProgressed == false);
-                
+
                 ResetStep();
             }
-            
+
             _cocktailSpriteRenderer.color = new Color32(255, 255, 255, 255);
 
             yield return new WaitForSeconds(1f);
@@ -185,23 +186,23 @@ public class BarGameManager : MonoBehaviour
             EnterStolenPhase();
 
             yield return new WaitUntil(() => _stolenManager.IsStolenDone);
-            
+
             DisappearGuest();
-            
+
             yield return new WaitUntil(() =>
                 _playableDirector.state == PlayState.Paused &&
                 _playableDirector.playableAsset == _disappearGuestTimeline);
-            
+
             ShowReceiptUI();
-            
+
             yield return new WaitUntil(() =>
                 _receiptUI.IsShown == false);
-            
+
             EarnMoney(_stepDatas.Count);
-            
+
             ResetTurn();
         }
-        
+
         _inventory.SaveInventoryData();
         _player.SaveMoney();
         
@@ -211,7 +212,7 @@ public class BarGameManager : MonoBehaviour
     private void AppearGuest(BarGuestEntity guestData)
     {
         _guest.SetGuest(guestData);
-
+        
         _playableDirector.playableAsset = _appearGuestTimeline;
         _playableDirector.Play();
     }
@@ -226,16 +227,24 @@ public class BarGameManager : MonoBehaviour
 
         _barDialogueManager.StartDialogue(barDialogueEntity);
     }
-    
+
     private void ShowScannerSelector()
-    {        
+    {
         _guestScreenLeftBackgroundImage.DOColor(new Color32(255, 255, 255, 255), 0.3f);
         _scanSelectorGO.SetActive(true);
+        if (TutorialManager.Inst.UseTutorial)
+        {
+            TutorialManager.Inst.ShowTutorial(0);
+        }
     }
 
     public void EnterScanPhase()
     {
         _scanSelectorGO.SetActive(false);
+        if (TutorialManager.Inst.UseTutorial)
+        {
+            TutorialManager.Inst.ShowTutorial(1);
+        }
         ScanManager.Inst.EnterScanPhase();
     }
 
@@ -255,7 +264,7 @@ public class BarGameManager : MonoBehaviour
         _cocktailMakingScreenDialougeManager.EndDialogue();
         _playableDirector.Resume();
     }
-    
+
     public void OnClickEnterCutSceneButton()
     {
         _playableDirector.Resume();
@@ -265,7 +274,7 @@ public class BarGameManager : MonoBehaviour
     {
         _playableDirector.Resume();
     }
-    
+
     private void AppearCocktail()
     {
         _playableDirector.playableAsset = _appearCocktailTimeline;
@@ -288,7 +297,7 @@ public class BarGameManager : MonoBehaviour
     {
         int money = stepCount * _cocktailPrice - _alcoholController.SumOfOverloadCount * _overloadPrice -
                     _cocktailMakingManager.CocktailMistakeCount * _cocktailMistakePrice;
-        
+
         _player.EarnMoney(money);
     }
 
@@ -303,12 +312,12 @@ public class BarGameManager : MonoBehaviour
         ScanManager.Inst.SetLiver(stepEntity.square_leaven_count, stepEntity.circle_leaven_count,
             stepEntity.star_leaven_count, stepEntity.triangle_leaven_count);
 
-        
-         List<CocktailRejectScriptEntity> cocktailRejectScriptEntities =_barGuestDB.CocktailRejectScripts
+
+        List<CocktailRejectScriptEntity> cocktailRejectScriptEntities = _barGuestDB.CocktailRejectScripts
             .Where(x => x.guest_code == stepEntity.guest_code && x.step_order == stepEntity.step_order)
             .ToList();
-
-         _cocktailMakingManager.SetStepCocktail(stepEntity.cocktail_code, cocktailRejectScriptEntities);
+        
+        _cocktailMakingManager.SetStepCocktail(stepEntity.cocktail_code, cocktailRejectScriptEntities);
     }
 
     private void ResetStep()

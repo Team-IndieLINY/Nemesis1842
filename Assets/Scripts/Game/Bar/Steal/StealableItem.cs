@@ -27,6 +27,11 @@ public class StealableItem : MonoBehaviour,IPointerEnterHandler,IPointerExitHand
         _upPosition.y += 50f;
         _image.sprite = _stealableItemData.ItemSprite;
         _image.SetNativeSize();
+        
+        var sizeDelta = _image.rectTransform.sizeDelta;
+        sizeDelta =
+            new Vector2(sizeDelta.x * 2, sizeDelta.y * 2);
+        _image.rectTransform.sizeDelta = sizeDelta;
     }
 
     public void OnPointerEnter(PointerEventData eventData)

@@ -30,6 +30,9 @@ public class CocktailMakingManager : MonoBehaviour
     [SerializeField]
     private CocktailRecipeUI _cocktailRecipeUI;
 
+    [SerializeField]
+    private Image _completedCocktialImage;
+
     private List<CocktailData> _cocktailDatas = new();
 
     private Cocktail.ETasteType? _tasteType;
@@ -121,6 +124,15 @@ public class CocktailMakingManager : MonoBehaviour
                     _enterAlcoholPhaseButtonGO.SetActive(false);
                     _openRecipeButtonGO.SetActive(false);
                     _cocktailRecipeUI.OnClickCloseRecipeButton(_openRecipeButtonGO);
+                    _completedCocktialImage.sprite = _resultCocktailData.CocktailSprite;
+                    _completedCocktialImage.SetNativeSize();
+                    
+                    var sizeDelta = _completedCocktialImage.rectTransform.sizeDelta;
+                    sizeDelta = new Vector2(
+                        sizeDelta.x * 2,
+                        sizeDelta.y * 2);
+                    _completedCocktialImage.rectTransform.sizeDelta = sizeDelta;
+
                     BarGameManager.Inst.OnClickEnterAlcoholPhaseButton();
                 }
                 

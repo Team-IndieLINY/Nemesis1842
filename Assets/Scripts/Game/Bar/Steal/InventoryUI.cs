@@ -26,6 +26,12 @@ public class InventoryUI : MonoBehaviour
     private GameObject _itemDescriptionPanelGO;
     [SerializeField]
     private GameObject _itemDescriptionGroupGO;
+
+    [SerializeField]
+    private GameObject _smallBackgroundGO;
+
+    [SerializeField]
+    private GameObject _bigBackgroundGO;
     
     private CanvasGroup _canvasGroup;
     private Inventory _inventory;
@@ -48,7 +54,15 @@ public class InventoryUI : MonoBehaviour
         
         _itemNameText.text = _inventory.CurrentSelectedSlot.InformationItemData.ItemName;
         _itemDescriptionText.text = _inventory.CurrentSelectedSlot.InformationItemData.ItemDescription;
+        
         _itemImage.sprite = _inventory.CurrentSelectedSlot.InformationItemData.ItemSprite;
+        _itemImage.SetNativeSize();
+        
+        var sizeDelta = _itemImage.rectTransform.sizeDelta;
+        sizeDelta = new Vector2(sizeDelta.x * 2,
+            sizeDelta.y * 2);
+        _itemImage.rectTransform.sizeDelta = sizeDelta;
+
         _itemDescriptionGroupGO.SetActive(true);
     }
 
@@ -57,6 +71,9 @@ public class InventoryUI : MonoBehaviour
         _closeButtonGO.SetActive(true);
         gameObject.SetActive(true);
         _itemDescriptionPanelGO.SetActive(true);
+        
+        _smallBackgroundGO.SetActive(false);
+        _bigBackgroundGO.SetActive(true);
         
         _canvasGroup.DOKill();
         _canvasGroup.DOFade(1f, 0.3f);
@@ -77,6 +94,10 @@ public class InventoryUI : MonoBehaviour
         _closeButtonGO.SetActive(false);
         gameObject.SetActive(true);
         _itemDescriptionPanelGO.SetActive(false);
+        
+        _smallBackgroundGO.SetActive(true);
+        _bigBackgroundGO.SetActive(false);
+        
         _canvasGroup.DOKill();
         _canvasGroup.DOFade(1f, 0.3f);
     }

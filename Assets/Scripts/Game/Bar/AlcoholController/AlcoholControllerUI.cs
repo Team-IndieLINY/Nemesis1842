@@ -78,6 +78,14 @@ public class AlcoholControllerUI : MonoBehaviour
 
     public void UpdateScanBuffUI()
     {
+        if (_alcoholController.CurrentScanType == ScanManager.EScanType.FAIL)
+        {
+            _scanIconImage.color = new Color32(255, 255, 255, 0);
+        }
+        else
+        {
+            _scanIconImage.color = new Color32(255, 255, 255, 255);
+        }
         _scanIconImage.sprite = _scanIconSprites[(int)_alcoholController.CurrentScanType];
         _scanIconImage.SetNativeSize();
         Vector2 size = _scanIconImage.rectTransform.sizeDelta;

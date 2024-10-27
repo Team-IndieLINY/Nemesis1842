@@ -43,6 +43,14 @@ public class SlotUI : MonoBehaviour,IPointerClickHandler
 
         ActivateSlotUI();
         _itemImage.sprite = _slot.InformationItemData.ItemSprite;
+        _itemImage.SetNativeSize();
+        
+        var sizeDelta = _itemImage.rectTransform.sizeDelta;
+        sizeDelta =
+            new Vector2(sizeDelta.x * 0.7f, sizeDelta.y * 0.7f);
+        
+        _itemImage.rectTransform.sizeDelta = sizeDelta;
+        
         _itemImage.gameObject.SetActive(true);
     }
 

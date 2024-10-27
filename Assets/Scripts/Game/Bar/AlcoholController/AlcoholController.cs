@@ -47,6 +47,8 @@ public class AlcoholController : MonoBehaviour
     private Item _currentItem;
     public Item CurrentItem => _currentItem;
 
+    private bool _isOverload;
+
     private void Awake()
     {
         _currentItem = null;
@@ -224,6 +226,7 @@ public class AlcoholController : MonoBehaviour
 
     private void Normalize()
     {
+        _isOverload = false;
         _overloadImage.DOKill();
         _overloadImage.DOFade(0f, 0.2f);
         _alcoholControllerPanelTransform.DOKill();
@@ -231,7 +234,11 @@ public class AlcoholController : MonoBehaviour
     }
     private void OverDrive()
     {
-        _overloadImage.DOFade(0.3f, 0.5f).SetLoops(-1, LoopType.Yoyo);
+        if (_isOverload is false)
+        {
+            _overloadImage.DOFade(0.3f, 1f).SetLoops(-1, LoopType.Yoyo);
+            _isOverload = true;
+        }
         _alcoholControllerPanelTransform.DOShakePosition(2f, _currentAttempt * -2f, _currentAttempt * -5, 40f, false, false).SetLoops(-1, LoopType.Incremental);
     }
 }
