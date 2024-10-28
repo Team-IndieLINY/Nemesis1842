@@ -5,7 +5,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-[RequireComponent(typeof(Rigidbody2D))]
+[RequireComponent(typeof(Rigidbody2D), typeof(Animator),typeof(SpriteRenderer))]
 public class PlayerController : MonoBehaviour
 {
     [SerializeField]
@@ -15,12 +15,18 @@ public class PlayerController : MonoBehaviour
     private GameObject _dayTextGO;
 
     private Rigidbody2D _rigidbody;
+    private SpriteRenderer _spriteRenderer;
 
     private IInteractable _currentInteractable;
+
+    private Animator _animator;
 
     private void Awake()
     {
         _rigidbody = GetComponent<Rigidbody2D>();
+        _animator = GetComponent<Animator>();
+        _spriteRenderer = GetComponent<SpriteRenderer>();
+        
         AnimateDayText();
     }
 
@@ -39,6 +45,7 @@ public class PlayerController : MonoBehaviour
         }
         else if (Input.GetKeyDown(KeyCode.E) && _currentInteractable != null && BarOutsideDialougeManager.Inst.IsProgressed is false)
         {
+            _animator.SetBool("IsWalking", false);
             _rigidbody.velocity = new Vector2(0,0);
             _currentInteractable.HideInteractableUI();
             _currentInteractable.Interact();
@@ -51,6 +58,21 @@ public class PlayerController : MonoBehaviour
         if (BarOutsideDialougeManager.Inst.IsProgressed is false)
         {
             float inputX = Input.GetAxisRaw("Horizontal");
+
+            if (inputX < 0)
+            {
+                _animator.SetBool("IsWalking", true);
+                _spriteRenderer.flipX = true;
+            }
+            else if(inputX > 0)
+            {
+                _animator.SetBool("IsWalking", true);
+                _spriteRenderer.flipX = false;
+            }
+            else
+            {
+                _animator.SetBool("IsWalking", false);
+            }
 
             _rigidbody.velocity = new Vector3(inputX * _movingSpeed, 0, 0);
         }

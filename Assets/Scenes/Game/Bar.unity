@@ -6429,8 +6429,8 @@ MonoBehaviour:
   m_ShadowVolumeIntensityEnabled: 0
   m_ShadowVolumeIntensity: 0.75
   m_LocalBounds:
-    m_Center: {x: -0.1494, y: 1.3475502, z: 0}
-    m_Extent: {x: 6.5186005, y: 5.7259502, z: 0}
+    m_Center: {x: -0.15310001, y: 1.3420999, z: 0}
+    m_Extent: {x: 6.5226, y: 5.7241, z: 0}
   m_PointLightInnerAngle: 360
   m_PointLightOuterAngle: 360
   m_PointLightInnerRadius: 0
@@ -18485,8 +18485,8 @@ MonoBehaviour:
   m_ShadowVolumeIntensityEnabled: 0
   m_ShadowVolumeIntensity: 0.75
   m_LocalBounds:
-    m_Center: {x: 0.047250032, y: -0.62235, z: 0}
-    m_Extent: {x: 1.48805, y: 1.30335, z: 0}
+    m_Center: {x: 0.047450006, y: -0.61965, z: 0}
+    m_Extent: {x: 1.48805, y: 1.30465, z: 0}
   m_PointLightInnerAngle: 360
   m_PointLightOuterAngle: 360
   m_PointLightInnerRadius: 0
@@ -21775,7 +21775,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1

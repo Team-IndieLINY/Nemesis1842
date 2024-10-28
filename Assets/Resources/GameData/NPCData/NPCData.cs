@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.Animations;
 using UnityEngine;
 
 [CreateAssetMenu(menuName = "ScriptableObject/NPCData", fileName = "NPCData", order = Int32.MaxValue)]
@@ -23,9 +24,9 @@ public class NPCData : ScriptableObject
     public int Day => _day;
 
     [SerializeField]
-    private Sprite _npcSprite;
+    private AnimatorController _animatorController;
 
-    public Sprite NPCSprite => _npcSprite;
+    public AnimatorController AnimatorController => _animatorController;
 
     [SerializeField]
     private ETimeType _timeType;

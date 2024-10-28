@@ -10,10 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5c3541fdf8f417746b3e2095aa0de3d2, type: 3}
-  m_Name: Bailjohn1Dawn
+  m_Name: Fisherman1Evening
   m_EditorClassIdentifier: 
-  npcCode: 0006
+  npcCode: 0001
   _day: 1
-  _npcSprite: {fileID: 0}
-  _timeType: 1
-  _spawnPosition: {x: 0, y: 0}
+  _animatorController: {fileID: 9100000, guid: 36ae119adcf4744408fe88c6b12110d3, type: 2}
+  _timeType: 0
+  _spawnPosition: {x: -24.58, y: 2}

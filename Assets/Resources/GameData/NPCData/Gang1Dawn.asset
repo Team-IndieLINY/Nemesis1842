@@ -14,6 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   npcCode: 0004
   _day: 1
-  _npcSprite: {fileID: 0}
+  _animatorController: {fileID: 9100000, guid: 745117fc13239d446aa5464f2d3aedd5, type: 2}
   _timeType: 1
-  _spawnPosition: {x: -7.1, y: 1000}
+  _spawnPosition: {x: -27.95, y: 2}

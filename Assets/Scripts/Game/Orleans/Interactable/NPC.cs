@@ -3,19 +3,17 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[RequireComponent(typeof(SpriteRenderer))]
+[RequireComponent(typeof(SpriteRenderer),typeof(Animator))]
 public class NPC : MonoBehaviour, IInteractable
 {
     [SerializeField]
     private GameObject _tooltipGO;
     private List<NPCScriptEntity> _npcScripts = new();
-    private SpriteRenderer _spriteRenderer;
+    private Animator _animator;
 
     private void Awake()
     {
-        _spriteRenderer = GetComponent<SpriteRenderer>();
-        PolygonCollider2D polygonCollider2D = gameObject.AddComponent<PolygonCollider2D>();
-        polygonCollider2D.isTrigger = true;
+        _animator = GetComponent<Animator>();
     }
 
     public void Interact()
@@ -35,7 +33,10 @@ public class NPC : MonoBehaviour, IInteractable
 
     public void SetNPC(NPCData npcData, List<NPCScriptEntity> npcScriptEntities)
     {
-        _spriteRenderer.sprite = npcData.NPCSprite;
+        _animator.runtimeAnimatorController = npcData.AnimatorController;
         _npcScripts = npcScriptEntities;
+        
+        BoxCollider2D boxCollider2D = gameObject.AddComponent<BoxCollider2D>();
+        boxCollider2D.isTrigger = true;
     }
 }

@@ -79,6 +79,7 @@ public class AlcoholController : MonoBehaviour
         
         _alcoholControllerUI.UpdateAlcoholControllerUI();
         _alcoholControllerUI.UpdateItemSlotUI();
+        _alcoholControllerUI.ResetAlcoholControllerUI();
     }
 
     public void ResetTurnAlcoholController()
@@ -152,11 +153,16 @@ public class AlcoholController : MonoBehaviour
         if (_currentInputAlcohol <= _answerAlcohol + _increasedMaxAmount && _currentInputAlcohol >= _answerAlcohol - _increasedMinAmount)
         {
             Normalize();
+            
+            _alcoholControllerUI.ChangeAnswerTextUI(true);
+            yield return new WaitForSeconds(0.7f);
             StartCoroutine(_alcoholControllerUI.UpdateAlcoholControllerUICoroutine());
             _barGameManager.OnClickEnterCutSceneButton();
         }
         else
         {
+            _alcoholControllerUI.ChangeAnswerTextUI(false);
+            
             if (_currentInputAlcohol > _minAlcohol && _currentInputAlcohol < _answerAlcohol)
             {
                 _minAlcohol = _currentInputAlcohol;

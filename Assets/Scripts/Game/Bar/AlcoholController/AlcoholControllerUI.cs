@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using DG.Tweening;
 using TMPro;
 using UnityEngine;
 using UnityEngine.Serialization;
@@ -95,6 +96,24 @@ public class AlcoholControllerUI : MonoBehaviour
         _scanIconImage.rectTransform.sizeDelta = size;
     }
 
+    public void ChangeAnswerTextUI(bool isAnswer)
+    {
+        if (isAnswer is true)
+        {
+            _guessAlcoholText.color = new Color32(0, 255, 0, 255);
+        }
+        else
+        {
+            _guessAlcoholText.color = new Color32(255, 0, 0, 255);
+            _guessAlcoholText.rectTransform.DOShakeAnchorPos(0.4f, 10f, 50, 40, false, false)
+                .OnKill(() =>
+                {
+                    _guessAlcoholText.color = new Color32(250, 182, 47, 255);
+                });
+        }
+
+    }
+
     private void UpdateGuessAlcoholUI()
     {
         if (_alcoholController.CurrentInputAlcohol == -1)
@@ -113,6 +132,11 @@ public class AlcoholControllerUI : MonoBehaviour
         UpdateAttemptCountUI();
         
         yield return StartCoroutine(UpdateAlcoholRangeUICoroutine());
+    }
+
+    public void ResetAlcoholControllerUI()
+    {
+        _guessAlcoholText.color = new Color32(250, 182, 47, 255);
     }
     
     private IEnumerator UpdateAlcoholRangeUICoroutine()

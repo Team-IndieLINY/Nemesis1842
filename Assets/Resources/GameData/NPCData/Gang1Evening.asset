@@ -10,10 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5c3541fdf8f417746b3e2095aa0de3d2, type: 3}
-  m_Name: BaleJohn1Evening
+  m_Name: Gang1Evening
   m_EditorClassIdentifier: 
-  npcCode: 0001
+  npcCode: 0003
   _day: 1
-  _npcSprite: {fileID: 21300000, guid: 216a80538d2e7804cadeccd67f4b2662, type: 3}
+  _animatorController: {fileID: 9100000, guid: 745117fc13239d446aa5464f2d3aedd5, type: 2}
   _timeType: 0
-  _spawnPosition: {x: -7.1, y: 1000}
+  _spawnPosition: {x: -2.49, y: 2}
