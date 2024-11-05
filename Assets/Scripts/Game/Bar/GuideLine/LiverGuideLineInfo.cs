@@ -30,6 +30,7 @@ public class LiverGuideLineInfo : GuideLineInfo,IPointerEnterHandler,IPointerExi
 
     public override void OnPointerClick(PointerEventData eventData)
     {
+        AudioManager.Inst.PlaySFX("check");
         _image.raycastTarget = false;
         _checkImage.fillAmount = 0f;
         

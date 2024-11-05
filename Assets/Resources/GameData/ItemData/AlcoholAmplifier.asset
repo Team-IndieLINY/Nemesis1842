@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1388e8b902e1a304e90a8a5f67beb91f, type: 3}
   m_Name: AlcoholAmplifier
   m_EditorClassIdentifier: 
-  _itemSprite: {fileID: 21300000, guid: 5162bf007b6db2742bb6c5b1b5fe9043, type: 3}
+  _itemSprite: {fileID: 21300000, guid: ec85910ed1c9d454ca48abfd7390d334, type: 3}
   _itemName: "\uC54C\uCF54\uC62C \uC99D\uD3ED\uAE30"
   _itemDescription: "\uC801\uC815 \uC54C\uCF54\uC62C \uC801\uC911 \uC2DC 2\uAC1C\uC758
     \uCE75\uD14C\uC77C \uAC8C\uC774\uC9C0\uAC00 \uC81C\uAC70\uB428"

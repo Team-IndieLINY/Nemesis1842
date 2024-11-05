@@ -65,6 +65,10 @@ public class CocktailMakingManager : MonoBehaviour
         
         if (IsMaterialEmpty() is false)
         {
+            if (TutorialManager.Inst.UseTutorial && TutorialManager.Inst.TutorialUIIndex == 9)
+            {
+                TutorialManager.Inst.ShowTutorial();
+            }
             _enterAlcoholPhaseButton.interactable = true;
         }
     }
@@ -76,6 +80,10 @@ public class CocktailMakingManager : MonoBehaviour
 
         if (IsMaterialEmpty() is false)
         {
+            if (TutorialManager.Inst.UseTutorial && TutorialManager.Inst.TutorialUIIndex == 9)
+            {
+                TutorialManager.Inst.ShowTutorial();
+            }
             _enterAlcoholPhaseButton.interactable = true;
         }
     }
@@ -103,6 +111,7 @@ public class CocktailMakingManager : MonoBehaviour
 
     public void FinishMakingCocktail()
     {
+        AudioManager.Inst.PlaySFX("mouse_click");
         foreach (var cocktailData in _cocktailDatas)
         {
             if (cocktailData.TasteType == _tasteType

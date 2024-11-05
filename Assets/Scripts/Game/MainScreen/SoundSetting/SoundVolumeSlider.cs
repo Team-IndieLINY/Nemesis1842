@@ -27,7 +27,7 @@ public class SoundVolumeSlider : MonoBehaviour
         int volume = int.Parse(_soundVolumeText.text);
         volume = ConvertAudioMixerVolume(volume);
         
-        AudioManager.Instance.SetMasterVolume(volume);
+        AudioManager.Inst.SetAllSoundVolume(volume);
     }
 
     public void SetBGMVolume()
@@ -35,14 +35,14 @@ public class SoundVolumeSlider : MonoBehaviour
         int volume = int.Parse(_soundVolumeText.text);
         volume = ConvertAudioMixerVolume(volume);
         
-        AudioManager.Instance.SetBGMVolume(volume);
+        AudioManager.Inst.SetBackgroundSoundVolume(volume);
     }
     public void SetSFXVolume()
     {
         int volume = int.Parse(_soundVolumeText.text);
         volume = ConvertAudioMixerVolume(volume);
         
-        AudioManager.Instance.SetSFXVolume(volume);
+        AudioManager.Inst.SetSFXSoundVolume(volume);
     }
     
     private int ConvertAudioMixerVolume(float volume)

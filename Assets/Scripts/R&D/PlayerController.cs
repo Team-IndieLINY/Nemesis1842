@@ -11,9 +11,6 @@ public class PlayerController : MonoBehaviour
     [SerializeField]
     private float _movingSpeed;
 
-    [SerializeField]
-    private GameObject _dayTextGO;
-
     private Rigidbody2D _rigidbody;
     private SpriteRenderer _spriteRenderer;
 
@@ -26,8 +23,6 @@ public class PlayerController : MonoBehaviour
         _rigidbody = GetComponent<Rigidbody2D>();
         _animator = GetComponent<Animator>();
         _spriteRenderer = GetComponent<SpriteRenderer>();
-        
-        AnimateDayText();
     }
 
     private void Update()
@@ -94,19 +89,5 @@ public class PlayerController : MonoBehaviour
             _currentInteractable = null;
             interactable.HideInteractableUI();
         }
-    }
-
-    private void AnimateDayText()
-    {
-        StartCoroutine(AnimateDayTextCoroutine());
-    }
-
-    private IEnumerator AnimateDayTextCoroutine()
-    {        
-        _dayTextGO.SetActive(true);
-
-        yield return new WaitForSeconds(1.5f);
-        
-        _dayTextGO.SetActive(false);
     }
 }

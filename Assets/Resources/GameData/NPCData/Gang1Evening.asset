@@ -16,4 +16,5 @@ MonoBehaviour:
   _day: 1
   _animatorController: {fileID: 9100000, guid: 745117fc13239d446aa5464f2d3aedd5, type: 2}
   _timeType: 0
-  _spawnPosition: {x: -2.49, y: 2}
+  _npcNameSprite: {fileID: 21300000, guid: 64643890b7447dc46857b922692122ab, type: 3}
+  _spawnPosition: {x: -45.13, y: 2.28}

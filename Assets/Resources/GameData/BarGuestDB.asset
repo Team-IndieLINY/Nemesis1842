@@ -88,7 +88,7 @@ MonoBehaviour:
     character_name: "\uBCA0\uC77C \uC874"
     script: "\uC774 \uAE30\uBD84\uC774\uBA74 \uC81C\uC77C \uB3C5\uD55C\uAC78\uB85C
       \uD55C\uC794 \uB354 \uAC00\uB2A5\uD558\uACA0\u2026"
-    character_sprite_code: RasieArm
+    character_sprite_code: RaiseArm
   - guest_code: 0001
     step_order: 1
     character_name: "\uBCA0\uC77C \uC874"
@@ -162,7 +162,7 @@ MonoBehaviour:
     character_name: "\uC140\uB808\uB098"
     script: "\uC73C\u3161\uC74C.. \uC81C\uAC00 \uB9CE\uC774 \uCDE8\uD588\uB098\uBCF4
       \u314F\u2026\uC694.."
-    character_sprite_code: Normal_stage_2
+    character_sprite_code: Two_hands_table
   - guest_code: 0002
     step_order: 2
     character_name: "\uC140\uB808\uB098"

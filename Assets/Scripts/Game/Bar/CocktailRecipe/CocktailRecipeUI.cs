@@ -42,8 +42,14 @@ public class CocktailRecipeUI : MonoBehaviour
 
     public void OnClickOpenRecipeButton(GameObject recipeOpenbuttonGO)
     {
+        AudioManager.Inst.PlaySFX("recipe_open");
         recipeOpenbuttonGO.SetActive(false);
         _rectTransform.DOAnchorPos(_cocktailRecipeOpenRectTransform.anchoredPosition, 0.6f);
+
+        if (TutorialManager.Inst.UseTutorial && TutorialManager.Inst.TutorialUIIndex == 7)
+        {
+            TutorialManager.Inst.ShowTutorial();
+        }
     }
     public void OnClickCloseRecipeButton(GameObject recipeOpenButtonGO)
     {

@@ -27,6 +27,7 @@ public class ConditionGuideLineInfo : GuideLineInfo,IPointerEnterHandler,IPointe
 
     public override void OnPointerClick(PointerEventData eventData)
     {
+        AudioManager.Inst.PlaySFX("check");
         _image.raycastTarget = false;
         _checkImage.fillAmount = 0f;
         _checkImage.DOFillAmount(1f, 0.3f);

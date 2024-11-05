@@ -10,6 +10,9 @@ public class ScanSelectorBlock : MonoBehaviour,IPointerEnterHandler,IPointerExit
     [SerializeField]
     private ScanManager.EScanType _scanType;
 
+    [SerializeField]
+    private CanvasGroup _canvasGroup;
+
     public void SetCurrentScanType()
     {
         ScanManager.Inst.CurrentScanType = _scanType;
@@ -18,6 +21,7 @@ public class ScanSelectorBlock : MonoBehaviour,IPointerEnterHandler,IPointerExit
 
     public void OnPointerEnter(PointerEventData eventData)
     {
+        AudioManager.Inst.PlaySFX("mouse_hovered");
         transform.DOScale(new Vector3(1.1f, 1.1f, 1f), 0.2f);
     }
 
@@ -28,6 +32,8 @@ public class ScanSelectorBlock : MonoBehaviour,IPointerEnterHandler,IPointerExit
     
     public void OnPointerClick(PointerEventData eventData)
     {
+        _canvasGroup.DOFade(0f, 0.3f);
+        AudioManager.Inst.PlaySFX("mouse_click");
         transform.DOKill();
         transform.localScale = new Vector3(1f, 1f, 1f);
     }

@@ -16,6 +16,6 @@ MonoBehaviour:
   _cocktailName: "\uD551\uD074\uB77C\uC6B0\uB4DC"
   _cocktailDescription: "\uD551\uD06C\uC640 \uAD6C\uB984 \uD569\uCCD0\uC838 \uC6B0\uC544\uD558\uACE0
     \uCC9C\uC0C1\uC758  \uB290\uB08C\uC744 \uC900\uB2E4."
-  _cocktailSprite: {fileID: 21300000, guid: cc63a1d66f51b9c47a994224bd766ece, type: 3}
+  _cocktailSprite: {fileID: 21300000, guid: 1e5980fcf057bb344840b292762f2368, type: 3}
   _tasteType: 3
   _scentType: 5

@@ -41,6 +41,7 @@ public class CocktailRecipeBlockUI : MonoBehaviour
     public void InitializeCocktailRecipeBlockUI(CocktailData cocktailData)
     {
         _cocktailImage.sprite = cocktailData.CocktailSprite;
+        _cocktailImage.SetNativeSize();
         _cocktailNameText.text = cocktailData.CocktailName;
         _cocktailDescriptionText.text = cocktailData.CocktailDescription;
         _cocktailRecipeText.text = _tasteTypeByTasteTypeName[cocktailData.TasteType] + " + " +

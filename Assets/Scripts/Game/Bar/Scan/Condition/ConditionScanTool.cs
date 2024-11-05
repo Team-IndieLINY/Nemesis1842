@@ -59,7 +59,7 @@ public class ConditionScanTool : MonoBehaviour
         _polygonCollider2D.enabled = false;
         
         Vector3 currentMousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        currentMousePosition.z = 0f;
+        currentMousePosition.z = -1f;
 
         transform.position = currentMousePosition;
     }
@@ -67,7 +67,7 @@ public class ConditionScanTool : MonoBehaviour
     private void OnMouseDrag()
     {
         Vector3 currentMousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        currentMousePosition.z = 0f;
+        currentMousePosition.z = -1f;
 
         transform.position = currentMousePosition;
     }

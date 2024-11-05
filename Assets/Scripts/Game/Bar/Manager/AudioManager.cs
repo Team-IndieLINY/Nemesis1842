@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using DG.Tweening;
@@ -8,22 +9,22 @@ using UnityEngine.UI;
 
 public class AudioManager : MonoBehaviour
 {
-    [SerializeField]
-    private AudioSource _bgmAudioSource;
+   public static AudioManager Inst { get; private set; }
+    
+    public Sound[] musicSounds;
+    public Sound[] sfxSounds;
+    
+    public AudioSource musicSource;
+    public AudioSource sfxSource;
 
-    [SerializeField]
-    private AudioSource _sfxAudioSoruce;
-    
-    [SerializeField] private AudioMixer _audioMixer;
-    
-    private static AudioManager instance = null;
-    
-    void Awake()
+    public AudioMixer audioMixer;
+
+    private Coroutine _repeatCoroutine;
+    private void Awake()
     {
-        if (instance == null)
+        if (Inst == null)
         {
-            instance = this;
-            
+            Inst = this;
             DontDestroyOnLoad(gameObject);
         }
         else
@@ -31,48 +32,115 @@ public class AudioManager : MonoBehaviour
             Destroy(gameObject);
         }
     }
-    
-    public static AudioManager Instance
+
+    public void PlayMusic(string name)
     {
-        get
+        Sound sound = Array.Find(musicSounds, x => x.name == name);
+
+        if (sound == null)
         {
-            if (instance == null)
-            {
-                return null;
-            }
-            return instance;
+            Debug.Log("Sound Not Found");
+        }
+        else
+        {
+            musicSource.clip = sound.clip;
+            musicSource.Play();
         }
     }
 
-    public void FadeBGMVolume(float targetVolume)
+    public void StopMusic(string name)
     {
-        _bgmAudioSource.DOFade(targetVolume, 1.5f);
-    }
-
-    public void PlayClip(AudioClip audioClip)
-    {
-        _sfxAudioSoruce.clip = audioClip;
+        Sound sound = Array.Find(musicSounds, x => x.name == name);
         
-        _sfxAudioSoruce.Play();
+        if (sound == null)
+        {
+            Debug.Log("Sound Not Found");
+        }
+        else
+        {
+            musicSource.clip = sound.clip;
+            musicSource.Stop();
+        }
+    }
+    public void FadeInMusic(string name)
+    {
+        Sound sound = Array.Find(musicSounds, x => x.name == name);
+        
+        if (sound == null)
+        {
+            Debug.Log("Sound Not Found");
+        }
+        else
+        {
+            musicSource.clip = sound.clip;
+            if (!musicSource.isPlaying)
+            {
+                musicSource.Play();
+            }
+            musicSource.DOFade(1f, 2f);
+        }
+    }
+    public void FadeOutMusic(string name)
+    {
+        Sound sound = Array.Find(musicSounds, x => x.name == name);
+        
+        if (sound == null)
+        {
+            Debug.Log("Sound Not Found");
+        }
+        else
+        {
+            musicSource.clip = sound.clip;
+            musicSource.DOFade(0f, 2f)
+                .OnComplete(() =>
+                {
+                    musicSource.Stop();
+                });
+        }
     }
 
-    public void PlaySFX(AudioClip audioClip)
+    public void PlaySFX(string name)
     {
-        _sfxAudioSoruce.PlayOneShot(audioClip);
+        Sound sound = Array.Find(sfxSounds, x => x.name == name);
+
+        if (sound == null)
+        {
+            Debug.Log("Sound Not Found");
+        }
+        else
+        {
+            sfxSource.PlayOneShot(sound.clip);
+        }
     }
     
-    public void SetMasterVolume(float volume)
+    public void StopRepeatEnvironmentSound()
     {
-        _audioMixer.SetFloat("Master", volume);
+        if (_repeatCoroutine != null)
+        {
+            StopCoroutine(_repeatCoroutine);
+        }
     }
- 
-    public void SetBGMVolume(float volume)
+
+    public void ToggleMusic()
     {
-        _audioMixer.SetFloat("BGM", volume);
+        musicSource.mute = !musicSource.mute;
     }
- 
-    public void SetSFXVolume(float volume)
+
+    public void ToggleSFX()
     {
-        _audioMixer.SetFloat("SFX", volume);
+        sfxSource.mute = !sfxSource.mute;
+    }
+    public void SetAllSoundVolume(float volume)
+    {
+        audioMixer.SetFloat("Master", volume);
+    }
+    public void SetBackgroundSoundVolume(float volume)
+    {
+        audioMixer.SetFloat("BGM", volume);
+    }
+
+    public void SetSFXSoundVolume(float volume)
+    {
+        audioMixer.SetFloat("SFX", volume);
     }
 }

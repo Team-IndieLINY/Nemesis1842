@@ -67,6 +67,15 @@ public class AlcoholControllerUI : MonoBehaviour
             ? null
             : _alcoholController.CurrentItem.ItemData.ItemSprite;
 
+        if (_itemSlotImage.sprite != null)
+        {
+            _itemSlotImage.SetNativeSize();
+            var sizeDelta = _itemSlotImage.rectTransform.sizeDelta;
+            sizeDelta = new Vector2(sizeDelta.x * 2,
+                sizeDelta.y * 2);
+            _itemSlotImage.rectTransform.sizeDelta = sizeDelta;
+        }
+
         if (_itemSlotImage.sprite == null)
         {
             _itemSlotImage.color = new Color32(255, 255, 255, 0);

@@ -16,6 +16,7 @@ public class CocktailTasteMaterial : CocktailMaterial,IPointerEnterHandler,IPoin
     
     public void OnPointerEnter(PointerEventData eventData)
     {
+        AudioManager.Inst.PlaySFX("bottle_hovering");
         _nameTagUI.UpdateNameTagUI(CocktailRecipeBlockUI._tasteTypeByTasteTypeName[_tasteType]);
         _nameTagUI.gameObject.SetActive(true);
     }

@@ -21,6 +21,9 @@ public class BarGameManager : MonoBehaviour
     private Guest _guest;
 
     [SerializeField]
+    private CanvasGroup _scanSelectorCanvasGroup;
+
+    [SerializeField]
     private GameObject _scanSelectorGO;
 
     [SerializeField]
@@ -36,7 +39,7 @@ public class BarGameManager : MonoBehaviour
     private GameObject _enterAlcoholPhaseButtonGO;
 
     [SerializeField]
-    private Image _guestScreenLeftBackgroundImage;
+    private Image _guestScreenBackgroundImage;
 
     [SerializeField]
     private Player _player;
@@ -112,6 +115,7 @@ public class BarGameManager : MonoBehaviour
         Inst = this;
         _playableDirector = GetComponent<PlayableDirector>();
         _fadeImage.color = new Color32(0, 0, 0, 255);
+        AudioManager.Inst.FadeInMusic("bar");
     }
 
     private void Start()
@@ -130,6 +134,7 @@ public class BarGameManager : MonoBehaviour
 
     private IEnumerator RoutineBar()
     {
+        TutorialManager.Inst.ResetTutorialManager();
         _fadeImage.DOFade(0f, 3f);
         yield return new WaitForSeconds(3f);
         foreach (var guestData in _guestDatas)
@@ -167,6 +172,11 @@ public class BarGameManager : MonoBehaviour
                     _playableDirector.state == PlayState.Paused);
 
                 _cocktailMakingScreenDialougeManager.StartDialogue(_stepDatas[i - 1].cocktail_summary_text);
+
+                if (TutorialManager.Inst.UseTutorial)
+                {
+                    TutorialManager.Inst.ShowTutorialByIndex(5);
+                }
 
                 yield return new WaitUntil(() =>
                     _playableDirector.state == PlayState.Paused && _playableDirector.time == 0f);
@@ -213,10 +223,11 @@ public class BarGameManager : MonoBehaviour
 
         DayManager.Instance.ChangeTimeType();
 
+        AudioManager.Inst.FadeOutMusic("bar");
         _fadeImage.DOFade(1f, 2f)
             .OnKill(() =>
             {
-                SceneManager.LoadScene("Scenes/Game/Orleans");
+                LoadingScreen.Instance.LoadScene("Orleans");
             });
     }
 
@@ -241,11 +252,13 @@ public class BarGameManager : MonoBehaviour
 
     private void ShowScannerSelector()
     {
-        _guestScreenLeftBackgroundImage.DOColor(new Color32(255, 255, 255, 255), 0.3f);
         _scanSelectorGO.SetActive(true);
+        _guestScreenBackgroundImage.DOFade(0.8f, 0.3f);
+        _scanSelectorCanvasGroup.DOFade(1f, 0.3f);
+        
         if (TutorialManager.Inst.UseTutorial)
         {
-            TutorialManager.Inst.ShowTutorial(0);
+            TutorialManager.Inst.ShowTutorial();
         }
     }
 
@@ -254,7 +267,7 @@ public class BarGameManager : MonoBehaviour
         _scanSelectorGO.SetActive(false);
         if (TutorialManager.Inst.UseTutorial)
         {
-            TutorialManager.Inst.ShowTutorial(1);
+            TutorialManager.Inst.ShowTutorial();
         }
         ScanManager.Inst.EnterScanPhase();
     }
@@ -274,6 +287,11 @@ public class BarGameManager : MonoBehaviour
     {
         _cocktailMakingScreenDialougeManager.EndDialogue();
         _playableDirector.Resume();
+
+        if (TutorialManager.Inst.UseTutorial)
+        {
+            TutorialManager.Inst.ShowTutorial();
+        }
     }
 
     public void OnClickEnterCutSceneButton()
@@ -283,6 +301,7 @@ public class BarGameManager : MonoBehaviour
 
     public void ExitCocktailMakingScreen()
     {
+        AudioManager.Inst.PlaySFX("mouse_click");
         _playableDirector.Resume();
     }
 

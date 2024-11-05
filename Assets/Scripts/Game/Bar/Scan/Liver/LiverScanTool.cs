@@ -12,7 +12,7 @@ public class LiverScanTool : MonoBehaviour
     {
         
         Vector3 currentMousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        currentMousePosition.z = 0f;
+        currentMousePosition.z = -1f;
 
         transform.position = currentMousePosition;
     }
@@ -20,7 +20,7 @@ public class LiverScanTool : MonoBehaviour
     private void OnMouseDrag()
     {
         Vector3 currentMousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        currentMousePosition.z = 0f;
+        currentMousePosition.z = -1f;
 
         transform.position = currentMousePosition;
     }

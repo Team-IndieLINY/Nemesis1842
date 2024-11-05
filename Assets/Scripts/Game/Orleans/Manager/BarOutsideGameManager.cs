@@ -49,6 +49,15 @@ public class BarOutsideGameManager : MonoBehaviour
 
     public void SetDay()
     {
+        if(DayManager.Instance.TimeType == NPCData.ETimeType.Evening)
+        {
+            AudioManager.Inst.FadeInMusic("evening");
+        }
+        else if (DayManager.Instance.TimeType == NPCData.ETimeType.Dawn)
+        {
+            AudioManager.Inst.FadeInMusic("dawn");
+        }
+        
         _skySpriteRenderer.sprite = _skySprites[(int)DayManager.Instance.TimeType];
         _lightGroupGOs[(int)DayManager.Instance.TimeType].SetActive(true);
         _player.transform.position = _playerSpawnPoints[(int)DayManager.Instance.TimeType].position;

@@ -68,6 +68,7 @@ public class InventoryUI : MonoBehaviour
 
     public void OpenInventoryUI()
     {
+        AudioManager.Inst.PlaySFX("mouse_click");
         _closeButtonGO.SetActive(true);
         gameObject.SetActive(true);
         _itemDescriptionPanelGO.SetActive(true);
@@ -81,6 +82,7 @@ public class InventoryUI : MonoBehaviour
     
     public void CloseInventoryUI()
     {
+        AudioManager.Inst.PlaySFX("mouse_click");
         _canvasGroup.DOKill();
         _canvasGroup.DOFade(0f, 0.3f)
             .OnKill(() =>
@@ -104,6 +106,7 @@ public class InventoryUI : MonoBehaviour
     
     public void CloseStealInventoryUI()
     {
+        AudioManager.Inst.PlaySFX("mouse_click");
         _canvasGroup.DOKill();
         _canvasGroup.DOFade(0f, 0.3f)
             .OnKill(() =>

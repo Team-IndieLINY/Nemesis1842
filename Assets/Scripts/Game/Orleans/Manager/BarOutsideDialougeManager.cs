@@ -46,7 +46,7 @@ public class BarOutsideDialougeManager : MonoBehaviour
     
     public void StartDialogue(Vector3 characterPosition, List<NPCScriptEntity> barDialogueEntities)
     {
-        _chatBalloonGO.transform.position = characterPosition;
+        _chatBalloonGO.transform.position = new Vector3(characterPosition.x, characterPosition.y + 1.7f, 0);
         
         _isProgressed = true;
         
@@ -84,7 +84,7 @@ public class BarOutsideDialougeManager : MonoBehaviour
 
         foreach (var letter in script.ToCharArray())
         {
-            AudioManager.Instance.PlaySFX(_typingAudioClip);
+            AudioManager.Inst.PlaySFX("type");
             _scriptText.text += letter;
             yield return new WaitForSeconds(_typeSpeedForSecond);
         }

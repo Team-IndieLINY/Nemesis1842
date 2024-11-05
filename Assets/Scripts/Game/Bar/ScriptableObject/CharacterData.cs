@@ -7,6 +7,15 @@ using UnityEngine;
 public class CharacterData : ScriptableObject
 {
     [SerializeField]
+    private RuntimeAnimatorController _characterMouseAnimatorController;
+
+    public RuntimeAnimatorController CharacterMouseAnimatorController => _characterMouseAnimatorController;
+
+    [SerializeField]
+    private RuntimeAnimatorController _characterEyeAnimatorController;
+    public RuntimeAnimatorController CharacterEyeAnimatorController => _characterEyeAnimatorController;
+    
+    [SerializeField]
     private string _characterCode;
 
     public string CharacterCode => _characterCode;

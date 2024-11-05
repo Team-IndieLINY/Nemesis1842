@@ -30,6 +30,12 @@ public abstract class CocktailMaterial : MonoBehaviour, IBeginDragHandler, IDrag
 
     public void OnBeginDrag(PointerEventData eventData)
     {
+        AudioManager.Inst.PlaySFX("bottle_click");
+        if (TutorialManager.Inst.UseTutorial && TutorialManager.Inst.TutorialUIIndex == 8)
+        {
+            TutorialManager.Inst.ShowTutorial();
+        }
+        
         transform.SetParent(_movingCocktailMaterialGroupTransform);
         
         _image.raycastTarget = false;

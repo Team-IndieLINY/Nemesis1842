@@ -13,6 +13,12 @@ public class Guest : MonoBehaviour
     
     [SerializeField]
     private ConditionScanTool _conditionScanTool;
+
+    [SerializeField]
+    private Animator _eyeAnimator;
+
+    [SerializeField]
+    private Animator _mouthAnimator;
     
     public StepEntity StepData { get; set; }
 
@@ -39,15 +45,21 @@ public class Guest : MonoBehaviour
 
         _currentCharacterData = characterData[0];
         _spriteRenderer.sprite = _currentCharacterData.StringByCharacterSprite.GetDict()["Normal"];
+        _eyeAnimator.runtimeAnimatorController = _currentCharacterData.CharacterEyeAnimatorController;
+        _mouthAnimator.runtimeAnimatorController = _currentCharacterData.CharacterMouseAnimatorController;
         
         Destroy(GetComponent<PolygonCollider2D>());
-        gameObject.AddComponent<PolygonCollider2D>();
-        GetComponent<PolygonCollider2D>().isTrigger = true;
+        gameObject.AddComponent<PolygonCollider2D>().isTrigger = true;
     }
 
     public void SetCharacterSprite(string characterSpriteCode)
     {
+        if (characterSpriteCode == "Wasted")
+        {
+            AudioManager.Inst.PlaySFX("drunken");
+        }
         _spriteRenderer.sprite = _currentCharacterData.StringByCharacterSprite.GetDict()[characterSpriteCode];
+        _eyeAnimator.SetBool(characterSpriteCode, true);
     }
     
     private void OnMouseEnter()

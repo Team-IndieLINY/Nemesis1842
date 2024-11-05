@@ -112,6 +112,7 @@ public class AlcoholController : MonoBehaviour
 
     public void OnClickEnterButton()
     {
+        AudioManager.Inst.PlaySFX("alcohol_machine_click");
         StartCoroutine(UpdateAlcoholController());
     }
 
@@ -186,6 +187,7 @@ public class AlcoholController : MonoBehaviour
             _currentInputAlcohol = -1;
             
 
+            AudioManager.Inst.PlaySFX("alcohol_machine_gauge");
             _alcoholControllerUI.UpdateItemSlotUI();
             yield return StartCoroutine(_alcoholControllerUI.UpdateAlcoholControllerUICoroutine());
             yield return new WaitForSeconds(0.4f);
@@ -211,12 +213,14 @@ public class AlcoholController : MonoBehaviour
 
     public void OnClickCancelButton()
     {
+        AudioManager.Inst.PlaySFX("alcohol_machine_click");
         _currentInputAlcohol = -1;
         _alcoholControllerUI.UpdateAlcoholControllerUI();
     }
 
     public void SetCurrentInputAlcohol(int keypadNum)
     {
+        AudioManager.Inst.PlaySFX("alcohol_machine_click");
         if (_currentInputAlcohol < 0)
         {
             _currentInputAlcohol = keypadNum;

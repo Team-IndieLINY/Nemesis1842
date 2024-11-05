@@ -302,6 +302,32 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7642fc9bab95bb548b4b27cf933089ea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _bgmAudioSource: {fileID: 2347733625220441384}
-  _sfxAudioSoruce: {fileID: 3057471691295174623}
-  _audioMixer: {fileID: 24100000, guid: ec5e0eafdd1dcf54caa2fd3ec43d5072, type: 2}
+  musicSounds:
+  - name: main_screen
+    clip: {fileID: 8300000, guid: bee1d629990436b4e8f0803631634102, type: 3}
+  - name: bar
+    clip: {fileID: 8300000, guid: 57fb69c0b8884104ea6d2a3f382da4cd, type: 3}
+  - name: evening
+    clip: {fileID: 8300000, guid: bee1d629990436b4e8f0803631634102, type: 3}
+  - name: dawn
+    clip: {fileID: 8300000, guid: f0d49c16d8064a74589715045224a853, type: 3}
+  sfxSounds:
+  - name: type
+    clip: {fileID: 8300000, guid: 780945acf0edb4644bf8a4a5b71dc920, type: 3}
+  - name: mouse_click
+    clip: {fileID: 8300000, guid: fd0ee78e309296f4f971db6ec7a51269, type: 3}
+  - name: mouse_hovered
+    clip: {fileID: 8300000, guid: cb27bd6bd4c66114a8836397dc1ec33f, type: 3}
+  - name: bottle_click
+    clip: {fileID: 8300000, guid: 0eccc1fc9f0c706418e6fa54525774c8, type: 3}
+  - name: bottle_hovering
+    clip: {fileID: 8300000, guid: 125ff45f853768e49b16678006f16d61, type: 3}
+  - name: liquid
+    clip: {fileID: 8300000, guid: 43e4ad33ac43dbf498c9d27c45e797d5, type: 3}
+  - name: recipe_open
+    clip: {fileID: 8300000, guid: 539239909766f4740828449a904c4938, type: 3}
+  - name: drunken
+    clip: {fileID: 8300000, guid: 03421d623618741459cb6c0ead6f92f3, type: 3}
+  musicSource: {fileID: 2347733625220441384}
+  sfxSource: {fileID: 3057471691295174623}
+  audioMixer: {fileID: 24100000, guid: ec5e0eafdd1dcf54caa2fd3ec43d5072, type: 2}

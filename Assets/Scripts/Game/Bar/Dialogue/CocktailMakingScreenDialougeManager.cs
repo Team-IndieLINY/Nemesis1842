@@ -47,7 +47,7 @@ public class CocktailMakingScreenDialougeManager : MonoBehaviour
 
         foreach (var letter in script.ToCharArray())
         {
-            AudioManager.Instance.PlaySFX(_typingAudioClip);
+            AudioManager.Inst.PlaySFX("type");
             _scriptText.text += letter;
             yield return new WaitForSeconds(_typeSpeedForSecond);
         }

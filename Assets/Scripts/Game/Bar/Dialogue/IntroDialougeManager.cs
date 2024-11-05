@@ -51,22 +51,6 @@ public class IntroDialougeManager : MonoBehaviour
 
     private void Awake()
     {
-        _fadeImage.color = new Color32(0, 0, 0, 255);
-        _fadeImage.DOFade(0f, 2f)
-            .OnKill(StartDialogue);
-
-        _cutSceneImage.color = new Color32(255, 255, 255, 0);
-    }
-
-    public void StartDialogue()
-    {
-        _isProgressed = true;
-        
-        _chatBalloonGO.SetActive(true);
-        _arrowGO.SetActive(true);
-        
-        _scriptsQueue.Clear();
-
         foreach (var script in _cutSceneScripts)
         {
             _scriptsQueue.Enqueue(script);
@@ -76,6 +60,18 @@ public class IntroDialougeManager : MonoBehaviour
         {
             _cutSceneQueue.Enqueue(cutSceneSprite);
         }
+        
+        _fadeImage.color = new Color32(0, 0, 0, 255);
+        _fadeImage.DOFade(0f, 2f)
+            .OnKill(StartDialogue);
+    }
+
+    public void StartDialogue()
+    {
+        _isProgressed = true;
+        
+        _chatBalloonGO.SetActive(true);
+        _arrowGO.SetActive(true);
 
         DisplayNextScript();
     }
@@ -87,23 +83,8 @@ public class IntroDialougeManager : MonoBehaviour
             EndDialogue();
             return;
         }
-
-        _cutSceneImage.DOKill();
-
-        if (_cutSceneImage.color.a == 0f)
-        {
-            _cutSceneImage.sprite = _cutSceneQueue.Dequeue();
-            _cutSceneImage.DOFade(1f, 1f);
-        }
-        else
-        {
-            _cutSceneImage.DOFade(0f, 1f)
-                .OnKill(() =>
-                {
-                    _cutSceneImage.sprite = _cutSceneQueue.Dequeue();
-                    _cutSceneImage.DOFade(1f, 1f);
-                });
-        }
+        
+        _cutSceneImage.sprite = _cutSceneQueue.Dequeue();
 
         string script = _scriptsQueue.Dequeue();
         _currentScript = script;
@@ -118,7 +99,7 @@ public class IntroDialougeManager : MonoBehaviour
 
         foreach (var letter in script.ToCharArray())
         {
-            AudioManager.Instance.PlaySFX(_typingAudioClip);
+            AudioManager.Inst.PlaySFX("type");
             _scriptText.text += letter;
             yield return new WaitForSeconds(_typeSpeedForSecond);
         }
@@ -143,7 +124,7 @@ public class IntroDialougeManager : MonoBehaviour
         _fadeImage.DOFade(1f, 2f)
             .OnKill(() =>
             {
-                SceneManager.LoadScene("Scenes/Game/Orleans");
+                LoadingScreen.Instance.LoadScene("Scenes/Game/Orleans");
             });
     }
 

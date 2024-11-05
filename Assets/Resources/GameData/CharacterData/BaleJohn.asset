@@ -12,15 +12,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6213eaf18fd2a0c44809a07e193dacf6, type: 3}
   m_Name: BaleJohn
   m_EditorClassIdentifier: 
+  _characterMouseAnimatorController: {fileID: 9100000, guid: eb83249375bb5624095c091acd69235a,
+    type: 2}
+  _characterEyeAnimatorController: {fileID: 9100000, guid: 9c203f0bc3c581f40bbc25c5646516eb,
+    type: 2}
   _characterCode: 01
   _characterName: "\uBCA0\uC77C \uC874"
   _stringByCharacterSprite:
     data:
     - key: Normal
-      value: {fileID: 21300000, guid: f8ca637cb2da6574a99682463864eaea, type: 3}
+      value: {fileID: 21300000, guid: b1fdd2d5c2520a94e914a4ec3aec4daa, type: 3}
     - key: Drunken
-      value: {fileID: 21300000, guid: 216a80538d2e7804cadeccd67f4b2662, type: 3}
+      value: {fileID: 21300000, guid: 76929b07ef052444092bced86681a9d3, type: 3}
+    - key: RaiseArm
+      value: {fileID: 21300000, guid: 6b13d9be1d02b7b46a9fa0b861e4ff61, type: 3}
     - key: Wasted
-      value: {fileID: 21300000, guid: ce3753d292576f14aa278755a07dce61, type: 3}
-    - key: RasieArm
-      value: {fileID: 21300000, guid: 796c6e75b20ea6b4a8842d29e7b2c044, type: 3}
+      value: {fileID: 21300000, guid: a0cd4f8974d0d1845991b2c5cf6e3c7a, type: 3}

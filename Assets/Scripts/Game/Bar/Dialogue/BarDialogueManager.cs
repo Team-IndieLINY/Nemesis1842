@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -26,6 +27,9 @@ public class BarDialogueManager : MonoBehaviour
 
     [SerializeField]
     private Guest _guest;
+
+    [SerializeField]
+    private Animator _mouthAnimator;
     
     private Queue<BarDialogueEntity> _scriptsQueue = new Queue<BarDialogueEntity>();
 
@@ -38,6 +42,11 @@ public class BarDialogueManager : MonoBehaviour
     private string _currentScript;
 
     private Coroutine _typeScriptsCoroutine;
+
+    private void Awake()
+    {
+        _mouthAnimator.enabled = false;
+    }
 
     public void StartDialogue(List<BarDialogueEntity> barDialogueEntities)
     {
@@ -69,6 +78,8 @@ public class BarDialogueManager : MonoBehaviour
         _guest.SetCharacterSprite(barDialogueEntity.character_sprite_code);
         
         _characterNameText.text = barDialogueEntity.character_name;
+        _mouthAnimator.enabled = true;
+        _mouthAnimator.SetBool(barDialogueEntity.character_sprite_code, true);
         
         _typeScriptsCoroutine = StartCoroutine(TypeScripts(_currentScript));
     }
@@ -80,11 +91,12 @@ public class BarDialogueManager : MonoBehaviour
 
         foreach (var letter in script.ToCharArray())
         {
-            AudioManager.Instance.PlaySFX(_typingAudioClip);
+            AudioManager.Inst.PlaySFX("type");
             _scriptText.text += letter;
             yield return new WaitForSeconds(_typeSpeedForSecond);
         }
-
+        
+        _mouthAnimator.enabled = false;
         _isTyped = false;
     }
 
@@ -94,6 +106,7 @@ public class BarDialogueManager : MonoBehaviour
 
         _scriptText.text = _currentScript;
 
+        _mouthAnimator.enabled = false;
         _isTyped = false;
     }
     

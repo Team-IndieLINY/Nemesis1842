@@ -28,6 +28,7 @@ public class ItemHandler : MonoBehaviour
     {
         _item = item;
         _image.sprite = item.ItemData.ItemSprite;
+        _image.SetNativeSize();
     }
 
     private void Update()

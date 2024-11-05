@@ -96,7 +96,7 @@ public class ScanManager : MonoBehaviour
             });
     }
 
-    public void EvaluateScan(ScanData scanData)
+    public bool EvaluateScan(ScanData scanData)
     {
         if (scanData is ConditionScanData conditionScanData)
         {
@@ -106,12 +106,15 @@ public class ScanManager : MonoBehaviour
                 _scanEvaluationTexts[(int)CurrentScanType].text = "성공";
                 
                 _alcoholController.ApplyScanResult(CurrentScanType);
+
+                return true;
             }
             else
             {
                 _scanEvaluationTexts[(int)CurrentScanType].color = new Color32(128, 23, 11, 255);
                 _scanEvaluationTexts[(int)CurrentScanType].text = "실패";
                 _alcoholController.ApplyScanResult(EScanType.FAIL);
+                return false;
             }
         }
         else if (scanData is LiverScanData liverScanData)
@@ -121,14 +124,18 @@ public class ScanManager : MonoBehaviour
                 _scanEvaluationTexts[(int)CurrentScanType].color = new Color32(31, 75, 9, 255);
                 _scanEvaluationTexts[(int)CurrentScanType].text = "성공";
                 _alcoholController.ApplyScanResult(CurrentScanType);
+                return true;
             }
             else
             {
                 _scanEvaluationTexts[(int)CurrentScanType].color = new Color32(128, 23, 11, 255);
                 _scanEvaluationTexts[(int)CurrentScanType].text = "실패";
                 _alcoholController.ApplyScanResult(EScanType.FAIL);
+                return false;
             }
         }
+
+        return false;
     }
 
     public void SetLiver(int squareLeavenCount, int circleLeavenCount, int starLeavenCount, int triangleLeaven)
@@ -148,7 +155,7 @@ public class ScanManager : MonoBehaviour
 
     public void FadeInScanSelectorBackground()
     {
-        _scanSelectorBackgroundImage.DOColor(new Color32(255, 255, 255, 0), 0.3f);
+        _scanSelectorBackgroundImage.DOFade(0f, 0.3f);
     }
 
     public void FadeOutScanSelectorBackground()
