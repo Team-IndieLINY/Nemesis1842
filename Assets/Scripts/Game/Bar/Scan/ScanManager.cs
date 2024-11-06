@@ -48,10 +48,14 @@ public class ScanManager : MonoBehaviour
     [SerializeField]
     private AlcoholController _alcoholController;
 
+    [SerializeField]
+    private HeartbeatScanner _heartbeatScanner;
+
     public EScanType CurrentScanType { get; set; }
 
     public ConditionScanData.EConditionType AnswerConditionType { get; set; }
     public LiverScanData.ELeavenType AnswerLeavenType { get; set; }
+    public HeartbeatScanData.EHeartbeatType AnswerHeartbeatType { get; set; }
     
     public bool IsScanningDone { get; private set; }
 
@@ -117,9 +121,28 @@ public class ScanManager : MonoBehaviour
                 return false;
             }
         }
-        else if (scanData is LiverScanData liverScanData)
+
+        if (scanData is LiverScanData liverScanData)
         {
             if (AnswerLeavenType == liverScanData.LeavenType)
+            {
+                _scanEvaluationTexts[(int)CurrentScanType].color = new Color32(31, 75, 9, 255);
+                _scanEvaluationTexts[(int)CurrentScanType].text = "성공";
+                _alcoholController.ApplyScanResult(CurrentScanType);
+                return true;
+            }
+            else
+            {
+                _scanEvaluationTexts[(int)CurrentScanType].color = new Color32(128, 23, 11, 255);
+                _scanEvaluationTexts[(int)CurrentScanType].text = "실패";
+                _alcoholController.ApplyScanResult(EScanType.FAIL);
+                return false;
+            }
+        }
+
+        if (scanData is HeartbeatScanData heartbeatScanData)
+        {
+            if (AnswerHeartbeatType == heartbeatScanData.HeartbeatType)
             {
                 _scanEvaluationTexts[(int)CurrentScanType].color = new Color32(31, 75, 9, 255);
                 _scanEvaluationTexts[(int)CurrentScanType].text = "성공";
@@ -143,6 +166,11 @@ public class ScanManager : MonoBehaviour
         _liver.SetLiver(squareLeavenCount, circleLeavenCount, starLeavenCount, triangleLeaven);
     }
 
+    public void SetHeartbeatScanner()
+    {
+        _heartbeatScanner.SetHeartbeatScanner();
+    }
+
     public void ResetStepScanManager()
     {
         foreach (var scanEvaluationText in _scanEvaluationTexts)
@@ -151,6 +179,7 @@ public class ScanManager : MonoBehaviour
         }
         IsScanningDone = false;
         _liver.ResetLiver();
+        _heartbeatScanner.ResetHeartbeatScanner();
     }
 
     public void FadeInScanSelectorBackground()

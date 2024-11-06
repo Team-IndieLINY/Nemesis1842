@@ -27,8 +27,11 @@ public class Guest : MonoBehaviour
     private List<CharacterData> _characterDatas;
     private CharacterData _currentCharacterData;
 
-    private bool isHovered;
-    public bool IsHovered => isHovered;
+    private Vector2 _heartPosition = new();
+    public Vector2 HeartPosition => _heartPosition;
+    
+    private bool _isHovered;
+    public bool IsHovered => _isHovered;
     
     private void Awake()
     {
@@ -47,6 +50,7 @@ public class Guest : MonoBehaviour
         _spriteRenderer.sprite = _currentCharacterData.StringByCharacterSprite.GetDict()["Normal"];
         _eyeAnimator.runtimeAnimatorController = _currentCharacterData.CharacterEyeAnimatorController;
         _mouthAnimator.runtimeAnimatorController = _currentCharacterData.CharacterMouseAnimatorController;
+        _heartPosition = _currentCharacterData.HeartPoint;
         
         Destroy(GetComponent<PolygonCollider2D>());
         gameObject.AddComponent<PolygonCollider2D>().isTrigger = true;
@@ -64,6 +68,7 @@ public class Guest : MonoBehaviour
     
     private void OnMouseEnter()
     {
+        _isHovered = true;
         if (_conditionScanTool.IsClicked)
         {
             _conditionScanTool.UpdateConditionScanUI();
@@ -72,6 +77,7 @@ public class Guest : MonoBehaviour
 
     private void OnMouseExit()
     {
+        _isHovered = false;
         if (_conditionScanTool.IsClicked)
         {
             _conditionScanTool.ResetConditionScanUI();

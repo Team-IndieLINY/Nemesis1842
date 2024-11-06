@@ -18,5 +18,6 @@ public class StepEntity
     public int star_leaven_count;
     public int triangle_leaven_count;
     public int leaven_answer;
+    public int heartbeat_answer;
     public int alcohol_control_attempt;
 }

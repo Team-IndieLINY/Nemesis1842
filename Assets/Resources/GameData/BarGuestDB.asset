@@ -189,6 +189,7 @@ MonoBehaviour:
     star_leaven_count: 4
     triangle_leaven_count: 2
     leaven_answer: 1
+    heartbeat_answer: 3
     alcohol_control_attempt: 3
   - guest_code: 0002
     step_order: 1
@@ -203,6 +204,7 @@ MonoBehaviour:
     star_leaven_count: 4
     triangle_leaven_count: 1
     leaven_answer: 1
+    heartbeat_answer: 9
     alcohol_control_attempt: 4
   - guest_code: 0002
     step_order: 2
@@ -217,6 +219,7 @@ MonoBehaviour:
     star_leaven_count: 5
     triangle_leaven_count: 3
     leaven_answer: 0
+    heartbeat_answer: 10
     alcohol_control_attempt: 3
   NPCScripts:
   - npc_code: 0001

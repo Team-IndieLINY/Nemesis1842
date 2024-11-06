@@ -24,6 +24,11 @@ public class CharacterData : ScriptableObject
     private string _characterName;
 
     public string CharacterName => _characterName;
+    
+    [SerializeField]
+    private Vector2 _heartPoint;
+
+    public Vector2 HeartPoint => _heartPoint;
 
     [SerializeField]
     private SerializableDict<Sprite> _stringByCharacterSprite;

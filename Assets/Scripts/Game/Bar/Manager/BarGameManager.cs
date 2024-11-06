@@ -338,9 +338,13 @@ public class BarGameManager : MonoBehaviour
             stepEntity.alcohol_control_attempt);
 
         ScanManager.Inst.AnswerConditionType = (ConditionScanData.EConditionType)stepEntity.condition_answer;
+        
         ScanManager.Inst.AnswerLeavenType = (LiverScanData.ELeavenType)stepEntity.leaven_answer;
         ScanManager.Inst.SetLiver(stepEntity.square_leaven_count, stepEntity.circle_leaven_count,
             stepEntity.star_leaven_count, stepEntity.triangle_leaven_count);
+
+        ScanManager.Inst.AnswerHeartbeatType = (HeartbeatScanData.EHeartbeatType)stepEntity.heartbeat_answer;
+        ScanManager.Inst.SetHeartbeatScanner();
 
 
         List<CocktailRejectScriptEntity> cocktailRejectScriptEntities = _barGuestDB.CocktailRejectScripts

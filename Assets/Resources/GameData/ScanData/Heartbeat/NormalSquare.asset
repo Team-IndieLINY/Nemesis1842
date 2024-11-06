@@ -9,9 +9,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6213eaf18fd2a0c44809a07e193dacf6, type: 3}
-  m_Name: C
+  m_Script: {fileID: 11500000, guid: 3e5ffbf05da7a1a4d86e5c8a9d337bee, type: 3}
+  m_Name: NormalSquare
   m_EditorClassIdentifier: 
-  _characterCode: 03
-  _characterName: "\uBAB0\uB77C"
-  _characterSprite: {fileID: 21300000, guid: 778e126d52c4dc649898ecc01dc1ee3e, type: 3}
+  _heartbeatType: 4

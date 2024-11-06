@@ -10,6 +10,9 @@ public class GuideLineManager : MonoBehaviour
     [SerializeField]
     private LiverGuideLineInfo[] _liverGuideLineInfos;
 
+    [SerializeField]
+    private HeartbeatGuideLineInfo[] _heartbeatGuideLineInfos;
+
     public void ResetStepGuideLineInfos()
     {
         foreach (var conditionGuideLineInfo in _conditionGuideLineInfos)
@@ -20,6 +23,11 @@ public class GuideLineManager : MonoBehaviour
         foreach (var liverGuideLineInfo in _liverGuideLineInfos)
         {
             liverGuideLineInfo.ResetGuideLineInfo();
+        }
+
+        foreach (var heartbeatGuideLineInfo in _heartbeatGuideLineInfos)
+        {
+            heartbeatGuideLineInfo.ResetGuideLineInfo();
         }
     }
 

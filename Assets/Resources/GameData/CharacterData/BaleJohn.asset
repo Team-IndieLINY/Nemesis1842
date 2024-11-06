@@ -18,6 +18,7 @@ MonoBehaviour:
     type: 2}
   _characterCode: 01
   _characterName: "\uBCA0\uC77C \uC874"
+  _heartPoint: {x: 0.72, y: 0.69}
   _stringByCharacterSprite:
     data:
     - key: Normal
