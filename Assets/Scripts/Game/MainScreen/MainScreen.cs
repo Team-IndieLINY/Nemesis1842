@@ -10,21 +10,16 @@ public class MainScreen : MonoBehaviour
 {
     [SerializeField]
     private Image _fadeImage;
-
-    [SerializeField]
-    private GameObject _settingPanelGO;
-
-    private void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.Escape))
-        {
-            _settingPanelGO.SetActive(false);
-        }
-    }
+    private SettingPanel _settingPanel;
 
     private void Awake()
     {
         AudioManager.Inst.PlayMusic("evening");
+    }
+
+    private void Start()
+    {
+        _settingPanel = FindObjectOfType<SettingPanel>(true).GetComponent<SettingPanel>();
     }
 
     public void PlayGame()
@@ -35,6 +30,11 @@ public class MainScreen : MonoBehaviour
             {
                 SceneManager.LoadScene("Intro");
             });
+    }
+
+    public void OnClickSettingButton()
+    {
+        PopUpUIManager.Inst.OpenUI(_settingPanel);
     }
 
     public void QuitGame()

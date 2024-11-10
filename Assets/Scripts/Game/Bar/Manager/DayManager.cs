@@ -12,6 +12,7 @@ public class DayManager : MonoBehaviour
     private int day = 1;
     public int Day => day;
     
+    [SerializeField]
     private NPCData.ETimeType _timeType = NPCData.ETimeType.Evening;
     public NPCData.ETimeType TimeType =>_timeType;
 

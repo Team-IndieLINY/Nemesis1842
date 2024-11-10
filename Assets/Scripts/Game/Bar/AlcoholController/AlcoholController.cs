@@ -6,6 +6,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.Serialization;
 using UnityEngine.UI;
+using Random = UnityEngine.Random;
 
 public class AlcoholController : MonoBehaviour
 {
@@ -208,6 +209,20 @@ public class AlcoholController : MonoBehaviour
                 
                 yield return StartCoroutine(_alcoholControllerUI.UpdateAlcoholControllerUICoroutine());
             }
+            
+            if (_currentScanType == ScanManager.EScanType.HEARTBEAT)
+            {
+                int randNum = Random.Range(1, 100);
+
+                if (randNum > 30)
+                {
+                    yield break;
+                }
+                
+                _maxAlcohol = _maxAlcohol - 20 < _answerAlcohol ? _answerAlcohol : _maxAlcohol - 20;
+                
+                yield return StartCoroutine(_alcoholControllerUI.UpdateAlcoholControllerUICoroutine());
+            }
         }
     }
 
@@ -249,6 +264,9 @@ public class AlcoholController : MonoBehaviour
             _overloadImage.DOFade(0.3f, 1f).SetLoops(-1, LoopType.Yoyo);
             _isOverload = true;
         }
-        _alcoholControllerPanelTransform.DOShakePosition(2f, _currentAttempt * -2f, _currentAttempt * -5, 40f, false, false).SetLoops(-1, LoopType.Incremental);
+
+        _alcoholControllerPanelTransform
+            .DOShakePosition(2f, _currentAttempt * -2f, _currentAttempt * -5, 40f, false, false)
+            .SetLoops(-1, LoopType.Incremental);
     }
 }

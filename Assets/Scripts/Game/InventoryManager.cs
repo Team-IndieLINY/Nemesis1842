@@ -12,13 +12,13 @@ public class InventoryManager
         {
             _instance = new InventoryManager();
         }
-
+        
         return _instance;
     }
     
     private InformationItemData[] _informationItemDatas = new InformationItemData[5];
     public InformationItemData[] InformationItemDatas => _informationItemDatas;
-
+    
     public void SaveInventoryData(InformationItemData[] informationItemDatas)
     {
         _informationItemDatas = informationItemDatas;

@@ -26,7 +26,7 @@ public class BarOutsideDialougeManager : MonoBehaviour
     [SerializeField]
     private AudioClip _typingAudioClip;
     
-    private Queue<NPCScriptEntity> _scriptsQueue = new Queue<NPCScriptEntity>();
+    private Queue<string> _scriptsQueue = new Queue<string>();
 
     private bool _isProgressed = false;
     public bool IsProgressed => _isProgressed;
@@ -44,8 +44,30 @@ public class BarOutsideDialougeManager : MonoBehaviour
         _chatBalloonGO.SetActive(false);
     }
     
-    public void StartDialogue(Vector3 characterPosition, List<NPCScriptEntity> barDialogueEntities)
+    public void StartDialogueByNPCDialougeEntity(Vector3 characterPosition, List<NPCScriptEntity> barDialogueEntities)
     {
+        PlayerController.RestrictMovement();
+        _chatBalloonGO.transform.position = new Vector3(characterPosition.x, characterPosition.y + 1.7f, 0);
+        
+        _isProgressed = true;
+        
+        _chatBalloonGO.SetActive(true);
+        _arrowGO.SetActive(true);
+        
+        _scriptsQueue.Clear();
+        
+        foreach (var barDialogueEntity in barDialogueEntities)
+        {
+            _scriptsQueue.Enqueue(barDialogueEntity.script);
+        }
+
+        DisplayNextScript();
+    }
+    
+    public void StartDialogueByString(Vector3 characterPosition, List<string> barDialogueEntities)
+    {
+        PlayerController.RestrictMovement();
+        
         _chatBalloonGO.transform.position = new Vector3(characterPosition.x, characterPosition.y + 1.7f, 0);
         
         _isProgressed = true;
@@ -70,9 +92,8 @@ public class BarOutsideDialougeManager : MonoBehaviour
             EndDialogue();
             return;
         }
-
-        NPCScriptEntity barDialogueEntity = _scriptsQueue.Dequeue();
-        _currentScript = barDialogueEntity.script;
+        
+        _currentScript = _scriptsQueue.Dequeue();
         
         _typeScriptsCoroutine = StartCoroutine(TypeScripts(_currentScript));
     }
@@ -105,5 +126,7 @@ public class BarOutsideDialougeManager : MonoBehaviour
     {
         _isProgressed = false;
         _chatBalloonGO.SetActive(false);
+        
+        PlayerController.AllowMovement();
     }
 }

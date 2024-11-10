@@ -10,13 +10,12 @@ public class Inventory : MonoBehaviour
     private InventoryUI _inventoryUI;
     private Slot _currentSelectedSlot;
     public Slot CurrentSelectedSlot => _currentSelectedSlot;
-    
+
     private void Awake()
     {
         _inventoryUI = GetComponent<InventoryUI>();
-
-
     }
+
     private void Start()
     {
         for(int i=0;i< InventoryManager.Instance().InformationItemDatas.Length;i++)
@@ -36,14 +35,13 @@ public class Inventory : MonoBehaviour
                 slot.ActivateSlot();
             }
         }
-        
-        _inventoryUI.OpenInventoryUI();
+
+        PopUpUIManager.Inst.OpenUI(_inventoryUI);
     }
     
     public void CloseInventory()
     {
-        _inventoryUI.CloseInventoryUI();
-        
+        PopUpUIManager.Inst.CloseUI();
     }
     
     public void OpenStealInventory()

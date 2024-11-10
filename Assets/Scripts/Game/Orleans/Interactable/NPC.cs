@@ -29,7 +29,7 @@ public class NPC : MonoBehaviour, IInteractable
 
     public void Interact()
     {
-        BarOutsideDialougeManager.Inst.StartDialogue(transform.position, _npcScripts);
+        BarOutsideDialougeManager.Inst.StartDialogueByNPCDialougeEntity(transform.position, _npcScripts);
     }
 
     public void ShowInteractableUI()

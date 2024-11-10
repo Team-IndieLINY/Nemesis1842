@@ -7,7 +7,7 @@ using UnityEngine;
 using UnityEngine.UI;
 
 [RequireComponent(typeof(CanvasGroup), typeof(Inventory))]
-public class InventoryUI : MonoBehaviour
+public class InventoryUI : MonoBehaviour,IPopUpable
 {
     [SerializeField]
     private TextMeshProUGUI _itemNameText;
@@ -32,6 +32,9 @@ public class InventoryUI : MonoBehaviour
 
     [SerializeField]
     private GameObject _bigBackgroundGO;
+
+    [SerializeField]
+    private Button _closeInventoryButton;
     
     private CanvasGroup _canvasGroup;
     private Inventory _inventory;
@@ -68,6 +71,7 @@ public class InventoryUI : MonoBehaviour
 
     public void OpenInventoryUI()
     {
+        _closeInventoryButton.interactable = true;
         AudioManager.Inst.PlaySFX("mouse_click");
         _closeButtonGO.SetActive(true);
         gameObject.SetActive(true);
@@ -82,6 +86,7 @@ public class InventoryUI : MonoBehaviour
     
     public void CloseInventoryUI()
     {
+        _closeInventoryButton.interactable = false;
         AudioManager.Inst.PlaySFX("mouse_click");
         _canvasGroup.DOKill();
         _canvasGroup.DOFade(0f, 0.3f)
@@ -113,5 +118,17 @@ public class InventoryUI : MonoBehaviour
             {
                 gameObject.SetActive(false);
             });
+    }
+
+    public void ShowUI()
+    {
+        PlayerController.RestrictMovement();
+        OpenInventoryUI();
+    }
+
+    public void HideUI()
+    {
+        PlayerController.AllowMovement();
+        CloseInventoryUI();
     }
 }

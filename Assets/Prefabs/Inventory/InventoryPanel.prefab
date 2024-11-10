@@ -273,6 +273,7 @@ MonoBehaviour:
   _itemDescriptionGroupGO: {fileID: 421379349308012270}
   _smallBackgroundGO: {fileID: 229799386294066132}
   _bigBackgroundGO: {fileID: 4525687256482721605}
+  _closeInventoryButton: {fileID: 4164018270230522593}
 --- !u!114 &8126594777833241282
 MonoBehaviour:
   m_ObjectHideFlags: 0

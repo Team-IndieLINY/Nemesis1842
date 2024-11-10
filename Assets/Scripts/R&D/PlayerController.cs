@@ -18,8 +18,11 @@ public class PlayerController : MonoBehaviour
 
     private Animator _animator;
 
+    private static int restrictingMovementCount = 0;
+
     private void Awake()
     {
+        restrictingMovementCount = 0;
         _rigidbody = GetComponent<Rigidbody2D>();
         _animator = GetComponent<Animator>();
         _spriteRenderer = GetComponent<SpriteRenderer>();
@@ -27,7 +30,7 @@ public class PlayerController : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space))
+        if ((Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.E)) && BarOutsideDialougeManager.Inst.IsProgressed is true)
         {
             if (BarOutsideDialougeManager.Inst.IsTyped is true)
             {
@@ -40,8 +43,6 @@ public class PlayerController : MonoBehaviour
         }
         else if (Input.GetKeyDown(KeyCode.E) && _currentInteractable != null && BarOutsideDialougeManager.Inst.IsProgressed is false)
         {
-            _animator.SetBool("IsWalking", false);
-            _rigidbody.velocity = new Vector2(0,0);
             _currentInteractable.HideInteractableUI();
             _currentInteractable.Interact();
         }
@@ -50,7 +51,7 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        if (BarOutsideDialougeManager.Inst.IsProgressed is false)
+        if (restrictingMovementCount == 0)
         {
             float inputX = Input.GetAxisRaw("Horizontal");
 
@@ -71,6 +72,11 @@ public class PlayerController : MonoBehaviour
 
             _rigidbody.velocity = new Vector3(inputX * _movingSpeed, 0, 0);
         }
+        else
+        {
+            _animator.SetBool("IsWalking", false);
+            _rigidbody.velocity = new Vector2(0,0);
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D other)
@@ -78,6 +84,7 @@ public class PlayerController : MonoBehaviour
         if (other.TryGetComponent(out IInteractable interactable))
         {
             _currentInteractable = interactable;
+
             interactable.ShowInteractableUI();
         }
     }
@@ -89,5 +96,15 @@ public class PlayerController : MonoBehaviour
             _currentInteractable = null;
             interactable.HideInteractableUI();
         }
+    }
+
+    public static void RestrictMovement()
+    {
+        restrictingMovementCount++;
+    }
+
+    public static void AllowMovement()
+    {
+        restrictingMovementCount--;
     }
 }
