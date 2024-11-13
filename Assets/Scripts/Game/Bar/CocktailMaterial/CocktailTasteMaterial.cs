@@ -10,8 +10,7 @@ public class CocktailTasteMaterial : CocktailMaterial,IPointerEnterHandler,IPoin
     
     public override void SetCocktail()
     {
-        _cocktailMakingManager.SetTaste(_tasteType);
-        
+        StartCoroutine(_cocktailMakingManager.SetTaste(_tasteType));
     }
     
     public void OnPointerEnter(PointerEventData eventData)

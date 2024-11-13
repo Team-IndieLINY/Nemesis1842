@@ -161,13 +161,21 @@ public class BarGameManager : MonoBehaviour
             {
                 SetStep(_stepDatas[i - 1]);
                 
-                ShowScannerSelector();
+                EnterScanPhase();
 
+                yield return new WaitUntil(() => _playableDirector.state == PlayState.Paused);
+                
+                ShowScannerSelector();
+                
                 yield return new WaitUntil(() =>
                     ScanManager.Inst.IsScanningDone);
 
+                EnterAlcoholPhase();
+                
+                yield return new WaitUntil(() => _alcoholController.IsAlcoholPhaseDone == true);
+                
                 EnterCocktailMakingScreen();
-
+                
                 yield return new WaitUntil(() =>
                     _playableDirector.state == PlayState.Paused);
 
@@ -177,7 +185,7 @@ public class BarGameManager : MonoBehaviour
                 {
                     TutorialManager.Inst.ShowTutorialByIndex(5);
                 }
-
+                
                 yield return new WaitUntil(() =>
                     _playableDirector.state == PlayState.Paused && _playableDirector.time == 0f);
 
@@ -231,6 +239,11 @@ public class BarGameManager : MonoBehaviour
             });
     }
 
+    private void EnterAlcoholPhase()
+    {
+        _alcoholController.ActivateAlcoholController();
+    }
+
     private void AppearGuest(BarGuestEntity guestData)
     {
         _guest.SetGuest(guestData);
@@ -264,6 +277,12 @@ public class BarGameManager : MonoBehaviour
 
     public void EnterScanPhase()
     {
+        _playableDirector.playableAsset = _cocktailMakingScreenTimeline;
+        _playableDirector.Play();
+    }
+
+    public void StartScan()
+    {
         _scanSelectorGO.SetActive(false);
         if (TutorialManager.Inst.UseTutorial)
         {
@@ -274,8 +293,7 @@ public class BarGameManager : MonoBehaviour
 
     private void EnterCocktailMakingScreen()
     {
-        _playableDirector.playableAsset = _cocktailMakingScreenTimeline;
-        _playableDirector.Play();
+        _playableDirector.Resume();
     }
 
     public void PauseTimeline()
@@ -283,19 +301,9 @@ public class BarGameManager : MonoBehaviour
         _playableDirector.Pause();
     }
 
-    public void OnClickEnterAlcoholPhaseButton()
-    {
-        _cocktailMakingScreenDialougeManager.EndDialogue();
-        _playableDirector.Resume();
-
-        if (TutorialManager.Inst.UseTutorial)
-        {
-            TutorialManager.Inst.ShowTutorial();
-        }
-    }
-
     public void OnClickEnterCutSceneButton()
     {
+        _cocktailMakingScreenDialougeManager.EndDialogue();
         _playableDirector.Resume();
     }
 
@@ -325,7 +333,7 @@ public class BarGameManager : MonoBehaviour
 
     private void EarnMoney(int stepCount)
     {
-        int money = stepCount * _cocktailPrice - _alcoholController.SumOfOverloadCount * _overloadPrice -
+        int money = stepCount * _cocktailPrice - _alcoholController.SumOfUsingMachineCount * _overloadPrice -
                     _cocktailMakingManager.CocktailMistakeCount * _cocktailMistakePrice;
 
         _player.EarnMoney(money);
@@ -334,8 +342,7 @@ public class BarGameManager : MonoBehaviour
     private void SetStep(StepEntity stepEntity)
     {
         _guest.StepData = stepEntity;
-        _alcoholController.SetAlcoholController(stepEntity.answer_alcohol,
-            stepEntity.alcohol_control_attempt);
+        _alcoholController.SetAlcoholController(stepEntity.answer_alcohol);
 
         ScanManager.Inst.AnswerConditionType = (ConditionScanData.EConditionType)stepEntity.condition_answer;
         

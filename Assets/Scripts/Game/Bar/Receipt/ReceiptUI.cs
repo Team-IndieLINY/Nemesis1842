@@ -68,7 +68,7 @@ public class ReceiptUI : MonoBehaviour, IPointerClickHandler
     {
         int sumOfCocktailPrice = _barGameManager.CocktailPrice * _barGameManager.StepCount;
         int sumOfCocktailMistakePrice = -_barGameManager.CocktailMistakePrice *_cocktailMakingManager.CocktailMistakeCount;
-        int sumOfOverloadPrice = -_barGameManager.OverloadPrice * _alcoholController.SumOfOverloadCount;
+        int sumOfOverloadPrice = -_barGameManager.OverloadPrice * _alcoholController.SumOfUsingMachineCount;
 
         //칵테일 제공
         _cocktailCountText.text = "(" + _barGameManager.StepCount + "회)";
@@ -89,7 +89,7 @@ public class ReceiptUI : MonoBehaviour, IPointerClickHandler
         }
         
         //과부하
-        _overloadCountText.text = "(" + _alcoholController.SumOfOverloadCount + "회)";
+        _overloadCountText.text = "(" + _alcoholController.SumOfUsingMachineCount + "회)";
         
         if (sumOfOverloadPrice < 0)
         {

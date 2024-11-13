@@ -1,10 +1,7 @@
 using System;
 using System.Collections;
-using System.Collections.Generic;
 using DG.Tweening;
-using TMPro;
 using UnityEngine;
-using UnityEngine.Serialization;
 using UnityEngine.UI;
 using Random = UnityEngine.Random;
 
@@ -21,6 +18,20 @@ public class AlcoholController : MonoBehaviour
 
     [SerializeField]
     private Image _overloadImage;
+
+    [SerializeField]
+    private Image _inActivateItemPanelImage;
+    
+    [SerializeField]
+    private Image _inActivateAlcoholControllerPanelImage;
+
+    [SerializeField]
+    private Button _enterButton;
+
+    [SerializeField]
+    private int _utilitiesCost = 10;
+
+    public int UtilitiesCost => _utilitiesCost;
     
     private int _maxAlcohol = 100;
     public int MaxAlcohol => _maxAlcohol;
@@ -34,11 +45,11 @@ public class AlcoholController : MonoBehaviour
     private int _currentAttempt = 0;
     public int CurrentAttempt => _currentAttempt;
 
-    private ScanManager.EScanType _currentScanType;
-    public ScanManager.EScanType CurrentScanType => _currentScanType;
+    private int _sumOfUsingMachineCount = 0;
+    public int SumOfUsingMachineCount => _sumOfUsingMachineCount;
 
-    private int _sumOfOverloadCount = 0;
-    public int SumOfOverloadCount => _sumOfOverloadCount;
+    private bool _isAlcoholPhaseDone;
+    public bool IsAlcoholPhaseDone => _isAlcoholPhaseDone;
     
     private int _attempt;
     private int _answerAlcohol;
@@ -53,20 +64,47 @@ public class AlcoholController : MonoBehaviour
     private void Awake()
     {
         _currentItem = null;
+        InActivateAlcoholController();
+
+        _isAlcoholPhaseDone = false;
+        _enterButton.interactable = true;
     }
 
-    public void SetAlcoholController(int answerAlcohol, int attempt)
+    public void SetAlcoholController(int answerAlcohol)
     {
         _answerAlcohol = answerAlcohol;
-        _attempt = attempt;
-        _currentAttempt = _attempt;
+        _currentAttempt = 0;
         
         _alcoholControllerUI.UpdateAlcoholControllerUI();
     }
 
-    public void ApplyScanResult(ScanManager.EScanType scanType)
+    public void ActivateAlcoholController()
     {
-        _currentScanType = scanType;
+        _inActivateAlcoholControllerPanelImage.DOFade(0f, 0.5f)
+            .OnKill(() =>
+            {
+                _inActivateAlcoholControllerPanelImage.raycastTarget = false;
+            });
+        
+        _inActivateItemPanelImage.DOFade(0f, 0.5f)
+            .OnKill(() =>
+            {
+                _inActivateItemPanelImage.raycastTarget = false;
+                ApplyScanResult();
+            });
+    }
+    
+    public void InActivateAlcoholController()
+    {
+        _inActivateItemPanelImage.raycastTarget = true;
+        _inActivateItemPanelImage.color = new Color32(0, 0, 0, 233);
+        
+        _inActivateAlcoholControllerPanelImage.raycastTarget = true;
+        _inActivateAlcoholControllerPanelImage.color = new Color32(0, 0, 0, 233);
+    }
+
+    public void ApplyScanResult()
+    {
         _alcoholControllerUI.UpdateScanBuffUI();
     }
 
@@ -75,17 +113,23 @@ public class AlcoholController : MonoBehaviour
         _maxAlcohol = 100;
         _minAlcohol = 0;
         _currentInputAlcohol = -1;
+        _currentAttempt = 0;
         _currentItem = null;
         _isUsedLiverScan = false;
+
+        _enterButton.interactable = true;
         
         _alcoholControllerUI.UpdateAlcoholControllerUI();
-        _alcoholControllerUI.UpdateItemSlotUI();
         _alcoholControllerUI.ResetAlcoholControllerUI();
+
+        InActivateAlcoholController();
+
+        _isAlcoholPhaseDone = false;
     }
 
     public void ResetTurnAlcoholController()
     {
-        _sumOfOverloadCount = 0;
+        _sumOfUsingMachineCount = 0;
     }
 
     public void EquipItem(Item item)
@@ -95,7 +139,6 @@ public class AlcoholController : MonoBehaviour
             _currentItem.IncreaseAmount(1);
         }
         _currentItem = item;
-        _alcoholControllerUI.UpdateItemSlotUI();
     }
 
     public void ResetItemSlot()
@@ -107,8 +150,6 @@ public class AlcoholController : MonoBehaviour
         
         _currentItem.IncreaseAmount(1);
         _currentItem = null;
-        
-        _alcoholControllerUI.UpdateItemSlotUI();
     }
 
     public void OnClickEnterButton()
@@ -124,24 +165,25 @@ public class AlcoholController : MonoBehaviour
             yield break;
         }
         
-        _currentAttempt--;
+        _currentAttempt++;
+        _sumOfUsingMachineCount++;
 
         if (_currentItem != null && _currentItem.ItemData.ItemType == ItemData.EItemType.Cooler)
         {
-            _currentAttempt += 2;
+            _currentAttempt--;
             _currentItem = null;
         }
 
-        if (_currentAttempt >= 0)
-        {
-            _originPosition = _alcoholControllerPanelTransform.position;
-            Normalize();
-        }
-        else
-        {
-            _sumOfOverloadCount++;
-            OverDrive();
-        }
+        // if (_currentAttempt >= 0)
+        // {
+        //     _originPosition = _alcoholControllerPanelTransform.position;
+        //     Normalize();
+        // }
+        // else
+        // {
+        //     _sumOfOverloadCount++;
+        //     OverDrive();
+        // }
 
         int _increasedMaxAmount = 0;
         int _increasedMinAmount = 0;
@@ -154,12 +196,14 @@ public class AlcoholController : MonoBehaviour
         
         if (_currentInputAlcohol <= _answerAlcohol + _increasedMaxAmount && _currentInputAlcohol >= _answerAlcohol - _increasedMinAmount)
         {
-            Normalize();
+            _enterButton.interactable = false;
+            // Normalize();
             
             _alcoholControllerUI.ChangeAnswerTextUI(true);
             yield return new WaitForSeconds(0.7f);
             StartCoroutine(_alcoholControllerUI.UpdateAlcoholControllerUICoroutine());
-            _barGameManager.OnClickEnterCutSceneButton();
+
+            _isAlcoholPhaseDone = true;
         }
         else
         {
@@ -176,7 +220,7 @@ public class AlcoholController : MonoBehaviour
 
             bool isHitLiverScan = false;
             
-            if (_currentScanType == ScanManager.EScanType.LIVER)
+            if (ScanManager.Inst.CurrentScanData is LiverScanData)
             {
                 if (_answerAlcohol % 10 == _currentInputAlcohol % 10 ||
                     _answerAlcohol / 10 == _currentInputAlcohol / 10)
@@ -186,14 +230,12 @@ public class AlcoholController : MonoBehaviour
             }
             
             _currentInputAlcohol = -1;
-            
 
             AudioManager.Inst.PlaySFX("alcohol_machine_gauge");
-            _alcoholControllerUI.UpdateItemSlotUI();
             yield return StartCoroutine(_alcoholControllerUI.UpdateAlcoholControllerUICoroutine());
             yield return new WaitForSeconds(0.4f);
             
-            if (_currentScanType == ScanManager.EScanType.CONDITION)
+            if (ScanManager.Inst.CurrentScanData is ConditionScanData)
             {
                 _minAlcohol = _minAlcohol + 3 > _answerAlcohol ? _answerAlcohol : _minAlcohol + 3;
                 _maxAlcohol = _maxAlcohol - 3 < _answerAlcohol ? _answerAlcohol : _maxAlcohol - 3;
@@ -201,7 +243,7 @@ public class AlcoholController : MonoBehaviour
                 yield return StartCoroutine(_alcoholControllerUI.UpdateAlcoholControllerUICoroutine());
             }
 
-            if (_currentScanType == ScanManager.EScanType.LIVER && isHitLiverScan is true && _isUsedLiverScan is false)
+            if (ScanManager.Inst.CurrentScanData is LiverScanData && isHitLiverScan is true && _isUsedLiverScan is false)
             {
                 _isUsedLiverScan = true;
                 _minAlcohol = _minAlcohol + 10 > _answerAlcohol ? _answerAlcohol : _minAlcohol + 10;
@@ -210,7 +252,7 @@ public class AlcoholController : MonoBehaviour
                 yield return StartCoroutine(_alcoholControllerUI.UpdateAlcoholControllerUICoroutine());
             }
             
-            if (_currentScanType == ScanManager.EScanType.HEARTBEAT)
+            if (ScanManager.Inst.CurrentScanData is HeartbeatScanData)
             {
                 int randNum = Random.Range(1, 100);
 

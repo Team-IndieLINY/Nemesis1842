@@ -4,25 +4,21 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-public class Item : MonoBehaviour,IPointerDownHandler,IPointerEnterHandler,IPointerExitHandler
+public class Item : MonoBehaviour,IPointerClickHandler,IPointerEnterHandler,IPointerExitHandler
 {
     [SerializeField]
     private ItemData _itemData;
     public ItemData ItemData => _itemData;
-
-    [SerializeField]
-    private GameObject _itemGO;
-    
     
     [SerializeField]
     private int _itemAmount = 2;
     public int ItemAmount => _itemAmount;
 
     [SerializeField]
-    private ItemHandler _itemHandler;
+    private ItemTooltipUI _itemTooltipUI;
 
     [SerializeField]
-    private ItemTooltipUI _itemTooltipUI;
+    private AlcoholController _alcoholController;
 
     private ItemUI _itemUI;
 
@@ -34,30 +30,6 @@ public class Item : MonoBehaviour,IPointerDownHandler,IPointerEnterHandler,IPoin
     public void SetItem(int amount)
     {
         _itemAmount = amount;
-    }
-
-    
-
-    public void OnPointerDown(PointerEventData eventData)
-    {
-        if (_itemAmount <= 0)
-        {
-            return;
-        }
-        
-        _itemAmount--;
-        _itemUI.UpdateItemUI();
-        
-        _itemHandler.SetItem(this);
-        
-        ItemHandler.IsClicked = true;
-        _itemGO.SetActive(true);
-        
-        Vector3 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        mousePosition.z = 0f;
-        _itemGO.transform.position = mousePosition;
-        
-
     }
 
     public void IncreaseAmount(int amount)
@@ -75,5 +47,17 @@ public class Item : MonoBehaviour,IPointerDownHandler,IPointerEnterHandler,IPoin
     public void OnPointerExit(PointerEventData eventData)
     {
         _itemTooltipUI.gameObject.SetActive(false);
+    }
+
+    public void OnPointerClick(PointerEventData eventData)
+    {
+        if (_alcoholController.CurrentItem == this)
+        {
+            return;
+        }
+        
+        _itemAmount--;
+        _itemUI.UpdateItemUI();
+        _alcoholController.EquipItem(this);
     }
 }

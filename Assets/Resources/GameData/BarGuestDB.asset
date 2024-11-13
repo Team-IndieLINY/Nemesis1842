@@ -190,7 +190,6 @@ MonoBehaviour:
     triangle_leaven_count: 2
     leaven_answer: 1
     heartbeat_answer: 3
-    alcohol_control_attempt: 3
   - guest_code: 0002
     step_order: 1
     cocktail_code: 002
@@ -205,7 +204,6 @@ MonoBehaviour:
     triangle_leaven_count: 1
     leaven_answer: 1
     heartbeat_answer: 9
-    alcohol_control_attempt: 4
   - guest_code: 0002
     step_order: 2
     cocktail_code: 003
@@ -220,7 +218,6 @@ MonoBehaviour:
     triangle_leaven_count: 3
     leaven_answer: 0
     heartbeat_answer: 10
-    alcohol_control_attempt: 3
   NPCScripts:
   - npc_code: 0001
     script: "\uCF5C\uBA3C, \uBC8C\uC368 \uCD9C\uADFC\uD558\uB294 \uAC70\uC57C?"

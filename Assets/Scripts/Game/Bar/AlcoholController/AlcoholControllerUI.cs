@@ -31,7 +31,7 @@ public class AlcoholControllerUI : MonoBehaviour
     private TextMeshProUGUI _attemptCountText;
 
     [SerializeField]
-    private Image _itemSlotImage;
+    private TextMeshProUGUI _scanBuffDescriptionText;
 
     [SerializeField]
     private List<Sprite> _scanIconSprites;
@@ -46,6 +46,8 @@ public class AlcoholControllerUI : MonoBehaviour
 
     private void Awake()
     {
+        var transform1 = _scanIconImage.transform;
+        transform1.localScale = new Vector3(transform1.localScale.x, 0, 1);
         _oneAlcoholPerGaugeLength = _alcoholGaugeBarBackgroundRectTransform.sizeDelta.x * 0.01f;
     }
     
@@ -61,34 +63,9 @@ public class AlcoholControllerUI : MonoBehaviour
         _minAlcoholText.text = _alcoholController.MinAlcohol.ToString();
     }
 
-    public void UpdateItemSlotUI()
-    {
-        _itemSlotImage.sprite = _alcoholController.CurrentItem == null
-            ? null
-            : _alcoholController.CurrentItem.ItemData.ItemSprite;
-
-        if (_itemSlotImage.sprite != null)
-        {
-            _itemSlotImage.SetNativeSize();
-            var sizeDelta = _itemSlotImage.rectTransform.sizeDelta;
-            sizeDelta = new Vector2(sizeDelta.x * 2,
-                sizeDelta.y * 2);
-            _itemSlotImage.rectTransform.sizeDelta = sizeDelta;
-        }
-
-        if (_itemSlotImage.sprite == null)
-        {
-            _itemSlotImage.color = new Color32(255, 255, 255, 0);
-        }
-        else
-        {
-            _itemSlotImage.color = new Color32(255, 255, 255, 255);
-        }
-    }
-
     public void UpdateScanBuffUI()
     {
-        if (_alcoholController.CurrentScanType == ScanManager.EScanType.FAIL)
+        if (ScanManager.Inst.CurrentScanData == null)
         {
             _scanIconImage.color = new Color32(255, 255, 255, 0);
         }
@@ -96,13 +73,37 @@ public class AlcoholControllerUI : MonoBehaviour
         {
             _scanIconImage.color = new Color32(255, 255, 255, 255);
         }
-        _scanIconImage.sprite = _scanIconSprites[(int)_alcoholController.CurrentScanType];
+        
+        _scanIconImage.sprite = _scanIconSprites[(int)ScanManager.Inst.CurrentScanType];
         _scanIconImage.SetNativeSize();
-        Vector2 size = _scanIconImage.rectTransform.sizeDelta;
-        size.x *= 2;
-        size.y *= 2;
 
-        _scanIconImage.rectTransform.sizeDelta = size;
+        _scanIconImage.transform.DOScale(new Vector3(0.8f, 0.8f, 1f), 0.2f);
+        
+        var sizeDelta = _scanIconImage.rectTransform.sizeDelta;
+        sizeDelta = new Vector2(sizeDelta.x * 2,
+            sizeDelta.y * 2);
+        _scanIconImage.rectTransform.sizeDelta = sizeDelta;
+
+        if (ScanManager.Inst.CurrentScanData == null)
+        {
+            StartCoroutine(TypeScanBuffDescription(""));
+        }
+        else
+        {
+            StartCoroutine(TypeScanBuffDescription(ScanManager.Inst.CurrentScanData.ScanBuffDescription));
+        }
+        
+    }
+
+    private IEnumerator TypeScanBuffDescription(string str)
+    {
+        _scanBuffDescriptionText.text = "";
+
+        foreach (var letter in str.ToCharArray())
+        {
+            _scanBuffDescriptionText.text += letter;
+            yield return new WaitForSeconds(0.02f);
+        }
     }
 
     public void ChangeAnswerTextUI(bool isAnswer)
@@ -120,7 +121,6 @@ public class AlcoholControllerUI : MonoBehaviour
                     _guessAlcoholText.color = new Color32(250, 182, 47, 255);
                 });
         }
-
     }
 
     private void UpdateGuessAlcoholUI()
@@ -138,14 +138,19 @@ public class AlcoholControllerUI : MonoBehaviour
     public IEnumerator UpdateAlcoholControllerUICoroutine()
     {
         UpdateGuessAlcoholUI();
-        UpdateAttemptCountUI();
         
         yield return StartCoroutine(UpdateAlcoholRangeUICoroutine());
+        yield return StartCoroutine(UpdateAttemptCountUICoroutine());
     }
 
     public void ResetAlcoholControllerUI()
     {
         _guessAlcoholText.color = new Color32(250, 182, 47, 255);
+        _scanIconImage.color = new Color32(255, 255, 255, 0);
+        _scanBuffDescriptionText.text = "";
+        
+        var transform1 = _scanIconImage.transform;
+        transform1.localScale = new Vector3(transform1.localScale.x, 0, 1);
     }
     
     private IEnumerator UpdateAlcoholRangeUICoroutine()
@@ -229,6 +234,20 @@ public class AlcoholControllerUI : MonoBehaviour
     
     private void UpdateAttemptCountUI()
     {
-        _attemptCountText.text = _alcoholController.CurrentAttempt + " Turn";
+        _attemptCountText.text = (_alcoholController.CurrentAttempt * _alcoholController.UtilitiesCost).ToString();
+    }
+    
+    private IEnumerator UpdateAttemptCountUICoroutine()
+    {
+        int currentUtilitiesCost = Int32.Parse(_attemptCountText.text);
+        
+        while (currentUtilitiesCost < _alcoholController.CurrentAttempt * _alcoholController.UtilitiesCost)
+        {
+            currentUtilitiesCost++;
+
+            _attemptCountText.text = currentUtilitiesCost.ToString();
+
+            yield return new WaitForSeconds(0.02f);
+        }
     }
 }

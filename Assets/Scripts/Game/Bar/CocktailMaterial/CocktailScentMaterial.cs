@@ -11,7 +11,7 @@ public class CocktailScentMaterial : CocktailMaterial,IPointerEnterHandler,IPoin
     
     public override void SetCocktail()
     {
-        _cocktailMakingManager.SetScent(_scentType);
+        StartCoroutine(_cocktailMakingManager.SetScent(_scentType));
     }
     
     public void OnPointerEnter(PointerEventData eventData)

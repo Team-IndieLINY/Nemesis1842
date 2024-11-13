@@ -12,4 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3e5ffbf05da7a1a4d86e5c8a9d337bee, type: 3}
   m_Name: CurveTriangle
   m_EditorClassIdentifier: 
+  _scanBuffDescription: "30% \uD655\uB960\uB85C \uCD5C\uB300\uAC12 20 \uAC10\uC18C"
   _heartbeatType: 2

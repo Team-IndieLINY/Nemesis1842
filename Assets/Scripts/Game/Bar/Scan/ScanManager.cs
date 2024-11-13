@@ -51,6 +51,9 @@ public class ScanManager : MonoBehaviour
     [SerializeField]
     private HeartbeatScanner _heartbeatScanner;
 
+    private ScanData _currentScanData;
+    public ScanData CurrentScanData => _currentScanData;
+
     public EScanType CurrentScanType { get; set; }
 
     public ConditionScanData.EConditionType AnswerConditionType { get; set; }
@@ -108,8 +111,7 @@ public class ScanManager : MonoBehaviour
             {
                 _scanEvaluationTexts[(int)CurrentScanType].color = new Color32(31, 75, 9, 255);
                 _scanEvaluationTexts[(int)CurrentScanType].text = "성공";
-                
-                _alcoholController.ApplyScanResult(CurrentScanType);
+                _currentScanData = conditionScanData;
 
                 return true;
             }
@@ -117,7 +119,8 @@ public class ScanManager : MonoBehaviour
             {
                 _scanEvaluationTexts[(int)CurrentScanType].color = new Color32(128, 23, 11, 255);
                 _scanEvaluationTexts[(int)CurrentScanType].text = "실패";
-                _alcoholController.ApplyScanResult(EScanType.FAIL);
+                _currentScanData = null;
+                
                 return false;
             }
         }
@@ -128,14 +131,16 @@ public class ScanManager : MonoBehaviour
             {
                 _scanEvaluationTexts[(int)CurrentScanType].color = new Color32(31, 75, 9, 255);
                 _scanEvaluationTexts[(int)CurrentScanType].text = "성공";
-                _alcoholController.ApplyScanResult(CurrentScanType);
+                _currentScanData = liverScanData;
+                
                 return true;
             }
             else
             {
                 _scanEvaluationTexts[(int)CurrentScanType].color = new Color32(128, 23, 11, 255);
                 _scanEvaluationTexts[(int)CurrentScanType].text = "실패";
-                _alcoholController.ApplyScanResult(EScanType.FAIL);
+                _currentScanData = null;
+                
                 return false;
             }
         }
@@ -146,14 +151,16 @@ public class ScanManager : MonoBehaviour
             {
                 _scanEvaluationTexts[(int)CurrentScanType].color = new Color32(31, 75, 9, 255);
                 _scanEvaluationTexts[(int)CurrentScanType].text = "성공";
-                _alcoholController.ApplyScanResult(CurrentScanType);
+                _currentScanData = heartbeatScanData;
+                
                 return true;
             }
             else
             {
                 _scanEvaluationTexts[(int)CurrentScanType].color = new Color32(128, 23, 11, 255);
                 _scanEvaluationTexts[(int)CurrentScanType].text = "실패";
-                _alcoholController.ApplyScanResult(EScanType.FAIL);
+                _currentScanData = null;
+                
                 return false;
             }
         }
