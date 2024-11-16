@@ -17,6 +17,13 @@ public class PlayerOutside : MonoBehaviour
         _moneyUI.UpdateMoneyUI();
     }
 
+    public void EarnMoney(int amount)
+    {
+        int tempMoney = _money;
+        _money = Mathf.Clamp(_money + amount, 0, Int32.MaxValue);
+        
+        StartCoroutine(_moneyUI.AnimateEarningMoneyText(tempMoney, _money));
+    }
     private void LoadMoney()
     {
         _money = PlayerManager.Instance().Money;

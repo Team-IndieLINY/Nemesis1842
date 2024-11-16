@@ -28,16 +28,16 @@ public abstract class GuideLineInfo : MonoBehaviour,IPointerClickHandler
 
         if (TutorialManager.Inst.UseTutorial)
         {
-            if (isSuccess is true)
-            {
-                TutorialManager.Inst.ShowTutorialByIndex(4);
-            }
-            else
-            {
-                TutorialManager.Inst.ShowTutorial();
-            }
-
-            yield return new WaitUntil(() => TutorialManager.Inst.IsShowing == false);
+            // if (isSuccess is true)
+            // {
+            //     TutorialManager.Inst.ShowTutorialByIndex(4);
+            // }
+            // else
+            // {
+            //     TutorialManager.Inst.ShowTutorial();
+            // }
+            //
+            // yield return new WaitUntil(() => TutorialManager.Inst.IsShowing == false);
         }
 
         yield return new WaitForSeconds(1f);

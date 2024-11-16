@@ -10,8 +10,7 @@ public class Item : MonoBehaviour,IPointerClickHandler,IPointerEnterHandler,IPoi
     private ItemData _itemData;
     public ItemData ItemData => _itemData;
     
-    [SerializeField]
-    private int _itemAmount = 2;
+    private int _itemAmount;
     public int ItemAmount => _itemAmount;
 
     [SerializeField]
@@ -27,14 +26,17 @@ public class Item : MonoBehaviour,IPointerClickHandler,IPointerEnterHandler,IPoi
         _itemUI = GetComponent<ItemUI>();
     }
 
-    public void SetItem(int amount)
+    private void Start()
     {
-        _itemAmount = amount;
+        _itemAmount = InventoryManager.Instance().ItemAmounts[(int)_itemData.ItemType];
+        _itemUI.UpdateItemUI();
     }
 
     public void IncreaseAmount(int amount)
     {
         _itemAmount += amount;
+        
+        InventoryManager.Instance().AddItem(_itemData.ItemType,amount);
         _itemUI.UpdateItemUI();
     }
 
@@ -53,10 +55,22 @@ public class Item : MonoBehaviour,IPointerClickHandler,IPointerEnterHandler,IPoi
     {
         if (_alcoholController.CurrentItem == this)
         {
+            _itemAmount++;
+            InventoryManager.Instance().AddItem(_itemData.ItemType,1);
+            _itemUI.UpdateItemUI();
+            
+            _alcoholController.EquipItem(null);
+            return;
+        }
+
+        if (_itemAmount == 0)
+        {
             return;
         }
         
         _itemAmount--;
+        
+        InventoryManager.Instance().AddItem(_itemData.ItemType,-1);
         _itemUI.UpdateItemUI();
         _alcoholController.EquipItem(this);
     }

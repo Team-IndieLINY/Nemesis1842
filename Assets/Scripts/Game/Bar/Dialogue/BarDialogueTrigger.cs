@@ -7,6 +7,12 @@ using UnityEngine.UI;
 [RequireComponent(typeof(BarDialogueManager))]
 public class BarDialogueTrigger : MonoBehaviour
 {
+    [SerializeField]
+    private GameObject _chatBalloonGO;
+
+    [SerializeField]
+    private GameObject _tutorialChatBalloonGO;
+    
     private BarDialogueManager _barDialogueManager;
 
     private void Awake()
@@ -20,11 +26,27 @@ public class BarDialogueTrigger : MonoBehaviour
         {
             if (_barDialogueManager.IsTyped is true)
             {
-                _barDialogueManager.SkipTypeScripts();
+                if (_chatBalloonGO.activeSelf == true)
+                {
+                    _barDialogueManager.SkipTypeScripts();
+                }
+
+                if (_tutorialChatBalloonGO.activeSelf == true)
+                {
+                    _barDialogueManager.SkipTypeTutorialScripts();
+                }
             }
             else
             {
-                _barDialogueManager.DisplayNextScript();
+                if (_chatBalloonGO.activeSelf == true)
+                {
+                    _barDialogueManager.DisplayNextScript();
+                }
+
+                if (_tutorialChatBalloonGO.activeSelf == true)
+                {
+                    _barDialogueManager.DisplayNextTutorialScript();
+                }
             }
         }
     }

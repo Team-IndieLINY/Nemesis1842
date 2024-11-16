@@ -33,9 +33,6 @@ public class BarGameManager : MonoBehaviour
     private AlcoholController _alcoholController;
 
     [SerializeField]
-    private GameObject _openCocktailRecipeButtonGO;
-
-    [SerializeField]
     private GameObject _enterAlcoholPhaseButtonGO;
 
     [SerializeField]
@@ -46,6 +43,18 @@ public class BarGameManager : MonoBehaviour
 
     [SerializeField]
     private int _cocktailPrice;
+
+    [SerializeField]
+    private List<string> _tutorialScripts;
+
+    [SerializeField]
+    private List<string> _tutorial2Scripts;
+    
+    [SerializeField]
+    private List<string> _tutorial3Scripts;    
+    
+    [SerializeField]
+    private List<string> _tutorial4Scripts;
 
     public int CocktailPrice => _cocktailPrice;
 
@@ -100,6 +109,9 @@ public class BarGameManager : MonoBehaviour
 
     [SerializeField]
     private CocktailMakingScreenDialougeManager _cocktailMakingScreenDialougeManager;
+
+    [SerializeField]
+    private TutorialMemo _tutorialMemo;
 
     private int _stepCount;
     public int StepCount => _stepCount;
@@ -157,6 +169,13 @@ public class BarGameManager : MonoBehaviour
 
             yield return new WaitUntil(() => _barDialogueManager.IsProgressed == false);
 
+            if (TutorialManager.Inst.UseTutorial)
+            {
+                _barDialogueManager.StartTutorialDialogue(_tutorialScripts);
+            }
+
+            yield return new WaitUntil(() => _barDialogueManager.IsProgressed == false);
+
             for (int i = 1; i <= _stepDatas.Count; i++)
             {
                 SetStep(_stepDatas[i - 1]);
@@ -173,18 +192,23 @@ public class BarGameManager : MonoBehaviour
                 EnterAlcoholPhase();
                 
                 yield return new WaitUntil(() => _alcoholController.IsAlcoholPhaseDone == true);
+
+                if (TutorialManager.Inst.UseTutorial)
+                {
+                    _tutorialMemo.HideMemo();
+                }
                 
                 EnterCocktailMakingScreen();
                 
                 yield return new WaitUntil(() =>
                     _playableDirector.state == PlayState.Paused);
 
-                _cocktailMakingScreenDialougeManager.StartDialogue(_stepDatas[i - 1].cocktail_summary_text);
-
                 if (TutorialManager.Inst.UseTutorial)
                 {
-                    TutorialManager.Inst.ShowTutorialByIndex(5);
+                    _barDialogueManager.StartTutorialDialogue(_tutorial4Scripts);
                 }
+
+                _cocktailMakingScreenDialougeManager.StartDialogue(_stepDatas[i - 1].cocktail_summary_text);
                 
                 yield return new WaitUntil(() =>
                     _playableDirector.state == PlayState.Paused && _playableDirector.time == 0f);
@@ -242,6 +266,10 @@ public class BarGameManager : MonoBehaviour
     private void EnterAlcoholPhase()
     {
         _alcoholController.ActivateAlcoholController();
+        if (TutorialManager.Inst.UseTutorial)
+        {
+            _barDialogueManager.StartTutorialDialogue(_tutorial3Scripts);
+        }
     }
 
     private void AppearGuest(BarGuestEntity guestData)
@@ -268,11 +296,6 @@ public class BarGameManager : MonoBehaviour
         _scanSelectorGO.SetActive(true);
         _guestScreenBackgroundImage.DOFade(0.8f, 0.3f);
         _scanSelectorCanvasGroup.DOFade(1f, 0.3f);
-        
-        if (TutorialManager.Inst.UseTutorial)
-        {
-            TutorialManager.Inst.ShowTutorial();
-        }
     }
 
     public void EnterScanPhase()
@@ -286,7 +309,7 @@ public class BarGameManager : MonoBehaviour
         _scanSelectorGO.SetActive(false);
         if (TutorialManager.Inst.UseTutorial)
         {
-            TutorialManager.Inst.ShowTutorial();
+            _barDialogueManager.StartTutorialDialogue(_tutorial2Scripts);
         }
         ScanManager.Inst.EnterScanPhase();
     }
@@ -363,7 +386,6 @@ public class BarGameManager : MonoBehaviour
 
     private void ResetStep()
     {
-        _openCocktailRecipeButtonGO.SetActive(true);
         _enterAlcoholPhaseButtonGO.SetActive(true);
         _cocktailMakingManager.ResetStepCocktail();
         ScanManager.Inst.ResetStepScanManager();

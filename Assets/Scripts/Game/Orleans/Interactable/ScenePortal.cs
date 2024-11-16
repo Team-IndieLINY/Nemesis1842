@@ -33,11 +33,17 @@ public class ScenePortal : Portal
             else if (DayManager.Instance.TimeType == NPCData.ETimeType.Dawn)
             {
                 AudioManager.Inst.FadeOutMusic("dawn");
+                DayManager.Instance.IncreaseDay();
             }
             _fadeImage.DOFade(1f, 1f)
                 .OnKill(() =>
-                {
+                { 
                     PlayerController.AllowMovement();
+                    if (gameObject.name == "HousePortal" && DayManager.Instance.Day == 3 && DayManager.Instance.TimeType == NPCData.ETimeType.Evening)
+                    {
+                        LoadingScreen.Instance.LoadScene("DayEndingScene");
+                        return;
+                    }
                     LoadingScreen.Instance.LoadScene(_sceneName);
                 });
         }

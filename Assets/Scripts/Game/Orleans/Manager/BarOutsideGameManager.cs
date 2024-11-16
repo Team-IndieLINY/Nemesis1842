@@ -2,8 +2,11 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using DG.Tweening;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.UI;
+using Sequence = DG.Tweening.Sequence;
 
 public class BarOutsideGameManager : MonoBehaviour
 {
@@ -12,6 +15,9 @@ public class BarOutsideGameManager : MonoBehaviour
 
     [SerializeField]
     private GameObject _npcPrefab;
+
+    [SerializeField]
+    private GameObject _cutSceneTriggerPrefab;
 
     [SerializeField]
     private Transform _npcGroup;
@@ -30,6 +36,18 @@ public class BarOutsideGameManager : MonoBehaviour
 
     [SerializeField]
     private PlayerController _player;
+
+    [SerializeField]
+    private CanvasGroup _dayStartPanelCanvasGroup;
+
+    [SerializeField]
+    private Image _dayStartImage;
+    
+    [SerializeField]
+    private Sprite[] _dayStartSprites;
+
+    [SerializeField]
+    private GameObject[] _extraNPCs;
     
     private List<NPCData> _npcDatas;
 
@@ -44,6 +62,7 @@ public class BarOutsideGameManager : MonoBehaviour
 
     private void Start()
     {
+        _dayStartImage.sprite = _dayStartSprites[DayManager.Instance.Day - 1];
         SetDay();
     }
 
@@ -51,11 +70,32 @@ public class BarOutsideGameManager : MonoBehaviour
     {
         if(DayManager.Instance.TimeType == NPCData.ETimeType.Evening)
         {
+            _dayStartPanelCanvasGroup.gameObject.SetActive(true);
+            Sequence sequence = DOTween.Sequence();
+            
+            sequence.PrependInterval(1f)
+                .Append(_dayStartPanelCanvasGroup.DOFade(0f, 2f))
+                .OnKill(() =>
+                {
+                    _dayStartPanelCanvasGroup.interactable = false;
+                });
+            
             AudioManager.Inst.FadeInMusic("evening");
+
+            foreach (var extraNPC in _extraNPCs)
+            {
+                extraNPC.SetActive(true);
+            }
         }
         else if (DayManager.Instance.TimeType == NPCData.ETimeType.Dawn)
         {
+            _dayStartPanelCanvasGroup.gameObject.SetActive(false);
             AudioManager.Inst.FadeInMusic("dawn");
+            
+            foreach (var extraNPC in _extraNPCs)
+            {
+                extraNPC.SetActive(false);
+            }
         }
         
         _skySpriteRenderer.sprite = _skySprites[(int)DayManager.Instance.TimeType];

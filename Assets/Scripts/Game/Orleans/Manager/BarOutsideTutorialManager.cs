@@ -11,22 +11,13 @@ public class BarOutsideTutorialManager : MonoBehaviour
     private bool _useTutorial;
 
     [SerializeField]
-    private CanvasGroup _tutorialImageCanvasGroup;
+    private BarOutsideTutorialPopup _barOutsideTutorialPopup;
 
-    private void Awake()
+    private void Start()
     {
-        _tutorialImageCanvasGroup.alpha = 0f;
-        if (_useTutorial)
+        if (_useTutorial && DayManager.Instance.TimeType == NPCData.ETimeType.Evening && DayManager.Instance.Day == 1)
         {
-            _tutorialImageCanvasGroup.DOFade(1f, 0.7f);
-        }
-    }
-
-    private void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.Escape) && _useTutorial)
-        {
-            _tutorialImageCanvasGroup.DOFade(0f, 0.4f);
+            PopUpUIManager.Inst.OpenUI(_barOutsideTutorialPopup);
         }
     }
 }

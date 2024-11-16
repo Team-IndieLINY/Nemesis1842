@@ -8,4 +8,5 @@ public class NPCScriptEntity
 {
     public string npc_code;
     public string script;
+    public int interact_state;
 }

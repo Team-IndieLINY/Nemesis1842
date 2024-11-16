@@ -2,17 +2,30 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class ShakerInfoUI : MonoBehaviour
 {
     [SerializeField]
     private CocktailMakingManager _cocktailMakingManager;
+    
+    [SerializeField]
+    private Image _liquorImage;
 
+    [SerializeField]
+    private Image _garnishImage;
+    
     [SerializeField]
     private TextMeshProUGUI _currentTasteTypeText;
 
     [SerializeField]
     private TextMeshProUGUI _currentScentTypeText;
+    
+    [SerializeField]
+    private Sprite[] _liquorSprites;
+
+    [SerializeField]
+    private Sprite[] _garnishSprites;
     
     private Dictionary<Cocktail.ETasteType, string> _tasteTypeByTasteTypeName
         = new()
@@ -41,20 +54,30 @@ public class ShakerInfoUI : MonoBehaviour
         {
             _currentTasteTypeText.text =
                 _tasteTypeByTasteTypeName[(Cocktail.ETasteType)_cocktailMakingManager.TasteType];
+
+            _liquorImage.sprite = _liquorSprites[(int)_cocktailMakingManager.TasteType];
+            _liquorImage.SetNativeSize();
+            _liquorImage.color = new Color32(255, 255, 255, 255);
         }
         else
         {
             _currentTasteTypeText.text = "";
+            _liquorImage.color = new Color32(255, 255, 255, 0);
         }
 
         if (_cocktailMakingManager.ScentType != null)
         {
             _currentScentTypeText.text =
                 _scentTypeByScentTypeName[(Cocktail.EScentType)_cocktailMakingManager.ScentType];
+
+            _garnishImage.sprite = _garnishSprites[(int)_cocktailMakingManager.ScentType];
+            _garnishImage.SetNativeSize();
+            _garnishImage.color = new Color32(255, 255, 255, 255);
         }
         else
         {
             _currentScentTypeText.text = "";
+            _garnishImage.color = new Color32(255, 255, 255, 0);
         }
     }
 
@@ -62,5 +85,7 @@ public class ShakerInfoUI : MonoBehaviour
     {
         _currentTasteTypeText.text = "";
         _currentScentTypeText.text = "";
+        _liquorImage.color = new Color32(255, 255, 255, 0);
+        _garnishImage.color = new Color32(255, 255, 255, 0);
     }
 }

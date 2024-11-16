@@ -7,11 +7,6 @@ using UnityEngine;
 
 public class CocktailRecipeUI : MonoBehaviour
 {
-    [SerializeField]
-    private RectTransform _cocktailRecipeOpenRectTransform;
-
-    [SerializeField]
-    private RectTransform _cocktailRecipeCloseRectTransform;
 
     [SerializeField]
     private GameObject _cocktailRecipeBlockPrefab;
@@ -38,22 +33,5 @@ public class CocktailRecipeUI : MonoBehaviour
                 cocktailRecipeBlockUI.InitializeCocktailRecipeBlockUI(cocktailData);
             }
         }
-    }
-
-    public void OnClickOpenRecipeButton(GameObject recipeOpenbuttonGO)
-    {
-        AudioManager.Inst.PlaySFX("recipe_open");
-        recipeOpenbuttonGO.SetActive(false);
-        _rectTransform.DOAnchorPos(_cocktailRecipeOpenRectTransform.anchoredPosition, 0.6f);
-
-        if (TutorialManager.Inst.UseTutorial && TutorialManager.Inst.TutorialUIIndex == 7)
-        {
-            TutorialManager.Inst.ShowTutorial();
-        }
-    }
-    public void OnClickCloseRecipeButton(GameObject recipeOpenButtonGO)
-    {
-        recipeOpenButtonGO.SetActive(true);
-        _rectTransform.DOAnchorPos(_cocktailRecipeCloseRectTransform.anchoredPosition, 0.6f);
     }
 }

@@ -16,7 +16,22 @@ public class CocktailRecipeBlockUI : MonoBehaviour
     private TextMeshProUGUI _cocktailDescriptionText;
 
     [SerializeField]
-    private TextMeshProUGUI _cocktailRecipeText;
+    private Image _liquorImage;
+
+    [SerializeField]
+    private Image _garnishImage;
+
+    [SerializeField]
+    private TextMeshProUGUI _liquorNameText;
+    
+    [SerializeField]
+    private TextMeshProUGUI _garnishNameText;
+
+    [SerializeField]
+    private Sprite[] _liquorSprites;
+
+    [SerializeField]
+    private Sprite[] _garnishSprites;
 
     public static Dictionary<Cocktail.ETasteType, string> _tasteTypeByTasteTypeName
         = new()
@@ -42,9 +57,22 @@ public class CocktailRecipeBlockUI : MonoBehaviour
     {
         _cocktailImage.sprite = cocktailData.CocktailSprite;
         _cocktailImage.SetNativeSize();
+        
+        var sizeDelta = _cocktailImage.rectTransform.sizeDelta;
+        sizeDelta = new Vector2(sizeDelta.x * 0.8f,
+            sizeDelta.y * 0.8f);
+        _cocktailImage.rectTransform.sizeDelta = sizeDelta;
+
         _cocktailNameText.text = cocktailData.CocktailName;
         _cocktailDescriptionText.text = cocktailData.CocktailDescription;
-        _cocktailRecipeText.text = _tasteTypeByTasteTypeName[cocktailData.TasteType] + " + " +
-                                   _scentTypeByScentTypeName[cocktailData.ScentType];
+
+        _liquorImage.sprite = _liquorSprites[(int)cocktailData.TasteType];
+        _garnishImage.sprite = _garnishSprites[(int)cocktailData.ScentType];
+        
+        _liquorImage.SetNativeSize();
+        _garnishImage.SetNativeSize();
+        
+        _liquorNameText.text = _tasteTypeByTasteTypeName[cocktailData.TasteType];
+        _garnishNameText.text = _scentTypeByScentTypeName[cocktailData.ScentType];
     }
 }

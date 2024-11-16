@@ -12,9 +12,13 @@ public class ItemUI : MonoBehaviour
 
     private Item _item;
 
-    private void Start()
+    private void Awake()
     {
         _item = GetComponent<Item>();
+    }
+
+    private void Start()
+    {
         UpdateItemUI();
     }
 

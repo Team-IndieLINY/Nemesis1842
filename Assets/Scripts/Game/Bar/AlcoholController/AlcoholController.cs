@@ -121,6 +121,7 @@ public class AlcoholController : MonoBehaviour
         
         _alcoholControllerUI.UpdateAlcoholControllerUI();
         _alcoholControllerUI.ResetAlcoholControllerUI();
+        _alcoholControllerUI.UpdateItemIconUI();
 
         InActivateAlcoholController();
 
@@ -134,11 +135,13 @@ public class AlcoholController : MonoBehaviour
 
     public void EquipItem(Item item)
     {
-        if (_currentItem != null)
+        if (_currentItem != null && item != null)
         {
             _currentItem.IncreaseAmount(1);
         }
         _currentItem = item;
+
+        _alcoholControllerUI.UpdateItemIconUI();
     }
 
     public void ResetItemSlot()

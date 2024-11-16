@@ -30,6 +30,7 @@ public class PlayerController : MonoBehaviour
 
     private void Update()
     {
+        
         if ((Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.E)) && BarOutsideDialougeManager.Inst.IsProgressed is true)
         {
             if (BarOutsideDialougeManager.Inst.IsTyped is true)
@@ -41,7 +42,8 @@ public class PlayerController : MonoBehaviour
                 BarOutsideDialougeManager.Inst.DisplayNextScript();
             }
         }
-        else if (Input.GetKeyDown(KeyCode.E) && _currentInteractable != null && BarOutsideDialougeManager.Inst.IsProgressed is false)
+        else if (Input.GetKeyDown(KeyCode.E) && _currentInteractable != null && BarOutsideDialougeManager.Inst.IsProgressed is false 
+                 && restrictingMovementCount == 0)
         {
             _currentInteractable.HideInteractableUI();
             _currentInteractable.Interact();

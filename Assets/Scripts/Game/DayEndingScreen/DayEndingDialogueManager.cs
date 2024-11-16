@@ -104,6 +104,7 @@ public class DayEndingDialogueManager : MonoBehaviour
         
         DayManager.Instance.ResetDayManager();
         InventoryManager.Instance().ResetInventoryData();
+        InventoryManager.Instance().ResetItems();
         PlayerManager.Instance().ResetPlayerData();
         SceneManager.LoadScene("MainScreen");
     }

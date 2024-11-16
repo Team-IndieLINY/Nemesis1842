@@ -38,6 +38,12 @@ public class AlcoholControllerUI : MonoBehaviour
 
     [SerializeField]
     private Image _scanIconImage;
+
+    [SerializeField]
+    private Image _itemIconImage;
+
+    [SerializeField]
+    private Sprite[] _itemIconSprites;
     
     private float _oneAlcoholPerGaugeLength;
     private bool _isChangedAlcoholRange;
@@ -78,11 +84,6 @@ public class AlcoholControllerUI : MonoBehaviour
         _scanIconImage.SetNativeSize();
 
         _scanIconImage.transform.DOScale(new Vector3(0.8f, 0.8f, 1f), 0.2f);
-        
-        var sizeDelta = _scanIconImage.rectTransform.sizeDelta;
-        sizeDelta = new Vector2(sizeDelta.x * 2,
-            sizeDelta.y * 2);
-        _scanIconImage.rectTransform.sizeDelta = sizeDelta;
 
         if (ScanManager.Inst.CurrentScanData == null)
         {
@@ -249,5 +250,17 @@ public class AlcoholControllerUI : MonoBehaviour
 
             yield return new WaitForSeconds(0.02f);
         }
+    }
+
+    public void UpdateItemIconUI()
+    {
+        if (_alcoholController.CurrentItem == null)
+        {
+            _itemIconImage.color = new Color32(255, 255, 255, 0);
+            return;
+        }
+        
+        _itemIconImage.sprite = _itemIconSprites[(int)_alcoholController.CurrentItem.ItemData.ItemType];
+        _itemIconImage.color = new Color32(255, 255, 255, 255);
     }
 }

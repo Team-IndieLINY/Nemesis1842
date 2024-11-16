@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using DG.Tweening;
 using UnityEngine;
 using UnityEngine.UI;
@@ -16,12 +17,21 @@ public class NPC : MonoBehaviour, IInteractable
 
     [SerializeField]
     private Image _npcNameTextImage;
+
+    [SerializeField]
+    private Sprite[] _npcTypeSprites;
     
-    private List<NPCScriptEntity> _npcScripts = new();
+    private List<NPCScriptEntity> _npcFirstInteractScripts = new();
+    private List<NPCScriptEntity> _npcNotFirstInteractScripts = new();
+    
     private Animator _animator;
+    private NPCData _npcData;
+    
+    public bool IsInteracted { get; set; }
 
     private void Awake()
     {
+        IsInteracted = false;
         _animator = GetComponent<Animator>();
         _npcIconImage.fillAmount = 0;
         _npcNameTextImage.color = new Color32(255, 255, 255, 0);
@@ -29,7 +39,14 @@ public class NPC : MonoBehaviour, IInteractable
 
     public void Interact()
     {
-        BarOutsideDialougeManager.Inst.StartDialogueByNPCDialougeEntity(transform.position, _npcScripts);
+        if (IsInteracted is false)
+        {
+            BarOutsideDialougeManager.Inst.StartDialogueByNPCDialougeEntity(_npcData, _npcFirstInteractScripts, this);
+        }
+        else
+        {
+            BarOutsideDialougeManager.Inst.StartDialogueByNPCDialougeEntity(_npcData, _npcNotFirstInteractScripts, this);
+        }
     }
 
     public void ShowInteractableUI()
@@ -58,12 +75,18 @@ public class NPC : MonoBehaviour, IInteractable
 
     public void SetNPC(NPCData npcData, List<NPCScriptEntity> npcScriptEntities)
     {
-        _animator.runtimeAnimatorController = npcData.AnimatorController;
-        _npcScripts = npcScriptEntities;
+        _npcData = npcData;
+        
+        _animator.runtimeAnimatorController = _npcData.AnimatorController;
+
+        _npcFirstInteractScripts = npcScriptEntities.Where(x => x.interact_state == 0).ToList();
+        _npcNotFirstInteractScripts = npcScriptEntities.Where(x => x.interact_state == 1).ToList();
         
         BoxCollider2D boxCollider2D = gameObject.AddComponent<BoxCollider2D>();
         boxCollider2D.isTrigger = true;
-        _npcNameTextImage.sprite = npcData.NPCNameSprite;
+        _npcNameTextImage.sprite = _npcData.NPCNameSprite;
         _npcNameTextImage.SetNativeSize();
+
+        _npcIconImage.sprite = _npcTypeSprites[(int)npcData.NPCType];
     }
 }

@@ -28,7 +28,7 @@ public class MoneyUI : MonoBehaviour
         _minusMoneyOriginPosition = _minusMoneyText.rectTransform.anchoredPosition;
     }
     
-    private IEnumerator AnimateEarningMoneyText(int startMoney, int endMoney)
+    public IEnumerator AnimateEarningMoneyText(int startMoney, int endMoney)
     {
         TextMeshProUGUI text;
         Vector2 originPosition;

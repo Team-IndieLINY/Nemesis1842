@@ -330,6 +330,16 @@ MonoBehaviour:
     clip: {fileID: 8300000, guid: 539239909766f4740828449a904c4938, type: 3}
   - name: drunken
     clip: {fileID: 8300000, guid: 03421d623618741459cb6c0ead6f92f3, type: 3}
+  - name: cut_scene
+    clip: {fileID: 8300000, guid: bfc294a45f9c88643ba759d85ee204e2, type: 3}
+  - name: check
+    clip: {fileID: 8300000, guid: dbca7fca06639924caec5601056cf912, type: 3}
+  - name: receipt
+    clip: {fileID: 8300000, guid: 8161dc60cb75dfe4186f96102bb1edc6, type: 3}
+  - name: alcohol_machine_click
+    clip: {fileID: 8300000, guid: bceee2ea4126bd04b815dec3a4c9533f, type: 3}
+  - name: alcohol_machine_gauge
+    clip: {fileID: 8300000, guid: 18741e94a941636429f4db4dd9c6901f, type: 3}
   musicSource: {fileID: 2347733625220441384}
   sfxSource: {fileID: 3057471691295174623}
   audioMixer: {fileID: 24100000, guid: ec5e0eafdd1dcf54caa2fd3ec43d5072, type: 2}

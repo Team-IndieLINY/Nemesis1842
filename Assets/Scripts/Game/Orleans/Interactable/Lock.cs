@@ -10,6 +10,12 @@ public class Lock : InteractableObject
 
     [SerializeField]
     private LockUI _lockUI;
+
+    [SerializeField]
+    private List<string> _cantInteractScripts;
+
+    [SerializeField]
+    private Transform _playerTransform;
     
     private int _maxAnswerNumberStringLength;
     
@@ -25,7 +31,14 @@ public class Lock : InteractableObject
 
     public override void Interact()
     {
-        PopUpUIManager.Inst.OpenUI(_lockUI);
+        if (DayManager.Instance.Day == 3)
+        {
+            PopUpUIManager.Inst.OpenUI(_lockUI);
+        }
+        else
+        {
+            BarOutsideDialougeManager.Inst.StartDialogueByString(_playerTransform.position, _cantInteractScripts);
+        }
     }
 
     public void OnClickKeyPadButton(int number)

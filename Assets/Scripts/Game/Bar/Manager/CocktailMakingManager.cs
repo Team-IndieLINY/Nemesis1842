@@ -189,8 +189,6 @@ public class CocktailMakingManager : MonoBehaviour
                 else
                 {
                     _enterAlcoholPhaseButtonGO.SetActive(false);
-                    _openRecipeButtonGO.SetActive(false);
-                    _cocktailRecipeUI.OnClickCloseRecipeButton(_openRecipeButtonGO);
                     _completedCocktialImage.sprite = _resultCocktailData.CocktailSprite;
                     _completedCocktialImage.SetNativeSize();
                     

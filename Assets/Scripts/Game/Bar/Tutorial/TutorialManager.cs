@@ -27,10 +27,25 @@ public class TutorialManager : MonoBehaviour
     private int _tutorialUIIndex;
     public int TutorialUIIndex => _tutorialUIIndex;
 
+    private bool _isTutorialDone = false;
+    public bool IsTutorialDone =>_isTutorialDone;
+
     private void Awake()
     {
         _tutorialUIIndex = 0;
         Inst = this;
+    }
+
+    private void Start()
+    {
+        if (DayManager.Instance.Day == 1)
+        {
+            _useTutorial = true;
+        }
+        else
+        {
+            _useTutorial = false;
+        }
     }
 
     private void Update()

@@ -20,8 +20,11 @@ public abstract class CocktailMaterial : MonoBehaviour, IBeginDragHandler, IDrag
     private Image _image;
     private Vector3 _originalPosition;
     private Transform _originalParent;
+
+    public static bool _isDraged;
     private void Awake()
     {
+        _isDraged = false;
         _originalParent = transform.parent;
         _rectTransform = GetComponent<RectTransform>();
         _image = GetComponent<Image>();
@@ -31,6 +34,8 @@ public abstract class CocktailMaterial : MonoBehaviour, IBeginDragHandler, IDrag
     public void OnBeginDrag(PointerEventData eventData)
     {
         AudioManager.Inst.PlaySFX("bottle_click");
+
+        _isDraged = true;
         if (TutorialManager.Inst.UseTutorial && TutorialManager.Inst.TutorialUIIndex == 8)
         {
             TutorialManager.Inst.ShowTutorial();
@@ -58,8 +63,7 @@ public abstract class CocktailMaterial : MonoBehaviour, IBeginDragHandler, IDrag
         transform.SetParent(_originalParent);
         _rectTransform.anchoredPosition = _originalPosition;
         _image.raycastTarget = true;
-
-
+        _isDraged = false;
     }
 
     public abstract void SetCocktail();

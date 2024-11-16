@@ -10,9 +10,6 @@ public class BarOutsideDialougeManager : MonoBehaviour
     
     [SerializeField]
     private GameObject _chatBalloonGO;
-
-    [SerializeField]
-    private GameObject _arrowGO;
     
     [SerializeField]
     private TextMeshProUGUI _characterNameText;
@@ -25,8 +22,17 @@ public class BarOutsideDialougeManager : MonoBehaviour
 
     [SerializeField]
     private AudioClip _typingAudioClip;
+
+    [SerializeField]
+    private Inventory _inventory;
+
+    [SerializeField]
+    private PlayerOutside _playerOutside;
     
     private Queue<string> _scriptsQueue = new Queue<string>();
+
+    [SerializeField]
+    private ItemAquirePopup _itemAquirePopup;
 
     private bool _isProgressed = false;
     public bool IsProgressed => _isProgressed;
@@ -38,21 +44,26 @@ public class BarOutsideDialougeManager : MonoBehaviour
 
     private Coroutine _typeScriptsCoroutine;
 
+    private NPCData _currentNPCData;
+    private NPC _currentNPC;
+
     private void Awake()
     {
         Inst = this;
         _chatBalloonGO.SetActive(false);
     }
     
-    public void StartDialogueByNPCDialougeEntity(Vector3 characterPosition, List<NPCScriptEntity> barDialogueEntities)
+    public void StartDialogueByNPCDialougeEntity(NPCData npcData, List<NPCScriptEntity> barDialogueEntities,NPC npc)
     {
         PlayerController.RestrictMovement();
-        _chatBalloonGO.transform.position = new Vector3(characterPosition.x, characterPosition.y + 1.7f, 0);
+        _currentNPC = npc;
+        _chatBalloonGO.transform.position = new Vector3(npcData.SpawnPosition.x, npcData.SpawnPosition.y + 1.7f, 0);
+
+        _currentNPCData = npcData;
         
         _isProgressed = true;
         
         _chatBalloonGO.SetActive(true);
-        _arrowGO.SetActive(true);
         
         _scriptsQueue.Clear();
         
@@ -66,6 +77,8 @@ public class BarOutsideDialougeManager : MonoBehaviour
     
     public void StartDialogueByString(Vector3 characterPosition, List<string> barDialogueEntities)
     {
+        _currentNPCData = null;
+        
         PlayerController.RestrictMovement();
         
         _chatBalloonGO.transform.position = new Vector3(characterPosition.x, characterPosition.y + 1.7f, 0);
@@ -73,7 +86,6 @@ public class BarOutsideDialougeManager : MonoBehaviour
         _isProgressed = true;
         
         _chatBalloonGO.SetActive(true);
-        _arrowGO.SetActive(true);
         
         _scriptsQueue.Clear();
         
@@ -126,7 +138,51 @@ public class BarOutsideDialougeManager : MonoBehaviour
     {
         _isProgressed = false;
         _chatBalloonGO.SetActive(false);
+
+        Reward();
+
+        if (_currentNPC != null)
+        {
+            _currentNPC.IsInteracted = true;
+        }
         
         PlayerController.AllowMovement();
+    }
+
+    private void Reward()
+    {
+        if (_currentNPCData == null)
+        {
+            return;
+        }
+
+        if (_currentNPC.IsInteracted is true)
+        {
+            return;
+        }
+        
+        if (_currentNPCData.RewardItemData != null)
+        {
+            InventoryManager.Instance()
+                .AddItem(_currentNPCData.RewardItemData.ItemType, _currentNPCData.RewardItemAmount);
+
+            _itemAquirePopup.SetAquireItem(_currentNPCData.RewardItemData);
+            
+            PopUpUIManager.Inst.OpenUI(_itemAquirePopup);
+        }
+        else if (_currentNPCData.RewardStealableItemData != null)
+        {
+            if (_currentNPCData.RewardStealableItemData is InformationItemData informationItemData)
+            {
+                _inventory.AddItem(informationItemData);
+            }
+            else if (_currentNPCData.RewardStealableItemData is MoneyItemData moneyItemData)
+            {
+                _itemAquirePopup.SetEarnMoney(moneyItemData);
+                _playerOutside.EarnMoney(moneyItemData.Money);
+                
+                PopUpUIManager.Inst.OpenUI(_itemAquirePopup);
+            }
+        }
     }
 }

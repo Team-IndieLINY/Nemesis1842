@@ -68,6 +68,7 @@ public class StealableItem : MonoBehaviour,IPointerEnterHandler,IPointerExitHand
     public void OnPointerClick(PointerEventData eventData)
     {
         StolenManager.Inst.InActivateStealableItems();
+        StolenManager.Inst.HideStealableItemNameTag();
 
         _rectTransform.DOKill();
         _rectTransform.anchoredPosition = _upPosition;

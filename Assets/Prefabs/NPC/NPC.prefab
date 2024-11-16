@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 8521501047522379051}
   - component: {fileID: 2156848108744633767}
   - component: {fileID: 6621419213738327464}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: NPC
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -102,6 +102,9 @@ MonoBehaviour:
   _tooltipGO: {fileID: 2008602259035738764}
   _npcIconImage: {fileID: 7877939370161511940}
   _npcNameTextImage: {fileID: 8340411684444549616}
+  _npcTypeSprites:
+  - {fileID: 21300000, guid: b92ac7fa2aa5832479e088de856ac225, type: 3}
+  - {fileID: 21300000, guid: 028185e5cac8fac4bbe5a1d534cd273e, type: 3}
 --- !u!95 &6621419213738327464
 Animator:
   serializedVersion: 5
@@ -134,7 +137,7 @@ GameObject:
   - component: {fileID: 4771654025882814648}
   - component: {fileID: 5160534462189836173}
   - component: {fileID: 7877939370161511940}
-  m_Layer: 5
+  m_Layer: 12
   m_Name: TooltipImage
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -189,7 +192,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 88bf7e6f77306b14a96e62979bad43f0, type: 3}
+  m_Sprite: {fileID: 21300000, guid: b92ac7fa2aa5832479e088de856ac225, type: 3}
   m_Type: 3
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -211,7 +214,7 @@ GameObject:
   - component: {fileID: 4732821451560134691}
   - component: {fileID: 7826812344070248220}
   - component: {fileID: 6921574637805286756}
-  m_Layer: 5
+  m_Layer: 12
   m_Name: Canvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -312,7 +315,7 @@ GameObject:
   - component: {fileID: 3883626360167517510}
   - component: {fileID: 5598959649245629861}
   - component: {fileID: 8340411684444549616}
-  m_Layer: 5
+  m_Layer: 12
   m_Name: NPCName
   m_TagString: Untagged
   m_Icon: {fileID: 0}

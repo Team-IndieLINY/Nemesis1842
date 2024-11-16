@@ -16,6 +16,9 @@ public class LockUI : MonoBehaviour, IPopUpable
     private TextMeshProUGUI[] _inputNumberTexts = new TextMeshProUGUI[4];
 
     [SerializeField]
+    private Image[] _lines;
+
+    [SerializeField]
     private Button[] _keypadButtons;
 
     [SerializeField]
@@ -51,10 +54,11 @@ public class LockUI : MonoBehaviour, IPopUpable
         {
             _keypadImages[i] = _keypadButtons[i].GetComponent<Image>();
         }
-        
-        foreach (var inputNumberText in _inputNumberTexts)
+
+        for (int i = 0; i < _inputNumberTexts.Length; i++)
         {
-            inputNumberText.text = "";
+            _inputNumberTexts[i].text = "";
+            _lines[i].color = new Color32(255, 255, 255, 0);
         }
         
         gameObject.SetActive(false);
@@ -92,10 +96,12 @@ public class LockUI : MonoBehaviour, IPopUpable
             if (i >= _lock.CurrentNumberString.Length)
             {
                 _inputNumberTexts[i].text = "";
+                _lines[i].color = new Color32(255, 255, 255, 0);
                 continue;
             }
             
             _inputNumberTexts[i].text = _lock.CurrentNumberString[i].ToString();
+            _lines[i].color = new Color32(255, 255, 255, 255);
         }
 
         if (_lock.CurrentNumberString.Length > 0)

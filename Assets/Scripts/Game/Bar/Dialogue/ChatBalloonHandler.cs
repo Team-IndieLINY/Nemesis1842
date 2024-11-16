@@ -12,11 +12,27 @@ public class ChatBalloonHandler : MonoBehaviour,IPointerClickHandler
     {
         if (_barDialogueManager.IsTyped is true)
         {
-            _barDialogueManager.SkipTypeScripts();
+            if (gameObject.name == "ChatBalloonImage")
+            {
+                _barDialogueManager.SkipTypeScripts();
+            }
+
+            if (gameObject.name == "TutorialChatBalloonImage")
+            {
+                _barDialogueManager.SkipTypeTutorialScripts();
+            }
         }
         else
         {
-            _barDialogueManager.DisplayNextScript();
+            if (gameObject.name == "ChatBalloonImage")
+            {
+                _barDialogueManager.DisplayNextScript();
+            }
+
+            if (gameObject.name == "TutorialChatBalloonImage")
+            {
+                _barDialogueManager.DisplayNextTutorialScript();
+            }
         }
     }
 }
