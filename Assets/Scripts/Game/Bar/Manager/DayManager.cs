@@ -50,6 +50,9 @@ public class DayManager : MonoBehaviour
     public void IncreaseDay()
     {
         day++;
+        PlayerManager.Instance().CoolerItemUsingCount = 0;
+        PlayerManager.Instance().AIEnhancerItemUsingCount = 0;
+        InventoryManager.Instance().TodayAquireInformationItemDatas = new List<InformationItemData>();
         ChangeTimeType();
     }
 

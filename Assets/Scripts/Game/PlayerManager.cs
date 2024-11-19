@@ -18,6 +18,10 @@ public class PlayerManager
 
     private int _money;
     public int Money => _money;
+    
+    public int AIEnhancerItemUsingCount { get; set; }
+    public int CoolerItemUsingCount { get; set; }
+    
 
     public void SaveMoneyData(int money)
     {
@@ -27,5 +31,7 @@ public class PlayerManager
     public void ResetPlayerData()
     {
         _money = 0;
+        AIEnhancerItemUsingCount = 0;
+        CoolerItemUsingCount = 0;
     }
 }

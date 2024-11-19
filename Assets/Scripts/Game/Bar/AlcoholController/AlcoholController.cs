@@ -175,6 +175,9 @@ public class AlcoholController : MonoBehaviour
         {
             _currentAttempt--;
             _currentItem = null;
+            
+            PlayerManager.Instance().CoolerItemUsingCount++;
+            _alcoholControllerUI.UpdateItemIconUI();
         }
 
         // if (_currentAttempt >= 0)
@@ -195,6 +198,9 @@ public class AlcoholController : MonoBehaviour
             _increasedMaxAmount = 3;
             _increasedMinAmount = 3;
             _currentItem = null;
+
+            PlayerManager.Instance().AIEnhancerItemUsingCount++;
+            _alcoholControllerUI.UpdateItemIconUI();
         }
         
         if (_currentInputAlcohol <= _answerAlcohol + _increasedMaxAmount && _currentInputAlcohol >= _answerAlcohol - _increasedMinAmount)

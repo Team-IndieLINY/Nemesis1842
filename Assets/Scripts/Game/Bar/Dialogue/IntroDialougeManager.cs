@@ -120,7 +120,7 @@ public class IntroDialougeManager : MonoBehaviour
     {
         _isProgressed = false;
         _chatBalloonGO.SetActive(false);
-
+        
         _fadeImage.DOFade(1f, 2f)
             .OnKill(() =>
             {

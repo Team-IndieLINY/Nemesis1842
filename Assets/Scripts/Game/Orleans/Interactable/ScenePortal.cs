@@ -17,13 +17,29 @@ public class ScenePortal : Portal
 
     [SerializeField]
     private List<string> _inactivatedScript;
+    
+    [SerializeField]
+    private List<string> _youNeedToUnLockScript;
 
     [SerializeField]
     private Transform _playerTransform;
 
+    [SerializeField]
+    private DayEndingUI _dayEndingUI;
+
     public override void Interact()
     {
-        if (DayManager.Instance.TimeType == _interactableTimeType)
+        if (gameObject.name == "HousePortal" && DayManager.Instance.Day == 3 &&
+                 DayManager.Instance.TimeType == NPCData.ETimeType.Dawn)
+        {
+            if (_youNeedToUnLockScript.Count == 0)
+            {
+                return;
+            }
+            
+            BarOutsideDialougeManager.Inst.StartDialogueByString(_playerTransform.position, _youNeedToUnLockScript);
+        }
+        else if (DayManager.Instance.TimeType == _interactableTimeType)
         {
             PlayerController.RestrictMovement();
             if (DayManager.Instance.TimeType == NPCData.ETimeType.Evening)
@@ -33,17 +49,17 @@ public class ScenePortal : Portal
             else if (DayManager.Instance.TimeType == NPCData.ETimeType.Dawn)
             {
                 AudioManager.Inst.FadeOutMusic("dawn");
-                DayManager.Instance.IncreaseDay();
             }
             _fadeImage.DOFade(1f, 1f)
                 .OnKill(() =>
-                { 
-                    PlayerController.AllowMovement();
-                    if (gameObject.name == "HousePortal" && DayManager.Instance.Day == 3 && DayManager.Instance.TimeType == NPCData.ETimeType.Evening)
+                {
+                    if (gameObject.name == "HousePortal")
                     {
-                        LoadingScreen.Instance.LoadScene("DayEndingScene");
+                        _dayEndingUI.OpenDayEndingUI();
                         return;
                     }
+                    
+                    PlayerController.AllowMovement();
                     LoadingScreen.Instance.LoadScene(_sceneName);
                 });
         }

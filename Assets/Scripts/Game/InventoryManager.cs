@@ -29,6 +29,8 @@ public class InventoryManager
     private InformationItemData[] _informationItemDatas = new InformationItemData[5];
     public InformationItemData[] InformationItemDatas => _informationItemDatas;
 
+    public List<InformationItemData> TodayAquireInformationItemDatas { get; set; } = new List<InformationItemData>();
+
     private int[] _itemAmounts = new int[3];
     public int[] ItemAmounts => _itemAmounts;
     
@@ -41,6 +43,7 @@ public class InventoryManager
     public void ResetInventoryData()
     {
         _informationItemDatas = new InformationItemData[5];
+        TodayAquireInformationItemDatas = new List<InformationItemData>();
     }
 
     public void AddItem(ItemData.EItemType itemType, int amount)

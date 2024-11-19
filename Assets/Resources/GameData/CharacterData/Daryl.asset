@@ -1,0 +1,35 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6213eaf18fd2a0c44809a07e193dacf6, type: 3}
+  m_Name: Daryl
+  m_EditorClassIdentifier: 
+  _characterMouseAnimatorController: {fileID: 9100000, guid: 9cfe94c73449c8e4ab791c7aa0c4592a,
+    type: 2}
+  _characterEyeAnimatorController: {fileID: 9100000, guid: 6f59a2b7681d6d84eadacf0c4e4ab101,
+    type: 2}
+  _characterCode: 03
+  _characterName: "\uB370\uB9B4"
+  _heartPoint: {x: 0.63, y: -0.19}
+  _stringByCharacterSprite:
+    data:
+    - key: Normal
+      value: {fileID: 21300000, guid: 84562abf2142f4d4083fd65b6120dd43, type: 3}
+    - key: Tipsy
+      value: {fileID: 21300000, guid: a22b2819b128dbe43a7ac7982bebeb47, type: 3}
+    - key: Drunken
+      value: {fileID: 21300000, guid: 4afb0eef9b7c5814abb93f40fa651d4c, type: 3}
+    - key: Wasted
+      value: {fileID: 21300000, guid: 9087b66cd38a47b4c9e6782b66b54e44, type: 3}
+    - key: WakeUp
+      value: {fileID: 21300000, guid: 20611e29363222b458c29d4b6d3c31d3, type: 3}
+    - key: Angry
+      value: {fileID: 21300000, guid: e2b87d55662ed8f4a9fadf242849b687, type: 3}

@@ -31,7 +31,7 @@ public class Lock : InteractableObject
 
     public override void Interact()
     {
-        if (DayManager.Instance.Day == 3)
+        if (DayManager.Instance.Day == 3 && DayManager.Instance.TimeType == NPCData.ETimeType.Dawn)
         {
             PopUpUIManager.Inst.OpenUI(_lockUI);
         }

@@ -162,12 +162,12 @@ public class StolenManager : MonoBehaviour
 
     public void InActivateStealableItems()
     {
-        _currentBelonging.GetComponent<Belonging>().InActivateStealableItems();
+        _currentBelonging.transform.GetChild(0).GetComponent<Belonging>().InActivateStealableItems();
     }
     
     public void ActivateStealableItems()
     {
-        _currentBelonging.GetComponent<Belonging>().ActivateStealableItems();
+        _currentBelonging.transform.GetChild(0).GetComponent<Belonging>().ActivateStealableItems();
     }
 
     public void ShowStealableItemNameTag(string itemName)
@@ -195,5 +195,6 @@ public class StolenManager : MonoBehaviour
     public void StealInformationItem(InformationItemData informationItemData)
     {
         _inventory.AddItem(informationItemData);
+        InventoryManager.Instance().TodayAquireInformationItemDatas.Add(informationItemData);
     }
 }

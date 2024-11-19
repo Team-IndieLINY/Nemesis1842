@@ -233,6 +233,11 @@ public class BarGameManager : MonoBehaviour
             EnterStolenPhase();
 
             yield return new WaitUntil(() => _stolenManager.IsStolenDone);
+            yield return new WaitForSeconds(1.5f);
+            
+            ShowScripts(_stepDatas.Count + 1, guestData);
+            
+            yield return new WaitUntil(() => _barDialogueManager.IsProgressed == false);
 
             DisappearGuest();
 

@@ -38,11 +38,7 @@ public class TutorialManager : MonoBehaviour
 
     private void Start()
     {
-        if (DayManager.Instance.Day == 1)
-        {
-            _useTutorial = true;
-        }
-        else
+        if(DayManager.Instance.Day > 1)
         {
             _useTutorial = false;
         }

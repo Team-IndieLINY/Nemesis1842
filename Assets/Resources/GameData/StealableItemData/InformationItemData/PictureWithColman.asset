@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 732af2acf34c36b419ef8be5dc1e6310, type: 3}
   m_Name: PictureWithColman
   m_EditorClassIdentifier: 
-  _itemSprite: {fileID: 21300000, guid: 0b12aaed2f2f9f9439e59950856d4598, type: 3}
+  _itemSprite: {fileID: 21300000, guid: 2c35e60bba7b7cb4bafea9e66f176b65, type: 3}
   _itemName: "\uCF5C\uBA3C\uACFC \uD568\uAED8 \uCC0D\uC740 \uC0AC\uC9C4"
   _itemDescription: "\uCF5C\uBA3C\uACFC \uD568\uAED8 \uCC0D\uC740 \uC0AC\uC9C4\uC778
     \uAC83 \uAC19\uB2E4. \uC0AC\uC774\uAC00 \uC560\uB73B\uD574 \uBCF4\uC778\uB2E4."

@@ -29,3 +29,7 @@ MonoBehaviour:
       value: {fileID: 21300000, guid: 6b13d9be1d02b7b46a9fa0b861e4ff61, type: 3}
     - key: Wasted
       value: {fileID: 21300000, guid: a0cd4f8974d0d1845991b2c5cf6e3c7a, type: 3}
+    - key: Angry
+      value: {fileID: 21300000, guid: 711affa5cf7cbc34ea2b210ea84e44dc, type: 3}
+    - key: WakeUp
+      value: {fileID: 21300000, guid: f76689d927cb5db49a21029b3597a96e, type: 3}

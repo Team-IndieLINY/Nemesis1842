@@ -20,7 +20,7 @@ public class LoadingScreen : MonoBehaviour
                 }
                 else
                 {
-                    Debug.Log("LoadingScreen°¡ ¾ø½À´Ï´Ù.");
+                    Debug.Log("LoadingScreenê°€ ì—†ìŠµë‹ˆë‹¤.");
                 }
             }
             return _instance;
@@ -63,7 +63,7 @@ public class LoadingScreen : MonoBehaviour
 
             if (op.progress >= 0.9f)
             {
-                // 3ÃÊ µ¿¾È Áö¿¬
+                // 3ì´ˆ ë™ì•ˆ ì§€ì—°
                 float delay = 3f;
                 float timer = 0f;
                 while (timer < delay)

@@ -23,9 +23,13 @@ MonoBehaviour:
     data:
     - key: Normal
       value: {fileID: 21300000, guid: a8f10c95af9da8446af57213998d5515, type: 3}
-    - key: Two_hands_chin
+    - key: Tipsy
       value: {fileID: 21300000, guid: 588e905d392cf0c45885de757401a6ad, type: 3}
-    - key: Two_hands_table
+    - key: Drunken
       value: {fileID: 21300000, guid: d51bca616868e7242bac83d0885d69aa, type: 3}
     - key: Wasted
       value: {fileID: 21300000, guid: 95cf46179a9568a40804ffbb5c9a4706, type: 3}
+    - key: WakeUp
+      value: {fileID: 21300000, guid: d51bca616868e7242bac83d0885d69aa, type: 3}
+    - key: Angry
+      value: {fileID: 21300000, guid: a9297594592da6949a1f951c9fb86f2c, type: 3}

@@ -1,11 +1,30 @@
-using System.Collections;
-using System.Collections.Generic;
+using DG.Tweening;
 using UnityEngine;
+using UnityEngine.EventSystems;
+using UnityEngine.UI;
 
-public class Belonging : MonoBehaviour
+public class Belonging : MonoBehaviour,IPointerClickHandler
 {
     [SerializeField]
     private StealableItem[] _stealableItems;
+    
+    [SerializeField]
+    private Sprite _openBelongingSprite;
+
+    [SerializeField]
+    private GameObject _frontGO;
+
+    [SerializeField]
+    private GameObject _innerGO;
+
+    private Image _frontImage;
+    private Image _image;
+
+    private void Awake()
+    {
+        _image = GetComponent<Image>();
+        _frontImage = _frontGO.GetComponent<Image>();
+    }
 
     public void InActivateStealableItems()
     {
@@ -30,5 +49,17 @@ public class Belonging : MonoBehaviour
             
             stealableItem.ActivateStealableItem();
         }
+    }
+
+    public void OnPointerClick(PointerEventData eventData)
+    {
+        _image.raycastTarget = false;
+        
+        _image.sprite = _openBelongingSprite;
+        _image.SetNativeSize();
+        _frontGO.SetActive(true);
+        _innerGO.SetActive(true);
+
+        _frontImage.DOColor(new Color32(255, 255, 255, 40), 0.5f);
     }
 }

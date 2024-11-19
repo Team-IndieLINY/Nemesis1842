@@ -117,6 +117,12 @@ public class BarDialogueManager : MonoBehaviour
         
         _characterNameText.text = barDialogueEntity.character_name;
         _mouthAnimator.enabled = true;
+
+        foreach (var stringBySprite in _guest.CurrentCharacterData.StringByCharacterSprite.GetDict())
+        {
+            _mouthAnimator.SetBool(stringBySprite.Key, false);
+        }
+        
         _mouthAnimator.SetBool(barDialogueEntity.character_sprite_code, true);
         
         _typeScriptsCoroutine = StartCoroutine(TypeScripts(_currentScript));

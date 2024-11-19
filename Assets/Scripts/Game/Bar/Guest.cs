@@ -7,14 +7,13 @@ using UnityEngine.EventSystems;
 using UnityEngine.Playables;
 using UnityEngine.UI;
 
-[RequireComponent(typeof(SpriteRenderer),typeof(PlayableDirector))]
+[RequireComponent(typeof(SpriteRenderer),typeof(PlayableDirector),typeof(Animator))]
 public class Guest : MonoBehaviour
 {
     
     [SerializeField]
     private ConditionScanTool _conditionScanTool;
-
-    [SerializeField]
+    
     private Animator _eyeAnimator;
 
     [SerializeField]
@@ -26,6 +25,7 @@ public class Guest : MonoBehaviour
     private PlayableDirector _playableDirector;
     private List<CharacterData> _characterDatas;
     private CharacterData _currentCharacterData;
+    public CharacterData CurrentCharacterData => _currentCharacterData;
 
     private Vector2 _heartPosition = new();
     public Vector2 HeartPosition => _heartPosition;
@@ -38,6 +38,7 @@ public class Guest : MonoBehaviour
         _spriteRenderer = GetComponent<SpriteRenderer>();
         _playableDirector = GetComponent<PlayableDirector>();
         _characterDatas = Resources.LoadAll<CharacterData>("GameData/CharacterData").ToList();
+        _eyeAnimator = GetComponent<Animator>();
     }
 
     public void SetGuest(BarGuestEntity guestData)
@@ -63,6 +64,11 @@ public class Guest : MonoBehaviour
             AudioManager.Inst.PlaySFX("drunken");
         }
         _spriteRenderer.sprite = _currentCharacterData.StringByCharacterSprite.GetDict()[characterSpriteCode];
+
+        foreach (var stringBySprite in _currentCharacterData.StringByCharacterSprite.GetDict())
+        {
+            _eyeAnimator.SetBool(stringBySprite.Key, false); 
+        }
         _eyeAnimator.SetBool(characterSpriteCode, true);
     }
     

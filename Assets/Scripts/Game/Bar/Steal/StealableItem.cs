@@ -24,14 +24,9 @@ public class StealableItem : MonoBehaviour,IPointerEnterHandler,IPointerExitHand
         _rectTransform = GetComponent<RectTransform>();
         _originalPosition = _rectTransform.anchoredPosition;
         _upPosition = _originalPosition;
-        _upPosition.y += 50f;
+        _upPosition.y += 15f;
         _image.sprite = _stealableItemData.ItemSprite;
         _image.SetNativeSize();
-        
-        var sizeDelta = _image.rectTransform.sizeDelta;
-        sizeDelta =
-            new Vector2(sizeDelta.x * 2, sizeDelta.y * 2);
-        _image.rectTransform.sizeDelta = sizeDelta;
     }
 
     public void OnPointerEnter(PointerEventData eventData)
@@ -73,7 +68,7 @@ public class StealableItem : MonoBehaviour,IPointerEnterHandler,IPointerExitHand
         _rectTransform.DOKill();
         _rectTransform.anchoredPosition = _upPosition;
         
-        Vector2 moreUpPosition = new Vector2(_upPosition.x, _upPosition.y + 60f);
+        Vector2 moreUpPosition = new Vector2(_upPosition.x, _upPosition.y + 20f);
 
         _rectTransform.DOAnchorPos(moreUpPosition, 0.5f);
         _image.DOFade(0f, 0.5f)

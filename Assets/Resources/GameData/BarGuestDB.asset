@@ -24,7 +24,11 @@ MonoBehaviour:
   - guest_code: 0003
     day: 2
     order: 2
-    character_code: 01
+    character_code: 03
+  - guest_code: 0004
+    day: 3
+    order: 1
+    character_code: 04
   CocktailRejectScripts:
   - guest_code: 0001
     step_order: 1
@@ -140,6 +144,35 @@ MonoBehaviour:
     character_name: "\uBCA0\uC77C \uC874"
     script: "\uC73C\uC5BD,,,"
     character_sprite_code: Wasted
+  - guest_code: 0001
+    step_order: 2
+    character_name: "\uBCA0\uC77C \uC874"
+    script: "\uC5B4\uC5B4!!?!!!!!"
+    character_sprite_code: WakeUp
+  - guest_code: 0001
+    step_order: 2
+    character_name: "\uBCA0\uC77C \uC874"
+    script: "\uAFC8\uC744 \uAFE8\uC5B4,,,"
+    character_sprite_code: WakeUp
+  - guest_code: 0001
+    step_order: 2
+    character_name: "\uBCA0\uC77C \uC874"
+    script: "\uC6B0\uB9AC \uC9D1\uC5D0 \uB3C4\uB451\uC774 \uB4DC\uB294 \uAFC8\uC744
+      \uAFE8\uB2E4\uACE0,,"
+    character_sprite_code: WakeUp
+  - guest_code: 0001
+    step_order: 2
+    character_name: "\uBCA0\uC77C \uC874"
+    script: "\uAD1C\uD788 \uAE30\uBD84\uC774 \uBB18\uD558\uB2C8\uAE4C \uC9D1\uC5D0
+      \uBE68\uB9AC \uAC00\uBD10\uC57C\uACA0\uAD70,,,"
+    character_sprite_code: WakeUp
+  - guest_code: 0001
+    step_order: 2
+    character_name: "\uBCA0\uC77C \uC874"
+    script: "\uD53C\uACE4\uD574\uC11C \uC794 \uAC70\uB2C8\uAE4C \uC624\uD574\uB294
+      \uD558\uC9C0 \uB9D0\uB77C\uACE0! \uB0B4 \uC8FC\uB7C9\uC774 \uC5BC\uB9C8\uB098
+      \uC13C \uB370,,"
+    character_sprite_code: WakeUp
   - guest_code: 0002
     step_order: 0
     character_name: "\uC140\uB808\uB098"
@@ -159,55 +192,55 @@ MonoBehaviour:
     script: "\uC5ED\uC2DC \uCF5C\uBA3C,, \uB2F9\uC2E0\uC740 \uBBF8\uCCE4\uC5B4,,
       \uC5B4\uCA5C \uB0B4 \uC785\uB9DB\uC744 \uC774\uB807\uAC8C \uB531\uB9DE\uAC8C
       \uB9CC\uB4E4\uC5B4 \uC904\uC218 \uC788\uC5B4?"
-    character_sprite_code: Two_hands_chin
+    character_sprite_code: Tipsy
   - guest_code: 0002
     step_order: 1
     character_name: "\uC140\uB808\uB098"
     script: "\uD558\uB098\uB9CC \uB9C8\uC2DC\uBA74 \uC544\uC26C\uC6B0\uB2C8 \uD558\uB098\uB9CC
       \uB354\uC918\uBD10"
-    character_sprite_code: Two_hands_chin
+    character_sprite_code: Tipsy
   - guest_code: 0002
     step_order: 1
     character_name: "\uC140\uB808\uB098"
     script: "\uC544\uC73C,, \uC815\uC2E0\uC774 \uBABD\uB871\uD574 ,,, \uC544 \uB9DE\uB2E4,,
       2\uC8FC\uC804\uC5D0 \uB098\uD55C\uD14C \uC92C\uB358 \uC120\uBB3C \uC815\uB9D0
       \uACE0\uB9C8\uC6CC,"
-    character_sprite_code: Two_hands_chin
+    character_sprite_code: Tipsy
   - guest_code: 0002
     step_order: 1
     character_name: "\uC140\uB808\uB098"
     script: "\uC774\uBC88\uC5D0\uB294 \uC870\uAE08 \uB2EC\uB2EC\uD55C\uAC78\uB85C
       \uC800\uBC88\uC5D0 \uADF8 \uC788\uC790\uB098? \uB2EC\uB5A0\uC788\uB294\uAC70?
       \uADF8\uAC78\uB85C \uC918\uBC14"
-    character_sprite_code: Two_hands_chin
+    character_sprite_code: Tipsy
   - guest_code: 0002
     step_order: 1
     character_name: "\uC140\uB808\uB098"
     script: "\uC5B4\uCA5C \uC774\uB9AC \uB9DB\uC788\uB294 \uCE75\uD14C\uC77C\uC744
       \uACC4\uC18D \uD574\uC11C \uB9CC\uB4E4\uC5B4 \uC904 \uC218\uC788\uC5B4? "
-    character_sprite_code: Two_hands_table
+    character_sprite_code: Drunken
   - guest_code: 0002
     step_order: 2
     character_name: "\uC140\uB808\uB098"
     script: "\uB2F9\uC2E0\uC740 \uCC9C\uC7AC\uC778\uAC83 \uAC19\uC544!!"
-    character_sprite_code: Two_hands_table
+    character_sprite_code: Drunken
   - guest_code: 0002
     step_order: 2
     character_name: "\uC140\uB808\uB098"
     script: "\uD638\uD638\uD638\uD638\uD638,,"
-    character_sprite_code: Two_hands_table
+    character_sprite_code: Drunken
   - guest_code: 0002
     step_order: 2
     character_name: "\uC140\uB808\uB098"
     script: "\uC73C\u3161\uC74C,, \uC81C\uAC00 \uB9CE\uC774 \uCDE8\uD588\uB098\uBCF4
       \u314F,,,"
-    character_sprite_code: Two_hands_table
+    character_sprite_code: Drunken
   - guest_code: 0002
     step_order: 2
     character_name: "\uC140\uB808\uB098"
     script: "\uC73C\uC5B4\u3153\uC5B4,,, \uCF5C\uBA38\uC5B4\uC5B8,,,\uB098\uB791
       \uB180\uC790,,,"
-    character_sprite_code: Two_hands_table
+    character_sprite_code: Drunken
   - guest_code: 0002
     step_order: 2
     character_name: "\uC140\uB808\uB098"
@@ -276,6 +309,21 @@ MonoBehaviour:
     character_name: "\uBCA0\uC77C \uC874"
     script: "\uAE30\uC808,,,"
     character_sprite_code: Wasted
+  - guest_code: 0004
+    step_order: 0
+    character_name: "\uB77C\uC774\uC5B8"
+    script: "\u314E\u3147\u3134\u3134\u3134\u3134\u3134\u3134\u3134\u3134\u3134\u3134\u3134\u3134\u3134\u3134\u3134\u3134\u3134\u3134\u3134\u3134\u3134\u3134\u3134\u3134\u3134\u3134\u3134\u3134\u3134\u3134\u3134\u3134\u3134\u3134\u3134\u3134\u3134"
+    character_sprite_code: Normal
+  - guest_code: 0004
+    step_order: 1
+    character_name: "\uB77C\uC774\uC5B8"
+    script: "\u314E\u3147"
+    character_sprite_code: Normal
+  - guest_code: 0004
+    step_order: 2
+    character_name: "\uB77C\uC774\uC5B8"
+    script: "\u3134\u3134"
+    character_sprite_code: WakeUp
   Steps:
   - guest_code: 0001
     step_order: 1
@@ -291,7 +339,7 @@ MonoBehaviour:
     star_leaven_count: 4
     triangle_leaven_count: 2
     leaven_answer: 1
-    heartbeat_answer: 0
+    heartbeat_answer: 1
   - guest_code: 0002
     step_order: 1
     cocktail_code: 002
@@ -305,7 +353,7 @@ MonoBehaviour:
     star_leaven_count: 4
     triangle_leaven_count: 1
     leaven_answer: 1
-    heartbeat_answer: 1
+    heartbeat_answer: 6
   - guest_code: 0002
     step_order: 2
     cocktail_code: 003
@@ -319,7 +367,7 @@ MonoBehaviour:
     star_leaven_count: 5
     triangle_leaven_count: 3
     leaven_answer: 0
-    heartbeat_answer: 2
+    heartbeat_answer: 9
   - guest_code: 0003
     step_order: 1
     cocktail_code: 005
@@ -346,8 +394,22 @@ MonoBehaviour:
     circle_leaven_count: 5
     star_leaven_count: 1
     triangle_leaven_count: 4
-    leaven_answer: 2
-    heartbeat_answer: 2
+    leaven_answer: 1
+    heartbeat_answer: 10
+  - guest_code: 0004
+    step_order: 1
+    cocktail_code: 004
+    condition_value: 10
+    cocktail_summary_text: "\uC5BC\uC74C\uCC98\uB7FC \uCC28\uAC00\uC6B0\uBA70 \uC740\uC740\uD55C
+      \uB2EC\uBE5B\uC774 \uC5F0\uC0C1\uB418\uB294 \uCE75\uD14C\uC77C\uC744 \uB2EC\uB77C\uACE0\uD55C\uB2E4."
+    answer_alcohol: 40
+    condition_answer: 0
+    square_leaven_count: 2
+    circle_leaven_count: 2
+    star_leaven_count: 2
+    triangle_leaven_count: 3
+    leaven_answer: 3
+    heartbeat_answer: 1
   NPCScripts:
   - npc_code: 0001
     script: "\uCF5C\uBA3C, \uBC8C\uC368 \uCD9C\uADFC\uD558\uB294 \uAC70\uC57C?"
