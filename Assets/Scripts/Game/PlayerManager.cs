@@ -21,6 +21,8 @@ public class PlayerManager
     
     public int AIEnhancerItemUsingCount { get; set; }
     public int CoolerItemUsingCount { get; set; }
+
+    public bool IsNewItemDotActivated { get; set; }
     
 
     public void SaveMoneyData(int money)

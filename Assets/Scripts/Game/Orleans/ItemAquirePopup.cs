@@ -23,7 +23,7 @@ public class ItemAquirePopup : MonoBehaviour, IPopUpable
         _itemImage.sprite = itemData.ItemSprite;
         _itemImage.SetNativeSize();
 
-        _itemText.text = "\"" + itemData.ItemName + "\" 을(를) 획득하였습니다.";
+        _itemText.text = "<color=#c89e38>\"" + itemData.ItemName + "\"</color>을(를) 획득하였습니다.";
     }
     
     public void SetEarnMoney(MoneyItemData moneyItemData)

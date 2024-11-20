@@ -1,12 +1,17 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using DG.Tweening;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.Serialization;
+using UnityEngine.UI;
 
 public class DayEndingDialogueManager : MonoBehaviour
 {
+    public static DayEndingDialogueManager Inst { get; private set; }
     [SerializeField]
     private GameObject _chatBalloonGO;
 
@@ -23,9 +28,19 @@ public class DayEndingDialogueManager : MonoBehaviour
     private AudioClip _typingAudioClip;
     
     [SerializeField]
-    private string[] _dayEndingScripts;
+    private Sprite[][] _endingSprites;
+    
+    [SerializeField]
+    private string[][] _dayEndingScripts;
+    
+    [SerializeField]
+    private Image _cutSceneImage;
+    
+    [SerializeField]
+    private Image _fadeImage;
     
     private Queue<string> _scriptsQueue = new Queue<string>();
+    private Queue<Sprite> _cutSceneQueue = new Queue<Sprite>();
 
     private bool _isProgressed = false;
     public bool IsProgressed => _isProgressed;
@@ -39,7 +54,7 @@ public class DayEndingDialogueManager : MonoBehaviour
 
     private void Awake()
     {
-        StartDialogue();
+        Inst = this;
     }
 
     public void StartDialogue()
@@ -51,9 +66,14 @@ public class DayEndingDialogueManager : MonoBehaviour
         
         _scriptsQueue.Clear();
 
-        foreach (var script in _dayEndingScripts)
+        foreach (var script in _dayEndingScripts[(int)EndingManager.Inst.EndingType])
         {
             _scriptsQueue.Enqueue(script);
+        }
+        
+        foreach (var cutSprite in _endingSprites[(int)EndingManager.Inst.EndingType])
+        {
+            _cutSceneQueue.Enqueue(cutSprite);
         }
 
         DisplayNextScript();
@@ -66,6 +86,8 @@ public class DayEndingDialogueManager : MonoBehaviour
             EndDialogue();
             return;
         }
+
+        _cutSceneImage.sprite = _cutSceneQueue.Dequeue();
 
         string script = _scriptsQueue.Dequeue();
         _currentScript = script;
@@ -106,6 +128,17 @@ public class DayEndingDialogueManager : MonoBehaviour
         InventoryManager.Instance().ResetInventoryData();
         InventoryManager.Instance().ResetItems();
         PlayerManager.Instance().ResetPlayerData();
-        SceneManager.LoadScene("MainScreen");
+        PlayerManager.Instance().IsNewItemDotActivated = false;
+        
+        _fadeImage.DOFade(1f, 2f)
+            .OnKill(() =>
+            {
+                ShowCredit();
+            });
+    }
+
+    public void ShowCredit()
+    {
+        
     }
 }

@@ -27,7 +27,7 @@ public class Player : MonoBehaviour
     private void Awake()
     {
         LoadMoney();
-        _moneyText.text = _money + "$";
+        _moneyText.text = _money.ToString();
         _plusMoneyOriginPosition = _plusMoneyText.rectTransform.anchoredPosition;
         _minusMoneyOriginPosition = _minusMoneyText.rectTransform.anchoredPosition;
     }
@@ -81,7 +81,7 @@ public class Player : MonoBehaviour
             else
                 startMoney--;
 
-            _moneyText.text = startMoney + "$";
+            _moneyText.text = startMoney.ToString();
 
             yield return new WaitForSeconds(0.03f);
         }

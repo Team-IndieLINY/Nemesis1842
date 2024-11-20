@@ -22,6 +22,9 @@ public class Lock : InteractableObject
     private string _currentNumberString = "";
     public string CurrentNumberString => _currentNumberString;
 
+    private bool _isInteractFirstTime = true;
+    public bool IsInteractFirstTime => _isInteractFirstTime;
+
     private void Awake()
     {
         _maxAnswerNumberStringLength = answerNumberString.Length;
@@ -33,7 +36,15 @@ public class Lock : InteractableObject
     {
         if (DayManager.Instance.Day == 3 && DayManager.Instance.TimeType == NPCData.ETimeType.Dawn)
         {
-            PopUpUIManager.Inst.OpenUI(_lockUI);
+            if (_isInteractFirstTime == true)
+            {
+                StartCoroutine(LockCutSceneManager.Inst.StartCutScene());
+                _isInteractFirstTime = false;
+            }
+            else
+            {
+                PopUpUIManager.Inst.OpenUI(_lockUI);
+            }
         }
         else
         {
@@ -58,6 +69,8 @@ public class Lock : InteractableObject
         if (_currentNumberString == answerNumberString)
         {
             _lockUI.CorrectPassword();
+            LockCutSceneManager.Inst.StopTimer();
+            
         }
         else
         {

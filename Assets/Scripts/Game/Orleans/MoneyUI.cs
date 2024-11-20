@@ -23,7 +23,7 @@ public class MoneyUI : MonoBehaviour
 
     public void UpdateMoneyUI()
     {
-        _moneyText.text = _player.Money + "$";
+        _moneyText.text = _player.Money.ToString();
         _plusMoneyOriginPosition = _plusMoneyText.rectTransform.anchoredPosition;
         _minusMoneyOriginPosition = _minusMoneyText.rectTransform.anchoredPosition;
     }
@@ -60,7 +60,7 @@ public class MoneyUI : MonoBehaviour
             else
                 startMoney--;
 
-            _moneyText.text = startMoney + "$";
+            _moneyText.text = startMoney.ToString();
 
             yield return new WaitForSeconds(0.03f);
         }

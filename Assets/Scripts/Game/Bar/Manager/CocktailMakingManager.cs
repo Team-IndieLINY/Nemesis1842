@@ -35,9 +35,10 @@ public class CocktailMakingManager : MonoBehaviour
     private Image _completedCocktialImage;
 
     [SerializeField]
-    private Image _tasteInActivateImage;
+    private Image[] _tasteMaterialImages;
+
     [SerializeField]
-    private Image _scentInActivateImage;
+    private Image[] _scentMaterialImages;
 
     [SerializeField]
     private PlayableDirector _handPlayableDirector;
@@ -71,12 +72,18 @@ public class CocktailMakingManager : MonoBehaviour
     {
         _cocktailDatas = Resources.LoadAll<CocktailData>("GameData/CocktailData").ToList();
         ResetStepCocktail();
+
+        foreach (var tasteMaterialImage in _tasteMaterialImages)
+        {
+            tasteMaterialImage.raycastTarget = true;
+            tasteMaterialImage.color = new Color32(255, 255, 255, 255);
+        }
         
-        _tasteInActivateImage.raycastTarget = false;
-        _tasteInActivateImage.color = new Color32(0, 0, 0, 0);
-        
-        _scentInActivateImage.raycastTarget = true;
-        _scentInActivateImage.color = new Color32(0, 0, 0, 233);
+        foreach (var scentMaterialImage in _scentMaterialImages)
+        {
+            scentMaterialImage.raycastTarget = false;
+            scentMaterialImage.color = new Color32(70, 70, 70, 255);
+        }
     }
 
     public IEnumerator SetTaste(Cocktail.ETasteType? tasteType)
@@ -86,16 +93,22 @@ public class CocktailMakingManager : MonoBehaviour
         _tasteType = tasteType;
         _shakerInfoUI.UpdateShakerInfoUI();
         
-        _tasteInActivateImage.raycastTarget = true;
-        _tasteInActivateImage.DOColor(new Color32(0, 0, 0, 233), 0.3f);
+        foreach (var tasteMaterialImage in _tasteMaterialImages)
+        {
+            tasteMaterialImage.raycastTarget = false;
+            tasteMaterialImage.color = new Color32(70, 70, 70, 255);
+        }
 
         yield return new WaitUntil(() => _handPlayableDirector.state == PlayState.Paused);
 
-        _scentInActivateImage.DOColor(new Color32(0, 0, 0, 0), 0.3f)
-            .OnKill(() =>
-            {
-                _scentInActivateImage.raycastTarget = false;
-            });
+        foreach (var scentMaterialImage in _scentMaterialImages)
+        {
+            scentMaterialImage.DOColor(new Color32(255, 255, 255, 255), 0.3f)
+                .OnKill(() =>
+                {
+                    scentMaterialImage.raycastTarget = true;
+                });
+        }
         
         if (IsMaterialEmpty() is false)
         {
@@ -115,8 +128,14 @@ public class CocktailMakingManager : MonoBehaviour
         _scentType = scentType;
         _shakerInfoUI.UpdateShakerInfoUI();
         
-        _scentInActivateImage.raycastTarget = true;
-        _scentInActivateImage.DOColor(new Color32(0, 0, 0, 233), 0.3f);
+        foreach (var scentMaterialImage in _scentMaterialImages)
+        {
+            scentMaterialImage.DOColor(new Color32(70, 70, 70, 255), 0.3f)
+                .OnKill(() =>
+                {
+                    scentMaterialImage.raycastTarget = false;
+                });
+        }
         
         yield return new WaitUntil(() => _handPlayableDirector.state == PlayState.Paused);
 
@@ -145,11 +164,17 @@ public class CocktailMakingManager : MonoBehaviour
         _shakerInfoUI.ResetShakerInfoUI();
         _cocktailSpriteRenderer.color = new Color(1, 1, 1, 0);
         
-        _tasteInActivateImage.raycastTarget = false;
-        _tasteInActivateImage.color = new Color32(0, 0, 0, 0);
+        foreach (var tasteMaterialImage in _tasteMaterialImages)
+        {
+            tasteMaterialImage.raycastTarget = true;
+            tasteMaterialImage.color = new Color32(255, 255, 255, 255);
+        }
         
-        _scentInActivateImage.raycastTarget = true;
-        _scentInActivateImage.color = new Color32(0, 0, 0, 233);
+        foreach (var scentMaterialImage in _scentMaterialImages)
+        {
+            scentMaterialImage.raycastTarget = false;
+            scentMaterialImage.color = new Color32(70, 70, 70, 255);
+        }
     }
 
     public void ResetTurnCocktail()
@@ -180,11 +205,14 @@ public class CocktailMakingManager : MonoBehaviour
                     CocktailMakingScreenDialougeManager.Inst.StartDialogue(_rejectScriptDatas[randomIndex]
                         .cockail_reject_script);
                     
-                    _tasteInActivateImage.DOColor(new Color32(0, 0, 0, 0), 0.3f)
-                        .OnKill(() =>
-                        {
-                            _tasteInActivateImage.raycastTarget = false;
-                        });
+                    foreach (var tasteMaterialImage in _tasteMaterialImages)
+                    {
+                        tasteMaterialImage.DOColor(new Color32(255, 255, 255, 255), 0.3f)
+                            .OnKill(() =>
+                            {
+                                tasteMaterialImage.raycastTarget = true;
+                            });
+                    }
                 }
                 else
                 {
@@ -215,11 +243,14 @@ public class CocktailMakingManager : MonoBehaviour
         CocktailMakingScreenDialougeManager.Inst.StartDialogue(_rejectScriptDatas[randomIndex2]
             .cockail_reject_script);
         
-        _tasteInActivateImage.DOColor(new Color32(0, 0, 0, 0), 0.3f)
-            .OnKill(() =>
-            {
-                _tasteInActivateImage.raycastTarget = false;
-            });
+        foreach (var tasteMaterialImage in _tasteMaterialImages)
+        {
+            tasteMaterialImage.DOColor(new Color32(255, 255, 255, 255), 0.3f)
+                .OnKill(() =>
+                {
+                    tasteMaterialImage.raycastTarget = true;
+                });
+        }
     }
 
     private bool IsMaterialEmpty()

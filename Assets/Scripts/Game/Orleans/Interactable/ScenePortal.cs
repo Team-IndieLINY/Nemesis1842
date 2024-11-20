@@ -39,6 +39,11 @@ public class ScenePortal : Portal
             
             BarOutsideDialougeManager.Inst.StartDialogueByString(_playerTransform.position, _youNeedToUnLockScript);
         }
+        else if (gameObject.name == "BarPortal" && DayManager.Instance.Day == 1 &&
+                         DayManager.Instance.TimeType == NPCData.ETimeType.Evening)
+        {
+            StartCoroutine(CutSceneManager.Inst.StartCutScene());
+        }
         else if (DayManager.Instance.TimeType == _interactableTimeType)
         {
             PlayerController.RestrictMovement();

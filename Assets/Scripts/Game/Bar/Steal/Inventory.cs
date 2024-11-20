@@ -28,6 +28,8 @@ public class Inventory : MonoBehaviour
 
     public void OpenInventory()
     {
+        PlayerManager.Instance().IsNewItemDotActivated = false;
+        
         foreach (var slot in _slots)
         {
             if (slot.IsEmpty() is false)

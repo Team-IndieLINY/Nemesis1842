@@ -34,6 +34,9 @@ public class BarOutsideDialougeManager : MonoBehaviour
     [SerializeField]
     private ItemAquirePopup _itemAquirePopup;
 
+    [SerializeField]
+    private GameObject _newItemRedDotGO;
+
     private bool _isProgressed = false;
     public bool IsProgressed => _isProgressed;
     
@@ -50,6 +53,8 @@ public class BarOutsideDialougeManager : MonoBehaviour
     private void Awake()
     {
         Inst = this;
+        
+        _newItemRedDotGO.SetActive(PlayerManager.Instance().IsNewItemDotActivated);
         _chatBalloonGO.SetActive(false);
     }
     
@@ -175,6 +180,8 @@ public class BarOutsideDialougeManager : MonoBehaviour
             if (_currentNPCData.RewardStealableItemData is InformationItemData informationItemData)
             {
                 _inventory.AddItem(informationItemData);
+                _newItemRedDotGO.SetActive(true);
+                PlayerManager.Instance().IsNewItemDotActivated = true;
             }
             else if (_currentNPCData.RewardStealableItemData is MoneyItemData moneyItemData)
             {

@@ -10,15 +10,15 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5c3541fdf8f417746b3e2095aa0de3d2, type: 3}
-  m_Name: Gang2Evening
+  m_Name: BailJohn 1 evening
   m_EditorClassIdentifier: 
-  npcCode: 0007
+  npcCode: 0001
   _npcType: 0
-  _day: 2
-  _animatorController: {fileID: 9100000, guid: 745117fc13239d446aa5464f2d3aedd5, type: 2}
+  _day: 1
+  _animatorController: {fileID: 9100000, guid: 36ae119adcf4744408fe88c6b12110d3, type: 2}
   _timeType: 0
-  _npcNameSprite: {fileID: 21300000, guid: 64643890b7447dc46857b922692122ab, type: 3}
-  _spawnPosition: {x: -45.13, y: 2.28}
-  _rewardItemData: {fileID: 11400000, guid: cb620db84ddecc3419dab1b9a2040fd0, type: 2}
-  _rewardItemAmount: 1
+  _npcNameSprite: {fileID: 21300000, guid: 214f1a471b22f4948b93652e6f2c9351, type: 3}
+  _spawnPosition: {x: -41.5, y: 2}
+  _rewardItemData: {fileID: 0}
+  _rewardItemAmount: 0
   _rewardStealableItemData: {fileID: 0}

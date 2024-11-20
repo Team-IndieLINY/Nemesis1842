@@ -8,6 +8,6 @@ public class CutSceneTrigger : MonoBehaviour
 {
     private void OnTriggerEnter(Collider other)
     {
-        CutSceneManager.Inst.StartCutScene();
+        
     }
 }

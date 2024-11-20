@@ -10,15 +10,15 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5c3541fdf8f417746b3e2095aa0de3d2, type: 3}
-  m_Name: Itemshop1Evening
+  m_Name: Bob 1 Dawn
   m_EditorClassIdentifier: 
-  npcCode: 0002
+  npcCode: 0007
   _npcType: 0
   _day: 1
   _animatorController: {fileID: 9100000, guid: a25ce3944475c6a418f9d87ea4a3500b, type: 2}
-  _timeType: 0
-  _npcNameSprite: {fileID: 21300000, guid: 214f1a471b22f4948b93652e6f2c9351, type: 3}
-  _spawnPosition: {x: -6.09, y: 2}
-  _rewardItemData: {fileID: 11400000, guid: 272c8fd2fb02d4d4880175fba932bfd2, type: 2}
+  _timeType: 1
+  _npcNameSprite: {fileID: 21300000, guid: 65deda3098f8f5541bed9692d0a208a9, type: 3}
+  _spawnPosition: {x: -22, y: 2}
+  _rewardItemData: {fileID: 11400000, guid: fd9081e6fbfc51746bef7235ede34fec, type: 2}
   _rewardItemAmount: 1
   _rewardStealableItemData: {fileID: 0}

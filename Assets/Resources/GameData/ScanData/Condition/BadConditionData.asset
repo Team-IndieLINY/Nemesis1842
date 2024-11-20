@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: BadConditionData
   m_EditorClassIdentifier: 
   _scanBuffDescription: "\uB9E4 \uC2DC\uB3C4\uB9C8\uB2E4 \uCD5C\uC18C, \uCD5C\uB300
-    \uC54C\uCF54\uC62C \uBC94\uC704 3\uC529 \uAC10\uC18C"
+    \uC54C\uCF54\uC62C \uBC94\uC704 3\uC529 \uAC10\uC18C\uD569\uB2C8\uB2E4."
   _conditionType: 0
   _conditionName: "\uB098\uC068"

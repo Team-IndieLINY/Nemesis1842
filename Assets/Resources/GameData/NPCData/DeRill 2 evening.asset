@@ -10,11 +10,15 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5c3541fdf8f417746b3e2095aa0de3d2, type: 3}
-  m_Name: Fisherman1Dawn
+  m_Name: DeRill 2 evening
   m_EditorClassIdentifier: 
-  npcCode: 0005
-  _day: 1
-  _animatorController: {fileID: 9100000, guid: 36ae119adcf4744408fe88c6b12110d3, type: 2}
-  _timeType: 1
+  npcCode: 0003
+  _npcType: 0
+  _day: 2
+  _animatorController: {fileID: 9100000, guid: a338eb34d2eed4244b2e848ef3c1a79d, type: 2}
+  _timeType: 0
   _npcNameSprite: {fileID: 21300000, guid: 18a57c313899b9c41a142895132c405b, type: 3}
-  _spawnPosition: {x: -56.06, y: 2}
+  _spawnPosition: {x: -12, y: 2}
+  _rewardItemData: {fileID: 0}
+  _rewardItemAmount: 0
+  _rewardStealableItemData: {fileID: 0}

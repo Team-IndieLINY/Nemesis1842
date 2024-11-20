@@ -22,8 +22,21 @@ public class MovingPositionPortal : Portal
     [SerializeField]
     private Image _fadeImage;
 
+    [SerializeField]
+    private Lock _lock;
+
+    [SerializeField]
+    private List<string> _cantGoToOrleansScripts;
+
     public override void Interact()
     {
+        if (gameObject.name == "ChannelToOrleansPortal" && _lock.IsInteractFirstTime == false)
+        {
+            BarOutsideDialougeManager.Inst.StartDialogueByString(_movingTargetTransform.position,
+                _cantGoToOrleansScripts);
+
+            return;
+        }
         PlayerController.RestrictMovement();
         _fadeImage.DOFade(1f, 0.4f)
             .OnKill(() =>

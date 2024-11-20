@@ -46,6 +46,9 @@ public class StolenManager : MonoBehaviour
 
     [SerializeField]
     private Inventory _inventory;
+
+    [SerializeField]
+    private GameObject _newItemRedDotGO;
     
     private bool _isStolenDone;
     public bool IsStolenDone => _isStolenDone;
@@ -59,6 +62,8 @@ public class StolenManager : MonoBehaviour
     private void Awake()
     {
         Inst = this;
+        _newItemRedDotGO.SetActive(PlayerManager.Instance().IsNewItemDotActivated);
+        
         _stopStealingButtonCanvasGroup = _stopStealingButton.GetComponent<CanvasGroup>();
         _belongingDatas = Resources.LoadAll<BelongingData>("GameData/BelongingData").ToList();
         ResetTurnStolenManager();
@@ -194,6 +199,8 @@ public class StolenManager : MonoBehaviour
 
     public void StealInformationItem(InformationItemData informationItemData)
     {
+        _newItemRedDotGO.SetActive(true);
+        PlayerManager.Instance().IsNewItemDotActivated = true;
         _inventory.AddItem(informationItemData);
         InventoryManager.Instance().TodayAquireInformationItemDatas.Add(informationItemData);
     }
