@@ -49,6 +49,12 @@ public class StolenManager : MonoBehaviour
 
     [SerializeField]
     private GameObject _newItemRedDotGO;
+
+    [SerializeField]
+    private Image _cautionImage;
+
+    [SerializeField]
+    private Image _cautionTextImage;
     
     private bool _isStolenDone;
     public bool IsStolenDone => _isStolenDone;
@@ -95,12 +101,22 @@ public class StolenManager : MonoBehaviour
     {
         _stealPanelBackground.DOFade(0.7f, 0.3f);
         _stolenSelectorCanvasGroup.gameObject.SetActive(true);
-        _stolenSelectorCanvasGroup.DOFade(1f, 0.3f);
+        _stolenSelectorCanvasGroup.DOFade(1f, 0.3f)
+            .OnKill(() =>
+            {
+                _cautionImage.DOFade(1f, 0.3f);
+                _cautionImage.transform.DOScale(new Vector3(1f, 1f, 1f), 0.3f);
+                _cautionTextImage.DOFade(1f, 0.3f);
+            });
     }
 
     public void OnClickWakeUpButton()
     {
         _isStolenDone = true;
+        
+        _cautionImage.DOFade(0f, 0.3f);
+        _cautionImage.transform.DOScale(new Vector3(0f, 1f, 1f), 0.3f);
+        _cautionTextImage.DOFade(0f, 0.3f);
         
         _stealPanelBackground.DOFade(0f, 0.3f);
         _stolenSelectorCanvasGroup.DOFade(0f, 0.3f)
