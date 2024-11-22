@@ -239,15 +239,16 @@ public class AlcoholController : MonoBehaviour
             }
             
             _currentInputAlcohol = -1;
-
+            
             AudioManager.Inst.PlaySFX("alcohol_machine_gauge");
+            
             yield return StartCoroutine(_alcoholControllerUI.UpdateAlcoholControllerUICoroutine());
             yield return new WaitForSeconds(0.4f);
             
             if (ScanManager.Inst.CurrentScanData is ConditionScanData)
             {
-                _minAlcohol = _minAlcohol + 3 > _answerAlcohol ? _answerAlcohol : _minAlcohol + 3;
-                _maxAlcohol = _maxAlcohol - 3 < _answerAlcohol ? _answerAlcohol : _maxAlcohol - 3;
+                _minAlcohol = _minAlcohol + 3 >= _answerAlcohol ? _answerAlcohol - 1 : _minAlcohol + 3;
+                _maxAlcohol = _maxAlcohol - 3 <= _answerAlcohol ? _answerAlcohol + 1 : _maxAlcohol - 3;
                 
                 yield return StartCoroutine(_alcoholControllerUI.UpdateAlcoholControllerUICoroutine());
             }
@@ -255,8 +256,8 @@ public class AlcoholController : MonoBehaviour
             if (ScanManager.Inst.CurrentScanData is LiverScanData && isHitLiverScan is true && _isUsedLiverScan is false)
             {
                 _isUsedLiverScan = true;
-                _minAlcohol = _minAlcohol + 10 > _answerAlcohol ? _answerAlcohol : _minAlcohol + 10;
-                _maxAlcohol = _maxAlcohol - 10 < _answerAlcohol ? _answerAlcohol : _maxAlcohol - 10;
+                _minAlcohol = _minAlcohol + 10 >= _answerAlcohol ? _answerAlcohol - 1 : _minAlcohol + 10;
+                _maxAlcohol = _maxAlcohol - 10 <= _answerAlcohol ? _answerAlcohol + 1 : _maxAlcohol - 10;
                 
                 yield return StartCoroutine(_alcoholControllerUI.UpdateAlcoholControllerUICoroutine());
             }
@@ -270,7 +271,7 @@ public class AlcoholController : MonoBehaviour
                     yield break;
                 }
                 
-                _maxAlcohol = _maxAlcohol - 20 < _answerAlcohol ? _answerAlcohol : _maxAlcohol - 20;
+                _maxAlcohol = _maxAlcohol - 20 <= _answerAlcohol ? _answerAlcohol + 1 : _maxAlcohol - 20;
                 
                 yield return StartCoroutine(_alcoholControllerUI.UpdateAlcoholControllerUICoroutine());
             }

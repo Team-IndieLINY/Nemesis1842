@@ -16,6 +16,12 @@ public class MainScreenWarningPopupPanel : MonoBehaviour, IPopUpable
 
     public void OnClickGoMainScreenButton()
     {
+        DayManager.Instance.ResetDayManager();
+        InventoryManager.Instance().ResetInventoryData();
+        InventoryManager.Instance().ResetItems();
+        PlayerManager.Instance().ResetPlayerData();
+        PlayerManager.Instance().IsNewItemDotActivated = false;
+        
         LoadingScreen.Instance.LoadScene("MainScreen");
         
         PopUpUIManager.Inst.CloseUI();

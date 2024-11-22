@@ -12,19 +12,17 @@ public class MainScreen : MonoBehaviour
     private Image _fadeImage;
     private SettingPanel _settingPanel;
 
-    private void Awake()
-    {
-        AudioManager.Inst.PlayMusic("evening");
-    }
-
     private void Start()
     {
+        AudioManager.Inst.PlayMusic("main_screen");
         _settingPanel = FindObjectOfType<SettingPanel>(true).GetComponent<SettingPanel>();
     }
 
     public void PlayGame()
     {
         AudioManager.Inst.PlaySFX("mouse_click");
+        
+        AudioManager.Inst.FadeOutMusic("main_screen");
         _fadeImage.DOFade(1f, 2f)
             .OnKill(() =>
             {

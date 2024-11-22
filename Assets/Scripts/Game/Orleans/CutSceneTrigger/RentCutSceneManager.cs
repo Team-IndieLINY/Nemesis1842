@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using DG.Tweening;
 using UnityEngine;
 using UnityEngine.Playables;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class RentCutSceneManager : MonoBehaviour
@@ -28,6 +29,9 @@ public class RentCutSceneManager : MonoBehaviour
 
     [SerializeField]
     private GameObject _gangGroupGO;
+    
+    [SerializeField]
+    private GuideUI _guideUI;
     
     private PlayableDirector _playableDirector;
     public static RentCutSceneManager Inst { get; private set; }
@@ -82,17 +86,21 @@ public class RentCutSceneManager : MonoBehaviour
         if (_playerOutside.Money >= DayManager.Instance.MonthlyRent)
         {
             PlayerController.AllowMovement();
+            _guideUI.ShowGuideUI(GuideUI.EGuideType.LOCK);
+            
             _playerOutside.EarnMoney(-DayManager.Instance.MonthlyRent);
         }
         else
         {
             //월세 못 내는 엔딩
+            EndingManager.Inst.SetEndingType(EndingManager.EEndingType.DieEnding);
+            
             AudioManager.Inst.FadeOutMusic("dawn");
             _fadeImage.DOFade(1f, 1f)
                 .OnKill(() =>
                 {
                     PlayerController.AllowMovement();
-                    LoadingScreen.Instance.LoadScene("DayEndingScene");
+                    SceneManager.LoadScene("DayEndingScene");
                 });
         }
     }

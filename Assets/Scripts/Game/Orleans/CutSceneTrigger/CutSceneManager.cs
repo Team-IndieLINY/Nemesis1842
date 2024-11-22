@@ -20,6 +20,9 @@ public class CutSceneManager : MonoBehaviour
 
     [SerializeField]
     private Image _fadeImage;
+
+    [SerializeField]
+    private Animator _boyNPCAnimator;
     
     private PlayableDirector _playableDirector;
     public static CutSceneManager Inst { get; private set; }
@@ -41,12 +44,22 @@ public class CutSceneManager : MonoBehaviour
         _waitChatBalloonGO.SetActive(false);
         
         _playableDirector.Play();
+        _boyNPCTransform.gameObject.SetActive(true);
+        _boyNPCAnimator.Play("Run");
+        _boyNPCAnimator.SetBool("IsRun", true);
+        _boyNPCTransform.DOMoveX(-0.73f, 1.5f)
+            .OnKill(() =>
+            {
+                _boyNPCAnimator.SetBool("IsRun", false);
+            });
 
         yield return new WaitUntil(() => _playableDirector.state == PlayState.Paused);
 
         BarOutsideDialougeManager.Inst.StartDialogueByString(_boyNPCTransform.position, _cutSceneScripts);
 
         yield return new WaitUntil(() => BarOutsideDialougeManager.Inst.IsProgressed == false);
+        
+        _boyNPCTransform.gameObject.SetActive(false);
 
         EndCutScene();
     }

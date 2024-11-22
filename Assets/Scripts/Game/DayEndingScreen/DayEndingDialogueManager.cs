@@ -5,12 +5,22 @@ using DG.Tweening;
 using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Playables;
 using UnityEngine.SceneManagement;
 using UnityEngine.Serialization;
 using UnityEngine.UI;
 
 public class DayEndingDialogueManager : MonoBehaviour
 {
+    [Serializable]
+    public class CutSceneArray
+    {
+        public Sprite[] _endingSprites;
+        public Sprite[] EndingSprite => _endingSprites;
+        
+        public string[] _dayEndingScripts;
+        public string[] DayEndingScripts => _dayEndingScripts;
+    }
     public static DayEndingDialogueManager Inst { get; private set; }
     [SerializeField]
     private GameObject _chatBalloonGO;
@@ -26,18 +36,24 @@ public class DayEndingDialogueManager : MonoBehaviour
 
     [SerializeField]
     private AudioClip _typingAudioClip;
-    
+
     [SerializeField]
-    private Sprite[][] _endingSprites;
-    
+    private CutSceneArray[] _cutSceneArrays;
+
     [SerializeField]
-    private string[][] _dayEndingScripts;
+    private Sprite[] _missionSprites;
     
     [SerializeField]
     private Image _cutSceneImage;
     
     [SerializeField]
     private Image _fadeImage;
+
+    [SerializeField]
+    private Image _creditPictureImage;
+
+    [SerializeField]
+    private Image _missionImage;
     
     private Queue<string> _scriptsQueue = new Queue<string>();
     private Queue<Sprite> _cutSceneQueue = new Queue<Sprite>();
@@ -52,26 +68,42 @@ public class DayEndingDialogueManager : MonoBehaviour
 
     private Coroutine _typeScriptsCoroutine;
 
+    private bool _isEnded;
+    public bool IsEnded => _isEnded;
+
+    private PlayableDirector _playableDirector;
+
     private void Awake()
     {
         Inst = this;
+        _playableDirector = GetComponent<PlayableDirector>();
+    }
+
+    private void Start()
+    {
+        _isEnded = false;
+        _missionImage.sprite = _missionSprites[(int)EndingManager.Inst.EndingType];
+        _cutSceneImage.sprite = _cutSceneArrays[(int)EndingManager.Inst.EndingType].EndingSprite[0];
+        _fadeImage.DOFade(0f, 2f)
+            .OnKill(() =>
+            {
+                StartDialogue();
+            });
     }
 
     public void StartDialogue()
     {
-        _isProgressed = true;
-        
         _chatBalloonGO.SetActive(true);
         _arrowGO.SetActive(true);
         
         _scriptsQueue.Clear();
-
-        foreach (var script in _dayEndingScripts[(int)EndingManager.Inst.EndingType])
+        
+        foreach (var script in _cutSceneArrays[(int)EndingManager.Inst.EndingType].DayEndingScripts)
         {
             _scriptsQueue.Enqueue(script);
         }
         
-        foreach (var cutSprite in _endingSprites[(int)EndingManager.Inst.EndingType])
+        foreach (var cutSprite in _cutSceneArrays[(int)EndingManager.Inst.EndingType].EndingSprite)
         {
             _cutSceneQueue.Enqueue(cutSprite);
         }
@@ -81,13 +113,19 @@ public class DayEndingDialogueManager : MonoBehaviour
 
     public void DisplayNextScript()
     {
-        if (_scriptsQueue.Count == 0)
+        if (_scriptsQueue.Count == 0 && _isEnded is false)
         {
+            _isEnded = true;
             EndDialogue();
             return;
         }
+        
+        _isProgressed = true;
 
-        _cutSceneImage.sprite = _cutSceneQueue.Dequeue();
+        if (_cutSceneQueue.Peek() != null)
+        {
+            _cutSceneImage.sprite = _cutSceneQueue.Dequeue();
+        }
 
         string script = _scriptsQueue.Dequeue();
         _currentScript = script;
@@ -133,12 +171,42 @@ public class DayEndingDialogueManager : MonoBehaviour
         _fadeImage.DOFade(1f, 2f)
             .OnKill(() =>
             {
-                ShowCredit();
+                StartCoroutine(ShowCredit());
             });
     }
 
-    public void ShowCredit()
+    private IEnumerator ShowCredit()
     {
+        yield return new WaitForSeconds(1f);
         
+        _missionImage.gameObject.SetActive(true);
+
+        yield return new WaitForSeconds(2f);
+        
+        _missionImage.gameObject.SetActive(false);
+        
+        yield return new WaitForSeconds(1f);
+        
+        if (EndingManager.Inst.EndingType == EndingManager.EEndingType.VaultEnding)
+        {
+            AudioManager.Inst.FadeInMusic("main_screen");
+        }
+        else
+        {
+            AudioManager.Inst.FadeInMusic("intro");
+        }
+
+        yield return new WaitForSeconds(2f);
+        
+        _creditPictureImage.DOFade(1f, 2f);
+        _playableDirector.Play();
+
+        yield return new WaitUntil(() => _playableDirector.state == PlayState.Paused);
+        
+        _creditPictureImage.DOFade(0f, 2f)
+            .OnKill(() =>
+            {
+                LoadingScreen.Instance.LoadScene("MainScreen");
+            });
     }
 }

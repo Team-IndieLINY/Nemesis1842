@@ -48,4 +48,9 @@ public class PopUpUIManager : MonoBehaviour
         IPopUpable iPopUpAble = _popUpUIStack.Pop();
         iPopUpAble.HideUI();
     }
+
+    public bool IsEmpty()
+    {
+        return _popUpUIStack.Count == 0;
+    }
 }

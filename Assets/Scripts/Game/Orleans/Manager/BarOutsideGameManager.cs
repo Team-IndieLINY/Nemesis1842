@@ -48,6 +48,9 @@ public class BarOutsideGameManager : MonoBehaviour
 
     [SerializeField]
     private GameObject[] _extraNPCs;
+
+    [SerializeField]
+    private GuideUI _guideUI;
     
     private List<NPCData> _npcDatas;
 
@@ -78,6 +81,11 @@ public class BarOutsideGameManager : MonoBehaviour
                 .OnKill(() =>
                 {
                     _dayStartPanelCanvasGroup.interactable = false;
+
+                    if (DayManager.Instance.Day == 2)
+                    {
+                        _guideUI.ShowGuideUI(GuideUI.EGuideType.RENT);
+                    }
                 });
             
             AudioManager.Inst.FadeInMusic("evening");
@@ -95,6 +103,11 @@ public class BarOutsideGameManager : MonoBehaviour
             foreach (var extraNPC in _extraNPCs)
             {
                 extraNPC.SetActive(false);
+            }
+            
+            if (DayManager.Instance.Day == 1)
+            {
+                _guideUI.ShowGuideUI(GuideUI.EGuideType.CHANNEL);
             }
         }
         

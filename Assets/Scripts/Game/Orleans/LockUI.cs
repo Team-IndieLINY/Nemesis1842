@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using DG.Tweening;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.Serialization;
 using UnityEngine.UI;
 
@@ -41,6 +42,9 @@ public class LockUI : MonoBehaviour, IPopUpable
     
     [SerializeField]
     private RectTransform _unlockedLockHeadPointRectTransform;
+
+    [SerializeField]
+    private Image _fadeImage;
 
     private Image[] _keypadImages;
     
@@ -121,9 +125,19 @@ public class LockUI : MonoBehaviour, IPopUpable
 
     public void CorrectPassword()
     {
-        _lockHeadRectTransform.DOAnchorPos(_unlockedLockHeadPointRectTransform.anchoredPosition, 0.5f);
         _enterButton.interactable = false;
         _resetButton.interactable = false;
+        _lockHeadRectTransform.DOAnchorPos(_unlockedLockHeadPointRectTransform.anchoredPosition, 0.5f)
+            .OnKill(() =>
+            {
+                AudioManager.Inst.FadeOutMusic("dawn");
+                EndingManager.Inst.SetEndingType(EndingManager.EEndingType.VaultEnding);
+                _fadeImage.DOFade(1f, 2f)
+                    .OnKill(() =>
+                    {
+                        SceneManager.LoadScene("DayEndingScene");
+                    });
+            });
     }
 
     public void InCorrectPassword()

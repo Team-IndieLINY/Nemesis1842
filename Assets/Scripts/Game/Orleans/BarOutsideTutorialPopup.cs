@@ -7,6 +7,8 @@ using UnityEngine;
 [RequireComponent(typeof(CanvasGroup))]
 public class BarOutsideTutorialPopup : MonoBehaviour, IPopUpable
 {
+    [SerializeField]
+    private GuideUI _guideUI;
     private CanvasGroup _canvasGroup;
     private void Awake()
     {
@@ -25,6 +27,10 @@ public class BarOutsideTutorialPopup : MonoBehaviour, IPopUpable
     {
         PlayerController.AllowMovement();
         _canvasGroup.DOKill();
-        _canvasGroup.DOFade(0f, 0.7f);
+        _canvasGroup.DOFade(0f, 0.7f)
+            .OnKill(() =>
+            {
+                _guideUI.ShowGuideUI(GuideUI.EGuideType.GOBAR);
+            });
     }
 }

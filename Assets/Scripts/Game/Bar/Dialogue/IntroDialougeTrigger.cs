@@ -14,7 +14,12 @@ public class IntroDialougeTrigger : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (_introDialougeManager.IsEnded)
+        {
+            return;
+        }
+        
+        if (Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.E))
         {
             if (_introDialougeManager.IsTyped is true)
             {

@@ -12,4 +12,5 @@ public class BarGuestDB : ScriptableObject
 	public List<BarDialogueEntity> BarScripts; // Replace 'EntityType' to an actual type that is serializable.
 	public List<StepEntity> Steps;
 	public List<NPCScriptEntity> NPCScripts;
+	public List<MonologueScriptEntity> MonologueScripts;
 }

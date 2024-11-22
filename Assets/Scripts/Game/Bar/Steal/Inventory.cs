@@ -11,6 +11,9 @@ public class Inventory : MonoBehaviour
     private Slot _currentSelectedSlot;
     public Slot CurrentSelectedSlot => _currentSelectedSlot;
 
+    private bool _isOpened;
+    public bool IsOpened => _isOpened;
+
     private void Awake()
     {
         _inventoryUI = GetComponent<InventoryUI>();
@@ -29,6 +32,7 @@ public class Inventory : MonoBehaviour
     public void OpenInventory()
     {
         PlayerManager.Instance().IsNewItemDotActivated = false;
+        _isOpened = true;
         
         foreach (var slot in _slots)
         {
@@ -43,6 +47,7 @@ public class Inventory : MonoBehaviour
     
     public void CloseInventory()
     {
+        _isOpened = false;
         PopUpUIManager.Inst.CloseUI();
     }
     

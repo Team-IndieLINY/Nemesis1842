@@ -48,9 +48,14 @@ public class IntroDialougeManager : MonoBehaviour
     private string _currentScript;
 
     private Coroutine _typeScriptsCoroutine;
+    
+    private bool _isEnded;
+    public bool IsEnded => _isEnded;
 
     private void Awake()
     {
+        _isEnded = false;
+        
         foreach (var script in _cutSceneScripts)
         {
             _scriptsQueue.Enqueue(script);
@@ -66,6 +71,11 @@ public class IntroDialougeManager : MonoBehaviour
             .OnKill(StartDialogue);
     }
 
+    private void Start()
+    {
+        AudioManager.Inst.FadeInMusic("intro");
+    }
+
     public void StartDialogue()
     {
         _isProgressed = true;
@@ -78,8 +88,9 @@ public class IntroDialougeManager : MonoBehaviour
 
     public void DisplayNextScript()
     {
-        if (_scriptsQueue.Count == 0)
+        if (_scriptsQueue.Count == 0 && _isEnded is false)
         {
+            _isEnded = true;
             EndDialogue();
             return;
         }
@@ -120,6 +131,8 @@ public class IntroDialougeManager : MonoBehaviour
     {
         _isProgressed = false;
         _chatBalloonGO.SetActive(false);
+        
+        AudioManager.Inst.FadeOutMusic("intro");
         
         _fadeImage.DOFade(1f, 2f)
             .OnKill(() =>

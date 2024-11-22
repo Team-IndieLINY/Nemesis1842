@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class EndingManager : MonoBehaviour
 {
@@ -27,11 +28,6 @@ public class EndingManager : MonoBehaviour
         {
             Destroy(gameObject);
         }
-    }
-
-    private void Start()
-    {
-        // DayEndingDialogueManager.Inst.StartDialogue();
     }
 
     public void SetEndingType(EEndingType endingType)

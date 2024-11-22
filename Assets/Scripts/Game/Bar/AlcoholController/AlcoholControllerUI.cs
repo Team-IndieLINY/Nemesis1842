@@ -43,6 +43,9 @@ public class AlcoholControllerUI : MonoBehaviour
     private Image _itemIconImage;
 
     [SerializeField]
+    private GameObject _cocktailIconImage;
+
+    [SerializeField]
     private Sprite[] _itemIconSprites;
     
     private float _oneAlcoholPerGaugeLength;
@@ -128,10 +131,13 @@ public class AlcoholControllerUI : MonoBehaviour
     {
         if (_alcoholController.CurrentInputAlcohol == -1)
         {
-            _guessAlcoholText.text = "?";
+            _guessAlcoholText.gameObject.SetActive(false);
+            _cocktailIconImage.SetActive(true);
         }
         else
         {
+            _cocktailIconImage.SetActive(false);
+            _guessAlcoholText.gameObject.SetActive(true);
             _guessAlcoholText.text = _alcoholController.CurrentInputAlcohol.ToString();
         }
     }

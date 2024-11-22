@@ -15,9 +15,9 @@ MonoBehaviour:
   npcCode: 0006
   _npcType: 0
   _day: 2
-  _animatorController: {fileID: 9100000, guid: 745117fc13239d446aa5464f2d3aedd5, type: 2}
+  _animatorController: {fileID: 9100000, guid: 99b42a009aac9ba45bf56398448d4ae5, type: 2}
   _timeType: 1
-  _npcNameSprite: {fileID: 21300000, guid: 65deda3098f8f5541bed9692d0a208a9, type: 3}
+  _npcNameSprite: {fileID: 21300000, guid: 42227ab67fbeba542b5495dd6f15cc18, type: 3}
   _spawnPosition: {x: -41.5, y: 2}
   _rewardItemData: {fileID: 0}
   _rewardItemAmount: 0

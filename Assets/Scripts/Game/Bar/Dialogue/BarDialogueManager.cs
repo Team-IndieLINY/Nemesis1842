@@ -68,6 +68,7 @@ public class BarDialogueManager : MonoBehaviour
 
     public void StartDialogue(List<BarDialogueEntity> barDialogueEntities)
     {
+        _guest.AppearMouth();
         _isProgressed = true;
         
         _chatBalloonGO.SetActive(true);
@@ -111,6 +112,8 @@ public class BarDialogueManager : MonoBehaviour
             return;
         }
 
+        _guest.AppearMouth();
+        
         BarDialogueEntity barDialogueEntity = _scriptsQueue.Dequeue();
         _currentScript = barDialogueEntity.script;
         _guest.SetCharacterSprite(barDialogueEntity.character_sprite_code);
@@ -158,6 +161,8 @@ public class BarDialogueManager : MonoBehaviour
         
         _mouthAnimator.enabled = false;
         _isTyped = false;
+        
+        _guest.DisappearMouth();
     }
     
     private IEnumerator TypeTutorialScripts(string script)
@@ -178,6 +183,8 @@ public class BarDialogueManager : MonoBehaviour
     public void SkipTypeScripts()
     {
         StopCoroutine(_typeScriptsCoroutine);
+        
+        _guest.DisappearMouth();
 
         _scriptText.text = _currentScript;
 

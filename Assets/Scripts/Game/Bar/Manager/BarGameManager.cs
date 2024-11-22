@@ -120,6 +120,9 @@ public class BarGameManager : MonoBehaviour
 
     private List<StepEntity> _stepDatas;
 
+    private List<MonologueScriptEntity> _firstMonologueScriptDatas;
+    private List<MonologueScriptEntity> _lastMonologueScriptDatas;
+
     private PlayableDirector _playableDirector;
 
     private void Awake()
@@ -149,6 +152,22 @@ public class BarGameManager : MonoBehaviour
         TutorialManager.Inst.ResetTutorialManager();
         _fadeImage.DOFade(0f, 3f);
         yield return new WaitForSeconds(3f);
+
+        _firstMonologueScriptDatas = _barGuestDB.MonologueScripts
+            .Where(x => x.day == DayManager.Instance.Day && x.script_type == 0).ToList();
+
+        List<string> monologueScripts = new();
+        foreach (var monologueScriptData in _firstMonologueScriptDatas)
+        {
+            monologueScripts.Add(monologueScriptData.script);
+        }
+
+        _barDialogueManager.StartTutorialDialogue(monologueScripts);
+
+        yield return new WaitUntil(() => _barDialogueManager.IsProgressed == false);
+        
+        yield return new WaitForSeconds(1f);
+        
         foreach (var guestData in _guestDatas)
         {
             _stepDatas = _barGuestDB.Steps
@@ -238,7 +257,7 @@ public class BarGameManager : MonoBehaviour
             ShowScripts(_stepDatas.Count + 1, guestData);
             
             yield return new WaitUntil(() => _barDialogueManager.IsProgressed == false);
-
+            
             DisappearGuest();
 
             yield return new WaitUntil(() =>
@@ -254,6 +273,21 @@ public class BarGameManager : MonoBehaviour
 
             ResetTurn();
         }
+
+        yield return new WaitForSeconds(1f);
+        
+        _lastMonologueScriptDatas = _barGuestDB.MonologueScripts
+            .Where(x => x.day == DayManager.Instance.Day && x.script_type == 1).ToList();
+
+        List<string> lastMonologueScripts = new();
+        foreach (var monologueScriptData in _lastMonologueScriptDatas)
+        {
+            lastMonologueScripts.Add(monologueScriptData.script);
+        }
+        
+        _barDialogueManager.StartTutorialDialogue(lastMonologueScripts);
+        
+        yield return new WaitUntil(() => _barDialogueManager.IsProgressed == false);
 
         _inventory.SaveInventoryData();
         _player.SaveMoney();

@@ -49,6 +49,18 @@ public class CocktailMakingManager : MonoBehaviour
     [SerializeField]
     private PlayableAsset[] _scentMaterialTimeline;
 
+    [SerializeField]
+    private PlayableDirector _resetFingerPlayableDirector;
+
+    [SerializeField]
+    private Image _shakerBackImage;
+
+    [SerializeField]
+    private Image _shakerFrontImage;
+
+    [SerializeField]
+    private Button _resetButton;
+
     private List<CocktailData> _cocktailDatas = new();
 
     private Cocktail.ETasteType? _tasteType;
@@ -88,6 +100,7 @@ public class CocktailMakingManager : MonoBehaviour
 
     public IEnumerator SetTaste(Cocktail.ETasteType? tasteType)
     {
+        _resetButton.interactable = false;
         _handPlayableDirector.playableAsset = _tasteMaterialTimeline[(int)tasteType];
         _handPlayableDirector.Play();
         _tasteType = tasteType;
@@ -118,10 +131,12 @@ public class CocktailMakingManager : MonoBehaviour
             }
             _enterAlcoholPhaseButton.interactable = true;
         }
+        _resetButton.interactable = true;
     }
 
     public IEnumerator SetScent(Cocktail.EScentType? scentType)
     {
+        _resetButton.interactable = false;
         _handPlayableDirector.playableAsset = _scentMaterialTimeline[(int)scentType];
         _handPlayableDirector.Play();
         
@@ -147,6 +162,8 @@ public class CocktailMakingManager : MonoBehaviour
             }
             _enterAlcoholPhaseButton.interactable = true;
         }
+        
+        _resetButton.interactable = true;
     }
 
     public void SetStepCocktail(string cocktailCode, List<CocktailRejectScriptEntity> rejectScriptEntities)
@@ -175,6 +192,45 @@ public class CocktailMakingManager : MonoBehaviour
             scentMaterialImage.raycastTarget = false;
             scentMaterialImage.color = new Color32(70, 70, 70, 255);
         }
+    }
+
+    public void ResetStepCocktailCoroutine()
+    {
+        _resetButton.interactable = false;
+        _shakerBackImage.raycastTarget = false;
+        _shakerFrontImage.raycastTarget = false;
+        StartCoroutine(ResetCocktailAnimation());
+    }
+
+    private IEnumerator ResetCocktailAnimation()
+    {
+        _resetFingerPlayableDirector.Play();
+
+        yield return new WaitUntil(() => _resetFingerPlayableDirector.state == PlayState.Paused);
+
+        _shakerBackImage.raycastTarget = true;
+        _shakerFrontImage.raycastTarget = true;
+        
+        _enterAlcoholPhaseButton.interactable = false;
+        _tasteType = null;
+        _scentType = null;
+        _resultCocktailData = null;
+        _shakerInfoUI.ResetShakerInfoUI();
+        _cocktailSpriteRenderer.color = new Color(1, 1, 1, 0);
+        
+        foreach (var tasteMaterialImage in _tasteMaterialImages)
+        {
+            tasteMaterialImage.raycastTarget = true;
+            tasteMaterialImage.color = new Color32(255, 255, 255, 255);
+        }
+        
+        foreach (var scentMaterialImage in _scentMaterialImages)
+        {
+            scentMaterialImage.raycastTarget = false;
+            scentMaterialImage.color = new Color32(70, 70, 70, 255);
+        }
+        
+        _resetButton.interactable = true;
     }
 
     public void ResetTurnCocktail()

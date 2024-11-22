@@ -60,6 +60,6 @@ public class Belonging : MonoBehaviour,IPointerClickHandler
         _frontGO.SetActive(true);
         _innerGO.SetActive(true);
 
-        _frontImage.DOColor(new Color32(255, 255, 255, 40), 0.5f);
+        _frontImage.DOColor(new Color32(255, 255, 255, 0), 0.5f);
     }
 }

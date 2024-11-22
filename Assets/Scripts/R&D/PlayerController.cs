@@ -11,6 +11,9 @@ public class PlayerController : MonoBehaviour
     [SerializeField]
     private float _movingSpeed;
 
+    [SerializeField]
+    private Inventory _inventory;
+
     private Rigidbody2D _rigidbody;
     private SpriteRenderer _spriteRenderer;
 
@@ -30,7 +33,6 @@ public class PlayerController : MonoBehaviour
 
     private void Update()
     {
-        
         if ((Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.E)) && BarOutsideDialougeManager.Inst.IsProgressed is true)
         {
             if (BarOutsideDialougeManager.Inst.IsTyped is true)

@@ -53,8 +53,8 @@ public class Guest : MonoBehaviour
         _mouthAnimator.runtimeAnimatorController = _currentCharacterData.CharacterMouseAnimatorController;
         _heartPosition = _currentCharacterData.HeartPoint;
         
-        Destroy(GetComponent<PolygonCollider2D>());
-        gameObject.AddComponent<PolygonCollider2D>().isTrigger = true;
+        // Destroy(GetComponent<PolygonCollider2D>());
+        // gameObject.AddComponent<PolygonCollider2D>().isTrigger = true;
     }
 
     public void SetCharacterSprite(string characterSpriteCode)
@@ -70,6 +70,16 @@ public class Guest : MonoBehaviour
             _eyeAnimator.SetBool(stringBySprite.Key, false); 
         }
         _eyeAnimator.SetBool(characterSpriteCode, true);
+    }
+
+    public void AppearMouth()
+    {
+        _mouthAnimator.gameObject.SetActive(true);
+    }
+    
+    public void DisappearMouth()
+    {
+        _mouthAnimator.gameObject.SetActive(false);
     }
     
     private void OnMouseEnter()

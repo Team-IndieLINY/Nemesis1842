@@ -54,5 +54,10 @@ public class InventoryManager
     public void ResetItems()
     {
         _itemAmounts = new int[3];
+        
+        for (int i = 0; i < _itemAmounts.Length; i++)
+        {
+            _itemAmounts[i] = 0;
+        }
     }
 }

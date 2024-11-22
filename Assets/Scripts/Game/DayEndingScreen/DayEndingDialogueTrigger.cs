@@ -13,7 +13,17 @@ public class DayEndingDialogueTrigger : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (DayEndingDialogueManager.Inst.IsEnded)
+        {
+            return;
+        }
+
+        if (_dayEndingDialogueManager.IsProgressed is false)
+        {
+            return;
+        }
+        
+        if (Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.E))
         {
             if (_dayEndingDialogueManager.IsTyped is true)
             {

@@ -15,10 +15,10 @@ MonoBehaviour:
   npcCode: 0004
   _npcType: 0
   _day: 2
-  _animatorController: {fileID: 9100000, guid: c69f32d5504b67748b68c7434013d5e3, type: 2}
+  _animatorController: {fileID: 9100000, guid: 36a3f26769a2a62438c46cd30715c43c, type: 2}
   _timeType: 0
-  _npcNameSprite: {fileID: 21300000, guid: 18a57c313899b9c41a142895132c405b, type: 3}
-  _spawnPosition: {x: -10, y: 2}
+  _npcNameSprite: {fileID: 21300000, guid: 989b22269fa3a914e8dd40ba98528d2c, type: 3}
+  _spawnPosition: {x: -9, y: 2}
   _rewardItemData: {fileID: 0}
   _rewardItemAmount: 0
   _rewardStealableItemData: {fileID: 0}

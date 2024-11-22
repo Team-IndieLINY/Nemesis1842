@@ -19,12 +19,20 @@ MonoBehaviour:
     character_code: 01
   - guest_code: 0002
     day: 2
-    order: 2
+    order: 1
     character_code: 02
   - guest_code: 0003
     day: 2
     order: 2
-    character_code: 01
+    character_code: 03
+  - guest_code: 0004
+    day: 3
+    order: 1
+    character_code: 02
+  - guest_code: 0005
+    day: 3
+    order: 2
+    character_code: 04
   CocktailRejectScripts:
   - guest_code: 0001
     step_order: 1
@@ -100,6 +108,42 @@ MonoBehaviour:
     cockail_reject_script: "(\uC774\uAC74 \uC544\uB2C8\uC57C. \uCCAB\uB9DB\uC740
       \uD48D\uBD80\uD558\uACE0 \uB05D\uB9DB\uC740 \uC309\uC300\uD55C \uADF8 \uC644\uBCBD\uD55C
       \uB300\uBE44\uAC00 \uC788\uC5B4\uC57C \uD574. \uB2E4\uC2DC \uD574\uBCF4\uC790.)"
+  - guest_code: 0004
+    step_order: 1
+    cockail_reject_script: "(\uC774\uAC74 \uC740\uD558\uC218\uCC98\uB7FC \uBCF4\uC774\uC9C0
+      \uC54A\uC544. \uBC18\uC9DD\uC774\uACE0 \uCCAD\uB7C9\uD558\uAC8C \uB9CC\uB4E4\uC5B4\uC57C\uACA0\uC5B4.)"
+  - guest_code: 0004
+    step_order: 1
+    cockail_reject_script: "(\uC544\uB2C8\uC57C, \uC785\uC548\uC5D0\uC11C \uD654\uD574\uC9C0\uB294
+      \uB290\uB08C\uC774 \uBD80\uC871\uD574. \uB9C8\uCE58 \uBBFC\uD2B8\uBC14\uB78C\uC774
+      \uC9C0\uB098\uAC00\uB294 \uADF8\uB7F0 \uC0C1\uCF8C\uD568\uC774 \uD544\uC694\uD574.)"
+  - guest_code: 0004
+    step_order: 2
+    cockail_reject_script: "(\uC8FC\uBB38\uD55C \uCE75\uD14C\uC77C\uC774 \uC544\uB2CC
+      \uAC83 \uAC19\uC544. \uBD80\uB4DC\uB7FD\uACE0 \uD551\uD06C\uBE5B\uC73C\uB85C
+      \uAC00\uB4DD\uD55C, \uADF8\uB7F0 \uC6B0\uC544\uD568\uC774 \uD544\uC694\uD574.)"
+  - guest_code: 0004
+    step_order: 2
+    cockail_reject_script: "(\uC544\uB2C8\uC57C, \uB354 \uBABD\uAE00\uBABD\uAE00\uD558\uACE0
+      \uAC00\uBCBC\uC6B4 \uB290\uB08C\uC774 \uD544\uC694\uD574.)"
+  - guest_code: 0005
+    step_order: 1
+    cockail_reject_script: "(\uC774\uAC74 \uC544\uB2C8\uC57C. \uB2EC \uD45C\uBA74\uCC98\uB7FC
+      \uBCF4\uC774\uC9C0 \uC54A\uC544. \uCC28\uBD84\uD558\uACE0 \uACE0\uC694\uD55C
+      \uB290\uB08C\uC774 \uD544\uC694\uD574.)"
+  - guest_code: 0005
+    step_order: 1
+    cockail_reject_script: "(\uD760... \uB2EC\uBE5B\uCC98\uB7FC \uC740\uC740\uD55C
+      \uBC18\uC9DD\uC784\uC774 \uB290\uAEF4\uC9C0\uC9C0 \uC54A\uC544. \uB354 \uC2E0\uBE44\uB86D\uAC8C
+      \uB9CC\uB4E4\uC5B4\uC57C\uACA0\uC5B4.)"
+  - guest_code: 0005
+    step_order: 2
+    cockail_reject_script: "(\uC74C,,\uC678\uACC4 \uB3D9\uD3EC\uB4E4\uC774 \uC0DD\uAC01
+      \uB098\uC9C0 \uC54A\uC544,, \uB2E4\uC2DC \uD574\uC57C \uACA0\uC5B4.)"
+  - guest_code: 0005
+    step_order: 2
+    cockail_reject_script: "(\uC804\uD600 \uC678\uACC4 \uC2A4\uB7FD\uC9C0\uAC00 \uC54A\uC740\uAC78?
+      \uBE14\uB8E8\uB97C \uCC3E\uC544\uC57C\uD574)"
   BarScripts:
   - guest_code: 0001
     step_order: 0
@@ -109,20 +153,23 @@ MonoBehaviour:
   - guest_code: 0001
     step_order: 0
     character_name: "\uBCA0\uC77C \uC874"
-    script: "\uCD5C\uADFC\uC5D0 \uB9CE\uC740 \uC77C\uC774 \uC788\uC5B4\uC11C \uBABB\uB4E4\uB838\uB124"
+    script: "\uCD5C\uADFC\uC5D0 \uBB34\uC2A8 \uC6B0\uB9AC \uB9C8\uC744\uC5D0 \uD070
+      \uBB3C\uAC74\uC774 \uB4E4\uC5B4 \uC654\uB2E4\uB098 \uBB50\uB798\uB098..\uB9CE\uC740
+      \uC77C\uC774 \uC788\uC5B4\uC11C \uBABB\uB4E4\uB838\uB124"
     character_sprite_code: Normal
   - guest_code: 0001
     step_order: 0
     character_name: "\uBCA0\uC77C \uC874"
-    script: "\uBC18\uAC00\uC6B0\uB2C8 \uC220\uD558\uB098\uB9CC \uB9CC\uB4E4\uC5B4
-      \uC8FC\uC2DC\uAC8C\uB098"
+    script: "\uC544 \uC5B4\uB5BB\uAC8C \uC54C\uC558\uB0D0\uACE0? \uAC70\uAE30\uC11C
+      \uAC00\uC871 \uC0AC\uC9C4\uC744 \uCC0D\uB358\uC911 \uC5B4\uB5A4 \uD68C\uC0AC\uC0AC\uB78C\uB4E4\uC774
+      \uADF8 \uADFC\uCC98\uB97C \uD1B5\uC81C\uD574\uC11C \uC0AC\uC9C4\uC744 \uBABB\uCC0D\uC5C8\uC5B4."
     character_sprite_code: Normal
   - guest_code: 0001
     step_order: 0
     character_name: "\uBCA0\uC77C \uC874"
-    script: "\uC785\uC774 \uD141\uD141\uD558\uB2C8 \uD654\uD55C \uB9DB\uC774 \uB098\uB294
-      \uCCAD\uB7C9\uD55C \uC220\uB85C \uC8FC\uAC8C \uADF8\uADF8 \uC800\uBC88\uC5D0
-      \uC740\uD558\uC218\uBAA8\uC591 \uC788\uC9C0\uC54A\uB098?"
+    script: "\uB9C8\uC74C\uC774 \uD141\uD141\uD558\uB2C8 \uD654\uD55C \uB9DB\uC774
+      \uB098\uB294 \uCCAD\uB7C9\uD55C \uC220\uB85C \uC8FC\uAC8C \uADF8\uADF8 \uC800\uBC88\uC5D0
+      \uC740\uD558\uC218\uBAA8\uC591 \uC788\uC9C0\uC54A\uC558\uB098?"
     character_sprite_code: Normal
   - guest_code: 0001
     step_order: 1
@@ -133,25 +180,32 @@ MonoBehaviour:
   - guest_code: 0001
     step_order: 1
     character_name: "\uBCA0\uC77C \uC874"
-    script: "\uC5ED\uC2DC,,,\uC774\uB9DB\uC774\uC57C,,\uC74C,,,"
+    script: "\uC5ED\uC2DC,,,\uC774\uB9DB\uC774\uC57C!!!!!,,\uC6B0\uD558\uD558\uD558\uD558\uD558\uD558\uD558!!!"
     character_sprite_code: RaiseArm
   - guest_code: 0001
     step_order: 1
     character_name: "\uBCA0\uC77C \uC874"
     script: "\uC73C\uC5BD,,,"
     character_sprite_code: Wasted
+  - guest_code: 0001
+    step_order: 2
+    character_name: "\uBCA0\uC77C \uC874"
+    script: "\uB0B4\uAC00 \uC8FD\uC5C8\uB2E4\uACE0..? \uB098\uB294 \uC774 \uC815\uB3C4\uAC00
+      \uC544\uB2C8\uB77C\uACE0..!!!"
+    character_sprite_code: WakeUp
   - guest_code: 0002
     step_order: 0
     character_name: "\uC140\uB808\uB098"
-    script: "\uC548\uB155 \uCF5C\uBA3C~ \uC694\uC0C8 \uBC14\uBE60\uC11C \uC798 \uC624\uC9C0\uB3C4
-      \uBABB\uD588\uB124 \uBBF8\uC548"
+    script: "\uC548\uB155 \uCF5C\uBA3C~ \uC694\uC0C8 \uC6B0\uB9AC \uD68C\uC0AC \uC77C
+      \uB54C\uBB38\uC5D0 \uBC14\uBE60\uC11C \uC798 \uC624\uC9C0\uB3C4 \uBABB\uD588\uB124
+      \uBBF8\uC548\uD574\uC694."
     character_sprite_code: Normal
   - guest_code: 0002
     step_order: 0
     character_name: "\uC140\uB808\uB098"
-    script: "\uB0B4 \uCDE8\uD5A5\uC54C\uC9C0? \uC608\uC05C\uAC78\uB85C \uD558\uB098
-      \uC8FC\uB3C4\uB85D \uD574 \uD551\uD06C\uC0C9\uC778\uB370 \uB808\uBAAC\uB9DB\uB098\uB294\uAC70
-      \uC54C\uC9C0?"
+    script: "\uB0B4 \uCDE8\uD5A5\uC54C\uC8E0? \uC608\uC05C\uAC78\uB85C \uD558\uB098
+      \uC8FC\uB3C4\uB85D \uD574\uC694. \uD551\uD06C\uC0C9\uC778\uB370 \uB808\uBAAC\uB9DB\uB098\uB294\uAC70
+      \uC54C\uC8E0?"
     character_sprite_code: Normal
   - guest_code: 0002
     step_order: 1
@@ -171,14 +225,14 @@ MonoBehaviour:
     character_name: "\uC140\uB808\uB098"
     script: "\uC544\uC73C,, \uC815\uC2E0\uC774 \uBABD\uB871\uD574 ,,, \uC544 \uB9DE\uB2E4,,
       2\uC8FC\uC804\uC5D0 \uB098\uD55C\uD14C \uC92C\uB358 \uC120\uBB3C \uC815\uB9D0
-      \uACE0\uB9C8\uC6CC,"
+      \uACE0\uB9C8\uC6CC."
     character_sprite_code: Tipsy
   - guest_code: 0002
     step_order: 1
     character_name: "\uC140\uB808\uB098"
     script: "\uC774\uBC88\uC5D0\uB294 \uC870\uAE08 \uB2EC\uB2EC\uD55C\uAC78\uB85C
       \uC800\uBC88\uC5D0 \uADF8 \uC788\uC790\uB098? \uB2EC\uB5A0\uC788\uB294\uAC70?
-      \uADF8\uAC78\uB85C \uC918\uBC14"
+      \uADF8\uAC78\uB85C \uC918\uBD10"
     character_sprite_code: Tipsy
   - guest_code: 0002
     step_order: 1
@@ -200,82 +254,252 @@ MonoBehaviour:
     step_order: 2
     character_name: "\uC140\uB808\uB098"
     script: "\uC73C\u3161\uC74C,, \uC81C\uAC00 \uB9CE\uC774 \uCDE8\uD588\uB098\uBCF4
-      \u314F,,,"
+      \u314F,,,\uC694\uC0C8 \uB108\uBB34 \uC77C\uC774 \uB9CE\uC558\uB098 \uBC8C\uC368
+      \uCDE8\uD558\uB2E4\uB2C8,,"
     character_sprite_code: Drunken
   - guest_code: 0002
     step_order: 2
     character_name: "\uC140\uB808\uB098"
-    script: "\uC73C\uC5B4\u3153\uC5B4,,, \uCF5C\uBA38\uC5B4\uC5B8,,,\uB098\uB791
-      \uB180\uC790,,,"
-    character_sprite_code: Drunken
+    script: "\uC73C\uC5B4\u3153\uC5B4,,, \uCF5C\uBA38\uC5B4\uC5B8,,,\uC6B0\uB9AC
+      \u3147,,\u314F,,\uBE60\uB294 \uC65C \uC790\uAFB8 \uB0B4 \uC0DD\uC77C\uB0A0\uC744
+      \uBE44\uBC00\uBC88\uD638\uB85C \uD55C\uB2E4\uB294\uAC74\uC9C0,,"
+    character_sprite_code: Angry
   - guest_code: 0002
     step_order: 2
     character_name: "\uC140\uB808\uB098"
     script: "\uAE30\uC808,,,"
     character_sprite_code: Wasted
+  - guest_code: 0002
+    step_order: 3
+    character_name: "\uC140\uB808\uB098"
+    script: "\uC74C.. \uB0B4\uAC00 \uC5B8\uC81C \uAE30\uC808\uD588\uC5C8\uC9C0..\uC81C\uAC00
+      \uBB34\uC2A8 \uB9D0\uC2E4\uC218 \uAC19\uC740\uAC74 \uC548\uD588\uC8E0\u2026?"
+    character_sprite_code: WakeUp
+  - guest_code: 0002
+    step_order: 3
+    character_name: "\uC140\uB808\uB098"
+    script: "\uD639\uC2DC\uB098 \uC2E4\uC218 \uD588\uC73C\uBA74 \uBC14\uB85C \uB9D0\uD574\uC918\uC694.
+      \uB0B4\uC77C \uB610 \uC62C\uAED8\uC694..!"
+    character_sprite_code: Drunken
   - guest_code: 0003
     step_order: 0
-    character_name: "\uBCA0\uC77C \uC874"
-    script: "\uD558\uD558 \uC548\uB155\uD558\uC2E0\uAC00! \uB610\uC654\uB124"
+    character_name: "\uB370\uB9B4"
+    script: "\uBC18\uAC11\uAD70 \uC80A\uC740\uC774. \uD56D\uC0C1 \uC6B0\uB9AC \uC140\uB808\uB098
+      \uC0AC\uC7A5\uB2D8\uC774 \uB9C8\uC2DC\uB294\uAC78 \uBCF4\uAE30\uB9CC\uD588\uB294\uB370."
     character_sprite_code: Normal
   - guest_code: 0003
     step_order: 0
-    character_name: "\uBCA0\uC77C \uC874"
-    script: "\uC800\uBC88\uCC98\uB7FC \uC88B\uC740\uAC70 \uD558\uB098 \uC8FC\uC2DC\uAC8C\uB098"
+    character_name: "\uB370\uB9B4"
+    script: "\uC9C0\uAE08\uC5D0 \uC640\uC11C\uC57C \uB9C8\uC154\uBCF4\uB294\uAD6C\uB9CC."
     character_sprite_code: Normal
   - guest_code: 0003
     step_order: 0
-    character_name: "\uBCA0\uC77C \uC874"
-    script: "\uD760,,, \uC624\uB298 \uAE30\uBD84\uC774 \uC501\uC4F8\uD558\uB2C8,,
-      \uC2DC\uB098\uBAAC\uD5A5\uC758 \uCE75\uD14C\uC77C \uD558\uB098\uB9CC \uB9CC\uB4E4\uC5B4\uC8FC\uAC8C"
+    character_name: "\uB370\uB9B4"
+    script: "\uB09C \uC2DC\uB098\uBAAC\uD5A5\uC774 \uB098\uB294 \uCE75\uD14C\uC77C
+      \uD558\uB098 \uC8FC\uC2DC\uAC8C \uC80A\uC740\uC774."
     character_sprite_code: Normal
   - guest_code: 0003
+    step_order: 1
+    character_name: "\uB370\uB9B4"
+    script: "\uC624?? \uC6B0\uB9AC \uC0AC\uC7A5\uB2D8\uC774 \uD655\uC2E4\uD788 \uB2E8\uACE8\uC774
+      \uB418\uC2E0 \uC774\uC720\uAC00 \uC788\uAD6C\uB9CC!"
+    character_sprite_code: Drunken
+  - guest_code: 0003
+    step_order: 1
+    character_name: "\uB370\uB9B4"
+    script: "\uC80A\uC740 \uCE5C\uAD6C\uAC00 \uC2E4\uB825\uC774 \uC88B\uC544!"
+    character_sprite_code: Drunken
+  - guest_code: 0003
+    step_order: 1
+    character_name: "\uB370\uB9B4"
+    script: "\uBC8C\uC368 \uB2E4\uB9C8\uC168\uB2E4\uB2C8\u2026\uAC19\uC740\uAC78\uB85C
+      \uD55C\uBC88\uB354 \uC8FC\uC2DC\uAC8C\uB098!"
+    character_sprite_code: Drunken
+  - guest_code: 0003
+    step_order: 2
+    character_name: "\uB370\uB9B4"
+    script: "\uD5C8\uD5C8 \uB04C\uB04C.. \uB108\uBB34 \uC220\uB9DB\uC774 \uC88B\uAD6C\uB9CC!!"
+    character_sprite_code: Drunken
+  - guest_code: 0003
+    step_order: 2
+    character_name: "\uB370\uB9B4"
+    script: "\uB04C\uB04C\uB04C\uB04C\uB04C\uB04C\uB04C\uB04C\uB04C\uB04C\uB04C\uB04C\uB04C\uB04C\uB04C\uB04C"
+    character_sprite_code: Drunken
+  - guest_code: 0003
+    step_order: 2
+    character_name: "\uB370\uB9B4"
+    script: "\uD6CC\uB801.."
+    character_sprite_code: Wasted
+  - guest_code: 0003
+    step_order: 3
+    character_name: "\uB370\uB9B4"
+    script: "\uD760\uD760.. \uC80A\uC740\uC774.. \uB0B4\uAC00 \uCD94\uD0DC\uB97C
+      \uBD80\uB838\uAD6C\uB9CC \uC624\uB298 \uC798\uB9C8\uC168\uB124 \uADF8\uB7FC
+      \uC774\uB9CC."
+    character_sprite_code: WakeUp
+  - guest_code: 0004
     step_order: 0
-    character_name: "\uBCA0\uC77C \uC874"
-    script: "\uB09C \uACC4\uD53C\uAC00 \uB4E4\uC5B4\uAC00\uC57C \uAE30\uBD84\uC774
-      \uC880 \uB0AB\uB354\uB77C\uACE0 \uADF8\uB9AC\uACE0 \uC54C\uCF54\uC62C\uB3C4!
-      \uD5C8\uD5C8..."
+    character_name: "\uC140\uB808\uB098"
+    script: "\uCF5C\uBA3C! \uB0B4\uAC00 \uB610 \uC654\uC5B4!!"
     character_sprite_code: Normal
-  - guest_code: 0003
+  - guest_code: 0004
+    step_order: 0
+    character_name: "\uC140\uB808\uB098"
+    script: "\uBC18\uC751\uC774 \uC65C\uC774\uB807\uAC8C \uC2DC\uD070\uB465\uD574\uC694?
+      \uD760 \uC774\uB7EC\uBA74 \uC624\uB298 \uC2DC\uC791\uC740 \uC0C9\uB2E4\uB978
+      \uCE75\uD14C\uC77C\uB85C \uAC00\uBCFC\uAE4C\uC694?"
+    character_sprite_code: Normal
+  - guest_code: 0004
+    step_order: 0
+    character_name: "\uC140\uB808\uB098"
+    script: "\uBC18\uC9DD\uBC18\uC9DD \uBE5B\uB098\uB294 \uB2F9\uC2E0\uC758 \uB208\uCC98\uB7FC
+      \uC740\uD558\uC218 \uAC19\uC740 \uCE75\uD14C\uC77C \uD55C\uC794 \uC918\uC694."
+    character_sprite_code: Normal
+  - guest_code: 0004
     step_order: 1
-    character_name: "\uBCA0\uC77C \uC874"
-    script: "\uC74C,,, \uCDE8\uD558\uBA74 \uC548\uB418\uB294\uB370,,"
-    character_sprite_code: Drunken
-  - guest_code: 0003
+    character_name: "\uC140\uB808\uB098"
+    script: "\uC774\uAC74 \uCC98\uC74C \uB9C8\uC154\uBCF4\uB294\uB370\uC694..!"
+    character_sprite_code: Normal
+  - guest_code: 0004
     step_order: 1
-    character_name: "\uBCA0\uC77C \uC874"
-    script: "\uB0B4\uC77C \uBC30\uB97C \uD0C4\uB2E4 \uB9D0\uC77C\uC384,,"
-    character_sprite_code: Drunken
-  - guest_code: 0003
+    character_name: "\uC140\uB808\uB098"
+    script: "\uD761\u2026! "
+    character_sprite_code: Normal
+  - guest_code: 0004
     step_order: 1
-    character_name: "\uBCA0\uC77C \uC874"
-    script: "\uADFC\uB370 \uBABB\uCC38\uACA0\uAD6C\uB098 \uD558\uB098\uB9CC \uB354\uC918,,,!!!"
-    character_sprite_code: Drunken
-  - guest_code: 0003
+    character_name: "\uC140\uB808\uB098"
+    script: "\uC815\uB9D0 \uB9DB\uC788\uB2E4!! "
+    character_sprite_code: Tipsy
+  - guest_code: 0004
     step_order: 1
-    character_name: "\uBCA0\uC77C \uC874"
-    script: "\uC544\uAE4C\uB791 \uAC19\uC740\uAC78\uB85C \uC8FC\uAC8C\uB098,,,!!"
+    character_name: "\uC140\uB808\uB098"
+    script: "\uD55C\uC794 \uB4E4\uC5B4\uAC00\uB2C8 \uBC8C\uC368 \uBABD\uB871\uD558\uB124..
+      \uC628\uC138\uC0C1\uC774 \uD551\uD06C\uC57C "
+    character_sprite_code: Tipsy
+  - guest_code: 0004
+    step_order: 1
+    character_name: "\uC140\uB808\uB098"
+    script: "\uD551\uD06C\uD551\uD06C\uD55C \uCE75\uD14C\uC77C \uD55C\uC794 \uC918\uC918\uC918~"
+    character_sprite_code: Tipsy
+  - guest_code: 0004
+    step_order: 2
+    character_name: "\uC140\uB808\uB098"
+    script: "\uC640\uC544\uC544\uC544\uC6B0\u2026 \uCF5C\uBA3C\u2026\uB300\uB2E8..\uD574
+      \uADFC\uB370 \uBB54\uAC00 \uC694\uC0C8 \uB2EC\uB77C\uC9C4 \uAC83 \uAC19\uB2E8
+      \uB9D0\uC774\uC9C0..."
+    character_sprite_code: Tipsy
+  - guest_code: 0004
+    step_order: 2
+    character_name: "\uC140\uB808\uB098"
+    script: "\uC5B4\u2026\uC6B1\u2026 \uD5E4\uD5E4\u2026 \uB108\uBB34 \uC88B\uB2E4
+      \u3134..\u3153.."
     character_sprite_code: Drunken
-  - guest_code: 0003
+  - guest_code: 0004
     step_order: 2
-    character_name: "\uBCA0\uC77C \uC874"
-    script: "\uD06C\uC73C\u3161\u3161 \uC774\uAC8C \uC5BC\uB9C8\uB9CC\uC758 \uC220\uC778\uAC00,,,"
-    character_sprite_code: Drunken
-  - guest_code: 0003
-    step_order: 2
-    character_name: "\uBCA0\uC77C \uC874"
-    script: "\uC5ED\uC2DC \uC790\uB124\uB294 ,,,\uD06C\uC5B4\u3153\uC5B4,,,"
-    character_sprite_code: Drunken
-  - guest_code: 0003
-    step_order: 2
-    character_name: "\uBCA0\uC77C \uC874"
-    script: "\uD06C\uC5B4\uC5B4 \uC88B\uAD6C\uB098 \uC88B\uC544,,,\uC73C,,\uC73C\u315C\u3141,,,!!"
-    character_sprite_code: RaiseArm
-  - guest_code: 0003
-    step_order: 2
-    character_name: "\uBCA0\uC77C \uC874"
+    character_name: "\uC140\uB808\uB098"
     script: "\uAE30\uC808,,,"
     character_sprite_code: Wasted
+  - guest_code: 0004
+    step_order: 3
+    character_name: "\uC140\uB808\uB098"
+    script: "\uC74C.. \uB0B4\uAC00 \uC5B8\uC81C \uCDE8\uD588\uC8E0..?"
+    character_sprite_code: WakeUp
+  - guest_code: 0004
+    step_order: 3
+    character_name: "\uC140\uB808\uB098"
+    script: "\uC544 \uB9DE\uB2E4 \uC5B4\uB5A4 \uAE61\uD328 \uD558\uB098\uAC00 \uC81C
+      \uB4A4\uC5D0 \uC788\uC5C8\uB294\uB370 \uC870\uC2EC\uD574\uC694 \uCF5C\uBA3C."
+    character_sprite_code: Drunken
+  - guest_code: 0005
+    step_order: 0
+    character_name: "\uB77C\uC774\uC5B8"
+    script: "\uC5EC\uC5B4..\uCF5C\uBA3C..! \uB0B4\uAC00 \uC654\uB2E4"
+    character_sprite_code: Normal
+  - guest_code: 0005
+    step_order: 0
+    character_name: "\uB77C\uC774\uC5B8"
+    script: "\uC544\uB2C8 \uD718\uB8E8\uB098 \uB8F9 \uC774\uB77C\uD574\uC57C \uD558\uB098..?
+      \uD06C\uD06D"
+    character_sprite_code: Normal
+  - guest_code: 0005
+    step_order: 0
+    character_name: "\uB77C\uC774\uC5B8"
+    script: "\uC77C\uB2E8 \uC9C0\uAE08 \uBC24\uC5D0 \uB5A0\uC624\uB978 \uB2EC\uC774
+      \uC0DD\uAC01\uB098\uBA74\uC11C \uC2DC\uC6D0\uD55C \uCE75\uD14C\uC77C \uC918\uBD10."
+    character_sprite_code: Normal
+  - guest_code: 0005
+    step_order: 1
+    character_name: "\uB77C\uC774\uC5B8"
+    script: "\uD638\uC624.. \uB300\uB2E8\uD558\uAD70..\uBCC0\uC7A5\uD588\uC73C\uBA74\uC11C
+      \uC2E4\uB825\uB3C4 \uAC19\uC774 \uBCC0\uC7A5\uD588\uB098\uBCF4\uB124..? \uC0DD\uAC01\uBCF4\uB2E4
+      \uC798\uD574?"
+    character_sprite_code: Drunken
+  - guest_code: 0005
+    step_order: 1
+    character_name: "\uB77C\uC774\uC5B8"
+    script: "\uC544 \uADF8\uB9AC\uACE0 \uAE08\uACE0\uC758 \uBE44\uBC00\uBC88\uD638\uB97C
+      \uC54C\uC544\uB0C8\uAE34 \uD588\uB294\uB370\u2026\uC5EC\uAE30 \uB0B4 \uD488\uC548\uC5D0
+      \uC788\uAE34\uD574~"
+    character_sprite_code: Drunken
+  - guest_code: 0005
+    step_order: 1
+    character_name: "\uB77C\uC774\uC5B8"
+    script: "\uC815\uBCF4\uB97C \uB118\uACA8 \uC8FC\uB294 \uB300\uC2E0 \uC870\uAC74\uC774
+      \uC788\uB2E4. \uB0B4\uAC00 \uC5EC\uAE30\uC5D0 \uC788\uB2E4\uB294 \uAC83\uC744
+      \uC6B0\uB9AC\uBCC4\uC5D0 \uC54C\uB9AC\uC9C0 \uB9C8\uB77C."
+    character_sprite_code: Drunken
+  - guest_code: 0005
+    step_order: 1
+    character_name: "\uB77C\uC774\uC5B8"
+    script: "\uC544\uC9C1\uC740 \uC904\uC21C \uC5C6\uC9C0!! \uC6B0\uB9AC \uC678\uACC4
+      \uB3D9\uD3EC\uAC00 \uC0DD\uAC01\uB098\uB294 \uAC78\uB85C \uD55C\uC794 \uC918\uBD10."
+    character_sprite_code: Drunken
+  - guest_code: 0005
+    step_order: 2
+    character_name: "\uB77C\uC774\uC5B8"
+    script: "\uD638\uC624 \uB300\uB2E8\uD574 \uC6B0\uB9AC\uBCC4\uC5D0\uC11C \uB9C8\uC2DC\uB358
+      \uC74C\uB8CC\uB791 \uBE44\uC2B7\uD55C \uB9DB\uC774 \uB098\uB124? \uC88B\uB2E4
+      \uC88B\uC544!"
+    character_sprite_code: Drunken
+  - guest_code: 0005
+    step_order: 2
+    character_name: "\uB77C\uC774\uC5B8"
+    script: "\uC74C\u2026? \uB0B4\uAC00 \uC54C\uCF54\uC62C \uB530\uC704\uC5D0 \uCDE8\uD558\uB098..?"
+    character_sprite_code: Drunken
+  - guest_code: 0005
+    step_order: 2
+    character_name: "\uB77C\uC774\uC5B8"
+    script: "\uC5B4\uB77C..? "
+    character_sprite_code: Drunken
+  - guest_code: 0005
+    step_order: 2
+    character_name: "\uB77C\uC774\uC5B8"
+    script: "\uAE30\uC808,,,"
+    character_sprite_code: Wasted
+  - guest_code: 0005
+    step_order: 3
+    character_name: "\uB77C\uC774\uC5B8"
+    script: "\uC73C\uC73D.. \uAC10\uD788\u2026! \uB0B4\uAC00 \uCDE8\uD55C \uC0AC\uC774\uC5D0
+      \uB0B4 \uC815\uBCF4\uB97C \uAC00\uC838\uAC00?!?!"
+    character_sprite_code: WakeUp
+  - guest_code: 0005
+    step_order: 3
+    character_name: "\uB77C\uC774\uC5B8"
+    script: "\uD558 \uC61B\uB0A0 \uBC84\uB987 \uC5B4\uB514 \uC548\uAC14\uB124? \uD718\uB8E8\uB098
+      \uB8F9?"
+    character_sprite_code: Angry
+  - guest_code: 0005
+    step_order: 3
+    character_name: "\uB77C\uC774\uC5B8"
+    script: "\uC774\uB7F4\uC904 \uC54C\uACE0 \uB0B4\uAC00 \uB9C8\uC744 \uC0AC\uB78C\uB4E4\uC5D0\uAC8C
+      \uB108\uAC00 \uBCC0\uC7A5\uD55C \uC0AC\uC2E4\uC758 \uC815\uBCF4\uB97C \uD758\uB824\uB1A8\uC9C0
+      \uD06C\uD06C\uD06C\uD06C\uD06C"
+    character_sprite_code: Angry
+  - guest_code: 0005
+    step_order: 3
+    character_name: "\uB77C\uC774\uC5B8"
+    script: "\uB10C \uD070\uC77C\uB0AC\uC5B4 \uC784\uB9C8! \uB098 \uAC04\uB2E4~"
+    character_sprite_code: Angry
   Steps:
   - guest_code: 0001
     step_order: 1
@@ -290,8 +514,8 @@ MonoBehaviour:
     circle_leaven_count: 6
     star_leaven_count: 4
     triangle_leaven_count: 2
-    leaven_answer: 1
-    heartbeat_answer: 0
+    leaven_answer: 2
+    heartbeat_answer: 1
   - guest_code: 0002
     step_order: 1
     cocktail_code: 002
@@ -304,22 +528,23 @@ MonoBehaviour:
     circle_leaven_count: 6
     star_leaven_count: 4
     triangle_leaven_count: 1
-    leaven_answer: 1
-    heartbeat_answer: 1
+    leaven_answer: 2
+    heartbeat_answer: 3
   - guest_code: 0002
     step_order: 2
     cocktail_code: 003
     condition_value: 80
     cocktail_summary_text: "\uC5BC\uC74C\uCC98\uB7FC \uCC28\uAC00\uC6B0\uBA70 \uC740\uC740\uD55C
-      \uB2EC\uBE5B\uC774 \uC5F0\uC0C1\uB418\uB294 \uCE75\uD14C\uC77C\uC744 \uB2EC\uB77C\uACE0\uD55C\uB2E4."
+      \uB2EC\uBE5B\uC774 \uC5F0\uC0C1\uB418\uB294 \uCE75\uD14C\uC77C\uC744 \uB2EC\uB77C\uACE0
+      \uD55C\uB2E4."
     answer_alcohol: 48
     condition_answer: 2
     square_leaven_count: 7
     circle_leaven_count: 4
     star_leaven_count: 5
     triangle_leaven_count: 3
-    leaven_answer: 0
-    heartbeat_answer: 2
+    leaven_answer: 1
+    heartbeat_answer: 10
   - guest_code: 0003
     step_order: 1
     cocktail_code: 005
@@ -333,7 +558,7 @@ MonoBehaviour:
     star_leaven_count: 5
     triangle_leaven_count: 2
     leaven_answer: 1
-    heartbeat_answer: 3
+    heartbeat_answer: 9
   - guest_code: 0003
     step_order: 2
     cocktail_code: 005
@@ -348,6 +573,64 @@ MonoBehaviour:
     triangle_leaven_count: 4
     leaven_answer: 2
     heartbeat_answer: 2
+  - guest_code: 0004
+    step_order: 1
+    cocktail_code: 001
+    condition_value: 65
+    cocktail_summary_text: "\uBBFC\uD2B8 \uCC98\uB7FC \uC785\uC548\uC774 \uD654\uD574\uC9C0\uBA70
+      \uC740\uD558\uC218\uCC98\uB7FC \uBC18\uC9DD \uAC70\uB9AC\uB294 \uCE75\uD14C\uC77C\uC744
+      \uB2EC\uB77C\uACE0 \uD55C\uB2E4."
+    answer_alcohol: 30
+    condition_answer: 1
+    square_leaven_count: 5
+    circle_leaven_count: 6
+    star_leaven_count: 4
+    triangle_leaven_count: 2
+    leaven_answer: 2
+    heartbeat_answer: 6
+  - guest_code: 0004
+    step_order: 2
+    cocktail_code: 002
+    condition_value: 10
+    cocktail_summary_text: "\uD551\uD06C\uC0C9 \uAD6C\uB984\uCC98\uB7FC \uBCF4\uC774\uB294
+      \uC6B0\uC544\uD55C \uCE75\uD14C\uC77C\uC744 \uB2EC\uB77C\uACE0 \uD55C\uB2E4."
+    answer_alcohol: 87
+    condition_answer: 0
+    square_leaven_count: 2
+    circle_leaven_count: 6
+    star_leaven_count: 4
+    triangle_leaven_count: 1
+    leaven_answer: 2
+    heartbeat_answer: 1
+  - guest_code: 0005
+    step_order: 1
+    cocktail_code: 003
+    condition_value: 80
+    cocktail_summary_text: "\uC5BC\uC74C\uCC98\uB7FC \uCC28\uAC00\uC6B0\uBA70 \uC740\uC740\uD55C
+      \uB2EC\uBE5B\uC774 \uC5F0\uC0C1\uB418\uB294 \uCE75\uD14C\uC77C\uC744 \uB2EC\uB77C\uACE0
+      \uD55C\uB2E4."
+    answer_alcohol: 45
+    condition_answer: 2
+    square_leaven_count: 7
+    circle_leaven_count: 4
+    star_leaven_count: 5
+    triangle_leaven_count: 3
+    leaven_answer: 1
+    heartbeat_answer: 2
+  - guest_code: 0005
+    step_order: 2
+    cocktail_code: 004
+    condition_value: 80
+    cocktail_summary_text: "\uACE0\uD5A5 \uC678\uACC4\uB3D9\uB8CC\uB4E4\uC774 \uC0DD\uAC01\uB098\uAC8C
+      \uD558\uB294 \uCE75\uD14C\uC77C\uC744 \uB2EC\uB77C\uACE0 \uD55C\uB2E4"
+    answer_alcohol: 99
+    condition_answer: 2
+    square_leaven_count: 7
+    circle_leaven_count: 2
+    star_leaven_count: 5
+    triangle_leaven_count: 2
+    leaven_answer: 1
+    heartbeat_answer: 9
   NPCScripts:
   - npc_code: 0001
     script: "\uCF5C\uBA3C! \uC624\uB298 \uB9DB\uC788\uB294 \uC220\uC774 \uB4E4\uC5B4\uC654\uB2E4\uC9C0?"
@@ -454,3 +737,46 @@ MonoBehaviour:
   - npc_code: 0008
     script: "\uD6C4\uD6C4 \uB0B4 \uAC78\uC791\uC774\uB77C\uACE0! "
     interact_state: 1
+  MonologueScripts:
+  - day: 1
+    script_type: 0
+    script: "\uB0B4\uAC00 \uBCC0\uC7A5\uD55C \uBE44\uB2E4 \uCF5C\uBA3C\uC758 \uBAA8\uC2B5\uC744
+      \uCD5C\uB300\uD55C \uB611\uAC19\uC774 \uC5F0\uAE30\uD574\uC57C \uD55C\uB2E4."
+  - day: 1
+    script_type: 0
+    script: "\uB0B4 \uBAA9\uD45C\uC778 \uD654\uC131\uC758 \uC5D4\uC9C4\uC744 \uCC3E\uC544\uB0B4\uC57C
+      \uD558\uB294\uB370\u2026 \uC624\uB298\uC740 \uC77C\uB2E8 \uC228\uACA8\uC838
+      \uC788\uB294 \uC7A5\uC18C\uB97C \uCC3E\uC544\uBD10\uC57C\uACA0\uB2E4."
+  - day: 1
+    script_type: 1
+    script: "\uB2E4\uB978 \uC0AC\uB78C\uC744 \uC5F0\uAE30 \uD55C\uB2E4\uB294 \uAC8C
+      \uC27D\uC9C0 \uC54A\uB124,,"
+  - day: 1
+    script_type: 1
+    script: "\uC624\uB298\uC740 \uC774\uB9CC \uD1F4\uADFC \uD558\uACE0 \uB0B4\uC77C
+      \uD544\uC694\uD55C \uC815\uBCF4\uB4E4\uC744 \uAF2D \uCC3E\uC544\uC57C\uACA0\uB2E4."
+  - day: 2
+    script_type: 0
+    script: "\uC624\uB298\uC740 \uAE08\uACE0\uC758 \uBE44\uBC00\uBC88\uD638\uB97C
+      \uC54C\uC544\uB0B4\uC57C \uD574 \uC5B4\uC11C \uC190\uB2D8\uB4E4\uC5D0\uAC8C\uC11C
+      \uC815\uBCF4\uB97C \uBE7C\uB0B4\uC57C\uACA0\uB2E4."
+  - day: 2
+    script_type: 1
+    script: "\uC624\uB298 \uC190\uB2D8\uC740 \uC5EC\uAE30 \uAE4C\uC9C0 \uC778 \uAC83
+      \uAC19\uB2E4. \uC774\uB9CC \uD1F4\uADFC\uD574\uC57C\uACA0\uC5B4."
+  - day: 3
+    script_type: 0
+    script: "\uC624\uB298\uC774 \uC784\uBB34 \uB9C8\uC9C0\uB9C9 \uB0A0\uC774\uB124."
+  - day: 3
+    script_type: 0
+    script: "\uC544\uC9C1 \uC5BB\uC9C0 \uBABB\uD55C \uC815\uBCF4\uB4E4\uC744 \uAF2D
+      \uC5BB\uC790."
+  - day: 3
+    script_type: 1
+    script: "\uD760,, \uB77C\uC774\uC5B8\uC758 \uBC18\uC751\uC744 \uBCF4\uB2C8 \uB0B4
+      \uC815\uCCB4\uAC00 \uD0C4\uB85C\uAC00 \uB098\uAE30 \uC9C1\uC804\uC778 \uAC83
+      \uAC19\uB2E4."
+  - day: 3
+    script_type: 1
+    script: "\uC5B4\uC11C \uD1F4\uADFC\uD558\uACE0 \uC784\uBB34\uB97C \uC644\uC218\uD55C
+      \uB2E4\uC74C, \uC774 \uB9C8\uC744\uC5D0\uC11C \uB098\uAC00\uC790."
