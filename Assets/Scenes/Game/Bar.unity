@@ -2855,7 +2855,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &195196279
 RectTransform:
   m_ObjectHideFlags: 0
@@ -6209,7 +6209,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 17.2, y: -296.2001}
-  m_SizeDelta: {x: 188, y: 294}
+  m_SizeDelta: {x: 182, y: 264}
   m_Pivot: {x: 0.5, y: 0}
 --- !u!114 &399498767
 MonoBehaviour:
@@ -6231,7 +6231,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 1e5980fcf057bb344840b292762f2368, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 0338cc60c733a3242a118c0ef2bf892e, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -9617,8 +9617,8 @@ MonoBehaviour:
   m_ShadowVolumeIntensityEnabled: 0
   m_ShadowVolumeIntensity: 0.75
   m_LocalBounds:
-    m_Center: {x: -0.14859986, y: 1.3511, z: 0}
-    m_Extent: {x: 6.5151997, y: 5.723, z: 0}
+    m_Center: {x: -0.1564002, y: 1.3501501, z: 0}
+    m_Extent: {x: 6.5193, y: 5.72445, z: 0}
   m_PointLightInnerAngle: 360
   m_PointLightOuterAngle: 360
   m_PointLightInnerRadius: 0
@@ -26568,8 +26568,8 @@ MonoBehaviour:
   m_ShadowVolumeIntensityEnabled: 0
   m_ShadowVolumeIntensity: 0.75
   m_LocalBounds:
-    m_Center: {x: 0.045449972, y: -0.61995006, z: 0}
-    m_Extent: {x: 1.48825, y: 1.30565, z: 0}
+    m_Center: {x: 0.05400002, y: -0.61335003, z: 0}
+    m_Extent: {x: 1.4799, y: 1.29695, z: 0}
   m_PointLightInnerAngle: 360
   m_PointLightOuterAngle: 360
   m_PointLightInnerRadius: 0
@@ -32325,7 +32325,7 @@ CanvasGroup:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2095592487}
   m_Enabled: 1
-  m_Alpha: 1
+  m_Alpha: 0
   m_Interactable: 1
   m_BlocksRaycasts: 1
   m_IgnoreParentGroups: 0

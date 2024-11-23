@@ -68,7 +68,7 @@ public class ReceiptUI : MonoBehaviour, IPointerClickHandler
     {
         int sumOfCocktailPrice = _barGameManager.CocktailPrice * _barGameManager.StepCount;
         int sumOfCocktailMistakePrice = -_barGameManager.CocktailMistakePrice *_cocktailMakingManager.CocktailMistakeCount;
-        int sumOfOverloadPrice = -_barGameManager.OverloadPrice * _alcoholController.SumOfUsingMachineCount;
+        int sumOfOverloadPrice = -_alcoholController.UtilitiesCost * _alcoholController.SumOfUsingMachineCount;
 
         //칵테일 제공
         _cocktailCountText.text = "(" + _barGameManager.StepCount + "회)";

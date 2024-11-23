@@ -29,7 +29,7 @@ public class AlcoholController : MonoBehaviour
     private Button _enterButton;
 
     [SerializeField]
-    private int _utilitiesCost = 10;
+    private int _utilitiesCost;
 
     public int UtilitiesCost => _utilitiesCost;
     
