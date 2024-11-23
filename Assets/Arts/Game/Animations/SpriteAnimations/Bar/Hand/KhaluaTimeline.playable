@@ -1132,7 +1132,7 @@ MonoBehaviour:
   m_Children: []
   m_Clips:
   - m_Version: 1
-    m_Start: 1.3333333333333333
+    m_Start: 1.3
     m_ClipIn: 0
     m_Asset: {fileID: -6409978983569702350}
     m_Duration: 0.5999999999999999
@@ -1198,7 +1198,7 @@ MonoBehaviour:
     m_PostExtrapolationMode: 1
     m_PreExtrapolationMode: 1
     m_PostExtrapolationTime: Infinity
-    m_PreExtrapolationTime: 1.3333333333333333
+    m_PreExtrapolationTime: 1.3
     m_DisplayName: KhaluaAnimation
   m_Markers:
     m_Objects: []
@@ -1283,7 +1283,7 @@ MonoBehaviour:
   m_Children: []
   m_Clips:
   - m_Version: 1
-    m_Start: 1.3333333333333333
+    m_Start: 1.3
     m_ClipIn: 0
     m_Asset: {fileID: -1200347730209767269}
     m_Duration: 0.5999999999999999
