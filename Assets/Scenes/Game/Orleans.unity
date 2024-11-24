@@ -6555,18 +6555,8 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1022566171693574826, guid: 7f1479eb1c353f0479419ff27c119def,
         type: 3}
-      propertyPath: day
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1022566171693574826, guid: 7f1479eb1c353f0479419ff27c119def,
-        type: 3}
       propertyPath: _timeType
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1022566171693574826, guid: 7f1479eb1c353f0479419ff27c119def,
-        type: 3}
-      propertyPath: _monthlyRent
-      value: 200
       objectReference: {fileID: 0}
     - target: {fileID: 3967937384933605527, guid: 7f1479eb1c353f0479419ff27c119def,
         type: 3}
@@ -11044,7 +11034,7 @@ MonoBehaviour:
   - {fileID: 21300000, guid: a4feeef99fb61cb49a63dcce0c4ed566, type: 3}
   _guideStrings:
   - "\uCF5C\uBA3C\uC758 \uBC14\uB85C \uCD9C\uADFC\uD574\uB77C."
-  - "3\uC77C\uCC28\uAE4C\uC9C0 \uC6D4\uC138 300\uB2EC\uB7EC\uB97C \uBAA8\uC544\uB77C."
+  - "3\uC77C\uCC28\uAE4C\uC9C0 \uC6D4\uC138 $480\uB97C \uBAA8\uC544\uB77C."
   - "\uC218\uB85C\uB97C \uCC3E\uC544\uB77C."
   - "\uC218\uB85C\uC758 \uC790\uBB3C\uC1E0\uB97C \uD480\uC5B4\uB77C."
   _guideIcon: {fileID: 1116744987}

@@ -9622,8 +9622,8 @@ MonoBehaviour:
   m_ShadowVolumeIntensityEnabled: 0
   m_ShadowVolumeIntensity: 0.75
   m_LocalBounds:
-    m_Center: {x: -0.1574502, y: 1.3413498, z: 0}
-    m_Extent: {x: 6.51895, y: 5.7189503, z: 0}
+    m_Center: {x: -0.1552, y: 1.3430998, z: 0}
+    m_Extent: {x: 6.5176, y: 5.7188997, z: 0}
   m_PointLightInnerAngle: 360
   m_PointLightOuterAngle: 360
   m_PointLightInnerRadius: 0
@@ -9693,7 +9693,7 @@ MonoBehaviour:
   _enterAlcoholPhaseButtonGO: {fileID: 248964127}
   _guestScreenBackgroundImage: {fileID: 1033953156}
   _player: {fileID: 1825384289}
-  _cocktailPrice: 20
+  _cocktailPrice: 60
   _tutorialScripts:
   - "(\uC190\uB2D8\uC774 \uC6D0\uD558\uB294 \uC801\uC815 \uC54C\uCF54\uC62C\uC744
     \uCC3E\uC73C\uB824\uBA74 \uBAB8\uC744 \uC2A4\uCE94\uD558\uB294\uAC8C \uC88B\uC744
@@ -25029,7 +25029,7 @@ MonoBehaviour:
   _inActivateItemPanelImage: {fileID: 1991322041}
   _inActivateAlcoholControllerPanelImage: {fileID: 1681772740}
   _enterButton: {fileID: 299251681}
-  _utilitiesCost: 10
+  _utilitiesCost: 5
 --- !u!114 &1669956329
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -26693,8 +26693,8 @@ MonoBehaviour:
   m_ShadowVolumeIntensityEnabled: 0
   m_ShadowVolumeIntensity: 0.75
   m_LocalBounds:
-    m_Center: {x: 0.048750043, y: -0.61575, z: 0}
-    m_Extent: {x: 1.48235, y: 1.2969501, z: 0}
+    m_Center: {x: 0.055650055, y: -0.6152, z: 0}
+    m_Extent: {x: 1.48205, y: 1.2997999, z: 0}
   m_PointLightInnerAngle: 360
   m_PointLightOuterAngle: 360
   m_PointLightInnerRadius: 0
@@ -34601,6 +34601,11 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1022566171693574826, guid: 7f1479eb1c353f0479419ff27c119def,
+        type: 3}
+      propertyPath: _monthlyRent
+      value: 480
+      objectReference: {fileID: 0}
     - target: {fileID: 3967937384933605527, guid: 7f1479eb1c353f0479419ff27c119def,
         type: 3}
       propertyPath: m_Name

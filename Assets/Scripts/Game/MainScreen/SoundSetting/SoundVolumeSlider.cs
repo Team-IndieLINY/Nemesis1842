@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -41,12 +42,16 @@ public class SoundVolumeSlider : MonoBehaviour
                 _slider.value = _sfxVolume;
                 break;
         }
+    }
 
+    private void Start()
+    {
         UpdateSoundVolumeText();
     }
 
     public void UpdateSoundVolumeText()
     {
+        AudioManager.Inst.PlaySFX("volume_slider");
         int soundVolume = (int)_slider.value;
         _soundVolumeText.text = soundVolume.ToString();
 

@@ -33,6 +33,7 @@ public class MainScreen : MonoBehaviour
 
     public void OnClickSettingButton()
     {
+        AudioManager.Inst.PlaySFX("mouse_click");
         PopUpUIManager.Inst.OpenUI(_settingPanel);
     }
 

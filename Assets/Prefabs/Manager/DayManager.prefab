@@ -46,4 +46,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   day: 1
   _timeType: 0
-  _monthlyRent: 300
+  _monthlyRent: 480
