@@ -27,6 +27,7 @@ public class HeartbeatScanner : MonoBehaviour
     private string[] _heartbeatAnimationStrings;
 
     private BoxCollider2D _boxCollider2D;
+    private float _hoveredTime = 0f;
     
     private void Awake()
     {
@@ -75,11 +76,19 @@ public class HeartbeatScanner : MonoBehaviour
         
         if (_guest.IsHovered is false)
         {
+            _hoveredTime = -0.75f;
             _heartbeatAnimator.SetBool(_heartbeatAnimationStrings[(int)ScanManager.Inst.AnswerHeartbeatType], false);
             _heartbeatRenderTextureImage.material.SetFloat("_NoiseScale", 0f);
         }
         else
         {
+            _hoveredTime += Time.deltaTime;
+            if (_hoveredTime > 0.65f)
+            {
+                _hoveredTime = -1.41f;
+                AudioManager.Inst.PlaySFX("pulse_1");
+            }
+            
             _heartbeatAnimator.SetBool(_heartbeatAnimationStrings[(int)ScanManager.Inst.AnswerHeartbeatType], true);
         
             float distanceOfScannerToHeart = Vector2.Distance(transform.position, _guest.HeartPosition);
@@ -94,6 +103,8 @@ public class HeartbeatScanner : MonoBehaviour
 
     private void OnMouseUp()
     {
+        _hoveredTime = 0;
+        
         transform.position = _scannerResetPoint.position;
         
         _boxCollider2D.enabled = true;

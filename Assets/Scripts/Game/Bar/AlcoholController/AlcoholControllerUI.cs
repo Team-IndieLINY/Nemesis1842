@@ -260,6 +260,8 @@ public class AlcoholControllerUI : MonoBehaviour
 
     public void UpdateItemIconUI()
     {
+        _itemIconImage.DOKill();
+        
         if (_alcoholController.CurrentItem == null)
         {
             _itemIconImage.color = new Color32(255, 255, 255, 0);
@@ -267,6 +269,8 @@ public class AlcoholControllerUI : MonoBehaviour
         }
         
         _itemIconImage.sprite = _itemIconSprites[(int)_alcoholController.CurrentItem.ItemData.ItemType];
+        
         _itemIconImage.color = new Color32(255, 255, 255, 255);
+        _itemIconImage.DOFade(0f, 0.7f).SetLoops(-1, LoopType.Yoyo);
     }
 }

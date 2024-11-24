@@ -23,6 +23,9 @@ public class CutSceneManager : MonoBehaviour
 
     [SerializeField]
     private Animator _boyNPCAnimator;
+
+    [SerializeField]
+    private SpriteRenderer _playerSpriteRenderer;
     
     private PlayableDirector _playableDirector;
     public static CutSceneManager Inst { get; private set; }
@@ -38,8 +41,10 @@ public class CutSceneManager : MonoBehaviour
         PlayerController.RestrictMovement();
         
         _waitChatBalloonGO.SetActive(true);
-
+        
         yield return new WaitForSeconds(1f);
+        
+        _playerSpriteRenderer.flipX = true;
         
         _waitChatBalloonGO.SetActive(false);
         
@@ -52,7 +57,7 @@ public class CutSceneManager : MonoBehaviour
             {
                 _boyNPCAnimator.SetBool("IsRun", false);
             });
-
+        
         yield return new WaitUntil(() => _playableDirector.state == PlayState.Paused);
 
         BarOutsideDialougeManager.Inst.StartDialogueByString(_boyNPCTransform.position, _cutSceneScripts);

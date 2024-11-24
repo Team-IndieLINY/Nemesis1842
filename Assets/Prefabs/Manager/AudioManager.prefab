@@ -342,6 +342,62 @@ MonoBehaviour:
     clip: {fileID: 8300000, guid: bceee2ea4126bd04b815dec3a4c9533f, type: 3}
   - name: alcohol_machine_gauge
     clip: {fileID: 8300000, guid: 18741e94a941636429f4db4dd9c6901f, type: 3}
+  - name: walk_1
+    clip: {fileID: 8300000, guid: cb27bd6bd4c66114a8836397dc1ec33f, type: 3}
+  - name: walk_2
+    clip: {fileID: 0}
+  - name: pulse_1
+    clip: {fileID: 8300000, guid: cb27bd6bd4c66114a8836397dc1ec33f, type: 3}
+  - name: paper_1
+    clip: {fileID: 0}
+  - name: gotocock
+    clip: {fileID: 0}
+  - name: waterdrop
+    clip: {fileID: 0}
+  - name: ingradient_glass
+    clip: {fileID: 0}
+  - name: ingradient_any
+    clip: {fileID: 0}
+  - name: shake
+    clip: {fileID: 0}
+  - name: door
+    clip: {fileID: 0}
+  - name: getingrad
+    clip: {fileID: 0}
+  - name: wasted_bailjohn
+    clip: {fileID: 0}
+  - name: wasted_selena
+    clip: {fileID: 0}
+  - name: snoriing
+    clip: {fileID: 0}
+  - name: wave
+    clip: {fileID: 0}
+  - name: cave
+    clip: {fileID: 0}
+  - name: money_increase
+    clip: {fileID: 0}
+  - name: steal_item_1
+    clip: {fileID: 0}
+  - name: crowd
+    clip: {fileID: 0}
+  - name: day_clear
+    clip: {fileID: 0}
+  - name: bangbang
+    clip: {fileID: 0}
+  - name: stair_1
+    clip: {fileID: 0}
+  - name: xray_scanner
+    clip: {fileID: 0}
+  - name: guide
+    clip: {fileID: 0}
+  - name: buff_sound
+    clip: {fileID: 0}
+  - name: steal_item_2
+    clip: {fileID: 0}
+  - name: dodong_1
+    clip: {fileID: 0}
+  - name: spray_1
+    clip: {fileID: 0}
   musicSource: {fileID: 2347733625220441384}
   sfxSource: {fileID: 3057471691295174623}
   audioMixer: {fileID: 24100000, guid: ec5e0eafdd1dcf54caa2fd3ec43d5072, type: 2}

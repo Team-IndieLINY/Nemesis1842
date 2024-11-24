@@ -57,12 +57,15 @@ public abstract class CocktailMaterial : MonoBehaviour, IBeginDragHandler, IDrag
     {
         if (ShakerHandler.IsHovered)
         {
+            _image.raycastTarget = true;
             SetCocktail();
         }
-        
+        else
+        {
+            _image.raycastTarget = true;
+        }
         transform.SetParent(_originalParent);
         _rectTransform.anchoredPosition = _originalPosition;
-        _image.raycastTarget = true;
         _isDraged = false;
     }
 

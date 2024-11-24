@@ -19,7 +19,7 @@ public class IntroDialougeTrigger : MonoBehaviour
             return;
         }
         
-        if (Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.E))
+        if (Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.E) && LoadingScreen.Instance.LoadIsDone)
         {
             if (_introDialougeManager.IsTyped is true)
             {

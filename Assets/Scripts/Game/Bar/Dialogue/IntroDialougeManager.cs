@@ -78,6 +78,10 @@ public class IntroDialougeManager : MonoBehaviour
 
     public void StartDialogue()
     {
+        if (_isTyped == true)
+        {
+            return;
+        }
         _isProgressed = true;
         
         _chatBalloonGO.SetActive(true);
@@ -88,6 +92,11 @@ public class IntroDialougeManager : MonoBehaviour
 
     public void DisplayNextScript()
     {
+        if (_isTyped == true)
+        {
+            return;
+        }
+        
         if (_scriptsQueue.Count == 0 && _isEnded is false)
         {
             _isEnded = true;

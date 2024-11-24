@@ -50,7 +50,7 @@ public class LockCutSceneManager : MonoBehaviour
         
         _findPlayerChatBalloon2.SetActive(true);
         
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(2f);
         
         _findPlayerChatBalloon.SetActive(false);
         _findPlayerChatBalloon2.SetActive(false);

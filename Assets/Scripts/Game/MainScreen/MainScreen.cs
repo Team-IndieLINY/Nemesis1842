@@ -20,6 +20,7 @@ public class MainScreen : MonoBehaviour
 
     public void PlayGame()
     {
+        _fadeImage.raycastTarget = true;
         AudioManager.Inst.PlaySFX("mouse_click");
         
         AudioManager.Inst.FadeOutMusic("main_screen");

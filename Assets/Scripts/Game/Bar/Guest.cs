@@ -22,6 +22,7 @@ public class Guest : MonoBehaviour
     public StepEntity StepData { get; set; }
 
     private SpriteRenderer _spriteRenderer;
+    private PolygonCollider2D _polygonCollider2D;
     private PlayableDirector _playableDirector;
     private List<CharacterData> _characterDatas;
     private CharacterData _currentCharacterData;
@@ -35,6 +36,7 @@ public class Guest : MonoBehaviour
     
     private void Awake()
     {
+        _polygonCollider2D = GetComponent<PolygonCollider2D>();
         _spriteRenderer = GetComponent<SpriteRenderer>();
         _playableDirector = GetComponent<PlayableDirector>();
         _characterDatas = Resources.LoadAll<CharacterData>("GameData/CharacterData").ToList();
@@ -49,12 +51,12 @@ public class Guest : MonoBehaviour
 
         _currentCharacterData = characterData[0];
         _spriteRenderer.sprite = _currentCharacterData.StringByCharacterSprite.GetDict()["Normal"];
+        
+        _polygonCollider2D.TryUpdateShapeToAttachedSprite();
+        
         _eyeAnimator.runtimeAnimatorController = _currentCharacterData.CharacterEyeAnimatorController;
         _mouthAnimator.runtimeAnimatorController = _currentCharacterData.CharacterMouseAnimatorController;
         _heartPosition = _currentCharacterData.HeartPoint;
-        
-        // Destroy(GetComponent<PolygonCollider2D>());
-        // gameObject.AddComponent<PolygonCollider2D>().isTrigger = true;
     }
 
     public void SetCharacterSprite(string characterSpriteCode)
@@ -64,6 +66,8 @@ public class Guest : MonoBehaviour
             AudioManager.Inst.PlaySFX("drunken");
         }
         _spriteRenderer.sprite = _currentCharacterData.StringByCharacterSprite.GetDict()[characterSpriteCode];
+        
+        _polygonCollider2D.TryUpdateShapeToAttachedSprite();
 
         foreach (var stringBySprite in _currentCharacterData.StringByCharacterSprite.GetDict())
         {

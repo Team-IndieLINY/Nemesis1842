@@ -77,7 +77,7 @@ public class BarOutsideGameManager : MonoBehaviour
             Sequence sequence = DOTween.Sequence();
             
             sequence.PrependInterval(1f)
-                .Append(_dayStartPanelCanvasGroup.DOFade(0f, 2f))
+                .Append(_dayStartPanelCanvasGroup.DOFade(0f, 0.7f))
                 .OnKill(() =>
                 {
                     _dayStartPanelCanvasGroup.interactable = false;

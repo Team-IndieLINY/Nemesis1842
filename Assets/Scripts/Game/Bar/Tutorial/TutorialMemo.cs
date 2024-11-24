@@ -31,6 +31,7 @@ public class TutorialMemo : MonoBehaviour,IPointerClickHandler
 
     public void OnPointerClick(PointerEventData eventData)
     {
+        AudioManager.Inst.PlaySFX("paper_1");
         _image.raycastTarget = false;
         _highlightImage.gameObject.SetActive(false);
         _rectTransform.DOAnchorPos(new Vector2(-1331, 219), 0.5f);

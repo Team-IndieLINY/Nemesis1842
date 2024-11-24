@@ -1,6 +1,8 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using DG.Tweening;
+using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
@@ -18,6 +20,12 @@ public class Item : MonoBehaviour,IPointerClickHandler,IPointerEnterHandler,IPoi
 
     [SerializeField]
     private AlcoholController _alcoholController;
+
+    [SerializeField]
+    private TextMeshProUGUI _usingItemText;
+
+    [SerializeField]
+    private CanvasGroup _usingItemSignCanvasGroup;
 
     private ItemUI _itemUI;
 
@@ -60,6 +68,15 @@ public class Item : MonoBehaviour,IPointerClickHandler,IPointerEnterHandler,IPoi
             _itemUI.UpdateItemUI();
             
             _alcoholController.EquipItem(null);
+            
+            _usingItemSignCanvasGroup.DOKill();
+            _usingItemText.text = "<color #c89e38>\" " + _itemData.ItemName + "\"</color>를 사용을 취소합니다.";
+
+            Sequence sequence2 = DOTween.Sequence();
+            sequence2.Append(_usingItemSignCanvasGroup.DOFade(1f, 0.3f))
+                .AppendInterval(0.5f)
+                .Append(_usingItemSignCanvasGroup.DOFade(0f, 0.3f));
+            
             return;
         }
 
@@ -73,5 +90,14 @@ public class Item : MonoBehaviour,IPointerClickHandler,IPointerEnterHandler,IPoi
         InventoryManager.Instance().AddItem(_itemData.ItemType,-1);
         _itemUI.UpdateItemUI();
         _alcoholController.EquipItem(this);
+
+        _usingItemSignCanvasGroup.DOKill();
+        _usingItemText.text = "<color #c89e38>\" " + _itemData.ItemName + "\"</color>를 사용합니다.";
+
+        Sequence sequence = DOTween.Sequence();
+        sequence.Append(_usingItemSignCanvasGroup.DOFade(1f, 0.3f))
+            .AppendInterval(0.5f)
+            .Append(_usingItemSignCanvasGroup.DOFade(0f, 0.3f));
+
     }
 }

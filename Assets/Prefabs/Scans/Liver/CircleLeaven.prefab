@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 6471331200282855453}
   - component: {fileID: 8711024419850329282}
   - component: {fileID: 5545092441581153953}
+  - component: {fileID: 3812471567216098995}
   m_Layer: 0
   m_Name: CircleLeaven
   m_TagString: Untagged
@@ -93,3 +94,15 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 1
   m_SpriteSortPoint: 0
+--- !u!114 &3812471567216098995
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2101398855945309806}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9dff4cfb512f264479e1fc5edd937545, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

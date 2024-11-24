@@ -23,6 +23,8 @@ public class PlayerController : MonoBehaviour
 
     private static int restrictingMovementCount = 0;
 
+    private float _walkTimeSound = 0f;
+
     private void Awake()
     {
         restrictingMovementCount = 0;
@@ -63,15 +65,32 @@ public class PlayerController : MonoBehaviour
             {
                 _animator.SetBool("IsWalking", true);
                 _spriteRenderer.flipX = true;
+                
+                _walkTimeSound += Time.deltaTime;
+                
+                if (_walkTimeSound > 0.5f)
+                {
+                    AudioManager.Inst.PlaySFX("walk_1");
+                    _walkTimeSound = 0f;
+                }
             }
             else if(inputX > 0)
             {
                 _animator.SetBool("IsWalking", true);
                 _spriteRenderer.flipX = false;
+                
+                _walkTimeSound += Time.deltaTime;
+
+                if (_walkTimeSound > 0.5f)
+                {
+                    AudioManager.Inst.PlaySFX("walk_1");
+                    _walkTimeSound = 0f;
+                }
             }
             else
             {
                 _animator.SetBool("IsWalking", false);
+                _walkTimeSound = 0f;
             }
 
             _rigidbody.velocity = new Vector3(inputX * _movingSpeed, 0, 0);

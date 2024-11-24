@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Text;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UIElements;
@@ -32,6 +33,9 @@ public class LoadingScreen : MonoBehaviour
         }
     }
 
+    private bool _loadIsDone;
+    public bool LoadIsDone => _loadIsDone;
+
     private void Awake()
     {
         if (Instance != this)
@@ -45,6 +49,7 @@ public class LoadingScreen : MonoBehaviour
 
     public void LoadScene(string sceneName)
     {
+        _loadIsDone = false;
         SceneManager.LoadScene("LoadingScreen");
         SceneManager.sceneLoaded += OnSceneLoaded;
         StartCoroutine(Load(sceneName));
@@ -73,6 +78,7 @@ public class LoadingScreen : MonoBehaviour
                 }
 
                 op.allowSceneActivation = true;
+                _loadIsDone = true;
                 yield break;
             }
         }
