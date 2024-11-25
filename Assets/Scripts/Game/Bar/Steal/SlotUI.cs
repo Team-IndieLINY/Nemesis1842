@@ -56,6 +56,7 @@ public class SlotUI : MonoBehaviour,IPointerClickHandler
 
     public void OnPointerClick(PointerEventData eventData)
     {
+        AudioManager.Inst.PlaySFX("inventory_item_click");
         _inventory.SelectSlot(_slot);
     }
 

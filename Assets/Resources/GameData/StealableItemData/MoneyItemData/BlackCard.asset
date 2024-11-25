@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: BlackCard
   m_EditorClassIdentifier: 
   _itemSprite: {fileID: 21300000, guid: cc0ea6aa41ec924428805fc30319228e, type: 3}
-  money: 150
+  money: 100

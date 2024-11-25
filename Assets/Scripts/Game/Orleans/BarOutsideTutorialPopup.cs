@@ -26,6 +26,7 @@ public class BarOutsideTutorialPopup : MonoBehaviour, IPopUpable
     public void HideUI()
     {
         PlayerController.AllowMovement();
+        PlayerController.AllowMovement();
         _canvasGroup.DOKill();
         _canvasGroup.DOFade(0f, 0.7f)
             .OnKill(() =>

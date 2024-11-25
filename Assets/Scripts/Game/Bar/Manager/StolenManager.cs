@@ -112,6 +112,7 @@ public class StolenManager : MonoBehaviour
 
     public void OnClickWakeUpButton()
     {
+        AudioManager.Inst.PlaySFX("mouse_click");
         _isStolenDone = true;
         
         _cautionImage.DOFade(0f, 0.3f);
@@ -128,8 +129,11 @@ public class StolenManager : MonoBehaviour
     
     public void OnClickStealButton()
     {
+        AudioManager.Inst.PlaySFX("mouse_click");
         _wakeUpButton.interactable = false;
 
+        _stolenSelectorCanvasGroup.interactable = false;
+        _stolenSelectorCanvasGroup.blocksRaycasts = false;
         _stolenSelectorCanvasGroup.DOKill();
         _stolenSelectorCanvasGroup.DOFade(0f, 0.2f);
         
@@ -142,14 +146,19 @@ public class StolenManager : MonoBehaviour
                 _stopStealingButtonCanvasGroup.DOFade(1f, 0.2f)
                     .OnKill(() =>
                     {
+                        _stopStealingButtonCanvasGroup.interactable = true;
                         _stopStealingButton.interactable = true;
+                        _stopStealingButtonCanvasGroup.blocksRaycasts = true;
                     });
             });
     }
 
     public void OnClickStopStealingButton()
     {
+        AudioManager.Inst.PlaySFX("mouse_click");
+        _stopStealingButtonCanvasGroup.interactable = false;
         _stopStealingButton.interactable = false;
+        _stopStealingButtonCanvasGroup.blocksRaycasts = false;
         
         RectTransform currentBelongingRectTransform = _currentBelonging.transform as RectTransform;
         
@@ -163,6 +172,8 @@ public class StolenManager : MonoBehaviour
                         _stolenSelectorCanvasGroup.DOFade(1f, 0.2f);
                         _wakeUpButton.interactable = true;
                         _stealButton.interactable = true;
+                        _stolenSelectorCanvasGroup.interactable = true;
+                        _stolenSelectorCanvasGroup.blocksRaycasts = true;
                     });
             });
     }

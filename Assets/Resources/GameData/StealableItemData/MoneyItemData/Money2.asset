@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: Money2
   m_EditorClassIdentifier: 
   _itemSprite: {fileID: 21300000, guid: f037605a4ef9ab043a26e3f331b630b2, type: 3}
-  money: 30
+  money: 10

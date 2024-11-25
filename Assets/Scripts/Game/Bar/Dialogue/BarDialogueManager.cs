@@ -152,10 +152,31 @@ public class BarDialogueManager : MonoBehaviour
         _isTyped = true;
         _scriptText.text = "";
 
+        bool isImportant = false;
+
         foreach (var letter in script.ToCharArray())
         {
             AudioManager.Inst.PlaySFX("type");
-            _scriptText.text += letter;
+            if (letter == '<')
+            {
+                isImportant = true;
+                continue;
+            }
+            else if (letter == '>')
+            {
+                isImportant = false;
+                continue;
+            }
+
+            if (isImportant is false)
+            {
+                _scriptText.text += letter;
+            }
+            else
+            {
+                _scriptText.text += "<color #c89e38>" + letter + "</color>";
+            }
+            
             yield return new WaitForSeconds(_typeSpeedForSecond);
         }
         
@@ -186,7 +207,25 @@ public class BarDialogueManager : MonoBehaviour
         
         _guest.DisappearMouth();
 
-        _scriptText.text = _currentScript;
+
+        string script = "";
+        foreach (var letter in _currentScript.ToCharArray())
+        {
+            if (letter == '<')
+            {
+                script += "<color #c89e38>";
+                continue;
+            }
+            else if (letter == '>')
+            {
+                script += "</color>";
+                continue;
+            }
+            
+            script += letter;
+        }
+
+        _scriptText.text = script;
 
         _mouthAnimator.enabled = false;
         _isTyped = false;
@@ -195,7 +234,7 @@ public class BarDialogueManager : MonoBehaviour
     public void SkipTypeTutorialScripts()
     {
         StopCoroutine(_typeScriptsCoroutine);
-
+        
         _tutorialScriptText.text = _currentScript;
         _isTyped = false;
     }

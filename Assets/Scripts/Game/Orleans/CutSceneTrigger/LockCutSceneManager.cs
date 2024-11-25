@@ -18,6 +18,9 @@ public class LockCutSceneManager : MonoBehaviour
     
     [SerializeField]
     private GameObject _findPlayerChatBalloon2;
+    
+    [SerializeField]
+    private GameObject _findPlayerChatBalloon3;
 
     [SerializeField]
     private LockUI _lockUI;
@@ -50,10 +53,15 @@ public class LockCutSceneManager : MonoBehaviour
         
         _findPlayerChatBalloon2.SetActive(true);
         
+        yield return new WaitForSeconds(1f);
+        
+        _findPlayerChatBalloon3.SetActive(true);
+        
         yield return new WaitForSeconds(2f);
         
         _findPlayerChatBalloon.SetActive(false);
         _findPlayerChatBalloon2.SetActive(false);
+        _findPlayerChatBalloon3.SetActive(false);
 
         BarOutsideDialougeManager.Inst.StartDialogueByString(_playerTransform.position, _cutSceneScripts);
 

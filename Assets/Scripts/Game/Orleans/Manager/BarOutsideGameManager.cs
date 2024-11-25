@@ -51,6 +51,9 @@ public class BarOutsideGameManager : MonoBehaviour
 
     [SerializeField]
     private GuideUI _guideUI;
+
+    [SerializeField]
+    private BarOutsideTutorialManager _barOutsideTutorialManager;
     
     private List<NPCData> _npcDatas;
 
@@ -73,7 +76,12 @@ public class BarOutsideGameManager : MonoBehaviour
     {
         if(DayManager.Instance.TimeType == NPCData.ETimeType.Evening)
         {
+            if (DayManager.Instance.Day == 1)
+            {
+                PlayerController.RestrictMovement();
+            }
             _dayStartPanelCanvasGroup.gameObject.SetActive(true);
+            AudioManager.Inst.PlaySFX("dodong_1");
             Sequence sequence = DOTween.Sequence();
             
             sequence.PrependInterval(1f)
@@ -85,6 +93,10 @@ public class BarOutsideGameManager : MonoBehaviour
                     if (DayManager.Instance.Day == 2)
                     {
                         _guideUI.ShowGuideUI(GuideUI.EGuideType.RENT);
+                    }
+                    else if (DayManager.Instance.Day == 1)
+                    {
+                        _barOutsideTutorialManager.OpenTutorial();
                     }
                 });
             

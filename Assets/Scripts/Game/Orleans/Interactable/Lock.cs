@@ -34,6 +34,7 @@ public class Lock : InteractableObject
 
     public override void Interact()
     {
+        AudioManager.Inst.PlaySFX("interact_lock");
         if (DayManager.Instance.Day == 3 && DayManager.Instance.TimeType == NPCData.ETimeType.Dawn)
         {
             if (_isInteractFirstTime == true)
@@ -60,7 +61,7 @@ public class Lock : InteractableObject
         }
         
         _currentNumberString += number;
-        
+        AudioManager.Inst.PlaySFX("open_lock_button");
         _lockUI.UpdateLockUI();
     }
 

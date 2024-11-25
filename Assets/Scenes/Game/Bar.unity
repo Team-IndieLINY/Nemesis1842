@@ -3955,7 +3955,7 @@ PrefabInstance:
     - target: {fileID: 2692138688265095473, guid: 9c163be40136e2d4593d4989ea9dd23b,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -30
+      value: -23
       objectReference: {fileID: 0}
     - target: {fileID: 3951301769703610876, guid: 9c163be40136e2d4593d4989ea9dd23b,
         type: 3}
@@ -4156,6 +4156,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9130122159573601669, guid: 9c163be40136e2d4593d4989ea9dd23b,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 58
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects:
@@ -9622,8 +9627,8 @@ MonoBehaviour:
   m_ShadowVolumeIntensityEnabled: 0
   m_ShadowVolumeIntensity: 0.75
   m_LocalBounds:
-    m_Center: {x: -0.1552, y: 1.3430998, z: 0}
-    m_Extent: {x: 6.5176, y: 5.7188997, z: 0}
+    m_Center: {x: -0.15714979, y: 1.3450999, z: 0}
+    m_Extent: {x: 6.51545, y: 5.715, z: 0}
   m_PointLightInnerAngle: 360
   m_PointLightOuterAngle: 360
   m_PointLightInnerRadius: 0
@@ -9695,38 +9700,33 @@ MonoBehaviour:
   _player: {fileID: 1825384289}
   _cocktailPrice: 60
   _tutorialScripts:
-  - "(\uC190\uB2D8\uC774 \uC6D0\uD558\uB294 \uC801\uC815 \uC54C\uCF54\uC62C\uC744
-    \uCC3E\uC73C\uB824\uBA74 \uBAB8\uC744 \uC2A4\uCE94\uD558\uB294\uAC8C \uC88B\uC744
-    \uAC83 \uAC19\uC740\uB370..)"
-  - "(\uC5B4\uB5A4 \uC2A4\uCE94\uC774 \uC88B\uC744\uAE4C..?)"
-  - "(\uC5B4\uB5A4 \uC2A4\uCE94\uC744 \uC120\uD0DD\uD558\uB290\uB0D0\uC5D0 \uB530\uB77C
-    \uC54C\uCF54\uC62C \uC2DC\uBBAC\uB808\uC774\uD130\uC758 \uB3D9\uC791 \uBC29\uC2DD\uC774
-    \uB2EC\uB77C\uC9C0\uB2C8 \uC2E0\uC911\uD558\uAC8C \uACE0\uB974\uB3C4\uB85D \uD558\uC790..)"
+  - "(\uBD84\uBA85 \uC190\uB2D8\uC774 \uC6D0\uD558\uB294 \uC54C\uCF54\uC62C \uB3C4\uC218\uB97C
+    \uCC3E\uC73C\uB824\uBA74 \uBA3C\uC800 \uC190\uB2D8\uB4E4\uC758 \uC0C1\uD0DC\uB97C
+    \uD30C\uC545\uD558\uB77C\uACE0 \uD588\uC5C8\uC9C0.)"
+  - "(\uC5B4\uB5A4 \uAE30\uACC4\uB85C \uC190\uB2D8\uC758 \uC0C1\uD0DC\uB97C \uC2A4\uCE94\uD560\uAE4C..?)"
+  - "(\uC5B4\uB5A4 \uC2A4\uCE90\uB108\uB97C \uC120\uD0DD\uD558\uB290\uB0D0\uC5D0
+    \uB530\uB77C \uC54C\uCF54\uC62C \uC2DC\uBBAC\uB808\uC774\uD130\uC758 \uB3D9\uC791
+    \uBC29\uC2DD\uC774 \uB2EC\uB77C\uC9C0\uB2C8 \uC2E0\uC911\uD558\uAC8C \uACE0\uB974\uB3C4\uB85D
+    \uD558\uC790.)"
   _tutorial2Scripts:
   - "(\uC911\uC559\uC5D0 \uC788\uB294 \uC2A4\uCE90\uB108\uB97C \uC9D1\uC5B4\uC11C
-    \uC190\uB2D8\uD55C\uD14C \uAC00\uC838\uB2E4 \uB418\uBA74 \uB41C\uB2E4\uACE0 \uD588\uB098?)"
-  - "(\uC2A4\uCE90\uB108 \uC0AC\uC6A9\uBC95\uC740 \uC67C\uCABD \uC2A4\uCE90\uB108
-    \uACB0\uACFC\uC9C0\uB97C \uD655\uC778\uD558\uBA74 \uB420 \uAC83 \uAC19\uACE0..)"
-  - "(\uC2A4\uCE90\uB108\uC5D0\uC11C \uCC3E\uC740 \uC815\uBCF4\uC640 \uC77C\uCE58\uD558\uB294
-    \uACB0\uACFC\uB97C \uCCB4\uD06C\uD558\uBA74 \uB420 \uAC83 \uAC19\uC740\uB370?)"
+    \uC190\uB2D8\uD55C\uD14C \uAC00\uC838\uB2E4 \uB300\uBA74 \uB41C\uB2E4\uACE0 \uD588\uB098?)"
+  - "(\uC67C\uCABD \uC2A4\uCE94 \uACB0\uACFC\uC9C0\uC5D0 \uC788\uB294 \uC0AC\uC6A9\uBC95\uC744
+    \uB530\uB77C \uC2A4\uCE90\uB108\uC5D0\uC11C \uCC3E\uC740 \uC815\uBCF4\uC640 \uC77C\uCE58\uD558\uB294
+    \uACB0\uACFC\uB97C \uCCB4\uD06C\uD558\uBA74 \uB420 \uAC83 \uAC19\uB2E4.)"
   _tutorial3Scripts:
   - "(\uC774 \uAE30\uACC4\uAC00 \uC54C\uCF54\uC62C \uC2DC\uBBAC\uB808\uC774\uD130\uB77C\uACE0
     \uD588\uB358\uAC00?)"
   - "(\uC2A4\uCE94\uD55C \uC815\uBCF4\uB97C \uAE30\uBC18\uC73C\uB85C \uC785\uB825\uD55C
-    \uB3C4\uC218\uAC00 \uC190\uB2D8\uC5D0\uAC8C \uC801\uC815\uD55C \uC9C0 \uD310\uB2E8\uD574\uC900\uB2E4\uB294\uB370..)"
-  - "(\uD55C \uBC88 \uC0AC\uC6A9\uD560 \uB54C\uB9C8\uB2E4 \uC804\uAE30\uC138\uAC00
-    \uC0C1\uB2F9\uD558\uB2E4\uACE0 \uD558\uB2C8 \uC2E0\uC911\uD558\uAC8C \uC0AC\uC6A9\uD558\uB294
-    \uAC83\uC774 \uC88B\uACA0\uC5B4)"
-  - "(\uC624\uB978\uCABD \uC120\uBC18 \uC704\uC5D0 \uBC30\uD130\uB9AC\uB4E4\uB3C4
-    \uC798 \uD65C\uC6A9\uD55C\uB2E4\uBA74 \uC804\uAE30\uC138\uB97C \uC544\uB084 \uC218\uB3C4
-    \uC788\uB2E4\uACE0 \uD588\uC73C\uB2C8 \uCC38\uACE0\uD574\uBCF4\uC790)"
-  - "(\uADFC\uB370 \uC774 \uBA54\uBAA8\uC9C0\uB294 \uBB50\uC9C0..?)"
+    \uB3C4\uC218\uAC00 \uC190\uB2D8\uC5D0\uAC8C \uC801\uC808\uD55C\uC9C0 \uD310\uB2E8\uD574\uC900\uB2E4\uB2C8..
+    \uD3B8\uB9AC\uD558\uAD70.)"
+  - "(\uBA54\uBAA8\uC7A5\uC5D0 \uC801\uD78C \uC0AC\uC6A9\uBC95\uC744 \uC77D\uC5B4\uBD10\uC57C\uACA0\uB2E4.)"
   _tutorial4Scripts:
   - "(\uC774\uC81C \uCE75\uD14C\uC77C\uC744 \uB9CC\uB4E4 \uCC28\uB840\uC778\uB370..)"
-  - "(\uCE75\uD14C\uC77C \uC7AC\uB8CC\uB294 \uC67C\uCABD \uB808\uC2DC\uD53C\uB97C
-    \uBCF4\uBA74\uC11C \uD558\uBA74 \uB418\uACA0\uAD70..)"
+  - "(\uCE75\uD14C\uC77C \uC7AC\uB8CC\uB294 \uB808\uC2DC\uD53C\uB97C \uBCF4\uBA74\uC11C
+    \uC0AC\uC6A9\uD558\uBA74 \uB418\uACA0\uAD70.)"
   - "(\uC798\uBABB \uB9CC\uB4E4\uBA74 \uB2E4 \uC7AC\uB8CC\uAC12\uC774\uB2C8\uAE4C
-    \uC2E0\uC911\uD558\uAC8C \uC250\uC774\uCEE4\uB85C \uC9D1\uC5B4 \uB123\uC5B4\uBCF4\uC790\uACE0)"
+    \uC2E0\uC911\uD558\uAC8C \uC250\uC774\uCEE4\uC5D0 \uC9D1\uC5B4\uB123\uC5B4\uBCF4\uC790\uACE0.)"
   _overloadPrice: 5
   _cocktailMistakePrice: 3
   _receiptUI: {fileID: 185307107}
@@ -12687,6 +12687,16 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3707243711111993655, guid: 277b870030790c04184bcb6bbf5785a7,
+        type: 3}
+      propertyPath: sfxSounds.Array.size
+      value: 47
+      objectReference: {fileID: 0}
+    - target: {fileID: 3707243711111993655, guid: 277b870030790c04184bcb6bbf5785a7,
+        type: 3}
+      propertyPath: sfxSounds.Array.data[37].clip
+      value: 
+      objectReference: {fileID: 8300000, guid: af9ee16d39a1a22478377abc953ce274, type: 3}
     - target: {fileID: 4380599456923004065, guid: 277b870030790c04184bcb6bbf5785a7,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -13243,8 +13253,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\uB9E4 \uC2DC\uB3C4\uB9C8\uB2E4 \uCD5C\uC18C, \uCD5C\uB300 \uC54C\uCF54\uC62C
-    \uBC94\uC704 3\uC529 \uAC10\uC18C"
+  m_text: "\uB9E4 \uC2DC\uB3C4\uB9C8\uB2E4 \uCD5C\uB300, \uCD5C\uC18C \uC54C\uCF54\uC62C
+    \uBC94\uC704 3 \uAC10\uC18C"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 42d283415f5419b498e33c0d3930da7e, type: 2}
   m_sharedMaterial: {fileID: 7031099789996037735, guid: 42d283415f5419b498e33c0d3930da7e,
@@ -13647,8 +13657,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 80, y: -48.4}
-  m_SizeDelta: {x: 450, y: 50}
+  m_AnchoredPosition: {x: 71.56, y: -48.4}
+  m_SizeDelta: {x: 433.12, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &864241457
 MonoBehaviour:
@@ -13670,8 +13680,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "1\uC758 \uC790\uB9AC \uD639\uC740 10\uC758 \uC790\uB9AC \uC22B\uC790 \uC801\uC911
-    \uC2DC \uCD5C\uB300, \uCD5C\uC18C 10\uC529 \uAC10\uC18C"
+  m_text: "1 \uD639\uC740 10\uC758 \uC790\uB9AC \uC218 \uC801\uC911 \uC2DC \uCD5C\uB300,
+    \uCD5C\uC18C \uC54C\uCF54\uC62C \uBC94\uC704 10 \uAC10\uC18C"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 42d283415f5419b498e33c0d3930da7e, type: 2}
   m_sharedMaterial: {fileID: 7031099789996037735, guid: 42d283415f5419b498e33c0d3930da7e,
@@ -15804,8 +15814,8 @@ CanvasGroup:
   m_GameObject: {fileID: 982397773}
   m_Enabled: 1
   m_Alpha: 0
-  m_Interactable: 1
-  m_BlocksRaycasts: 1
+  m_Interactable: 0
+  m_BlocksRaycasts: 0
   m_IgnoreParentGroups: 0
 --- !u!114 &982397779
 MonoBehaviour:
@@ -20874,8 +20884,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 6, y: -48.4}
-  m_SizeDelta: {x: 300, y: 50}
+  m_AnchoredPosition: {x: 66.73001, y: -48.4}
+  m_SizeDelta: {x: 421.44, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1256546609
 MonoBehaviour:
@@ -20897,7 +20907,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "30% \uD655\uB960\uB85C \uCD5C\uB300\uAC12 20 \uAC10\uC18C"
+  m_text: "\uB9E4 \uC2DC\uB3C4\uB9C8\uB2E4 30% \uD655\uB960\uB85C \uCD5C\uB300 \uC54C\uCF54\uC62C
+    \uBC94\uC704 20 \uAC10\uC18C"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 42d283415f5419b498e33c0d3930da7e, type: 2}
   m_sharedMaterial: {fileID: 7031099789996037735, guid: 42d283415f5419b498e33c0d3930da7e,
@@ -21001,7 +21012,7 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1266609444}
-  m_LocalRotation: {x: -0, y: -0, z: 0.99006176, w: 0.1406333}
+  m_LocalRotation: {x: -0, y: -0, z: -0.99575317, w: -0.09206354}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -22688,7 +22699,7 @@ PlayableDirector:
   m_GameObject: {fileID: 1400102779}
   m_Enabled: 1
   serializedVersion: 3
-  m_PlayableAsset: {fileID: 11400000, guid: 88ee38a435f89f44a973c8f608d904ed, type: 2}
+  m_PlayableAsset: {fileID: 11400000, guid: 5fe5bfcc31426be47b8abe85d2283055, type: 2}
   m_InitialState: 0
   m_WrapMode: 2
   m_DirectorUpdateMode: 1
@@ -22847,6 +22858,10 @@ PlayableDirector:
   - key: {fileID: -7455142279060943692, guid: 5f954613b7e06a549a509ba00e9fffc3, type: 2}
     value: {fileID: 0}
   - key: {fileID: -6610737944558941841, guid: 88ee38a435f89f44a973c8f608d904ed, type: 2}
+    value: {fileID: 1403322745}
+  - key: {fileID: 4688656740016189277, guid: 321cd6425d08e1b43a28d75ab1eb8da4, type: 2}
+    value: {fileID: 1403322745}
+  - key: {fileID: -3854922285847802307, guid: 5fe5bfcc31426be47b8abe85d2283055, type: 2}
     value: {fileID: 1403322745}
   m_ExposedReferences:
     m_References: []
@@ -23248,8 +23263,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 335, y: -2}
-  m_SizeDelta: {x: 393.56, y: 50}
+  m_AnchoredPosition: {x: 321.34, y: -2}
+  m_SizeDelta: {x: 366.23, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1482537474
 MonoBehaviour:
@@ -26693,8 +26708,8 @@ MonoBehaviour:
   m_ShadowVolumeIntensityEnabled: 0
   m_ShadowVolumeIntensity: 0.75
   m_LocalBounds:
-    m_Center: {x: 0.055650055, y: -0.6152, z: 0}
-    m_Extent: {x: 1.48205, y: 1.2997999, z: 0}
+    m_Center: {x: 0.05430001, y: -0.6139, z: 0}
+    m_Extent: {x: 1.4824, y: 1.3057001, z: 0}
   m_PointLightInnerAngle: 360
   m_PointLightOuterAngle: 360
   m_PointLightInnerRadius: 0
@@ -34601,11 +34616,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1022566171693574826, guid: 7f1479eb1c353f0479419ff27c119def,
-        type: 3}
-      propertyPath: _monthlyRent
-      value: 480
-      objectReference: {fileID: 0}
     - target: {fileID: 3967937384933605527, guid: 7f1479eb1c353f0479419ff27c119def,
         type: 3}
       propertyPath: m_Name

@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5c3541fdf8f417746b3e2095aa0de3d2, type: 3}
+  m_Name: TrashCan 2 evening
+  m_EditorClassIdentifier: 
+  npcCode: 0014
+  _npcType: 1
+  _day: 2
+  _animatorController: {fileID: 0}
+  _timeType: 0
+  _npcNameSprite: {fileID: 0}
+  _spawnPosition: {x: -15.26, y: 1.8}
+  _rewardItemData: {fileID: 11400000, guid: cb620db84ddecc3419dab1b9a2040fd0, type: 2}
+  _rewardItemAmount: 1
+  _rewardStealableItemData: {fileID: 0}

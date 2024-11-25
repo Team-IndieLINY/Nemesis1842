@@ -62,6 +62,7 @@ public class StealableItem : MonoBehaviour,IPointerEnterHandler,IPointerExitHand
 
     public void OnPointerClick(PointerEventData eventData)
     {
+        AudioManager.Inst.PlaySFX("steal_item_2");
         StolenManager.Inst.InActivateStealableItems();
         StolenManager.Inst.HideStealableItemNameTag();
 

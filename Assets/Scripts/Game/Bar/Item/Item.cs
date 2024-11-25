@@ -50,6 +50,7 @@ public class Item : MonoBehaviour,IPointerClickHandler,IPointerEnterHandler,IPoi
 
     public void OnPointerEnter(PointerEventData eventData)
     {
+        AudioManager.Inst.PlaySFX("mouse_hovered");
         _itemTooltipUI.UpdateTooltipUI(_itemData);
         _itemTooltipUI.gameObject.SetActive(true);
     }
@@ -68,6 +69,8 @@ public class Item : MonoBehaviour,IPointerClickHandler,IPointerEnterHandler,IPoi
             _itemUI.UpdateItemUI();
             
             _alcoholController.EquipItem(null);
+            
+            AudioManager.Inst.PlaySFX("mouse_click");
             
             _usingItemSignCanvasGroup.DOKill();
             _usingItemText.text = "<color #c89e38>\" " + _itemData.ItemName + "\"</color>를 사용을 취소합니다.";
@@ -92,6 +95,8 @@ public class Item : MonoBehaviour,IPointerClickHandler,IPointerEnterHandler,IPoi
         _alcoholController.EquipItem(this);
 
         _usingItemSignCanvasGroup.DOKill();
+        
+        AudioManager.Inst.PlaySFX("mouse_click");
         _usingItemText.text = "<color #c89e38>\" " + _itemData.ItemName + "\"</color>를 사용합니다.";
 
         Sequence sequence = DOTween.Sequence();

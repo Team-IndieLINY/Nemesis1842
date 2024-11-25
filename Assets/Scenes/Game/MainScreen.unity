@@ -782,26 +782,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 2347733625220441384, guid: 277b870030790c04184bcb6bbf5785a7,
-        type: 3}
-      propertyPath: m_audioClip
-      value: 
-      objectReference: {fileID: 8300000, guid: 47a687218ceea7e4b9d296be01ceaeda, type: 3}
-    - target: {fileID: 3707243711111993655, guid: 277b870030790c04184bcb6bbf5785a7,
-        type: 3}
-      propertyPath: sfxSounds.Array.size
-      value: 42
-      objectReference: {fileID: 0}
-    - target: {fileID: 3707243711111993655, guid: 277b870030790c04184bcb6bbf5785a7,
-        type: 3}
-      propertyPath: sfxSounds.Array.data[41].clip
-      value: 
-      objectReference: {fileID: 8300000, guid: f45d51cca5dffcb4498b3e559862ab11, type: 3}
-    - target: {fileID: 3707243711111993655, guid: 277b870030790c04184bcb6bbf5785a7,
-        type: 3}
-      propertyPath: sfxSounds.Array.data[41].name
-      value: volume_slider
-      objectReference: {fileID: 0}
     - target: {fileID: 4380599456923004065, guid: 277b870030790c04184bcb6bbf5785a7,
         type: 3}
       propertyPath: m_LocalPosition.x

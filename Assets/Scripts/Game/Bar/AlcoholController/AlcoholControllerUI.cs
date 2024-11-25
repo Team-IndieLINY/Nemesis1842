@@ -105,8 +105,9 @@ public class AlcoholControllerUI : MonoBehaviour
 
         foreach (var letter in str.ToCharArray())
         {
+            AudioManager.Inst.PlaySFX("buff_sound");
             _scanBuffDescriptionText.text += letter;
-            yield return new WaitForSeconds(0.02f);
+            yield return new WaitForSeconds(0.04f);
         }
     }
 

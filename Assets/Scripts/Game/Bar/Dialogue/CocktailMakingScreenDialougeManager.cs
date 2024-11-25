@@ -44,11 +44,33 @@ public class CocktailMakingScreenDialougeManager : MonoBehaviour
     {
         _isTyped = true;
         _scriptText.text = "";
+        
+        bool isImportant = false;
 
         foreach (var letter in script.ToCharArray())
         {
             AudioManager.Inst.PlaySFX("type");
-            _scriptText.text += letter;
+            
+            if (letter == '<')
+            {
+                isImportant = true;
+                continue;
+            }
+            else if (letter == '>')
+            {
+                isImportant = false;
+                continue;
+            }
+            
+            if (isImportant is false)
+            {
+                _scriptText.text += letter;
+            }
+            else
+            {
+                _scriptText.text += "<color #c89e38>" + letter + "</color>";
+            }
+            
             yield return new WaitForSeconds(_typeSpeedForSecond);
         }
 

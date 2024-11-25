@@ -38,6 +38,7 @@ public class MovingPositionPortal : Portal
             return;
         }
         PlayerController.RestrictMovement();
+        AudioManager.Inst.PlaySFX("stair_1");
         _fadeImage.DOFade(1f, 0.4f)
             .OnKill(() =>
             {

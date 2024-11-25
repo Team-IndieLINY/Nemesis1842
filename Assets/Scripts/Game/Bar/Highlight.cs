@@ -15,6 +15,7 @@ public class Highlight : MonoBehaviour,IPointerEnterHandler,IPointerExitHandler
 
     public void OnPointerEnter(PointerEventData eventData)
     {
+        AudioManager.Inst.PlaySFX("mouse_hovered");
         _hightlightedImage.DOKill();
         _hightlightedImage.DOFade(1f, _fadeTime);
     }

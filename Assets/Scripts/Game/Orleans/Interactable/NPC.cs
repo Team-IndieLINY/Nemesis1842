@@ -57,6 +57,11 @@ public class NPC : MonoBehaviour, IInteractable
         _tooltipGO.SetActive(true);
 
         _npcIconImage.DOFillAmount(1f, 0.3f);
+
+        if (_npcData.NPCType == NPCData.ENPCType.Object)
+        {
+            return;
+        }
         _npcNameTextImage.DOFade(1f, 0.3f);
     }
 
@@ -65,7 +70,11 @@ public class NPC : MonoBehaviour, IInteractable
         _npcIconImage.DOKill();
         _npcNameTextImage.DOKill();
 
-        _npcNameTextImage.DOFade(0f, 0.3f);
+        if (_npcData.NPCType == NPCData.ENPCType.Human)
+        {
+            _npcNameTextImage.DOFade(0f, 0.3f);
+        }
+
         _npcIconImage.DOFillAmount(0f, 0.3f)
             .OnKill(() =>
             {
@@ -82,8 +91,6 @@ public class NPC : MonoBehaviour, IInteractable
         _npcFirstInteractScripts = npcScriptEntities.Where(x => x.interact_state == 0).ToList();
         _npcNotFirstInteractScripts = npcScriptEntities.Where(x => x.interact_state == 1).ToList();
         
-        BoxCollider2D boxCollider2D = gameObject.AddComponent<BoxCollider2D>();
-        boxCollider2D.isTrigger = true;
         _npcNameTextImage.sprite = _npcData.NPCNameSprite;
         _npcNameTextImage.SetNativeSize();
 

@@ -564,7 +564,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 92f44f756370d164e92d8a7d07cdafb2, type: 3}
+  m_Sprite: {fileID: 21300000, guid: ac9f1f851ca24954188c699abba63f35, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -586,7 +586,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c6ffda3d36cbe444ab617ee77b87783d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _stealableItemData: {fileID: 11400000, guid: 8235bc80b803b8a4f989c77211181197, type: 2}
+  _stealableItemData: {fileID: 11400000, guid: 64b9f606e8a20164393a3b12738f3737, type: 2}
 --- !u!1 &5731048212173490718
 GameObject:
   m_ObjectHideFlags: 0

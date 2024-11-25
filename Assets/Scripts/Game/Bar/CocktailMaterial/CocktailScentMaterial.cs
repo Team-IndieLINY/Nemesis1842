@@ -13,10 +13,11 @@ public class CocktailScentMaterial : CocktailMaterial,IPointerEnterHandler,IPoin
     {
         StartCoroutine(_cocktailMakingManager.SetScent(_scentType));
     }
-    
+
     public void OnPointerEnter(PointerEventData eventData)
     {
         AudioManager.Inst.PlaySFX("bottle_hovering");
+
         _nameTagUI.UpdateNameTagUI(CocktailRecipeBlockUI._scentTypeByScentTypeName[_scentType]);
         _nameTagUI.gameObject.SetActive(true);
     }

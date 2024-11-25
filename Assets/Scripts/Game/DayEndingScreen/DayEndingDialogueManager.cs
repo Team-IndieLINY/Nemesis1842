@@ -179,6 +179,7 @@ public class DayEndingDialogueManager : MonoBehaviour
     {
         yield return new WaitForSeconds(1f);
         
+        AudioManager.Inst.PlaySFX("dodong_1");
         _missionImage.gameObject.SetActive(true);
 
         yield return new WaitForSeconds(2f);

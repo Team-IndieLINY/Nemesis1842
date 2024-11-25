@@ -23,7 +23,7 @@ public class PlayerController : MonoBehaviour
 
     private static int restrictingMovementCount = 0;
 
-    private float _walkTimeSound = 0f;
+    private float _walkTimeSound = 0.5f;
 
     private void Awake()
     {
@@ -90,7 +90,7 @@ public class PlayerController : MonoBehaviour
             else
             {
                 _animator.SetBool("IsWalking", false);
-                _walkTimeSound = 0f;
+                _walkTimeSound = 0.5f;
             }
 
             _rigidbody.velocity = new Vector3(inputX * _movingSpeed, 0, 0);

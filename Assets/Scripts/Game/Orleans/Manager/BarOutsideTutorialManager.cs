@@ -13,7 +13,7 @@ public class BarOutsideTutorialManager : MonoBehaviour
     [SerializeField]
     private BarOutsideTutorialPopup _barOutsideTutorialPopup;
 
-    private void Start()
+    public void OpenTutorial()
     {
         if (_useTutorial && DayManager.Instance.TimeType == NPCData.ETimeType.Evening && DayManager.Instance.Day == 1)
         {

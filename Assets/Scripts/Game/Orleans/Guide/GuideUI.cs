@@ -32,6 +32,7 @@ public class GuideUI : MonoBehaviour
 
     public void ShowGuideUI(EGuideType guideType)
     {
+        AudioManager.Inst.PlaySFX("guide_appear");
         _guideIcon.sprite = _guideIconSprites[(int)guideType];
         _guideIcon.SetNativeSize();
         _guideText.text = _guideStrings[(int)guideType];

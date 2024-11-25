@@ -24,6 +24,8 @@ public class SoundVolumeSlider : MonoBehaviour
     private static int _masterVolume = 100;
     private static int _bgmVolume = 100;
     private static int _sfxVolume = 100;
+
+    private bool _isOpened = false;
     
     // Start is called before the first frame update
     private void Awake()
@@ -51,7 +53,15 @@ public class SoundVolumeSlider : MonoBehaviour
 
     public void UpdateSoundVolumeText()
     {
-        AudioManager.Inst.PlaySFX("volume_slider");
+        if (_isOpened is false)
+        {
+            _isOpened = true;
+        }
+        else
+        {
+            AudioManager.Inst.PlaySFX("volume_slider");
+        }
+        
         int soundVolume = (int)_slider.value;
         _soundVolumeText.text = soundVolume.ToString();
 

@@ -21,6 +21,7 @@ public class StealUIHandler : MonoBehaviour,IPointerEnterHandler,IPointerExitHan
 
     public void OnPointerEnter(PointerEventData eventData)
     {
+        AudioManager.Inst.PlaySFX("mouse_hovered");
         _rectTransform.DOKill();
         _rectTransform.DOAnchorPos(_upPosition, 0.2f);
     }

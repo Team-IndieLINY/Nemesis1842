@@ -199,6 +199,7 @@ public class CocktailMakingManager : MonoBehaviour
         _resetButton.interactable = false;
         _shakerBackImage.raycastTarget = false;
         _shakerFrontImage.raycastTarget = false;
+        AudioManager.Inst.PlaySFX("mouse_click");
         StartCoroutine(ResetCocktailAnimation());
     }
 
