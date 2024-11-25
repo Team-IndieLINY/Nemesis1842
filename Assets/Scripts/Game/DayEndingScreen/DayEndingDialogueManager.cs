@@ -71,6 +71,9 @@ public class DayEndingDialogueManager : MonoBehaviour
     private bool _isEnded;
     public bool IsEnded => _isEnded;
 
+    private bool _isSkipped;
+    public bool IsSkipped => _isSkipped;
+
     private PlayableDirector _playableDirector;
 
     private void Awake()
@@ -89,6 +92,20 @@ public class DayEndingDialogueManager : MonoBehaviour
             {
                 StartDialogue();
             });
+    }
+
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.F12) && _isSkipped is false)
+        {
+            _isSkipped = true;
+            DayManager.Instance.ResetDayManager();
+            InventoryManager.Instance().ResetInventoryData();
+            InventoryManager.Instance().ResetItems();
+            PlayerManager.Instance().ResetPlayerData();
+            PlayerManager.Instance().IsNewItemDotActivated = false;
+            LoadingScreen.Instance.LoadScene("MainScreen");
+        }
     }
 
     public void StartDialogue()
@@ -129,6 +146,11 @@ public class DayEndingDialogueManager : MonoBehaviour
 
         string script = _scriptsQueue.Dequeue();
         _currentScript = script;
+        
+        if (_scriptsQueue.Count == 0 && EndingManager.Inst.EndingType == EndingManager.EEndingType.DieEnding)
+        {
+            AudioManager.Inst.PlaySFX("bangbang");
+        }
         
         _typeScriptsCoroutine = StartCoroutine(TypeScripts(_currentScript));
     }
@@ -194,10 +216,12 @@ public class DayEndingDialogueManager : MonoBehaviour
         }
         else
         {
+            AudioManager.Inst.PlaySFX("wave");
             AudioManager.Inst.FadeInMusic("intro");
         }
 
         yield return new WaitForSeconds(2f);
+        
         
         _creditPictureImage.DOFade(1f, 2f);
         _playableDirector.Play();

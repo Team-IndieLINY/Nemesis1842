@@ -9627,8 +9627,8 @@ MonoBehaviour:
   m_ShadowVolumeIntensityEnabled: 0
   m_ShadowVolumeIntensity: 0.75
   m_LocalBounds:
-    m_Center: {x: -0.15714979, y: 1.3450999, z: 0}
-    m_Extent: {x: 6.51545, y: 5.715, z: 0}
+    m_Center: {x: -0.15135002, y: 1.3466, z: 0}
+    m_Extent: {x: 6.51465, y: 5.7139, z: 0}
   m_PointLightInnerAngle: 360
   m_PointLightOuterAngle: 360
   m_PointLightInnerRadius: 0
@@ -12687,16 +12687,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 3707243711111993655, guid: 277b870030790c04184bcb6bbf5785a7,
-        type: 3}
-      propertyPath: sfxSounds.Array.size
-      value: 47
-      objectReference: {fileID: 0}
-    - target: {fileID: 3707243711111993655, guid: 277b870030790c04184bcb6bbf5785a7,
-        type: 3}
-      propertyPath: sfxSounds.Array.data[37].clip
-      value: 
-      objectReference: {fileID: 8300000, guid: af9ee16d39a1a22478377abc953ce274, type: 3}
     - target: {fileID: 4380599456923004065, guid: 277b870030790c04184bcb6bbf5785a7,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -22699,7 +22689,7 @@ PlayableDirector:
   m_GameObject: {fileID: 1400102779}
   m_Enabled: 1
   serializedVersion: 3
-  m_PlayableAsset: {fileID: 11400000, guid: 5fe5bfcc31426be47b8abe85d2283055, type: 2}
+  m_PlayableAsset: {fileID: 11400000, guid: 1a8a6afe888bd514687dc47153d32ab9, type: 2}
   m_InitialState: 0
   m_WrapMode: 2
   m_DirectorUpdateMode: 1
@@ -22862,6 +22852,8 @@ PlayableDirector:
   - key: {fileID: 4688656740016189277, guid: 321cd6425d08e1b43a28d75ab1eb8da4, type: 2}
     value: {fileID: 1403322745}
   - key: {fileID: -3854922285847802307, guid: 5fe5bfcc31426be47b8abe85d2283055, type: 2}
+    value: {fileID: 1403322745}
+  - key: {fileID: 6714315693217536271, guid: 1a8a6afe888bd514687dc47153d32ab9, type: 2}
     value: {fileID: 1403322745}
   m_ExposedReferences:
     m_References: []
@@ -26708,8 +26700,8 @@ MonoBehaviour:
   m_ShadowVolumeIntensityEnabled: 0
   m_ShadowVolumeIntensity: 0.75
   m_LocalBounds:
-    m_Center: {x: 0.05430001, y: -0.6139, z: 0}
-    m_Extent: {x: 1.4824, y: 1.3057001, z: 0}
+    m_Center: {x: 0.04609996, y: -0.61539996, z: 0}
+    m_Extent: {x: 1.4737, y: 1.3069, z: 0}
   m_PointLightInnerAngle: 360
   m_PointLightOuterAngle: 360
   m_PointLightInnerRadius: 0
@@ -27281,6 +27273,7 @@ MonoBehaviour:
   _moneyText: {fileID: 600876843}
   _plusMoneyText: {fileID: 2054569992327190702}
   _minusMoneyText: {fileID: 7213073602573445872}
+  _moneyAnimationTime: 2.5
 --- !u!1001 &1830850810
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -35618,6 +35611,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3357383342897949370, guid: 398aac81c74054e4bbb963336c31015d,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -373.1
       objectReference: {fileID: 0}
     - target: {fileID: 3667978908716412244, guid: 398aac81c74054e4bbb963336c31015d,
         type: 3}

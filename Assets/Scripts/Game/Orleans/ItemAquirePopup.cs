@@ -48,15 +48,14 @@ public class ItemAquirePopup : MonoBehaviour, IPopUpable
     
     public void ShowUI()
     {
+        AudioManager.Inst.PlaySFX("item_aquire");
         _anyKeyImage.DOKill();
         _anyKeyImage.DOFade(0f, 0.8f).SetLoops(-1, LoopType.Yoyo);
         gameObject.SetActive(true);
-        PlayerController.RestrictMovement();
     }
 
     public void HideUI()
     {
         gameObject.SetActive(false);
-        PlayerController.AllowMovement();
     }
 }

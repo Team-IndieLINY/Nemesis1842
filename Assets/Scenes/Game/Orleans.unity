@@ -6591,21 +6591,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1022566171693574826, guid: 7f1479eb1c353f0479419ff27c119def,
-        type: 3}
-      propertyPath: day
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1022566171693574826, guid: 7f1479eb1c353f0479419ff27c119def,
-        type: 3}
-      propertyPath: _timeType
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1022566171693574826, guid: 7f1479eb1c353f0479419ff27c119def,
-        type: 3}
-      propertyPath: _monthlyRent
-      value: 480
-      objectReference: {fileID: 0}
     - target: {fileID: 3967937384933605527, guid: 7f1479eb1c353f0479419ff27c119def,
         type: 3}
       propertyPath: m_Name
@@ -10677,6 +10662,11 @@ PrefabInstance:
       propertyPath: _player
       value: 
       objectReference: {fileID: 798633282}
+    - target: {fileID: 7123827019913009226, guid: 8bf1ec04db27be347b2f97788ec8a239,
+        type: 3}
+      propertyPath: _moneyAnimationTime
+      value: 3
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -11994,6 +11984,11 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 13061497}
     m_Modifications:
+    - target: {fileID: 421379349308012270, guid: 398aac81c74054e4bbb963336c31015d,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2209060761666270534, guid: 398aac81c74054e4bbb963336c31015d,
         type: 3}
       propertyPath: m_Pivot.x
@@ -12144,6 +12139,21 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3357383342897949370, guid: 398aac81c74054e4bbb963336c31015d,
+        type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 397
+      objectReference: {fileID: 0}
+    - target: {fileID: 3357383342897949370, guid: 398aac81c74054e4bbb963336c31015d,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -21.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3357383342897949370, guid: 398aac81c74054e4bbb963336c31015d,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -375.2
+      objectReference: {fileID: 0}
     - target: {fileID: 3667978908716412244, guid: 398aac81c74054e4bbb963336c31015d,
         type: 3}
       propertyPath: m_AnchorMax.y
@@ -12182,6 +12192,16 @@ PrefabInstance:
     - target: {fileID: 5151322988495905945, guid: 398aac81c74054e4bbb963336c31015d,
         type: 3}
       propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5334681382384474134, guid: 398aac81c74054e4bbb963336c31015d,
+        type: 3}
+      propertyPath: m_Alpha
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5725852057016274331, guid: 398aac81c74054e4bbb963336c31015d,
+        type: 3}
+      propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 9090454779745944920, guid: 398aac81c74054e4bbb963336c31015d,
@@ -14990,7 +15010,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _timerText: {fileID: 1597698463}
-  time: 90
+  time: 60
   _fadeImage: {fileID: 492120189}
   _timerFill: {fileID: 130571852}
 --- !u!1 &1753096422

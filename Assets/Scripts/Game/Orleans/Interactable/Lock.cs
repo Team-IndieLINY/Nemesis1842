@@ -69,6 +69,7 @@ public class Lock : InteractableObject
     {
         if (_currentNumberString == answerNumberString)
         {
+            AudioManager.Inst.PlaySFX("open_lock");
             _lockUI.CorrectPassword();
             LockCutSceneManager.Inst.StopTimer();
             

@@ -12,28 +12,29 @@ public class PausePanel : MonoBehaviour,IPopUpable
     
     public void ShowUI()
     {
-        PlayerController.RestrictMovement();
         gameObject.SetActive(true);
     }
 
     public void HideUI()
     {
-        PlayerController.AllowMovement();
         gameObject.SetActive(false);
     }
 
     public void OnClickResumeButton()
     {
+        AudioManager.Inst.PlaySFX("mouse_click");
         PopUpUIManager.Inst.CloseUI();
     }
     
     public void OnClickSettingButton()
     {
+        AudioManager.Inst.PlaySFX("mouse_click");
         PopUpUIManager.Inst.OpenUI(_settingPanel);
     }
     
     public void OnClickMainScreenButton()
     {
+        AudioManager.Inst.PlaySFX("mouse_click");
         PopUpUIManager.Inst.OpenUI(_mainScreenWarningPopupPanel);
     }
 }

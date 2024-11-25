@@ -24,7 +24,16 @@ public class StealableItem : MonoBehaviour,IPointerEnterHandler,IPointerExitHand
         _rectTransform = GetComponent<RectTransform>();
         _originalPosition = _rectTransform.anchoredPosition;
         _upPosition = _originalPosition;
-        _upPosition.y += 15f;
+
+        if (_stealableItemData is InformationItemData)
+        {
+            _upPosition.y += 10f;
+        }
+        else if(_stealableItemData is MoneyItemData)
+        {
+            _upPosition.y += 5f;
+        }
+        
         _image.sprite = _stealableItemData.ItemSprite;
         _image.SetNativeSize();
     }
@@ -39,7 +48,8 @@ public class StealableItem : MonoBehaviour,IPointerEnterHandler,IPointerExitHand
         {
             StolenManager.Inst.ShowStealableItemNameTag(moneyItemData.Money + "$");
         }
-        
+
+        _rectTransform.DOKill();
         _rectTransform.DOAnchorPos(_upPosition, 0.2f);
     }
 
@@ -52,7 +62,14 @@ public class StealableItem : MonoBehaviour,IPointerEnterHandler,IPointerExitHand
             return;
         }
         
-        _rectTransform.DOAnchorPos(_originalPosition, 0.2f);
+        _image.raycastTarget = false;
+        
+        _rectTransform.DOKill();
+        _rectTransform.DOAnchorPos(_originalPosition, 0.2f)
+            .OnKill(() =>
+            {
+                _image.raycastTarget = true;
+            });
     }
     
     public void OnPointerMove(PointerEventData eventData)
@@ -62,6 +79,8 @@ public class StealableItem : MonoBehaviour,IPointerEnterHandler,IPointerExitHand
 
     public void OnPointerClick(PointerEventData eventData)
     {
+        _image.raycastTarget = false;
+        
         AudioManager.Inst.PlaySFX("steal_item_2");
         StolenManager.Inst.InActivateStealableItems();
         StolenManager.Inst.HideStealableItemNameTag();

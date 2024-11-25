@@ -53,6 +53,7 @@ public class Belonging : MonoBehaviour,IPointerClickHandler
 
     public void OnPointerClick(PointerEventData eventData)
     {
+        AudioManager.Inst.PlaySFX("steal_item_1");
         _image.raycastTarget = false;
         
         _image.sprite = _openBelongingSprite;

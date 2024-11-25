@@ -118,6 +118,7 @@ public class DayEndingUI : MonoBehaviour,IPointerClickHandler
 
     private IEnumerator TypeEndingUI(int startValue, int endValue, TextMeshProUGUI text)
     {
+        AudioManager.Inst.PlaySFX("money_increase");
         _doneCoroutineCount++;
 
         int currentValue = startValue;

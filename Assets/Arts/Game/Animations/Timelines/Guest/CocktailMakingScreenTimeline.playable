@@ -968,7 +968,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4f10dd60657c6004587f237a7e90f8e4, type: 3}
   m_Name: AudioPlayableAsset(Clone)
   m_EditorClassIdentifier: 
-  m_Clip: {fileID: 8300000, guid: bfc294a45f9c88643ba759d85ee204e2, type: 3}
+  m_Clip: {fileID: 8300000, guid: 5b2a11f55ad98604bafea68423276d4f, type: 3}
   m_Loop: 0
   m_bufferingTime: 0.1
   m_ClipProperties:
@@ -1369,7 +1369,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4f10dd60657c6004587f237a7e90f8e4, type: 3}
   m_Name: AudioPlayableAsset
   m_EditorClassIdentifier: 
-  m_Clip: {fileID: 8300000, guid: bfc294a45f9c88643ba759d85ee204e2, type: 3}
+  m_Clip: {fileID: 8300000, guid: 1b2630667f444854ca5a532a3a8a2353, type: 3}
   m_Loop: 0
   m_bufferingTime: 0.1
   m_ClipProperties:
@@ -2340,57 +2340,6 @@ MonoBehaviour:
   m_Children: []
   m_Clips:
   - m_Version: 1
-    m_Start: 2.8333333333333335
-    m_ClipIn: 0.16666666666666652
-    m_Asset: {fileID: 4258259826135168}
-    m_Duration: 0.44999999999999973
-    m_TimeScale: 1
-    m_ParentTrack: {fileID: 3143814176979125634}
-    m_EaseInDuration: 0
-    m_EaseOutDuration: 0
-    m_BlendInDuration: -1
-    m_BlendOutDuration: -1
-    m_MixInCurve:
-      serializedVersion: 2
-      m_Curve:
-      - serializedVersion: 3
-        time: 0
-        value: 0
-        inSlope: 0
-        outSlope: 0
-        tangentMode: 0
-        weightedMode: 0
-        inWeight: 0
-        outWeight: 0
-      - serializedVersion: 3
-        time: 1
-        value: 1
-        inSlope: 0
-        outSlope: 0
-        tangentMode: 0
-        weightedMode: 0
-        inWeight: 0
-        outWeight: 0
-      m_PreInfinity: 2
-      m_PostInfinity: 2
-      m_RotationOrder: 4
-    m_MixOutCurve:
-      serializedVersion: 2
-      m_Curve: []
-      m_PreInfinity: 2
-      m_PostInfinity: 2
-      m_RotationOrder: 4
-    m_BlendInCurveMode: 0
-    m_BlendOutCurveMode: 0
-    m_ExposedParameterNames: []
-    m_AnimationCurves: {fileID: 0}
-    m_Recordable: 0
-    m_PostExtrapolationMode: 0
-    m_PreExtrapolationMode: 0
-    m_PostExtrapolationTime: 0
-    m_PreExtrapolationTime: 0
-    m_DisplayName: SFX_cocktail making
-  - m_Version: 1
     m_Start: 3.566666666666667
     m_ClipIn: 0.16666666666666652
     m_Asset: {fileID: -2884509416651579135}
@@ -2442,10 +2391,61 @@ MonoBehaviour:
     m_PreExtrapolationTime: 0
     m_DisplayName: SFX_cocktail making
   - m_Version: 1
-    m_Start: 4.833333333333333
-    m_ClipIn: 0.16666666666666652
+    m_Start: 4.833333492279053
+    m_ClipIn: 0.4833331743876146
     m_Asset: {fileID: 4349255782638859570}
-    m_Duration: 0.3833333333333333
+    m_Duration: 1.666666666666667
+    m_TimeScale: 1
+    m_ParentTrack: {fileID: 3143814176979125634}
+    m_EaseInDuration: 0
+    m_EaseOutDuration: 0
+    m_BlendInDuration: -1
+    m_BlendOutDuration: -1
+    m_MixInCurve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 0
+        value: 0
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      - serializedVersion: 3
+        time: 1
+        value: 1
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    m_MixOutCurve:
+      serializedVersion: 2
+      m_Curve: []
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    m_BlendInCurveMode: 0
+    m_BlendOutCurveMode: 0
+    m_ExposedParameterNames: []
+    m_AnimationCurves: {fileID: 0}
+    m_Recordable: 0
+    m_PostExtrapolationMode: 0
+    m_PreExtrapolationMode: 0
+    m_PostExtrapolationTime: 0
+    m_PreExtrapolationTime: 0
+    m_DisplayName: SFX_cocktail making
+  - m_Version: 1
+    m_Start: 2.75
+    m_ClipIn: 22.54999999999996
+    m_Asset: {fileID: 4258259826135168}
+    m_Duration: 0.7333333333333334
     m_TimeScale: 1
     m_ParentTrack: {fileID: 3143814176979125634}
     m_EaseInDuration: 0
@@ -2781,7 +2781,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4f10dd60657c6004587f237a7e90f8e4, type: 3}
   m_Name: AudioPlayableAsset(Clone)(Clone)
   m_EditorClassIdentifier: 
-  m_Clip: {fileID: 8300000, guid: bfc294a45f9c88643ba759d85ee204e2, type: 3}
+  m_Clip: {fileID: 8300000, guid: 34999b7d82709d24abcfa6ca736368cb, type: 3}
   m_Loop: 0
   m_bufferingTime: 0.1
   m_ClipProperties:

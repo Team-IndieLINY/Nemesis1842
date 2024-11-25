@@ -16,6 +16,7 @@ public class MainScreenWarningPopupPanel : MonoBehaviour, IPopUpable
 
     public void OnClickGoMainScreenButton()
     {
+        AudioManager.Inst.PlaySFX("mouse_click");
         DayManager.Instance.ResetDayManager();
         InventoryManager.Instance().ResetInventoryData();
         InventoryManager.Instance().ResetItems();
@@ -30,6 +31,7 @@ public class MainScreenWarningPopupPanel : MonoBehaviour, IPopUpable
 
     public void OnClickBackButton()
     {
+        AudioManager.Inst.PlaySFX("mouse_click");
         PopUpUIManager.Inst.CloseUI();
     }
 }

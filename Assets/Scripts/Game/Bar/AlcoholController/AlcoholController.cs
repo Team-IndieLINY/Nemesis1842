@@ -205,6 +205,7 @@ public class AlcoholController : MonoBehaviour
         
         if (_currentInputAlcohol <= _answerAlcohol + _increasedMaxAmount && _currentInputAlcohol >= _answerAlcohol - _increasedMinAmount)
         {
+            AudioManager.Inst.PlaySFX("alcohol_correct");
             _enterButton.interactable = false;
             // Normalize();
             

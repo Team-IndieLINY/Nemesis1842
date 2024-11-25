@@ -20,6 +20,9 @@ public class Player : MonoBehaviour
 
     [SerializeField]
     private TextMeshProUGUI _minusMoneyText;
+    
+    [SerializeField]
+    private float _moneyAnimationTime;
 
     private Vector2 _plusMoneyOriginPosition;
     private Vector2 _minusMoneyOriginPosition;
@@ -52,6 +55,7 @@ public class Player : MonoBehaviour
 
     private IEnumerator AnimateEarningMoneyText(int startMoney, int endMoney)
     {
+        AudioManager.Inst.PlaySFX("money_increase");
         TextMeshProUGUI text;
         Vector2 originPosition;
         string moneyString;
@@ -74,6 +78,8 @@ public class Player : MonoBehaviour
         Vector2 upPosition = new Vector2(originPosition.x, originPosition.y + 20f);
         text.rectTransform.DOAnchorPos(upPosition, 1f);
         
+        float time = 1 / Mathf.Abs(endMoney - startMoney);
+        
         while (startMoney != endMoney)
         {
             if (endMoney - startMoney >= 0)
@@ -83,7 +89,7 @@ public class Player : MonoBehaviour
 
             _moneyText.text = startMoney.ToString();
 
-            yield return new WaitForSeconds(0.03f);
+            yield return new WaitForSeconds(time * _moneyAnimationTime);
         }
 
         text.DOKill();

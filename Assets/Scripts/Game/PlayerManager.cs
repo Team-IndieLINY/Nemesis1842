@@ -35,5 +35,6 @@ public class PlayerManager
         _money = 0;
         AIEnhancerItemUsingCount = 0;
         CoolerItemUsingCount = 0;
+        IsNewItemDotActivated = false;
     }
 }
